@@ -128,10 +128,11 @@ Lowluds Web Development / Design
 
 	<!-- Contact -->
 							<article id="contact" class="panel">
-								<header>
-									<h2>Contact Me</h2>
-								</header>
-								<form action="https://formsubmit.co/lowludzz@gmail.com" method="POST">
+	<header>
+		<h2>Contact Me</h2>
+	</header>
+	<form name="contact" method="POST" data-netlify="true">
+		<input type="hidden" name="form-name" value="contact">
 		<div>
 			<div class="row">
 				<div class="col-6 col-12-medium">
@@ -151,10 +152,8 @@ Lowluds Web Development / Design
 				</div>
 			</div>
 		</div>
-		    <input type="hidden" name="_captcha" value="false">
-    		<input type="hidden" name="_next" value="https://designbykyle.com/">
 	</form>
-							</article>
+</article>
 
 						</div>
 
