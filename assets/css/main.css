@@ -1295,6 +1295,52 @@ input, select, textarea {
 
 		}
 
+		@media screen and (max-width: 600px) {
+			#thankYouModal .thankyou-content {
+				padding: 1.2em 0.5em;
+				font-size: 1em;
+			}
+			#thankYouModal .thankyou-close-btn {
+				width: 100%;
+			}
+		}
+
+		@media screen and (max-width: 1280px) {
+
+			#wrapper {
+				padding: 3em 0;
+				max-width: calc(100% - 6em);
+			}
+
+		}
+
+		@media screen and (max-width: 980px) {
+
+			#wrapper {
+				padding: 1.5em 0;
+				max-width: calc(100% - 8em);
+			}
+
+		}
+
+		@media screen and (max-width: 736px) {
+
+			#wrapper {
+				padding: 1em 0;
+				max-width: calc(100% - 2em);
+			}
+
+		}
+
+		@media screen and (max-width: 360px) {
+
+			#wrapper {
+				padding: 1em 0;
+				max-width: 100%;
+			}
+
+		}
+
 /* Basic */
 
 	html {
@@ -2206,3 +2252,39 @@ body.is-preload *:after {
 			}
 
 		}
+
+/* Thank You Modal Customization */
+#thankYouModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+#thankYouModal .thankyou-content {
+  background: #fff; /* Match Contact panel background */
+  padding: 2em 3em;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2em;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+#thankYouModal .thankyou-close-btn {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+  border: none;
+  background: #222222; /* Match Send Message button */
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.2s;
+}
+#thankYouModal .thankyou-close-btn:hover {
+  background: #333333;
+}

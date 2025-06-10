@@ -119,7 +119,7 @@ Lowluds Web Development / Design
 				</div>
 				<div class="col-4 col-6-medium col-12-small">
 					<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
-									</div>
+				</div>
 			-->
 
 						</div>
@@ -127,12 +127,11 @@ Lowluds Web Development / Design
 				</article>
 
 	<!-- Contact -->
-							<article id="contact" class="panel">
+	<article id="contact" class="panel">
 	<header>
 		<h2>Contact Me</h2>
 	</header>
-	<form name="contact" method="POST" data-netlify="true">
-		<input type="hidden" name="form-name" value="contact">
+	<form id="contactForm" action="https://formsubmit.co/lowbusiness@proton.me" method="POST">
 		<div>
 			<div class="row">
 				<div class="col-6 col-12-medium">
@@ -147,12 +146,21 @@ Lowluds Web Development / Design
 				<div class="col-12">
 					<textarea name="message" placeholder="Message" rows="6" required></textarea>
 				</div>
+				<input type="hidden" name="_captcha" value="false">
+				<input type="hidden" name="_next" value="https://designbykyle.com/thankyou.html">
 				<div class="col-12">
 					<input type="submit" value="Send Message" />
 				</div>
 			</div>
 		</div>
 	</form>
+	<!-- Thank You Popup -->
+	<div id="thankYouModal">
+  <div class="thankyou-content">
+    Thank you for your message!<br><br>
+    <button class="thankyou-close-btn" onclick="document.getElementById('thankYouModal').style.display='none'">Close</button>
+  </div>
+</div>
 </article>
 
 						</div>
@@ -174,6 +182,26 @@ Lowluds Web Development / Design
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+    if (response.ok) {
+        form.reset();
+        document.getElementById('thankYouModal').style.display = 'flex';
+    } else {
+        alert('There was an error sending your message. Please try again.');
+    }
+});
+</script>
 
 	</body>
 </html>
