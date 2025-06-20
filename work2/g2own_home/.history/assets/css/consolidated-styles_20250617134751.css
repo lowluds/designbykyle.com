@@ -1,0 +1,404 @@
+/**
+ * G2Own - Critical Consolidated Styles
+ * Essential styles for sidebar, buttons, and hero badge
+ */
+
+/* CSS Variables */
+:root {
+    --primary-red: #ef4444;
+    --primary-black: #000000;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --sidebar-width: 80px;
+    --sidebar-bg: rgba(0, 0, 0, 0.95);
+    --border-color: rgba(239, 68, 68, 0.3);
+    --hover-glow: rgba(239, 68, 68, 0.5);
+}
+
+/* Hero Badge - Essential Styling */
+.hero-badge {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(239, 68, 68, 0.6);
+    border-radius: 25px;
+    padding: 0.4rem 0.8rem;
+    color: var(--primary-red);
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    margin: 0 auto;
+    transition: all var(--transition-speed) ease;
+}
+
+.hero-badge:hover {
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
+}
+
+.hero-badge i {
+    font-size: 1rem;
+    color: var(--primary-red);
+}
+
+/* Sidebar Navigation - Essential Styling */
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-black) !important;
+    border: 2px solid rgba(239, 68, 68, 0.8) !important;
+    color: var(--primary-red);
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+    margin: 0.5rem 0;
+}
+
+.nav-link:hover {
+    background: var(--primary-black) !important;
+    border-color: var(--primary-red) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    transform: scale(1.05);
+}
+
+.nav-gaming-icon,
+.preview-icon {
+    background: var(--primary-black) !important;
+    background-color: var(--primary-black) !important;
+    border: 2px solid rgba(239, 68, 68, 0.8) !important;
+    color: var(--primary-red) !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+.nav-gaming-icon:hover,
+.preview-icon:hover {
+    background: var(--primary-black) !important;
+    border-color: var(--primary-red) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Navbar - Essential Styling */
+.navbar {
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(239, 68, 68, 0.2) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    height: 70px !important;
+}
+
+.nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    height: 70px !important;
+}
+
+.nav-brand {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+
+.nav-brand .nav-logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    color: var(--primary-red) !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+.logo-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: var(--primary-red) !important;
+    border-radius: 8px !important;
+    color: white !important;
+    font-weight: 800 !important;
+}
+
+.logo-text-container {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.logo-text {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--primary-red) !important;
+}
+
+.logo-tagline {
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-top: -2px !important;
+}
+
+/* Nav Links Styling */
+.nav-center {
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.nav-links {
+    display: flex !important;
+    gap: 2rem !important;
+    align-items: center !important;
+}
+
+.nav-center .nav-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none !important;
+    transition: all var(--transition-speed) ease !important;
+    position: relative !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+}
+
+.nav-center .nav-link:hover {
+    color: var(--primary-red) !important;
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.nav-center .nav-link.active {
+    color: var(--primary-red) !important;
+    background: rgba(239, 68, 68, 0.15) !important;
+    border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+.nav-center .nav-link .nav-gaming-icon {
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    width: auto !important;
+    height: auto !important;
+    font-size: 1.2rem !important;
+    border-radius: 0 !important;
+}
+
+.nav-center .nav-link span {
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+}
+
+/* Nav Actions */
+.nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+}
+
+.action-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+.search-toggle {
+    background: transparent !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: var(--primary-red) !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+.search-toggle:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: var(--primary-red) !important;
+    transform: scale(1.05) !important;
+}
+
+.search-toggle .nav-gaming-icon {
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    font-size: 1.2rem !important;
+}
+
+/* Footer - Essential Styling */
+.footer {
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%), #0a0a0a;
+    border-top: 1px solid rgba(239, 68, 68, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 3rem 0 1rem;
+    margin-top: 4rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand .footer-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    color: var(--primary-red);
+    transition: all var(--transition-speed) ease;
+}
+
+.footer-social a:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-legal a:hover {
+    color: var(--primary-red);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .nav-center .nav-link span {
+        display: none;
+    }
+    
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link,
+    .nav-gaming-icon,
+    .preview-icon {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Touch-friendly design */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link,
+    .nav-gaming-icon,
+    .preview-icon {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        touch-action: manipulation !important;
+    }
+}
+
+/* Carousel Card Styling */
+.carousel-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(239, 68, 68, 0.5);
+}

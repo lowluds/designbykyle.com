@@ -1,0 +1,353 @@
+/* Enhanced Portfolio Card Hover Effects */
+
+/* Base portfolio card enhancements */
+.portfolio-card {
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* More subtle hover transformation */
+.portfolio-card:hover {
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        0 0 25px rgba(52, 152, 113, 0.08);
+    border-color: rgba(52, 152, 113, 0.2);
+}
+
+/* Subtle shimmer effect overlay - Much more reduced */
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        rgba(52, 152, 113, 0.02),
+        rgba(255, 255, 255, 0.03),
+        transparent
+    );
+    transition: left 0.8s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.portfolio-card:hover::before {
+    left: 100%;
+}
+
+/* Image container enhancements - Fix centering */
+.portfolio-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    height: 220px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-image img {
+    transition: transform 0.4s ease, filter 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.portfolio-card:hover .portfolio-image img {
+    transform: scale(1.03);
+    filter: brightness(1.05) contrast(1.05);
+}
+
+/* Enhanced preview overlay - Updated with mountain green gradient */
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(34, 139, 104, 0.85),
+        rgba(52, 152, 113, 0.8)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.portfolio-card:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-content {
+    text-align: center;
+    color: white;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.4s ease 0.1s;
+}
+
+.portfolio-card:hover .preview-content {
+    transform: translateY(0) scale(1);
+}
+
+.preview-content i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.preview-content span {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Content area enhancements */
+.portfolio-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-content {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.portfolio-content h4 {
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.portfolio-card:hover .portfolio-content h4 {
+    color: #349871;
+}
+
+.portfolio-content p {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.portfolio-card:hover .portfolio-content p {
+    opacity: 1;
+}
+
+/* Tech stack enhancements */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-stack span {
+    background: rgba(52, 152, 113, 0.15);
+    color: #2c3e50;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(52, 152, 113, 0.25);
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.portfolio-card:hover .tech-stack span {
+    background: rgba(52, 152, 113, 0.25);
+    color: #1a252f;
+    border-color: rgba(52, 152, 113, 0.4);
+    transform: translateY(-2px);
+}
+
+.tech-stack span:nth-child(1) { transition-delay: 0.1s; }
+.tech-stack span:nth-child(2) { transition-delay: 0.15s; }
+.tech-stack span:nth-child(3) { transition-delay: 0.2s; }
+.tech-stack span:nth-child(4) { transition-delay: 0.25s; }
+
+/* Glow effect - Updated with mountain green */
+.portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(45deg, transparent, rgba(52, 152, 113, 0.4), transparent);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.portfolio-card:hover::after {
+    opacity: 1;
+}
+
+/* Category-based color themes */
+.portfolio-item.html-css:hover .portfolio-card {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(231, 76, 60, 0.15);
+}
+
+.portfolio-item.html-css:hover .tech-stack span {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: rgba(231, 76, 60, 0.5);
+}
+
+.portfolio-item.javascript:hover .portfolio-card {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 40px rgba(247, 223, 30, 0.15);
+}
+
+.portfolio-item.javascript:hover .tech-stack span {
+    background: rgba(247, 223, 30, 0.3);
+    border-color: rgba(247, 223, 30, 0.5);
+}
+
+/* Link hover effects */
+.portfolio-image a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.portfolio-image a:hover {
+    text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .portfolio-card:hover {
+        transform: translateY(-8px) scale(1.005);
+    }
+    
+    .portfolio-card:hover .portfolio-image img {
+        transform: scale(1.05);
+    }
+    
+    .tech-stack {
+        gap: 0.3rem;
+    }
+    
+    .tech-stack span {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .portfolio-image {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .portfolio-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .portfolio-card:hover {
+        transform: translateY(-6px);
+    }
+    
+    .preview-content i {
+        font-size: 1.5rem;
+    }
+    
+    .preview-content span {
+        font-size: 0.9rem;
+    }
+    
+    .portfolio-image {
+        height: 180px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-card,
+    .portfolio-image img,
+    .preview-overlay,
+    .preview-content,
+    .tech-stack span {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .portfolio-card:hover {
+        transform: none !important;
+    }
+    
+    .portfolio-card:hover .portfolio-image img {
+        transform: none !important;
+    }
+}
+
+/* Loading animation for portfolio cards - Improved */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-card {
+    animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-item:nth-child(1) .portfolio-card { animation-delay: 0.1s; }
+.portfolio-item:nth-child(2) .portfolio-card { animation-delay: 0.2s; }
+.portfolio-item:nth-child(3) .portfolio-card { animation-delay: 0.3s; }
+.portfolio-item:nth-child(4) .portfolio-card { animation-delay: 0.4s; }
+
+/* Focus states for accessibility */
+.portfolio-card:focus-within {
+    outline: 2px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 4px;
+}
+
+.portfolio-image a:focus {
+    outline: none;
+}
+
+.portfolio-image a:focus .preview-overlay {
+    opacity: 1;
+}

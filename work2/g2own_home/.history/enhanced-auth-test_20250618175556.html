@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Enhanced Authentication Integration Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .test-panel {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-panel h2 {
+            color: #4ade80;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4ade80;
+            padding-bottom: 5px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .test-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-btn.danger {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+        }
+        
+        .test-btn.success {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+        
+        .status-display {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online {
+            background: #10b981;
+        }
+        
+        .status-offline {
+            background: #ef4444;
+        }
+        
+        .status-pending {
+            background: #f59e0b;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .logs-container {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+        
+        .log-timestamp {
+            color: #6b7280;
+        }
+        
+        .log-debug { color: #a3a3a3; }
+        .log-info { color: #60a5fa; }
+        .log-success { color: #34d399; }
+        .log-warning { color: #fbbf24; }
+        .log-error { color: #f87171; }
+        
+        .component-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .component-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .component-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .data-display {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 10px;
+            text-align: left;
+            font-size: 12px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 G2Own Enhanced Authentication Integration Test</h1>
+        
+        <!-- System Status Panel -->
+        <div class="test-panel">
+            <h2>System Status</h2>
+            <div class="component-status" id="componentStatus">
+                <!-- Component status cards will be populated here -->
+            </div>
+        </div>
+        
+        <!-- Authentication Testing Panel -->
+        <div class="test-panel">
+            <h2>Authentication Testing</h2>
+            <div class="button-group">
+                <button class="test-btn" onclick="testOAuthFlow()">Test OAuth Flow</button>
+                <button class="test-btn" onclick="testLoginStateDetection()">Test Login Detection</button>
+                <button class="test-btn" onclick="testSessionSync()">Test Session Sync</button>
+                <button class="test-btn" onclick="testForceAuthCheck()">Force Auth Check</button>
+                <button class="test-btn success" onclick="simulateLogin()">Simulate Login</button>
+                <button class="test-btn danger" onclick="simulateLogout()">Simulate Logout</button>
+            </div>
+            <div class="status-display" id="authStatus">
+                Click a test button to begin authentication testing...
+            </div>
+        </div>
+        
+        <!-- Component Integration Panel -->
+        <div class="test-panel">
+            <h2>Component Integration</h2>
+            <div class="button-group">
+                <button class="test-btn" onclick="testTopNavAuth()">Test Top Nav Auth</button>
+                <button class="test-btn" onclick="testLeftSidebar()">Test Left Sidebar</button>
+                <button class="test-btn" onclick="testSessionBridge()">Test Session Bridge</button>
+                <button class="test-btn" onclick="testCrossComponentSync()">Test Cross-Component Sync</button>
+            </div>
+            <div class="status-display" id="componentStatus">
+                Select a component to test...
+            </div>
+        </div>
+        
+        <!-- Debug Tools Panel -->
+        <div class="test-panel">
+            <h2>Debug Tools</h2>
+            <div class="button-group">
+                <button class="test-btn" onclick="enableDebugMode()">Enable Debug Mode</button>
+                <button class="test-btn" onclick="exportDiagnostic()">Export Diagnostic</button>
+                <button class="test-btn" onclick="clearAllData()">Clear All Data</button>
+                <button class="test-btn" onclick="inspectLocalStorage()">Inspect Storage</button>
+            </div>
+            <div class="status-display" id="debugOutput">
+                Debug tools ready...
+            </div>
+        </div>
+        
+        <!-- Real-time Logs -->
+        <div class="test-panel">
+            <h2>Real-time Authentication Logs</h2>
+            <button class="test-btn" onclick="clearLogs()">Clear Logs</button>
+            <div class="logs-container" id="logsContainer">
+                <div class="log-entry log-info">
+                    <span class="log-timestamp">[00:00:00]</span> Authentication test environment loaded
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load required scripts -->
+    <script src="assets/js/security-utils.js"></script>
+    <script src="assets/js/session-bridge.js"></script>
+    <script src="assets/js/top-nav-auth.js"></script>
+    <script src="assets/js/left-sidebar-controller.js"></script>
+    <script src="assets/js/enhanced-oauth-integration.js"></script>
+    <script src="assets/js/enhanced-login-state-detector.js"></script>
+    <script src="assets/js/enhanced-session-synchronizer.js"></script>
+    <script src="assets/js/authentication-debug-system.js"></script>
+
+    <script>
+        // Test environment setup
+        let testLogs = [];
+        
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = { timestamp, message, type };
+            testLogs.push(logEntry);
+            
+            const logsContainer = document.getElementById('logsContainer');
+            const logDiv = document.createElement('div');
+            logDiv.className = `log-entry log-${type}`;
+            logDiv.innerHTML = `<span class="log-timestamp">[${timestamp}]</span> ${message}`;
+            
+            logsContainer.appendChild(logDiv);
+            logsContainer.scrollTop = logsContainer.scrollHeight;
+            
+            // Limit log entries
+            if (logsContainer.children.length > 100) {
+                logsContainer.removeChild(logsContainer.firstChild);
+            }
+        }
+        
+        function updateStatus(elementId, content) {
+            document.getElementById(elementId).textContent = content;
+        }
+        
+        function clearLogs() {
+            document.getElementById('logsContainer').innerHTML = '';
+            testLogs = [];
+            addLog('Logs cleared', 'info');
+        }
+        
+        // Component monitoring
+        function checkComponents() {
+            const components = {
+                'Session Bridge': window.sessionBridge,
+                'Top Nav Auth': window.topNavAuth,
+                'Left Sidebar': window.leftSidebarController,
+                'OAuth Integration': window.g2ownOAuth,
+                'Login State Detector': window.enhancedLoginStateDetector,
+                'Session Synchronizer': window.enhancedSessionSynchronizer,
+                'Debug System': window.authenticationDebugSystem
+            };
+            
+            const statusContainer = document.getElementById('componentStatus');
+            statusContainer.innerHTML = '';
+            
+            Object.entries(components).forEach(([name, component]) => {
+                const card = document.createElement('div');
+                card.className = 'component-card';
+                
+                const status = component ? 'online' : 'offline';
+                const statusClass = status === 'online' ? 'status-online' : 'status-offline';
+                
+                card.innerHTML = `
+                    <div class="component-name">
+                        <span class="status-indicator ${statusClass}"></span>
+                        ${name}
+                    </div>
+                    <div>Status: ${status.toUpperCase()}</div>
+                    ${component ? '<div class="data-display">✅ Component loaded and ready</div>' : '<div class="data-display">❌ Component not available</div>'}
+                `;
+                
+                statusContainer.appendChild(card);
+            });
+        }
+        
+        // Authentication Testing Functions
+        function testOAuthFlow() {
+            addLog('Testing OAuth flow...', 'info');
+            updateStatus('authStatus', 'Testing OAuth flow...\n\nChecking OAuth integration...');
+            
+            if (window.g2ownOAuth) {
+                try {
+                    const isAuth = window.g2ownOAuth.isAuthenticated();
+                    const user = window.g2ownOAuth.getUser();
+                    const token = window.g2ownOAuth.getToken();
+                    
+                    updateStatus('authStatus', 
+                        `OAuth Flow Test Results:\n\n` +
+                        `✅ OAuth Integration: Available\n` +
+                        `🔐 Authenticated: ${isAuth ? 'Yes' : 'No'}\n` +
+                        `👤 User: ${user ? user.name : 'None'}\n` +
+                        `🔑 Token: ${token ? 'Present' : 'Missing'}\n\n` +
+                        `To test login flow, use 'Simulate Login' button.`
+                    );
+                    
+                    addLog(`OAuth test completed - Auth: ${isAuth}, User: ${user?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`OAuth test failed: ${error.message}`, 'error');
+                    updateStatus('authStatus', `OAuth Flow Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('OAuth integration not available', 'error');
+                updateStatus('authStatus', 'OAuth Flow Test Failed:\n\n❌ OAuth integration not loaded');
+            }
+        }
+        
+        function testLoginStateDetection() {
+            addLog('Testing login state detection...', 'info');
+            updateStatus('authStatus', 'Testing login state detection...');
+            
+            if (window.enhancedLoginStateDetector) {
+                try {
+                    const currentUser = window.enhancedLoginStateDetector.getCurrentUser();
+                    const isAuth = window.enhancedLoginStateDetector.isAuthenticated();
+                    
+                    // Force a state check
+                    window.enhancedLoginStateDetector.forceStateCheck();
+                    
+                    updateStatus('authStatus', 
+                        `Login State Detection Test:\n\n` +
+                        `✅ Detector: Available\n` +
+                        `🔍 Current User: ${currentUser ? currentUser.name : 'None'}\n` +
+                        `🔐 Authenticated: ${isAuth ? 'Yes' : 'No'}\n` +
+                        `🔄 Force check: Triggered\n\n` +
+                        `Monitor logs for detection events...`
+                    );
+                    
+                    addLog(`Login state detection test completed - User: ${currentUser?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`Login state detection test failed: ${error.message}`, 'error');
+                    updateStatus('authStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('Login state detector not available', 'error');
+                updateStatus('authStatus', 'Test Failed:\n\n❌ Login state detector not loaded');
+            }
+        }
+        
+        function testSessionSync() {
+            addLog('Testing session synchronization...', 'info');
+            updateStatus('authStatus', 'Testing session sync...');
+            
+            if (window.enhancedSessionSynchronizer) {
+                try {
+                    const currentSession = window.enhancedSessionSynchronizer.getCurrentSession();
+                    const isActive = window.enhancedSessionSynchronizer.isSessionActive();
+                    
+                    // Force a sync
+                    window.enhancedSessionSynchronizer.forceSync();
+                    
+                    updateStatus('authStatus', 
+                        `Session Sync Test:\n\n` +
+                        `✅ Synchronizer: Available\n` +
+                        `🔗 Current Session: ${currentSession ? currentSession.name : 'None'}\n` +
+                        `📡 Session Active: ${isActive ? 'Yes' : 'No'}\n` +
+                        `🔄 Force sync: Triggered\n\n` +
+                        `Check network tab for sync requests...`
+                    );
+                    
+                    addLog(`Session sync test completed - Session: ${currentSession?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`Session sync test failed: ${error.message}`, 'error');
+                    updateStatus('authStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('Session synchronizer not available', 'error');
+                updateStatus('authStatus', 'Test Failed:\n\n❌ Session synchronizer not loaded');
+            }
+        }
+        
+        function testForceAuthCheck() {
+            addLog('Forcing authentication check across all components...', 'info');
+            updateStatus('authStatus', 'Forcing auth check...');
+            
+            try {
+                // Force updates on all components
+                if (window.enhancedLoginStateDetector) {
+                    window.enhancedLoginStateDetector.forceStateCheck();
+                }
+                
+                if (window.enhancedSessionSynchronizer) {
+                    window.enhancedSessionSynchronizer.forceSync();
+                }
+                
+                if (window.sessionBridge) {
+                    window.sessionBridge.forceUpdate();
+                }
+                
+                if (window.topNavAuth) {
+                    window.topNavAuth.checkAuthStatus();
+                }
+                
+                if (window.leftSidebarController) {
+                    window.leftSidebarController.checkAuthState();
+                }
+                
+                updateStatus('authStatus', 
+                    `Force Auth Check Completed:\n\n` +
+                    `✅ All components triggered\n` +
+                    `🔄 Auth state checks initiated\n` +
+                    `📡 Session sync requested\n` +
+                    `🎯 UI updates pending\n\n` +
+                    `Monitor logs for component responses...`
+                );
+                
+                addLog('Force auth check completed across all components', 'success');
+            } catch (error) {
+                addLog(`Force auth check failed: ${error.message}`, 'error');
+                updateStatus('authStatus', `Force Auth Check Failed:\n\n❌ Error: ${error.message}`);
+            }
+        }
+        
+        function simulateLogin() {
+            addLog('Simulating successful login...', 'warning');
+            updateStatus('authStatus', 'Simulating login...');
+            
+            // Create mock user data
+            const mockUser = {
+                id: '12345',
+                name: 'Test User',
+                email: 'test@g2own.com',
+                purchase_count: 5,
+                invoice_count: 3,
+                transaction_count: 8,
+                authenticated: true
+            };
+            
+            const mockToken = 'mock_oauth_token_' + Date.now();
+            
+            // Store mock data
+            localStorage.setItem('g2own_oauth_token', mockToken);
+            localStorage.setItem('g2own_user_data', JSON.stringify(mockUser));
+            localStorage.setItem('g2own_token_expiry', (Date.now() + 3600000).toString());
+            sessionStorage.setItem('g2own_fresh_login', 'true');
+            
+            // Trigger authentication events
+            window.dispatchEvent(new CustomEvent('g2own:oauth-success', {
+                detail: { user: mockUser, token: mockToken, timestamp: Date.now() }
+            }));
+            
+            window.dispatchEvent(new CustomEvent('g2own:fresh-login', {
+                detail: { user: mockUser, timestamp: Date.now() }
+            }));
+            
+            updateStatus('authStatus', 
+                `Login Simulation Completed:\n\n` +
+                `✅ Mock user data stored\n` +
+                `👤 User: ${mockUser.name}\n` +
+                `📧 Email: ${mockUser.email}\n` +
+                `🔑 Token: Generated\n` +
+                `📡 Events: Dispatched\n\n` +
+                `Components should now show logged-in state...`
+            );
+            
+            addLog(`Login simulated for user: ${mockUser.name}`, 'success');
+        }
+        
+        function simulateLogout() {
+            addLog('Simulating logout...', 'warning');
+            updateStatus('authStatus', 'Simulating logout...');
+            
+            // Clear stored data
+            localStorage.removeItem('g2own_oauth_token');
+            localStorage.removeItem('g2own_user_data');
+            localStorage.removeItem('g2own_token_expiry');
+            sessionStorage.removeItem('g2own_fresh_login');
+            
+            // Trigger logout event
+            window.dispatchEvent(new CustomEvent('g2own:logout', {
+                detail: { timestamp: Date.now() }
+            }));
+            
+            updateStatus('authStatus', 
+                `Logout Simulation Completed:\n\n` +
+                `✅ Auth data cleared\n` +
+                `🔄 Logout event dispatched\n` +
+                `📡 Components notified\n\n` +
+                `Components should now show logged-out state...`
+            );
+            
+            addLog('Logout simulated successfully', 'success');
+        }
+        
+        // Component Testing Functions
+        function testTopNavAuth() {
+            addLog('Testing top navigation authentication...', 'info');
+            updateStatus('componentStatus', 'Testing top nav auth...');
+            
+            if (window.topNavAuth) {
+                try {
+                    const userData = window.topNavAuth.getCurrentUser();
+                    
+                    // Test force update
+                    window.topNavAuth.forceUpdate();
+                    
+                    updateStatus('componentStatus', 
+                        `Top Nav Auth Test:\n\n` +
+                        `✅ Component: Available\n` +
+                        `👤 Current User: ${userData ? userData.name : 'None'}\n` +
+                        `🔄 Force Update: Triggered\n` +
+                        `📡 Auth Check: Initiated\n\n` +
+                        `Check navigation bar for updates...`
+                    );
+                    
+                    addLog(`Top nav auth test completed - User: ${userData?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`Top nav auth test failed: ${error.message}`, 'error');
+                    updateStatus('componentStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('Top nav auth not available', 'error');
+                updateStatus('componentStatus', 'Test Failed:\n\n❌ Top nav auth not loaded');
+            }
+        }
+        
+        function testLeftSidebar() {
+            addLog('Testing left sidebar controller...', 'info');
+            updateStatus('componentStatus', 'Testing left sidebar...');
+            
+            if (window.leftSidebarController) {
+                try {
+                    const userData = window.leftSidebarController.getCurrentUser();
+                    
+                    // Test force update
+                    window.leftSidebarController.forceUpdate();
+                    
+                    updateStatus('componentStatus', 
+                        `Left Sidebar Test:\n\n` +
+                        `✅ Component: Available\n` +
+                        `👤 Current User: ${userData ? userData.name : 'None'}\n` +
+                        `🔄 Force Update: Triggered\n` +
+                        `📡 Auth Check: Initiated\n\n` +
+                        `Check left sidebar for updates...`
+                    );
+                    
+                    addLog(`Left sidebar test completed - User: ${userData?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`Left sidebar test failed: ${error.message}`, 'error');
+                    updateStatus('componentStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('Left sidebar controller not available', 'error');
+                updateStatus('componentStatus', 'Test Failed:\n\n❌ Left sidebar controller not loaded');
+            }
+        }
+        
+        function testSessionBridge() {
+            addLog('Testing session bridge...', 'info');
+            updateStatus('componentStatus', 'Testing session bridge...');
+            
+            if (window.sessionBridge) {
+                try {
+                    const userData = window.sessionBridge.getCurrentUser();
+                    const isAuth = window.sessionBridge.isAuthenticated;
+                    
+                    // Test force update
+                    window.sessionBridge.forceUpdate();
+                    
+                    updateStatus('componentStatus', 
+                        `Session Bridge Test:\n\n` +
+                        `✅ Component: Available\n` +
+                        `👤 Current User: ${userData ? userData.name : 'None'}\n` +
+                        `🔐 Authenticated: ${isAuth ? 'Yes' : 'No'}\n` +
+                        `🔄 Force Update: Triggered\n\n` +
+                        `Check console for bridge activity...`
+                    );
+                    
+                    addLog(`Session bridge test completed - User: ${userData?.name || 'None'}`, 'success');
+                } catch (error) {
+                    addLog(`Session bridge test failed: ${error.message}`, 'error');
+                    updateStatus('componentStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+                }
+            } else {
+                addLog('Session bridge not available', 'error');
+                updateStatus('componentStatus', 'Test Failed:\n\n❌ Session bridge not loaded');
+            }
+        }
+        
+        function testCrossComponentSync() {
+            addLog('Testing cross-component synchronization...', 'info');
+            updateStatus('componentStatus', 'Testing cross-component sync...');
+            
+            try {
+                // Trigger updates on all components
+                const components = [
+                    'sessionBridge',
+                    'topNavAuth', 
+                    'leftSidebarController',
+                    'enhancedLoginStateDetector',
+                    'enhancedSessionSynchronizer'
+                ];
+                
+                let availableComponents = 0;
+                let successfulUpdates = 0;
+                
+                components.forEach(componentName => {
+                    const component = window[componentName];
+                    if (component) {
+                        availableComponents++;
+                        try {
+                            if (component.forceUpdate) {
+                                component.forceUpdate();
+                                successfulUpdates++;
+                            } else if (component.checkAuthStatus) {
+                                component.checkAuthStatus();
+                                successfulUpdates++;
+                            }
+                        } catch (error) {
+                            addLog(`Failed to update ${componentName}: ${error.message}`, 'warning');
+                        }
+                    }
+                });
+                
+                updateStatus('componentStatus', 
+                    `Cross-Component Sync Test:\n\n` +
+                    `📊 Total Components: ${components.length}\n` +
+                    `✅ Available: ${availableComponents}\n` +
+                    `🔄 Updated: ${successfulUpdates}\n` +
+                    `📡 Sync Events: Dispatched\n\n` +
+                    `All components should now be synchronized...`
+                );
+                
+                addLog(`Cross-component sync completed - ${successfulUpdates}/${availableComponents} components updated`, 'success');
+            } catch (error) {
+                addLog(`Cross-component sync failed: ${error.message}`, 'error');
+                updateStatus('componentStatus', `Test Failed:\n\n❌ Error: ${error.message}`);
+            }
+        }
+        
+        // Debug Functions
+        function enableDebugMode() {
+            addLog('Enabling debug mode...', 'info');
+            
+            if (window.authenticationDebugSystem) {
+                window.authenticationDebugSystem.enableDebugMode();
+                updateStatus('debugOutput', 'Debug mode enabled!\n\nDebug panel should now be visible in the top-left corner.');
+                addLog('Debug mode enabled successfully', 'success');
+            } else if (window.g2ownDebug) {
+                window.g2ownDebug.enable();
+                updateStatus('debugOutput', 'Debug mode enabled via g2ownDebug!\n\nCheck console for debug commands.');
+                addLog('Debug mode enabled via g2ownDebug', 'success');
+            } else {
+                updateStatus('debugOutput', 'Debug system not available.\n\nTry refreshing the page.');
+                addLog('Debug system not available', 'error');
+            }
+        }
+        
+        function exportDiagnostic() {
+            addLog('Exporting diagnostic data...', 'info');
+            
+            try {
+                const diagnostic = {
+                    timestamp: new Date().toISOString(),
+                    testLogs: testLogs,
+                    authState: {
+                        token: localStorage.getItem('g2own_oauth_token'),
+                        userData: localStorage.getItem('g2own_user_data'),
+                        expiry: localStorage.getItem('g2own_token_expiry')
+                    },
+                    components: {
+                        sessionBridge: !!window.sessionBridge,
+                        topNavAuth: !!window.topNavAuth,
+                        leftSidebarController: !!window.leftSidebarController,
+                        g2ownOAuth: !!window.g2ownOAuth,
+                        enhancedLoginStateDetector: !!window.enhancedLoginStateDetector,
+                        enhancedSessionSynchronizer: !!window.enhancedSessionSynchronizer
+                    },
+                    url: window.location.href,
+                    userAgent: navigator.userAgent
+                };
+                
+                const blob = new Blob([JSON.stringify(diagnostic, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `g2own-test-diagnostic-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                updateStatus('debugOutput', 'Diagnostic exported successfully!\n\nCheck your downloads folder.');
+                addLog('Diagnostic data exported successfully', 'success');
+            } catch (error) {
+                updateStatus('debugOutput', `Export failed: ${error.message}`);
+                addLog(`Diagnostic export failed: ${error.message}`, 'error');
+            }
+        }
+        
+        function clearAllData() {
+            addLog('Clearing all authentication data...', 'warning');
+            
+            try {
+                // Clear localStorage
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('g2own_')) {
+                        keysToRemove.push(key);
+                    }
+                }
+                keysToRemove.forEach(key => localStorage.removeItem(key));
+                
+                // Clear sessionStorage
+                const sessionKeysToRemove = [];
+                for (let i = 0; i < sessionStorage.length; i++) {
+                    const key = sessionStorage.key(i);
+                    if (key.startsWith('g2own_')) {
+                        sessionKeysToRemove.push(key);
+                    }
+                }
+                sessionKeysToRemove.forEach(key => sessionStorage.removeItem(key));
+                
+                updateStatus('debugOutput', 
+                    `Data cleared successfully!\n\n` +
+                    `LocalStorage keys removed: ${keysToRemove.length}\n` +
+                    `SessionStorage keys removed: ${sessionKeysToRemove.length}\n\n` +
+                    `Page refresh recommended.`
+                );
+                
+                addLog(`All authentication data cleared - ${keysToRemove.length + sessionKeysToRemove.length} keys removed`, 'success');
+            } catch (error) {
+                updateStatus('debugOutput', `Clear failed: ${error.message}`);
+                addLog(`Data clear failed: ${error.message}`, 'error');
+            }
+        }
+        
+        function inspectLocalStorage() {
+            addLog('Inspecting localStorage...', 'info');
+            
+            try {
+                const g2ownData = {};
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('g2own_')) {
+                        g2ownData[key] = localStorage.getItem(key);
+                    }
+                }
+                
+                const sessionData = {};
+                for (let i = 0; i < sessionStorage.length; i++) {
+                    const key = sessionStorage.key(i);
+                    if (key.startsWith('g2own_')) {
+                        sessionData[key] = sessionStorage.getItem(key);
+                    }
+                }
+                
+                updateStatus('debugOutput', 
+                    `Storage Inspection:\n\n` +
+                    `LocalStorage (${Object.keys(g2ownData).length} keys):\n` +
+                    JSON.stringify(g2ownData, null, 2) + '\n\n' +
+                    `SessionStorage (${Object.keys(sessionData).length} keys):\n` +
+                    JSON.stringify(sessionData, null, 2)
+                );
+                
+                addLog(`Storage inspected - LocalStorage: ${Object.keys(g2ownData).length} keys, SessionStorage: ${Object.keys(sessionData).length} keys`, 'success');
+            } catch (error) {
+                updateStatus('debugOutput', `Inspection failed: ${error.message}`);
+                addLog(`Storage inspection failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Initialize test environment
+        document.addEventListener('DOMContentLoaded', () => {
+            addLog('Test environment initialized', 'success');
+            checkComponents();
+            
+            // Update component status every 5 seconds
+            setInterval(checkComponents, 5000);
+            
+            // Listen for authentication events
+            const authEvents = [
+                'g2own:oauth-success',
+                'g2own:fresh-login',
+                'g2own:logout',
+                'g2own:auth-update',
+                'g2own:session-synced'
+            ];
+            
+            authEvents.forEach(eventName => {
+                window.addEventListener(eventName, (event) => {
+                    addLog(`Event received: ${eventName}`, 'info');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

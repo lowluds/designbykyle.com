@@ -1,0 +1,80 @@
+/* 
+ * Search Button Visual Fix
+ * Removes any unwanted red marks or visual artifacts
+ */
+
+/* Complete reset of search toggle visual elements */
+.search-toggle {
+    position: relative !important;
+    border: 1px solid rgba(139, 0, 0, 0.2) !important;
+    background: rgba(139, 0, 0, 0.1) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* Remove all pseudo-elements from search toggle and its children */
+.search-toggle::before,
+.search-toggle::after,
+.search-toggle *::before,
+.search-toggle *::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure search icon has no decorative elements */
+.search-toggle .nav-gaming-icon,
+.search-toggle .ph-magnifying-glass {
+    position: relative !important;
+    display: inline-block !important;
+    color: #8b0000 !important;
+    font-size: 1.2rem !important;
+    border: none !important;
+    background: none !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any potential loading indicators */
+.search-toggle.loading::after,
+.search-container.loading::after,
+.navbar-loading .search-toggle::after,
+.loading .search-toggle::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Clean hover state */
+.search-toggle:hover {
+    background: rgba(139, 0, 0, 0.15) !important;
+    border-color: rgba(139, 0, 0, 0.4) !important;
+    transform: translateY(-1px) !important;
+}
+
+.search-toggle:hover .nav-gaming-icon,
+.search-toggle:hover .ph-magnifying-glass {
+    color: #ff4444 !important;
+}
+
+/* Remove any outline or focus indicators that might create visual artifacts */
+.search-toggle:focus,
+.search-toggle:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.3) !important;
+}
+
+/* Ensure no text decoration or underlines */
+.search-toggle,
+.search-toggle * {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+
+/* Remove any animation artifacts */
+.search-toggle .nav-gaming-icon::before,
+.search-toggle .nav-gaming-icon::after {
+    display: none !important;
+}

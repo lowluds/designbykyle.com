@@ -1,0 +1,107 @@
+/*!
+ * Navbar Flicker Fix
+ * Prevents navbar from fading in/out during initial load
+ */
+
+/* CRITICAL: Force immediate navbar visibility */
+.navbar, #navbar {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+}
+
+/* Prevent navbar flickering during auth initialization */
+.navbar-loading {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    animation: none !important;
+}
+
+/* Ensure navbar stays stable during loading */
+.navbar {
+    opacity: 1;
+    visibility: visible;
+    transition: none !important;
+}
+
+/* Only allow transitions after page is fully loaded */
+.navbar-loaded {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease !important;
+}
+
+/* Prevent auth elements from causing layout shifts */
+.navbar .user-menu-toggle,
+.navbar .user-dropdown,
+.navbar #authButtonContainer,
+.navbar #profileContainer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Only enable smooth transitions after everything loads */
+.page-loaded .navbar .user-menu-toggle,
+.page-loaded .navbar .user-dropdown,
+.page-loaded .navbar #authButtonContainer,
+.page-loaded .navbar #profileContainer {
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Force navbar to be immediately visible */
+#navbar {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Prevent any CSS animations from affecting navbar during load */
+body:not(.page-loaded) .navbar *,
+body:not(.page-loaded) #navbar *,
+body.loading .navbar *,
+body.loading #navbar * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Emergency override for any flickering elements */
+.navbar-loading .nav-container,
+.navbar-loading .nav-brand,
+.navbar-loading .nav-menu,
+.navbar-loading .nav-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Prevent global page animations from affecting navbar */
+.navbar,
+.navbar *,
+#navbar,
+#navbar * {
+    will-change: auto !important;
+}
+
+/* Override any fadeIn animations specifically for navbar */
+.navbar.animate-fade-in,
+#navbar.animate-fade-in,
+.navbar .animate-fade-in,
+#navbar .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Hover Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Test hover zone */
+        .sidebar-hover-zone {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 30px !important;
+            height: 100vh !important;
+            z-index: 1001 !important;
+            background: rgba(255, 0, 0, 0.3) !important;
+            cursor: pointer !important;
+        }
+
+        /* Test sidebar */
+        .left-sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 280px !important;
+            height: 100vh !important;
+            background: rgba(0, 0, 0, 0.9) !important;
+            z-index: 999 !important;
+            transform: translateX(-100%) !important;
+            transition: transform 0.3s ease !important;
+            border-right: 2px solid #ff0000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .left-sidebar.show-on-hover,
+        .left-sidebar.sidebar-hovered {
+            transform: translateX(0) !important;
+        }
+
+        .content {
+            margin-left: 50px;
+            padding: 20px;
+        }
+
+        .debug-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 2000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hover Zone -->
+    <div class="sidebar-hover-zone" id="sidebar-hover-zone"></div>
+
+    <!-- Sidebar -->
+    <aside class="left-sidebar" id="left-sidebar">
+        <h2>Test Sidebar</h2>
+        <p>This sidebar should appear when you hover over the red zone on the left.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </aside>
+
+    <!-- Debug Info -->
+    <div class="debug-info" id="debug-info">
+        <div>Hover Zone: <span id="hover-status">Not Hovering</span></div>
+        <div>Sidebar Classes: <span id="sidebar-classes">none</span></div>
+        <div>Screen Width: <span id="screen-width">0</span></div>
+        <div>Is Mobile: <span id="is-mobile">false</span></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Simple Hover Test</h1>
+        <p>Move your mouse to the red zone on the far left to test sidebar hover functionality.</p>
+        <p>The red zone should be 30px wide and span the full height of the screen.</p>
+        
+        <h2>Expected Behavior:</h2>
+        <ul>
+            <li>Red hover zone visible on left edge</li>
+            <li>Sidebar hidden by default</li>
+            <li>Sidebar appears when hovering over red zone</li>
+            <li>Sidebar stays visible when hovering over sidebar itself</li>
+            <li>Sidebar hides 300ms after leaving hover area</li>
+        </ul>
+
+        <h2>Debug Console</h2>
+        <div id="console-output" style="background: #333; padding: 10px; border-radius: 5px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+    </div>
+
+    <script>
+        // Simple test JavaScript
+        let sidebar = null;
+        let hoverZone = null;
+        let hideTimeout = null;
+        let isHovering = false;
+        let isMobile = false;
+
+        // Debug elements
+        let debugInfo = null;
+        let consoleOutput = null;
+
+        function log(message) {
+            console.log(message);
+            if (consoleOutput) {
+                const time = new Date().toLocaleTimeString();
+                consoleOutput.innerHTML += `<div>[${time}] ${message}</div>`;
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        }
+
+        function updateDebugInfo() {
+            if (!debugInfo) return;
+            
+            document.getElementById('hover-status').textContent = isHovering ? 'YES' : 'NO';
+            document.getElementById('sidebar-classes').textContent = sidebar ? sidebar.className : 'none';
+            document.getElementById('screen-width').textContent = window.innerWidth;
+            document.getElementById('is-mobile').textContent = isMobile ? 'YES' : 'NO';
+        }
+
+        function checkResponsive() {
+            isMobile = window.innerWidth <= 767;
+            log(`Screen width: ${window.innerWidth}px, Mobile: ${isMobile}`);
+            updateDebugInfo();
+        }
+
+        function showSidebar() {
+            if (isMobile) return;
+            
+            clearTimeout(hideTimeout);
+            isHovering = true;
+            
+            if (sidebar) {
+                sidebar.classList.add('sidebar-hovered');
+                sidebar.classList.add('show-on-hover');
+                log('✅ Showing sidebar - classes added');
+            } else {
+                log('❌ Cannot show sidebar - element not found');
+            }
+            updateDebugInfo();
+        }
+
+        function hideSidebar() {
+            if (isMobile) return;
+            
+            isHovering = false;
+            log('⏰ Mouse left hover area, hiding in 300ms');
+            
+            hideTimeout = setTimeout(() => {
+                if (sidebar) {
+                    sidebar.classList.remove('sidebar-hovered');
+                    sidebar.classList.remove('show-on-hover');
+                    log('✅ Sidebar hidden - classes removed');
+                } else {
+                    log('❌ Cannot hide sidebar - element not found');
+                }
+                updateDebugInfo();
+            }, 300);
+        }
+
+        function keepSidebarVisible() {
+            if (isMobile) return;
+            
+            clearTimeout(hideTimeout);
+            isHovering = true;
+            log('🖱️ Keeping sidebar visible');
+            updateDebugInfo();
+        }
+
+        function init() {
+            // Get elements
+            sidebar = document.getElementById('left-sidebar');
+            hoverZone = document.getElementById('sidebar-hover-zone');
+            debugInfo = document.getElementById('debug-info');
+            consoleOutput = document.getElementById('console-output');
+
+            log('🚀 Initializing simple hover test...');
+            
+            if (!sidebar) {
+                log('❌ Sidebar element not found!');
+                return;
+            }
+            
+            if (!hoverZone) {
+                log('❌ Hover zone element not found!');
+                return;
+            }
+
+            log('✅ Elements found successfully');
+
+            // Set up event listeners
+            hoverZone.addEventListener('mouseenter', () => {
+                log('🖱️ Mouse entered hover zone');
+                showSidebar();
+            });
+
+            hoverZone.addEventListener('mouseleave', () => {
+                log('🖱️ Mouse left hover zone');
+                hideSidebar();
+            });
+
+            sidebar.addEventListener('mouseenter', () => {
+                log('🖱️ Mouse entered sidebar');
+                keepSidebarVisible();
+            });
+
+            sidebar.addEventListener('mouseleave', () => {
+                log('🖱️ Mouse left sidebar');
+                hideSidebar();
+            });
+
+            // Window resize
+            window.addEventListener('resize', checkResponsive);
+            
+            // Initial setup
+            checkResponsive();
+            updateDebugInfo();
+            
+            log('✅ Event listeners attached');
+            log('🎯 Move mouse to red zone to test hover functionality');
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>

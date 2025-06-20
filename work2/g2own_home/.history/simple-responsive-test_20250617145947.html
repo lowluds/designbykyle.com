@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Simple Responsive Test</title>
+    
+    <!-- SIMPLE RESPONSIVE FIX - HIGHEST PRIORITY -->
+    <link rel="stylesheet" href="assets/css/simple-responsive-fix.css">
+    
+    <style>
+        /* Basic styling for test */
+        body {
+            background: #0d0d0d;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test-navbar {
+            background: rgba(13, 13, 13, 0.95);
+            padding: 1rem;
+            color: white;
+            text-align: center;
+        }
+        
+        .test-sidebar {
+            background: rgba(13, 13, 13, 0.95);
+            border-right: 1px solid rgba(139, 0, 0, 0.2);
+            padding: 2rem 1rem;
+        }
+        
+        .test-hero-content {
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .test-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 10000;
+        }
+        
+        .test-button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #8b0000, #ffffff, #8b0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Layout container -->
+    <div class="layout-container">
+        
+        <!-- Test navbar -->
+        <nav class="navbar test-navbar">
+            <span>G2Own - Simple Responsive Test</span>
+        </nav>
+        
+        <!-- Test sidebar -->
+        <aside class="left-sidebar test-sidebar">
+            <h3>Navigation</h3>
+            <div style="margin: 1rem 0;">
+                <div style="padding: 0.5rem; margin: 0.5rem 0; background: rgba(139, 0, 0, 0.2); border-radius: 4px;">🏠 Home</div>
+                <div style="padding: 0.5rem; margin: 0.5rem 0; background: rgba(139, 0, 0, 0.2); border-radius: 4px;">🛒 Store</div>
+                <div style="padding: 0.5rem; margin: 0.5rem 0; background: rgba(139, 0, 0, 0.2); border-radius: 4px;">🎮 Games</div>
+                <div style="padding: 0.5rem; margin: 0.5rem 0; background: rgba(139, 0, 0, 0.2); border-radius: 4px;">📞 Support</div>
+            </div>
+        </aside>
+        
+        <!-- Test main content -->
+        <main class="main-content">
+            
+            <!-- Test hero section -->
+            <section class="hero">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            <span class="title-line-1">Next-Gen</span>
+                            <span class="title-line-2 gradient-text">Digital Marketplace</span>
+                            <span class="title-line-3">Experience</span>
+                        </h1>
+                        
+                        <p class="hero-subtitle">
+                            Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                            Instant delivery, secure transactions, unbeatable prices.
+                        </p>
+                        
+                        <div class="hero-cta">
+                            <div class="hero-buttons">
+                                <button class="test-button">Explore Marketplace</button>
+                                <button class="test-button">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Test content -->
+            <section>
+                <div class="container">
+                    <div class="test-hero-content">
+                        <h2>Responsive Test Results</h2>
+                        <div id="test-results">
+                            <p><strong>Current Status:</strong></p>
+                            <div id="breakpoint-info">Detecting breakpoint...</div>
+                            <div id="sidebar-info">Checking sidebar...</div>
+                            <div id="layout-info">Analyzing layout...</div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem;">
+                            <button class="test-button" onclick="updateTestResults()">Refresh Test</button>
+                            <button class="test-button" onclick="window.simpleResponsive?.toggleSidebar()">Toggle Sidebar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        
+        <!-- Mobile overlay -->
+        <div class="mobile-overlay"></div>
+        
+        <!-- Floating toggle button -->
+        <button class="sidebar-floating-toggle test-button" style="position: fixed; top: 70px; left: 10px; z-index: 1001;">☰</button>
+        
+    </div>
+    
+    <!-- Test status display -->
+    <div class="test-status" id="test-status">
+        <div><strong>Simple Responsive Test</strong></div>
+        <div id="screen-size">Loading...</div>
+        <div id="overflow-check">Loading...</div>
+    </div>
+    
+    <!-- SIMPLE RESPONSIVE CONTROLLER -->
+    <script src="assets/js/simple-responsive.js"></script>
+    
+    <script>
+        function updateTestResults() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const bodyWidth = document.body.scrollWidth;
+            const hasOverflow = bodyWidth > width;
+            
+            // Update status display
+            document.getElementById('screen-size').textContent = `${width}x${height}`;
+            document.getElementById('overflow-check').textContent = hasOverflow ? 
+                `❌ Overflow: ${bodyWidth - width}px` : '✅ No overflow';
+            
+            // Update test results
+            let breakpoint = 'desktop';
+            if (width < 768) breakpoint = 'mobile';
+            else if (width < 1024) breakpoint = 'tablet';
+            
+            const sidebar = document.querySelector('.left-sidebar');
+            const sidebarVisible = sidebar ? !sidebar.style.transform?.includes('translateX(-100%)') : false;
+            const expectedSidebarState = width >= 768 ? 'visible' : 'hidden';
+            
+            document.getElementById('breakpoint-info').innerHTML = 
+                `<strong>Breakpoint:</strong> ${breakpoint} (${width}px)`;
+            
+            document.getElementById('sidebar-info').innerHTML = 
+                `<strong>Sidebar:</strong> ${sidebarVisible ? 'Visible' : 'Hidden'} (Expected: ${expectedSidebarState})`;
+            
+            document.getElementById('layout-info').innerHTML = 
+                `<strong>Layout:</strong> ${hasOverflow ? '❌ Has overflow' : '✅ Contained properly'}`;
+        }
+        
+        // Auto-update results
+        window.addEventListener('load', updateTestResults);
+        window.addEventListener('resize', () => setTimeout(updateTestResults, 100));
+        
+        // Initial update
+        setTimeout(updateTestResults, 500);
+    </script>
+</body>
+</html>

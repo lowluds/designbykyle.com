@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff4444;
+        }
+        button {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ff6666;
+        }
+        .result {
+            background: #333;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .success { border-left-color: #44ff44; }
+        .error { border-left-color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h1>G2Own Backend Integration Test</h1>
+    
+    <div class="test-section">
+        <h3>1. API Bridge Connectivity</h3>
+        <p>Test if the local API bridge is working and can connect to the backend.</p>
+        <button onclick="testConnectivity()">Test API Bridge</button>
+        <div id="connectivity-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Navigation Links</h3>
+        <p>Test navigation to different backend sections.</p>
+        <button onclick="testNavigation('marketplace')">Test Marketplace</button>
+        <button onclick="testNavigation('games')">Test Games</button>
+        <button onclick="testNavigation('digital-goods')">Test Digital Goods</button>
+        <button onclick="testNavigation('support')">Test Support</button>
+        <div id="navigation-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Search Functionality</h3>
+        <p>Test the search API endpoint.</p>
+        <input type="text" id="search-input" placeholder="Enter search term..." style="padding: 8px; margin-right: 10px; background: #333; border: 1px solid #555; color: #fff;">
+        <button onclick="testSearch()">Test Search</button>
+        <div id="search-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Authentication Status</h3>
+        <p>Check current authentication state.</p>
+        <button onclick="testAuth()">Check Auth Status</button>
+        <button onclick="clearAuth()">Clear Auth Data</button>
+        <div id="auth-result" class="result"></div>
+    </div>
+
+    <script src="assets/js/api-config.js"></script>
+    <script src="assets/js/navigation-controller.js"></script>
+    
+    <script>
+        // Wait for API to initialize
+        setTimeout(() => {
+            if (window.g2ownAPI) {
+                document.getElementById('connectivity-result').textContent = 'API initialized successfully!';
+                document.getElementById('connectivity-result').parentElement.classList.add('success');
+            } else {
+                document.getElementById('connectivity-result').textContent = 'ERROR: API not initialized';
+                document.getElementById('connectivity-result').parentElement.classList.add('error');
+            }
+        }, 1000);
+
+        async function testConnectivity() {
+            const resultDiv = document.getElementById('connectivity-result');
+            resultDiv.textContent = 'Testing connectivity...';
+            
+            try {
+                // Test basic connectivity to the API bridge
+                const response = await fetch('/community/api/core/system');
+                const result = await response.text();
+                
+                resultDiv.textContent = `✅ API Bridge Response (${response.status}):\n${result}`;
+                resultDiv.parentElement.classList.remove('error');
+                resultDiv.parentElement.classList.add('success');
+            } catch (error) {
+                resultDiv.textContent = `❌ Connectivity Error:\n${error.message}`;
+                resultDiv.parentElement.classList.remove('success');
+                resultDiv.parentElement.classList.add('error');
+            }
+        }
+
+        function testNavigation(section) {
+            const resultDiv = document.getElementById('navigation-result');
+            const urls = {
+                'marketplace': 'https://g2own.com/community/forum/15-marketplace/',
+                'games': 'https://g2own.com/community/forum/10-games/',
+                'digital-goods': 'https://g2own.com/community/downloads/',
+                'support': 'https://g2own.com/community/forum/20-support/'
+            };
+            
+            const url = urls[section];
+            if (url) {
+                resultDiv.textContent = `✅ Opening ${section}: ${url}`;
+                window.open(url, '_blank');
+                resultDiv.parentElement.classList.remove('error');
+                resultDiv.parentElement.classList.add('success');
+            } else {
+                resultDiv.textContent = `❌ Unknown section: ${section}`;
+                resultDiv.parentElement.classList.remove('success');
+                resultDiv.parentElement.classList.add('error');
+            }
+        }
+
+        async function testSearch() {
+            const resultDiv = document.getElementById('search-result');
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim();
+            
+            if (!query) {
+                resultDiv.textContent = '❌ Please enter a search term';
+                return;
+            }
+            
+            resultDiv.textContent = `Searching for: ${query}...`;
+            
+            try {
+                const response = await g2ownAPI.makeRequest(`/core/search?q=${encodeURIComponent(query)}`);
+                resultDiv.textContent = `✅ Search Results:\n${JSON.stringify(response, null, 2)}`;
+                resultDiv.parentElement.classList.remove('error');
+                resultDiv.parentElement.classList.add('success');
+            } catch (error) {
+                resultDiv.textContent = `❌ Search Error:\n${error.message}`;
+                resultDiv.parentElement.classList.remove('success');
+                resultDiv.parentElement.classList.add('error');
+            }
+        }
+
+        async function testAuth() {
+            const resultDiv = document.getElementById('auth-result');
+            resultDiv.textContent = 'Checking authentication...';
+            
+            try {
+                const user = await g2ownAPI.getCurrentUser();
+                if (user) {
+                    resultDiv.textContent = `✅ Authenticated User:\n${JSON.stringify(user, null, 2)}`;
+                    resultDiv.parentElement.classList.remove('error');
+                    resultDiv.parentElement.classList.add('success');
+                } else {
+                    resultDiv.textContent = '⚠️ No authentication found';
+                    resultDiv.parentElement.classList.remove('success', 'error');
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ Auth Check Error:\n${error.message}`;
+                resultDiv.parentElement.classList.remove('success');
+                resultDiv.parentElement.classList.add('error');
+            }
+        }
+
+        function clearAuth() {
+            g2ownAPI.clearAuth();
+            document.getElementById('auth-result').textContent = '✅ Authentication data cleared';
+            document.getElementById('auth-result').parentElement.classList.remove('error');
+            document.getElementById('auth-result').parentElement.classList.add('success');
+        }
+    </script>
+</body>
+</html>

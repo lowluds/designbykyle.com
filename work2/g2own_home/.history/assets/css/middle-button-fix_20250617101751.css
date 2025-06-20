@@ -1,0 +1,68 @@
+/**
+ * Middle Button Background Fix
+ * This CSS specifically targets the middle button in the left sidebar
+ * to ensure it has exactly the same black background as other buttons.
+ */
+
+/* Target all preview icons with strict specificity */
+.sidebar-icon-preview .preview-icon,
+.preview-icon,
+.nav-hint {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    background-image: none !important;
+}
+
+/* Target specifically the middle button (library) with ultra-high specificity */
+.preview-icon[data-action="library"],
+.preview-icon:nth-child(3),
+.sidebar-icon-preview .preview-icon:nth-child(3),
+.preview-icon[data-tooltip="Library"],
+.preview-icon[data-tooltip="My Library"],
+.nav-hint:nth-child(3),
+.nav-hint[data-hint*="Library"] {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Make sure all inner elements are transparent */
+.preview-icon *,
+.preview-icon::before,
+.preview-icon::after,
+.preview-icon .icon-background,
+.preview-icon .icon-content,
+.preview-icon > div,
+.preview-icon > span,
+.nav-hint *,
+.nav-hint::before,
+.nav-hint::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Disable any special animations or effects */
+.preview-icon,
+.preview-icon *,
+.nav-hint,
+.nav-hint * {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Remove any gradient effects */
+.sidebar-icon-preview,
+.sidebar-hover-zone,
+.gaming-hover-zone,
+.preview-icon .icon-content,
+.nav-hint .icon-content {
+    --button-bg: #000000;
+    --icon-bg: #000000;
+    --middle-button-bg: #000000;
+    --library-bg: #000000;
+}

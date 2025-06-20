@@ -1,0 +1,65 @@
+/* ===== UNIFIED CSS VARIABLES SYSTEM ===== */
+/* This file consolidates all CSS variables to prevent duplication */
+
+:root {
+  /* Core Brand Colors */
+  --primary-red: #8b0000;
+  --primary-white: #ffffff;
+  --primary-black: #000000;
+  
+  /* Red Color Variants */
+  --dark-red: #660000;
+  --light-red: #a50000;
+  --bright-red: #ff4444;
+  --soft-red: #ff6b6b;
+  --crimson-red: #c41e3a;
+  
+  /* UI Colors */
+  --color-red: var(--primary-red);
+  --color-red-dark: var(--dark-red);
+  --color-red-light: var(--light-red);
+  --color-white: var(--primary-white);
+  --color-black: var(--primary-black);
+  
+  /* Background Colors */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  
+  /* Border Colors */
+  --border-color: rgba(139, 0, 0, 0.3);
+  --border-color-hover: rgba(139, 0, 0, 0.6);
+  
+  /* Common Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+  --gradient-secondary: linear-gradient(135deg, var(--primary-red), var(--light-red));
+  --gradient-shimmer: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-white) 50%, var(--primary-red) 100%);
+  --gradient-button: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 50%, var(--primary-red) 100%);
+  --gradient-glow: radial-gradient(circle at center, var(--primary-red) 0%, rgba(139, 0, 0, 0.1) 100%);
+  
+  /* Shadows */
+  --shadow-glow: 0 0 20px rgba(139, 0, 0, 0.3);
+  --shadow-button: 0 4px 15px rgba(139, 0, 0, 0.2);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Z-Index Scale */
+  --z-background: -1;
+  --z-content: 1;
+  --z-sidebar: 100;
+  --z-navbar: 200;
+  --z-modal: 1000;
+  --z-loading: 9999;
+}
+
+/* Dark theme adjustments (if needed) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+  }
+}

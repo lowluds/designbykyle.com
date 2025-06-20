@@ -1,0 +1,282 @@
+/**
+ * SIMPLE RESPONSIVE SOLUTION
+ * Clean, minimal approach to make the website responsive across all devices
+ */
+
+/* Global box-sizing for consistent layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== HIDE UNWANTED ELEMENTS ===== */
+
+/* Hide edge indicators and floating elements that interfere with clean layout */
+.sidebar-edge-indicator,
+.edge-indicator-line,
+.edge-indicator-preview,
+.edge-indicator-hint {
+    display: none !important;
+}
+
+/* Hide any hover zones or triggers */
+.hover-zone,
+.sidebar-hover-trigger,
+.edge-hover-zone {
+    display: none !important;
+}
+
+/* Ensure clean left edge - no floating icons or indicators */
+.left-edge-icons,
+.floating-sidebar-icons,
+.preview-icons {
+    display: none !important;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Mobile First: 0-767px */
+@media screen and (max-width: 767px) {
+    /* Hide left sidebar on mobile */
+    .left-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    /* Show sidebar when active */
+    .left-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    /* Ensure main content takes full width */
+    main {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+      /* Make floating toggle visible and properly positioned */
+    .sidebar-floating-toggle {
+        display: block !important;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        background: rgba(255, 0, 0, 0.9);
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    /* Ensure edge indicators are hidden on mobile too */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint {
+        display: none !important;
+    }
+    
+    /* Hero section responsive adjustments */
+    .hero {
+        padding: 80px 20px 40px 20px;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin: 20px 0;
+    }
+    
+    /* Stack hero buttons vertically on mobile */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Mobile navigation adjustments */
+    .navbar {
+        padding: 10px 20px;
+    }
+    
+    /* Ensure no elements extend beyond viewport */
+    .hero-container,
+    .container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Show sidebar but make it narrower */
+    .left-sidebar {
+        width: 240px;
+        transform: translateX(0);
+    }
+    
+    /* Adjust main content margin */
+    main {
+        margin-left: 240px;
+    }
+      /* Hide mobile toggle */
+    .sidebar-floating-toggle {
+        display: none !important;
+    }
+    
+    /* Ensure all edge indicators and floating elements are hidden on tablet */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint,
+    .hover-zone,
+    .sidebar-hover-trigger {
+        display: none !important;
+    }
+    
+    /* Hero adjustments for tablet */
+    .hero {
+        padding: 100px 40px 60px 40px;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+    }
+}
+
+/* Desktop: 1024px and up */
+@media screen and (min-width: 1024px) {    /* Full sidebar width */
+    .left-sidebar {
+        width: 280px;
+        transform: translateX(0) !important;
+        position: fixed !important;
+        left: 0 !important;
+    }
+    
+    /* Main content with full sidebar margin */
+    main {
+        margin-left: 280px !important;
+    }
+    
+    /* Ensure navbar is also offset properly */
+    .navbar {
+        margin-left: 280px !important;
+    }
+      /* Hide mobile toggle */
+    .sidebar-floating-toggle {
+        display: none !important;
+    }
+    
+    /* Ensure all edge indicators and floating elements are hidden on desktop */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint,
+    .hover-zone,
+    .sidebar-hover-trigger {
+        display: none !important;
+    }
+    
+    /* Desktop hero styling */
+    .hero {
+        padding: 120px 60px 80px 60px;
+    }
+    
+    .hero-title {
+        font-size: clamp(3rem, 5vw, 5rem);
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 30px;
+        justify-content: center;
+    }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+/* Prevent any element from causing horizontal scroll */
+.hero-container,
+.container,
+section,
+div {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+/* Mobile overlay for sidebar */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive text scaling */
+@media screen and (max-width: 480px) {
+    /* Extra small mobile devices */
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2.5rem);
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+    
+    .hero {
+        padding: 70px 15px 30px 15px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-title,
+    .hero-subtitle {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

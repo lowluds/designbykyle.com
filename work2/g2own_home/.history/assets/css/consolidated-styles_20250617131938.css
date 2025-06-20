@@ -1,0 +1,133 @@
+/**
+ * G2Own - Critical Consolidated Styles
+ * Essential styles for sidebar, buttons, and hero badge
+ */
+
+/* CSS Variables */
+:root {
+    --primary-red: #ef4444;
+    --primary-black: #000000;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --sidebar-width: 80px;
+    --sidebar-bg: rgba(0, 0, 0, 0.95);
+    --border-color: rgba(239, 68, 68, 0.3);
+    --hover-glow: rgba(239, 68, 68, 0.5);
+}
+
+/* Hero Badge - Essential Styling */
+.hero-badge {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(239, 68, 68, 0.6);
+    border-radius: 25px;
+    padding: 0.4rem 0.8rem;
+    color: var(--primary-red);
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    margin: 0 auto;
+    transition: all var(--transition-speed) ease;
+}
+
+.hero-badge:hover {
+    border-color: rgba(239, 68, 68, 0.8);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
+}
+
+.hero-badge i {
+    font-size: 1rem;
+    color: var(--primary-red);
+}
+
+/* Sidebar Navigation - Essential Styling */
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-black) !important;
+    border: 2px solid rgba(239, 68, 68, 0.8) !important;
+    color: var(--primary-red);
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+    margin: 0.5rem 0;
+}
+
+.nav-link:hover {
+    background: var(--primary-black) !important;
+    border-color: var(--primary-red) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    transform: scale(1.05);
+}
+
+.nav-gaming-icon,
+.preview-icon {
+    background: var(--primary-black) !important;
+    background-color: var(--primary-black) !important;
+    border: 2px solid rgba(239, 68, 68, 0.8) !important;
+    color: var(--primary-red) !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+.nav-gaming-icon:hover,
+.preview-icon:hover {
+    background: var(--primary-black) !important;
+    border-color: var(--primary-red) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-link,
+    .nav-gaming-icon,
+    .preview-icon {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+/* Touch-friendly design */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link,
+    .nav-gaming-icon,
+    .preview-icon {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        touch-action: manipulation !important;
+    }
+}
+
+/* Carousel Card Styling */
+.carousel-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(239, 68, 68, 0.5);
+}

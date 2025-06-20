@@ -1,0 +1,509 @@
+/* Support Section Styles */
+.support-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Remove individual background - using unified hero background system */
+
+/* Remove individual background animations - using unified hero background system */
+
+.support-section .container {
+    position: relative;
+    z-index: 10;
+}
+
+/* Section Header - Using Standard Styling */
+.support-section .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Support section badges now use default styling from main.css */
+
+.support-section .section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Enhanced animated gradient text for support section header */
+.support-section .gradient-text {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-white) 50%, var(--primary-red) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease-in-out infinite;
+    position: relative;
+    display: inline-block;
+    will-change: background-position;
+    transform: translateZ(0);
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradientShift {
+    0%, 100% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .support-section .gradient-text {
+        animation: none;
+        background-position: 50% 50%;
+    }
+}
+
+.support-section .section-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Support Grid */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Support Cards */
+.support-card {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    backdrop-filter: blur(10px);
+}
+
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(255, 255, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.support-card:hover::before {
+    opacity: 1;
+}
+
+.support-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(139, 0, 0, 0.6);
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.3),
+        0 0 60px rgba(139, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Card Icons */
+.support-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, #8b0000, #ff6b6b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.support-card-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, #8b0000, #ff6b6b, #8b0000);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.support-card:hover .support-card-icon::before {
+    opacity: 1;
+}
+
+.support-card:hover .support-card-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.5);
+}
+
+.support-card-icon svg {
+    width: 36px;
+    height: 36px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.support-card:hover .support-card-icon svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+/* Card Content */
+.support-card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.support-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin: 0 0 15px 0;
+    transition: color 0.3s ease;
+}
+
+.support-card:hover .support-card-title {
+    color: #ff6b6b;
+}
+
+.support-card-description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+    font-size: 0.95rem;
+}
+
+/* Card Features */
+.support-card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.support-feature {
+    background: rgba(139, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.support-card:hover .support-feature {
+    background: rgba(139, 0, 0, 0.4);
+    color: white;
+    border-color: rgba(139, 0, 0, 0.6);
+}
+
+/* Card Button */
+.support-card-btn {
+    background: linear-gradient(135deg, #8b0000, #c41e3a);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.support-card-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.support-card:hover .support-card-btn::before {
+    left: 100%;
+}
+
+.support-card-btn:hover {
+    background: linear-gradient(135deg, #a01010, #e01e3a);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 0, 0, 0.4);
+}
+
+/* Card Glow Effect */
+.support-card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.support-card:hover .support-card-glow {
+    opacity: 1;
+}
+
+/* Premium Support Stats - Modern Design */
+.support-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    margin-top: 3rem;
+}
+
+.support-stat {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    transform: translateY(0);
+    will-change: transform;
+}
+
+.support-stat:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(139, 0, 0, 0.3);
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.2),
+        0 0 80px rgba(139, 0, 0, 0.1);
+}
+
+.support-stat-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8b0000, #ff4444);
+    border-radius: 18px;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.support-stat:hover .support-stat-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+}
+
+.support-stat-icon i {
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+}
+
+.support-stat-content {
+    position: relative;
+    z-index: 2;
+}
+
+.support-stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #8b0000, #ff4444);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    animation: gradientShift 4s ease-in-out infinite;
+    line-height: 1;
+}
+
+.support-stat-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.3rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.support-stat-sublabel {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+}
+
+.support-stat-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.support-stat:hover .support-stat-glow {
+    opacity: 1;
+}
+
+/* Gradient animation for numbers */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Staggered animation entrance */
+.support-stat {
+    animation: slideInUpScale 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+}
+
+.support-stat:nth-child(1) { 
+    animation-delay: 0.1s; 
+}
+.support-stat:nth-child(2) { 
+    animation-delay: 0.2s; 
+}
+.support-stat:nth-child(3) { 
+    animation-delay: 0.3s; 
+}
+
+@keyframes slideInUpScale {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .support-section {
+        padding: 60px 0;
+    }
+    
+    .support-title {
+        font-size: 2.2rem;
+    }
+    
+    .support-subtitle {
+        font-size: 1rem;
+    }
+    
+    .support-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+    
+    .support-card {
+        padding: 30px 20px;
+    }
+    
+    .support-card-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    .support-card-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .support-card-title {
+        font-size: 1.3rem;
+    }
+    
+    .support-stats {
+        gap: 30px;
+    }
+    
+    .support-stat-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .support-container {
+        padding: 0 15px;
+    }
+    
+    .support-title {
+        font-size: 1.8rem;
+    }
+    
+    .support-card-features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .support-feature {
+        width: fit-content;
+    }
+}
+
+/* Animation for cards appearing */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.support-card {
+    animation: slideInUp 0.6s ease forwards;
+}
+
+.support-card:nth-child(1) { animation-delay: 0.1s; }
+.support-card:nth-child(2) { animation-delay: 0.2s; }
+.support-card:nth-child(3) { animation-delay: 0.3s; }

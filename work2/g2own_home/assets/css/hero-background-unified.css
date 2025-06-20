@@ -1,0 +1,200 @@
+/* HERO BACKGROUND UNIFIED SYSTEM - Apply to ALL Sections */
+
+/* Apply Hero Section's Exact Background to All Major Sections */
+.hero,
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section,
+.support-section,
+.newsletter-section,
+section {    /* Much darker gradient - Pure black to very dark gray */
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%,           /* Very dark black start */
+        #050505 25%,          /* Near black transition */
+        #111111 50%,          /* Dark gray middle */
+        #030303 75%,          /* Very dark transition */
+        #080808 100%          /* Dark black end */
+    );
+    
+    /* Red grid pattern only - no white gradients */
+    background-image: 
+        /* Enhanced red grid pattern */
+        linear-gradient(rgba(139, 0, 0, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.15) 1px, transparent 1px);
+    
+    background-size: 
+        80px 80px,            /* Grid size */
+        80px 80px;
+    
+    background-position:
+        0 0,
+        0 0,
+        0 0,
+        100% 0,
+        50% 100%;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background layers for depth */
+.hero::before,
+.hero-section::before,
+.categories-section::before,
+.categories::before,
+.featured-products-section::before,
+.stats-section::before,
+.support-section::before,
+.newsletter-section::before,
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Red accent gradients */
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.02) 0%, transparent 70%),
+        radial-gradient(circle at 25% 75%, rgba(139, 0, 0, 0.015) 0%, transparent 60%);
+    animation: heroLightFloat 25s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.hero::after,
+.hero-section::after,
+.categories-section::after,
+.categories::after,
+.featured-products-section::after,
+.stats-section::after,
+.support-section::after,
+.newsletter-section::after,
+section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    background: 
+        /* Extremely subtle white light accents - barely visible */
+        radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.002) 0%, transparent 40%),
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.001) 0%, transparent 35%);
+    animation: heroLightFloat 30s ease-in-out infinite alternate-reverse;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+}
+
+@keyframes heroLightFloat {
+    0% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translate(-8px, -5px) scale(1.02);
+        opacity: 0.5;
+    }
+    100% { 
+        transform: translate(-15px, -10px) scale(1.04);
+        opacity: 0.7;
+    }
+}
+
+/* Ensure all content appears above the gradient background */
+.hero .container,
+.hero .hero-content,
+.hero .hero-text,
+.hero-section .container,
+.hero-section .hero-content,
+.hero-section .hero-text,
+.categories-section .container,
+.categories-section .section-header,
+.categories-section .categories-grid,
+.categories .container,
+.categories .section-header,
+.categories .categories-grid,
+.featured-products-section .featured-products-container,
+.featured-products-section .featured-products-header,
+.featured-products-section .featured-products-grid,
+.stats-section .container,
+.stats-section .stats-grid,
+.support-section .container,
+.support-section .section-header,
+.support-section .support-grid,
+.newsletter-section .container,
+.newsletter-section .newsletter-container,
+section .container {
+    position: relative;
+    z-index: 10;
+}
+
+/* Subtle lighting effects with minimal white accents */
+.hero,
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section,
+.support-section,
+.newsletter-section,
+section {
+    /* Inner glow with mostly red and minimal white */
+    box-shadow: 
+        inset 0 0 100px rgba(139, 0, 0, 0.01),
+        inset 0 0 200px rgba(255, 255, 255, 0.001);
+}
+
+/* Override any existing background styles with darker colors */
+.hero,
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section,
+.support-section,
+.newsletter-section {
+    background-color: #050505 !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .hero,
+    .hero-section,
+    .categories-section,
+    .categories,
+    .featured-products-section,
+    .stats-section,
+    .support-section,
+    .newsletter-section,
+    section {
+        background-size: 
+            60px 60px,           /* Smaller grid */
+            60px 60px,
+            300px 300px,         /* Smaller white gradients */
+            200px 200px,
+            150px 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero,
+    .hero-section,
+    .categories-section,
+    .categories,
+    .featured-products-section,
+    .stats-section,
+    .support-section,
+    .newsletter-section,
+    section {
+        background-size: 
+            40px 40px,           /* Even smaller grid */
+            40px 40px,
+            200px 200px,
+            150px 150px,
+            100px 100px;
+    }
+}

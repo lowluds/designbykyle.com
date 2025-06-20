@@ -1,0 +1,626 @@
+/* ===================================================
+   Modern Why Choose Us Section - Premium Design
+   ================================================ */
+
+.why-choose-us-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 0;
+    overflow: hidden;
+    
+    /* Unified background system matching other sections */
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%,           /* Very dark black start */
+        #050505 25%,          /* Near black transition */
+        #111111 50%,          /* Dark gray middle */
+        #030303 75%,          /* Very dark transition */
+        #080808 100%          /* Dark black end */
+    );
+    
+    /* Subtle red grid pattern */
+    background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.1) 1px, transparent 1px);
+    
+    background-size: 80px 80px;
+    background-position: 0 0;
+    background-attachment: scroll;
+}
+
+/* Floating background orbs for depth */
+.why-choose-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 30%);
+    animation: floatingOrbs 25s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes floatingOrbs {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -15px) scale(1.05); }
+    66% { transform: translate(-15px, 10px) scale(0.95); }
+}
+
+/* Content positioning */
+.why-choose-us-section .container,
+.why-choose-us-section .section-header,
+.why-choose-us-section .benefits-grid,
+.why-choose-us-section .trust-bar {
+    position: relative;
+    z-index: 10;
+}
+
+/* ===================================================
+   Section Header
+   ================================================ */
+
+.why-choose-us-section .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Why Choose Us section badges now use default styling from main.css */
+
+.why-choose-us-section .section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.why-choose-us-section .gradient-text {
+    background: linear-gradient(135deg, var(--color-red) 0%, var(--color-white) 50%, var(--color-red) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease-in-out infinite;
+}
+
+.why-choose-us-section .section-subtitle {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===================================================
+   Benefits Grid - 5 Cards in Row
+   ================================================ */
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    margin: 4rem 0;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Animation states for benefit cards */
+.benefit-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.benefit-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.benefit-card.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* ===================================================
+   Benefit Cards - Modern Glass Morphism Design
+   ================================================ */
+
+.benefit-card {
+    position: relative;
+    background: linear-gradient(145deg, 
+        rgba(26, 26, 26, 0.85) 0%,
+        rgba(20, 20, 20, 0.9) 50%,
+        rgba(16, 16, 16, 0.85) 100%);
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    overflow: hidden;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+      /* Animation properties */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Remove white glow from shadows */
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(139, 0, 0, 0.1);
+}
+
+/* Hover effect with 3D lift */
+.benefit-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(139, 0, 0, 0.4);
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.2),
+        0 0 30px rgba(139, 0, 0, 0.15),
+        0 0 0 1px rgba(139, 0, 0, 0.3);
+}
+
+/* Disable animated border glow that creates white effect */
+.benefit-card::before {
+    display: none !important;
+    content: none !important;
+}
+
+.benefit-card:hover::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* ===================================================
+   Benefit Icons - Centered with Premium Effects & Circle Background
+   ================================================ */
+
+.benefit-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 1.5rem auto;
+    background: rgba(139, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.benefit-icon::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: rgba(139, 0, 0, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.benefit-card:hover .benefit-icon::before {
+    opacity: 1;
+}
+
+.benefit-card:hover .benefit-icon {
+    transform: scale(1.1);
+    background: rgba(139, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.5);
+}
+
+.benefit-gaming-icon {
+    font-size: 3rem;
+    color: #8b0000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: none;
+    transform: scale(1);
+    filter: none;
+}
+
+.benefit-card:hover .benefit-gaming-icon {
+    color: #ff4444;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 20px rgba(139, 0, 0, 0.8));
+}
+
+/* Reset benefit icons when not hovering */
+.benefit-card:not(:hover) .benefit-gaming-icon {
+    color: #8b0000 !important;
+    transform: scale(1) rotateY(0deg) !important;
+    filter: none !important;
+    animation: none !important;
+}
+
+/* Specific icon animations */
+.benefit-card:hover .ph-lightning.benefit-gaming-icon {
+    animation: lightningStrike 0.8s ease-out;
+}
+
+.benefit-card:hover .ph-shield-check.benefit-gaming-icon {
+    animation: securityPulse 1s ease-out;
+}
+
+.benefit-card:hover .ph-tag.benefit-gaming-icon {
+    animation: priceWiggle 0.6s ease-out;
+}
+
+.benefit-card:hover .ph-headset.benefit-gaming-icon {
+    animation: supportGlow 1s ease-out;
+}
+
+.benefit-card:hover .ph-certificate.benefit-gaming-icon {
+    animation: certificateShine 1.2s ease-out;
+}
+
+/* Reset specific icon animations when not hovering */
+.benefit-card:not(:hover) .ph-lightning.benefit-gaming-icon,
+.benefit-card:not(:hover) .ph-shield-check.benefit-gaming-icon,
+.benefit-card:not(:hover) .ph-tag.benefit-gaming-icon,
+.benefit-card:not(:hover) .ph-headset.benefit-gaming-icon,
+.benefit-card:not(:hover) .ph-certificate.benefit-gaming-icon {
+    animation: none !important;
+}
+
+/* ===================================================
+   Benefit Content
+   ================================================ */
+
+.benefit-content {
+    text-align: center;
+}
+
+.benefit-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.benefit-description {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.benefit-feature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #8b0000;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.benefit-card:hover .benefit-feature {
+    color: #ff4444;
+}
+
+.benefit-feature i {
+    font-size: 1rem;
+}
+
+/* ===================================================
+   Trust Bar - Premium Glass Design
+   ================================================ */
+
+.trust-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(145deg, 
+        rgba(26, 26, 26, 0.8) 0%,
+        rgba(20, 20, 20, 0.9) 50%,
+        rgba(16, 16, 16, 0.8) 100%);
+    border-radius: 18px;
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    
+    /* Premium shadow */
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.trust-item:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.trust-item i {
+    color: #8b0000;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.trust-item:hover i {
+    color: #ff4444;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.8));
+}
+
+/* ===================================================
+   Premium Icon Animations
+   ================================================ */
+
+@keyframes lightningStrike {
+    0%, 100% { 
+        transform: scale(1.15) rotateY(10deg); 
+        filter: none;
+        color: #ff4444;
+    }
+    25% { 
+        transform: scale(1.25) rotateY(15deg); 
+        opacity: 0.8; 
+        filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
+        color: #ffff00;
+    }
+    50% { 
+        transform: scale(1.2) rotateY(5deg); 
+        opacity: 1; 
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 1));
+        color: #ffffff;
+    }
+    75% { 
+        transform: scale(1.3) rotateY(20deg); 
+        opacity: 0.9; 
+        filter: drop-shadow(0 0 25px rgba(255, 68, 68, 0.9));
+        color: #ff4444;
+    }
+}
+
+@keyframes securityPulse {
+    0%, 100% { 
+        transform: scale(1.15) rotateY(10deg); 
+        filter: none;
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.25) rotateY(15deg); 
+        filter: drop-shadow(0 0 25px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+}
+
+@keyframes priceWiggle {
+    0%, 100% { 
+        transform: scale(1.15) rotateY(10deg); 
+        filter: none;
+        color: #ff4444;
+    }
+    25% { 
+        transform: scale(1.2) rotateY(-5deg); 
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+        color: #ffd700;
+    }
+    50% { 
+        transform: scale(1.25) rotateY(15deg); 
+        filter: drop-shadow(0 0 20px rgba(68, 255, 68, 0.8));
+        color: #44ff44;
+    }
+    75% { 
+        transform: scale(1.2) rotateY(-10deg); 
+        filter: drop-shadow(0 0 18px rgba(255, 170, 68, 0.8));
+        color: #ffaa44;
+    }
+}
+
+@keyframes supportGlow {
+    0%, 100% { 
+        transform: scale(1.15) rotateY(10deg); 
+        filter: none;
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.25) rotateY(15deg); 
+        filter: drop-shadow(0 0 25px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+}
+
+@keyframes certificateShine {
+    0%, 100% { 
+        transform: scale(1.15) rotateY(10deg); 
+        filter: none;
+        color: #ff4444;
+    }
+    33% { 
+        transform: scale(1.2) rotateY(15deg); 
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        color: #ffd700;
+    }
+    66% { 
+        transform: scale(1.25) rotateY(5deg); 
+        filter: drop-shadow(0 0 25px rgba(139, 0, 0, 0.8));
+        color: #8b0000;
+    }
+}
+
+/* ===================================================
+   Premium Section Border Animation
+   ================================================ */
+
+.why-choose-us-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(139, 0, 0, 0.3), 
+        rgba(255, 68, 68, 0.6), 
+        rgba(139, 0, 0, 0.3), 
+        transparent);
+    animation: sectionSweep 8s infinite;
+    z-index: 5;
+}
+
+@keyframes sectionSweep {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+/* Premium floating particles for extra atmosphere */
+.benefits-grid::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 30% 70%, rgba(139, 0, 0, 0.08) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 70% 30%, rgba(255, 68, 68, 0.06) 1px, transparent 1px);
+    background-size: 
+        300px 300px,
+        400px 400px,
+        350px 350px,
+        250px 250px;
+    animation: 
+        floatingParticles1 30s linear infinite,
+        floatingParticles2 25s linear infinite reverse;
+    opacity: 0.6;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes floatingParticles1 {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(-50px) translateX(30px) rotate(360deg); }
+}
+
+@keyframes floatingParticles2 {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(-30px) translateX(-20px) rotate(-360deg); }
+}
+
+/* ===================================================
+   Responsive Design
+   ================================================ */
+
+@media (max-width: 1400px) {
+    .benefits-grid {
+        max-width: 1400px;
+        gap: 1.2rem;
+    }
+    
+    .benefit-card {
+        padding: 1.8rem 1.2rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .why-choose-us-section .section-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .trust-bar {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-choose-us-section {
+        padding: 6rem 0;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+      .benefit-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .benefit-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .benefit-gaming-icon {
+        font-size: 2.5rem;
+    }
+    
+    .why-choose-us-section .section-title {
+        font-size: 2rem;
+    }
+    
+    .trust-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: 3rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .benefits-grid {
+        margin: 2rem 0;
+    }
+      .benefit-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .benefit-icon {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .benefit-gaming-icon {
+        font-size: 2rem;
+    }
+    
+    .benefit-title {
+        font-size: 1.1rem;
+    }
+    
+    .trust-bar {
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+}

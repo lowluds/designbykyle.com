@@ -1,0 +1,1038 @@
+/**
+ * SIMPLE RESPONSIVE SOLUTION
+ * Clean, minimal approach to make the website responsive across all devices
+ */
+
+/* Global box-sizing for consistent layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow */
+html {
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== SIDEBAR HOVER-TO-REVEAL SYSTEM ===== */
+
+/* Create hover zone on the left edge */
+.sidebar-hover-zone {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 30px !important;
+    height: 100vh !important;
+    z-index: 1001 !important;
+    background: transparent !important;
+    cursor: pointer !important;
+}
+
+/* Hide sidebar by default - OVERRIDE ALL OTHER STYLES */
+.left-sidebar,
+#left-sidebar,
+aside.left-sidebar,
+.left-sidebar.active,
+.left-sidebar.collapsed {
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999 !important;
+    width: 320px !important;
+}
+
+/* Show sidebar when hover class is added by JavaScript - HIGHEST PRIORITY */
+.left-sidebar.show-on-hover,
+.left-sidebar.sidebar-hovered,
+.left-sidebar.mobile-open,
+#left-sidebar.show-on-hover,
+#left-sidebar.sidebar-hovered,
+#left-sidebar.mobile-open,
+aside.left-sidebar.show-on-hover,
+aside.left-sidebar.sidebar-hovered,
+aside.left-sidebar.mobile-open,
+body .left-sidebar.show-on-hover,
+body .left-sidebar.sidebar-hovered,
+body .left-sidebar.mobile-open {
+    transform: translateX(0) !important;
+    left: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1200 !important;
+}
+
+/* Force hide by default with high specificity */
+.left-sidebar,
+#left-sidebar,
+aside.left-sidebar,
+body .left-sidebar {
+    transform: translateX(-100%) !important;
+    left: 0 !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 999 !important;
+    width: 320px !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Remove any display:none or visibility:hidden from other CSS */
+.left-sidebar[style*="display: none"],
+.left-sidebar[style*="visibility: hidden"] {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Visual hint for hover zone - make it more visible for debugging */
+.sidebar-hover-zone::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 3px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.6), transparent);
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-hover-zone:hover::before {
+    opacity: 1;
+}
+
+/* Debug mode - make hover zone slightly visible */
+.sidebar-hover-zone.debug {
+    background: rgba(255, 0, 0, 0.1) !important;
+}
+
+/* Hide legacy mobile toggle button - replaced with floating icons */
+.sidebar-floating-toggle,
+#sidebar-floating-toggle {
+    display: none !important;
+}
+
+/* ===== HIDE UNWANTED ELEMENTS ===== */
+
+/* Hide edge indicators and floating elements that interfere with clean layout */
+.sidebar-edge-indicator,
+.edge-indicator-line,
+.edge-indicator-preview,
+.edge-indicator-hint {
+    display: none !important;
+}
+
+/* Hide any hover zones or triggers */
+.hover-zone,
+.sidebar-hover-trigger,
+.edge-hover-zone {
+    display: none !important;
+}
+
+/* Ensure clean left edge - no floating icons or indicators */
+.left-edge-icons,
+.floating-sidebar-icons,
+.preview-icons {
+    display: none !important;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Mobile First: 0-767px */
+@media screen and (max-width: 767px) {
+    /* Hide hover zone on mobile */
+    .sidebar-hover-zone {
+        display: none !important;
+    }
+    
+    /* Hide left sidebar on mobile */
+    .left-sidebar,
+    #left-sidebar,
+    aside.left-sidebar {
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s ease !important;
+    }
+    
+    /* Show sidebar when active */
+    .left-sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
+      /* Show floating icons on mobile too */
+    .floating-sidebar-icons {
+        display: flex !important;
+    }
+    
+    /* Ensure main content takes full width */
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+      /* Make floating toggle visible and properly positioned */
+    .sidebar-floating-toggle {
+        display: block !important;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        background: rgba(255, 0, 0, 0.9);
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    /* Ensure edge indicators are hidden on mobile too */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint {
+        display: none !important;
+    }    /* Mobile content spacing - backgrounds stay full width */
+    main {
+        padding: 0 !important;
+    }
+    
+    .hero-container,
+    .container,
+    .hero-content,
+    .nav-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        width: calc(100% - 2rem) !important;
+    }
+    
+    .navbar,
+    #navbar {
+        padding: 0 !important;
+    }
+    
+    /* Hero section - background full width */
+    .hero {
+        padding: 80px 0 40px 0 !important;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin: 20px 0;
+    }
+    
+    /* Stack hero buttons vertically on mobile */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    /* Enable hover zone */
+    .sidebar-hover-zone {
+        display: block !important;
+    }
+      /* Sidebar hidden by default, controlled by JavaScript */
+    .left-sidebar,
+    #left-sidebar,
+    aside.left-sidebar {
+        width: 240px !important;
+    }
+    
+    /* Main content takes full width when sidebar is hidden */
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Ensure navbar takes full width */
+    .navbar {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Hide mobile toggle */
+    .sidebar-floating-toggle,
+    #sidebar-floating-toggle {
+        display: none !important;
+    }
+    
+    /* Ensure all edge indicators and floating elements are hidden on tablet */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint,
+    .hover-zone,
+    .sidebar-hover-trigger {
+        display: none !important;
+    }    /* Tablet content spacing - backgrounds stay full width */
+    main {
+        padding: 0 !important;
+    }
+    
+    .hero-container,
+    .container,
+    .hero-content,
+    .nav-container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        width: calc(100% - 3rem) !important;
+    }
+    
+    .navbar,
+    #navbar {
+        padding: 0 !important;
+    }
+    
+    /* Hero adjustments for tablet - background full width */
+    .hero {
+        padding: 100px 0 60px 0 !important;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+    }
+}
+
+/* Desktop: 1024px and up */
+@media screen and (min-width: 1024px) {
+    /* Enable hover zone */
+    .sidebar-hover-zone {
+        display: block !important;
+    }
+      /* Sidebar hidden by default, controlled by JavaScript */
+    .left-sidebar,
+    #left-sidebar,
+    aside.left-sidebar {
+        width: 280px !important;
+    }
+    
+    /* Main content takes full width when sidebar is hidden */
+    main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Ensure navbar takes full width */
+    .navbar {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Hide mobile toggle */
+    .sidebar-floating-toggle,
+    #sidebar-floating-toggle {
+        display: none !important;
+    }
+    
+    /* Ensure all edge indicators and floating elements are hidden on desktop */
+    .sidebar-edge-indicator,
+    .edge-indicator-line,
+    .edge-indicator-preview,
+    .edge-indicator-hint,
+    .hover-zone,
+    .sidebar-hover-trigger {
+        display: none !important;
+    }    /* Desktop content spacing - backgrounds stay full width */
+    main {
+        padding: 0 !important;
+    }
+    
+    .hero-container,
+    .container,
+    .hero-content,
+    .nav-container {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        width: calc(100% - 4rem) !important;
+        max-width: 1400px !important;
+    }
+    
+    .navbar,
+    #navbar {
+        padding: 0 !important;
+    }
+    
+    /* Desktop hero styling - background full width */
+    .hero {
+        padding: 120px 0 80px 0 !important;
+    }
+    
+    .hero-title {
+        font-size: clamp(3rem, 5vw, 5rem);
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        gap: 30px;
+        justify-content: center;
+    }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+/* Prevent any element from causing horizontal scroll */
+.hero-container,
+.container,
+section,
+div {
+    max-width: 100%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+/* Ensure all content respects container bounds */
+* {
+    box-sizing: border-box;
+}
+
+/* Fix any overflow issues */
+body, html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* Mobile overlay for sidebar */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive text scaling */
+@media screen and (max-width: 480px) {
+    /* Extra small mobile devices */
+    .hero-title {
+        font-size: clamp(1.5rem, 10vw, 2.5rem);
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+    
+    .hero {
+        padding: 70px 15px 30px 15px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-title,
+    .hero-subtitle {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* ===== CONTENT CONTAINER SPACING (BACKGROUNDS STAY FULL-WIDTH) ===== */
+
+/* Keep main content full width but no padding */
+main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100vw;
+    padding: 0 !important;
+}
+
+/* Keep sections full-width for backgrounds */
+section {
+    width: 100% !important;
+    max-width: 100vw;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Only constrain the CONTENT inside containers */
+.hero-container,
+.container,
+.hero-content {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    width: calc(100% - 4rem) !important;
+    box-sizing: border-box;
+}
+
+/* Hero section - background full width, content constrained */
+.hero {
+    padding: 120px 0 80px 0 !important;
+    width: 100% !important;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Keep navbar background full-width */
+.navbar,
+#navbar {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+/* Navbar content container */
+.nav-container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    width: calc(100% - 4rem) !important;
+    box-sizing: border-box;
+}
+
+/* Section spacing - backgrounds full width */
+section:not(.hero) {
+    padding: 80px 0 !important;
+}
+
+/* Featured games and other sections - backgrounds full width */
+.featured-games,
+.categories-section,
+.benefits-section {
+    padding: 80px 0 !important;
+    width: 100% !important;
+}
+
+/* Content inside sections gets constrained */
+.featured-games .container,
+.categories-section .container,
+.benefits-section .container {
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    width: calc(100% - 4rem) !important;
+    box-sizing: border-box;
+}
+
+/* Grid and card layouts within containers */
+.games-grid,
+.categories-grid,
+.benefits-grid,
+.modern-carousel-container {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
+
+/* Ensure no content elements break bounds */
+* {
+    max-width: 100%;
+}
+
+/* ===== ULTIMATE SIDEBAR VISIBILITY FIX ===== */
+
+/* FORCE SIDEBAR TO SHOW - MAXIMUM SPECIFICITY OVERRIDE */
+html body .left-sidebar.show-on-hover,
+html body .left-sidebar.sidebar-hovered,
+html body .left-sidebar.mobile-open,
+html body #left-sidebar.show-on-hover,
+html body #left-sidebar.sidebar-hovered,
+html body #left-sidebar.mobile-open,
+html body aside.left-sidebar.show-on-hover,
+html body aside.left-sidebar.sidebar-hovered,
+html body aside.left-sidebar.mobile-open {
+    transform: translateX(0) !important;
+    left: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1200 !important;
+    position: fixed !important;
+    top: 0 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(239, 68, 68, 0.2) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* FORCE SIDEBAR TO HIDE - MAXIMUM SPECIFICITY OVERRIDE */
+html body .left-sidebar,
+html body #left-sidebar,
+html body aside.left-sidebar {
+    transform: translateX(-100%) !important;
+    left: 0 !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 999 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(239, 68, 68, 0.2) !important;
+}
+
+/* FORCE HOVER ZONE VISIBILITY */
+html body .sidebar-hover-zone {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 30px !important;
+    height: 100vh !important;
+    z-index: 1001 !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Debug mode for hover zone */
+html body .sidebar-hover-zone.debug {
+    background: rgba(255, 0, 0, 0.2) !important;
+    border-right: 2px solid rgba(255, 0, 0, 0.5) !important;
+}
+
+/* EMERGENCY CSS - INLINE STYLE OVERRIDES */
+.left-sidebar[style*="transform: translateX(0px)"] {
+    transform: translateX(0px) !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.left-sidebar[style*="transform: translateX(-100%)"] {
+    transform: translateX(-100%) !important;
+}
+
+/* Force hover zone to always be visible and functional */
+.sidebar-hover-zone {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 30px !important;
+    height: 100vh !important;
+    z-index: 1001 !important;
+    background: rgba(255, 0, 0, 0.3) !important;
+    cursor: pointer !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+/* Force toggle button to be visible */
+.sidebar-floating-toggle {
+    position: fixed !important;
+    top: 20px !important;
+    left: 20px !important;
+    z-index: 1000 !important;
+    background: rgba(255, 0, 0, 0.9) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+}
+
+/* ===== FLOATING SIDEBAR ICONS (when sidebar is closed) ===== */
+
+.floating-sidebar-icons {
+    position: fixed !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    z-index: 1200 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    pointer-events: all !important;
+}
+
+/* Hide floating icons when sidebar is visible */
+.floating-sidebar-icons.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateX(-20px) !important;
+}
+
+.floating-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    color: rgba(239, 68, 68, 0.9) !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 18px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Hover tooltips with animated arrows */
+.floating-icon::after {
+    content: attr(title) !important;
+    position: absolute !important;
+    left: 60px !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(-10px) !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(20px) !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1px solid rgba(239, 68, 68, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    z-index: 1300 !important;
+}
+
+.floating-icon:hover::after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(-50%) translateX(0) !important;
+}
+
+/* Animated arrow for tooltips */
+.floating-icon::before {
+    content: '→' !important;
+    position: absolute !important;
+    left: 52px !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(-5px) !important;
+    color: rgba(239, 68, 68, 0.8) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s !important;
+    z-index: 1299 !important;
+}
+
+.floating-icon:hover::before {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(-50%) translateX(0) !important;
+    animation: arrow-pulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0) !important;
+        opacity: 1 !important;
+    }
+    50% {
+        transform: translateY(-50%) translateX(3px) !important;
+        opacity: 0.7 !important;
+    }
+}
+
+/* Override the glow effect to not conflict with tooltips */
+.floating-icon .glow-effect {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, transparent 70%) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+.floating-icon:hover .glow-effect {
+    opacity: 1 !important;
+}
+
+/* Mobile adjustments for floating icons */
+@media screen and (max-width: 767px) {
+    .floating-sidebar-icons {
+        top: 50% !important;
+        left: 20px !important;
+        transform: translateY(-50%) !important;
+        gap: 10px !important;
+    }
+    
+    .floating-icon {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+    
+    .floating-icon.main-toggle {
+        font-size: 18px !important;
+    }
+    
+    /* Adjust tooltip positioning for mobile */
+    .floating-icon::after {
+        left: 55px !important;
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+    }
+    
+    .floating-icon::before {
+        left: 47px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Pulse animation ring for main toggle - using a separate pseudo-element */
+.floating-icon.main-toggle {
+    position: relative !important;
+}
+
+.floating-icon.main-toggle .pulse-ring {
+    position: absolute !important;
+    top: -2px !important;
+    left: -2px !important;
+    right: -2px !important;
+    bottom: -2px !important;
+    border-radius: 50% !important;
+    border: 2px solid rgba(239, 68, 68, 0.4) !important;
+    animation: pulse-ring 2s ease-out infinite !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+    }
+    100% {
+        transform: scale(1.3) !important;
+        opacity: 0 !important;
+    }
+}
+
+/* ===== HOVER TO NAVIGATE TEXT (left side vertical) ===== */
+
+.hover-to-navigate {
+    position: fixed !important;
+    bottom: 200px !important;
+    left: 20px !important;
+    transform: rotate(90deg) !important;
+    transform-origin: bottom left !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    color: rgba(239, 68, 68, 0.9) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    white-space: nowrap !important;
+}
+
+/* Hide when sidebar is open */
+.hover-to-navigate.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: rotate(90deg) translateX(-20px) !important;
+}
+
+/* Force visible when not hidden */
+.hover-to-navigate:not(.hidden) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+.navigate-text {
+    color: rgba(239, 68, 68, 0.9) !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    transition: color 0.3s ease !important;
+    letter-spacing: 2px !important;
+    font-size: 14px !important;
+}
+
+.end-arrow {
+    margin-left: 10px !important;
+    animation: arrow-slide-attention 2s ease-in-out infinite !important;
+    display: inline-block !important;
+    font-size: 18px !important;
+    color: rgba(239, 68, 68, 0.95) !important;
+    transition: all 0.3s ease !important;
+    vertical-align: middle !important;
+    transform: rotate(90deg) !important;
+    transform-origin: center !important;
+}
+
+.navigate-arrow {
+    color: rgba(239, 68, 68, 0.9) !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    animation: navigate-arrow-breathe 3s ease-in-out infinite !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    margin-top: 5px !important;
+    margin-left: 45px !important;
+    position: relative !important;
+    align-self: flex-start !important;
+}
+
+/* Arrow icon animation - enhanced slide and pulse for attention */
+@keyframes arrow-slide-attention {
+    0%, 100% {
+        transform: translateX(8px) scale(1) !important;
+        opacity: 0.7 !important;
+    }
+    25% {
+        transform: translateX(4px) scale(1.1) !important;
+        opacity: 0.85 !important;
+    }
+    50% {
+        transform: translateX(-2px) scale(1.25) !important;
+        opacity: 1 !important;
+    }
+    75% {
+        transform: translateX(-6px) scale(1.15) !important;
+        opacity: 0.9 !important;
+    }
+}
+
+/* Legacy arrow breathing animation - keep for compatibility */
+@keyframes navigate-arrow-breathe {
+    0%, 100% {
+        transform: translateX(6px) scale(1) !important;
+        opacity: 0.7 !important;
+    }
+    25% {
+        transform: translateX(3px) scale(1.1) !important;
+        opacity: 0.85 !important;
+    }
+    50% {
+        transform: translateX(0px) scale(1.2) !important;
+        opacity: 1 !important;
+    }
+    75% {
+        transform: translateX(-3px) scale(1.15) !important;
+        opacity: 0.9 !important;
+    }
+}
+
+/* Hover effect when floating icons are hovered */
+.floating-icon:hover ~ .hover-to-navigate .navigate-text,
+.floating-sidebar-icons:hover .hover-to-navigate .navigate-text {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.floating-icon:hover ~ .hover-to-navigate .end-arrow,
+.floating-sidebar-icons:hover .hover-to-navigate .end-arrow {
+    color: rgba(239, 68, 68, 1) !important;
+    animation: navigate-arrow-breathe 1.2s ease-in-out infinite !important;
+    transform: scale(1.15) !important;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 767px) {
+    .hover-to-navigate {
+        bottom: 150px !important;
+        left: 15px !important;
+        font-size: 12px !important;
+        gap: 6px !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .end-arrow {
+        font-size: 16px !important;
+        margin-left: 8px !important;
+    }
+    
+    .navigate-arrow {
+        font-size: 12px !important;
+    }
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .hover-to-navigate {
+        bottom: 175px !important;
+        left: 18px !important;
+        font-size: 13px !important;
+        gap: 7px !important;
+    }
+    
+    .end-arrow {
+        font-size: 17px !important;
+        margin-left: 9px !important;
+    }
+    
+    .navigate-arrow {
+        font-size: 13px !important;
+    }
+}
+
+/* ===== END HOVER TO NAVIGATE TEXT ===== */

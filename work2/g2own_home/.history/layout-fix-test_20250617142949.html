@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Layout Test - Final Fix Validation</title>
+    
+    <!-- Include the new final layout fix -->
+    <link rel="stylesheet" href="assets/css/layout-fix-final.css">
+    
+    <style>
+        /* Test-specific styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #0d0d0d;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+        
+        .test-info {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .test-button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .test-button:hover {
+            background: #a00000;
+        }
+        
+        /* Mock sidebar for testing */
+        .mock-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            background: rgba(13, 13, 13, 0.95);
+            border-right: 1px solid rgba(139, 0, 0, 0.2);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+        
+        .mock-sidebar.active {
+            transform: translateX(0);
+        }
+        
+        /* Mock main content */
+        .mock-main {
+            background: rgba(0, 100, 0, 0.2);
+            border: 2px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 200px;
+        }
+        
+        .overflow-test {
+            width: 200%;
+            background: rgba(255, 0, 0, 0.3);
+            border: 2px solid #ff0000;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .status-good {
+            color: #00ff00;
+        }
+        
+        .status-bad {
+            color: #ff0000;
+        }
+        
+        .status-warning {
+            color: #ffaa00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mock layout container -->
+    <div class="layout-container">
+        
+        <!-- Mock sidebar -->
+        <div class="mock-sidebar left-sidebar" id="mock-sidebar">
+            <div style="padding: 20px;">
+                <h3>Mock Sidebar</h3>
+                <p>This sidebar should not push content off-screen</p>
+            </div>
+        </div>
+        
+        <!-- Test container (acts as main content) -->
+        <div class="test-container main-content">
+            <h1>G2Own Layout Fix Validation Test</h1>
+            
+            <div class="test-section">
+                <h2>Layout Status Check</h2>
+                <div class="test-info" id="layout-status">
+                    Checking layout calculations...
+                </div>
+                <button class="test-button" onclick="checkLayout()">Refresh Layout Check</button>
+                <button class="test-button" onclick="toggleMockSidebar()">Toggle Mock Sidebar</button>
+            </div>
+            
+            <div class="test-section">
+                <h2>Viewport Information</h2>
+                <div class="test-info" id="viewport-info">
+                    Loading viewport data...
+                </div>
+            </div>
+            
+            <div class="test-section">
+                <h2>CSS Variables Test</h2>
+                <div class="test-info" id="css-vars">
+                    Loading CSS variables...
+                </div>
+            </div>
+            
+            <div class="test-section">
+                <h2>Overflow Test</h2>
+                <p>The red box below should be constrained and not cause horizontal scrolling:</p>
+                <div class="mock-main">
+                    <p>✅ This green container represents main content and should stay within bounds</p>
+                    <div class="overflow-test">
+                        ⚠️ This red box is intentionally 200% width to test overflow containment
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-section">
+                <h2>Responsive Breakpoint Test</h2>
+                <div class="test-info" id="breakpoint-info">
+                    Loading breakpoint data...
+                </div>
+                <div style="margin-top: 10px;">
+                    <button class="test-button" onclick="simulateBreakpoint('mobile')">Test Mobile</button>
+                    <button class="test-button" onclick="simulateBreakpoint('tablet')">Test Tablet</button>
+                    <button class="test-button" onclick="simulateBreakpoint('desktop')">Test Desktop</button>
+                </div>
+            </div>
+            
+            <div class="test-section">
+                <h2>Test Results Summary</h2>
+                <div class="test-info" id="test-summary">
+                    Click "Run All Tests" to see comprehensive results
+                </div>
+                <button class="test-button" onclick="runAllTests()">Run All Tests</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile overlay for testing -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <script>
+        // Test functions
+        function checkLayout() {
+            const layoutStatus = document.getElementById('layout-status');
+            const bodyWidth = document.body.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const hasHorizontalScroll = bodyWidth > viewportWidth;
+            
+            const mainContent = document.querySelector('.main-content');
+            const sidebar = document.querySelector('.left-sidebar');
+            
+            let status = '';
+            
+            // Check for horizontal scroll
+            if (hasHorizontalScroll) {
+                status += '<span class="status-bad">❌ HORIZONTAL OVERFLOW DETECTED</span><br>';
+                status += `Body width: ${bodyWidth}px, Viewport: ${viewportWidth}px<br>`;
+            } else {
+                status += '<span class="status-good">✅ No horizontal overflow</span><br>';
+            }
+            
+            // Check main content positioning
+            if (mainContent) {
+                const rect = mainContent.getBoundingClientRect();
+                const computedStyle = getComputedStyle(mainContent);
+                
+                status += `<br><strong>Main Content:</strong><br>`;
+                status += `Position: left=${rect.left}px, width=${rect.width}px<br>`;
+                status += `Margin-left: ${computedStyle.marginLeft}<br>`;
+                status += `Max-width: ${computedStyle.maxWidth}<br>`;
+                
+                if (rect.left < 0 || rect.right > viewportWidth) {
+                    status += '<span class="status-bad">❌ Main content extends beyond viewport</span><br>';
+                } else {
+                    status += '<span class="status-good">✅ Main content within viewport bounds</span><br>';
+                }
+            }
+            
+            // Check sidebar positioning
+            if (sidebar) {
+                const rect = sidebar.getBoundingClientRect();
+                const computedStyle = getComputedStyle(sidebar);
+                
+                status += `<br><strong>Sidebar:</strong><br>`;
+                status += `Position: left=${rect.left}px, width=${rect.width}px<br>`;
+                status += `Transform: ${computedStyle.transform}<br>`;
+                status += `Z-index: ${computedStyle.zIndex}<br>`;
+            }
+            
+            layoutStatus.innerHTML = status;
+        }
+        
+        function updateViewportInfo() {
+            const viewportInfo = document.getElementById('viewport-info');
+            
+            const info = `
+                Window dimensions: ${window.innerWidth} × ${window.innerHeight}px<br>
+                Screen dimensions: ${screen.width} × ${screen.height}px<br>
+                Device pixel ratio: ${window.devicePixelRatio}<br>
+                Body scroll dimensions: ${document.body.scrollWidth} × ${document.body.scrollHeight}px<br>
+                Document dimensions: ${document.documentElement.scrollWidth} × ${document.documentElement.scrollHeight}px
+            `;
+            
+            viewportInfo.innerHTML = info;
+        }
+        
+        function updateCSSVars() {
+            const cssVars = document.getElementById('css-vars');
+            const root = document.documentElement;
+            
+            const vars = [
+                '--sidebar-width-mobile',
+                '--sidebar-width-tablet', 
+                '--sidebar-width-desktop',
+                '--navbar-height',
+                '--navbar-height-mobile'
+            ];
+            
+            let varInfo = '';
+            vars.forEach(varName => {
+                const value = getComputedStyle(root).getPropertyValue(varName).trim();
+                varInfo += `${varName}: ${value || 'not set'}<br>`;
+            });
+            
+            cssVars.innerHTML = varInfo;
+        }
+        
+        function updateBreakpointInfo() {
+            const breakpointInfo = document.getElementById('breakpoint-info');
+            const width = window.innerWidth;
+            
+            let breakpoint = '';
+            if (width < 480) breakpoint = 'mobile';
+            else if (width < 768) breakpoint = 'tablet-small';
+            else if (width < 1024) breakpoint = 'tablet';
+            else if (width < 1200) breakpoint = 'laptop';
+            else if (width < 1440) breakpoint = 'desktop';
+            else breakpoint = 'desktop-large';
+            
+            breakpointInfo.innerHTML = `
+                Current width: ${width}px<br>
+                Detected breakpoint: <strong>${breakpoint}</strong><br>
+                Body classes: ${document.body.className}
+            `;
+        }
+        
+        function toggleMockSidebar() {
+            const sidebar = document.getElementById('mock-sidebar');
+            sidebar.classList.toggle('active');
+            
+            // Re-check layout after toggle
+            setTimeout(checkLayout, 350);
+        }
+        
+        function simulateBreakpoint(bp) {
+            const widths = {
+                'mobile': 375,
+                'tablet': 768,
+                'desktop': 1200
+            };
+            
+            const width = widths[bp];
+            if (width) {
+                // We can't actually resize the window, but we can update the info
+                alert(`Simulating ${bp} breakpoint (${width}px). Please manually resize your browser window to test.`);
+                updateBreakpointInfo();
+            }
+        }
+        
+        function runAllTests() {
+            const summary = document.getElementById('test-summary');
+            
+            checkLayout();
+            updateViewportInfo();
+            updateCSSVars();
+            updateBreakpointInfo();
+            
+            const bodyWidth = document.body.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            const hasOverflow = bodyWidth > viewportWidth;
+            
+            let result = '<strong>COMPREHENSIVE TEST RESULTS:</strong><br><br>';
+            
+            if (hasOverflow) {
+                result += '<span class="status-bad">❌ LAYOUT FIX FAILED</span><br>';
+                result += 'Content is still overflowing horizontally<br>';
+                result += `Overflow amount: ${bodyWidth - viewportWidth}px<br>`;
+            } else {
+                result += '<span class="status-good">✅ LAYOUT FIX SUCCESSFUL</span><br>';
+                result += 'No horizontal overflow detected<br>';
+            }
+            
+            result += '<br>All individual test sections updated above ⬆️';
+            
+            summary.innerHTML = result;
+        }
+        
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                runAllTests();
+            }, 500);
+        });
+        
+        // Re-run tests on resize
+        window.addEventListener('resize', () => {
+            setTimeout(() => {
+                updateViewportInfo();
+                updateBreakpointInfo();
+                checkLayout();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

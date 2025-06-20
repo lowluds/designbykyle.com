@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Authentication Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a1f;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: rgba(0, 255, 0, 0.1); border: 1px solid green; }
+        .error { background: rgba(255, 0, 0, 0.1); border: 1px solid red; }
+        .warning { background: rgba(255, 255, 0, 0.1); border: 1px solid orange; }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background: #dc143c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #b91c3c; }
+    </style>
+</head>
+<body>
+    <h1>G2Own Authentication Bridge Test</h1>
+    
+    <div class="test-section">
+        <h2>Component Loading Status</h2>
+        <div id="component-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Authentication Status</h2>
+        <div id="auth-status"></div>
+        <button onclick="testLogin()">Test Login</button>
+        <button onclick="testLogout()">Test Logout</button>
+        <button onclick="checkAuthStatus()">Check Auth Status</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <div id="console-output" style="background: #000; padding: 10px; border-radius: 4px; font-family: monospace; height: 200px; overflow-y: auto;"></div>
+    </div>
+
+    <script>
+        // Capture console output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        const consoleOutput = document.getElementById('console-output');
+        
+        function addToConsole(message, type = 'log') {
+            const div = document.createElement('div');
+            div.style.color = type === 'error' ? 'red' : type === 'warn' ? 'orange' : 'lightgreen';
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole(args.join(' '), 'warn');
+        };
+
+        // Test functions
+        function updateComponentStatus() {
+            const status = document.getElementById('component-status');
+            let html = '';
+            
+            // Check if AuthenticationBridge is loaded
+            if (window.AuthenticationBridge) {
+                html += '<div class="status success">✅ AuthenticationBridge class loaded</div>';
+            } else {
+                html += '<div class="status error">❌ AuthenticationBridge class not found</div>';
+            }
+            
+            // Check if authBridge instance is created
+            if (window.authBridge) {
+                html += '<div class="status success">✅ authBridge instance created</div>';
+            } else {
+                html += '<div class="status error">❌ authBridge instance not found</div>';
+            }
+            
+            // Check if NavbarController is loaded
+            if (window.navbarController) {
+                html += '<div class="status success">✅ NavbarController instance loaded</div>';
+            } else {
+                html += '<div class="status warning">⚠️ NavbarController instance not found (may load later)</div>';
+            }
+            
+            status.innerHTML = html;
+        }
+        
+        function updateAuthStatus() {
+            const status = document.getElementById('auth-status');
+            
+            if (window.authBridge) {
+                const isAuth = window.authBridge.isAuthenticated;
+                const user = window.authBridge.userdata;
+                
+                let html = `<div class="status ${isAuth ? 'success' : 'warning'}">
+                    Authentication: ${isAuth ? 'LOGGED IN' : 'LOGGED OUT'}
+                </div>`;
+                
+                if (isAuth && user) {
+                    html += `<div class="status success">
+                        User: ${user.name || 'Unknown'} (${user.email || 'No email'})
+                    </div>`;
+                }
+                
+                status.innerHTML = html;
+            } else {
+                status.innerHTML = '<div class="status error">AuthBridge not available</div>';
+            }
+        }
+        
+        function testLogin() {
+            if (window.authBridge) {
+                console.log('Testing login...');
+                window.authBridge.showLoginPopup();
+            } else {
+                console.error('AuthBridge not available');
+            }
+        }
+        
+        function testLogout() {
+            if (window.authBridge) {
+                console.log('Testing logout...');
+                window.authBridge.logout();
+            } else {
+                console.error('AuthBridge not available');
+            }
+        }
+        
+        function checkAuthStatus() {
+            if (window.authBridge) {
+                console.log('Checking auth status...');
+                window.authBridge.checkAuthStatus();
+                setTimeout(updateAuthStatus, 1000);
+            } else {
+                console.error('AuthBridge not available');
+            }
+        }
+        
+        // Initial status check
+        updateComponentStatus();
+        updateAuthStatus();
+        
+        // Update status periodically
+        setInterval(() => {
+            updateComponentStatus();
+            updateAuthStatus();
+        }, 2000);
+        
+        // Listen for auth events
+        window.addEventListener('g2own:auth-login', (e) => {
+            console.log('Auth login event received:', e.detail);
+            updateAuthStatus();
+        });
+        
+        window.addEventListener('g2own:auth-logout', (e) => {
+            console.log('Auth logout event received:', e.detail);
+            updateAuthStatus();
+        });
+        
+        window.addEventListener('g2own:auth-update', (e) => {
+            console.log('Auth update event received:', e.detail);
+            updateAuthStatus();
+        });
+    </script>
+
+    <!-- Load the auth bridge for testing -->
+    <script src="assets/js/auth-bridge.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/**
+ * Middle Button Background Fix
+ * This CSS specifically targets the middle button in the left sidebar
+ * to ensure it has exactly the same black background as other buttons.
+ */
+
+/* Target all preview icons with strict specificity */
+.sidebar-icon-preview .preview-icon,
+.preview-icon {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    background-image: none !important;
+}
+
+/* Target specifically the middle button (library) with ultra-high specificity */
+.preview-icon[data-action="library"],
+.preview-icon:nth-child(3),
+.sidebar-icon-preview .preview-icon:nth-child(3),
+.preview-icon[data-tooltip="Library"],
+.preview-icon[data-tooltip="My Library"] {
+    background-color: #000000 !important;
+    background: #000000 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+/* Make sure all inner elements are transparent */
+.preview-icon *,
+.preview-icon::before,
+.preview-icon::after,
+.preview-icon .icon-background,
+.preview-icon .icon-content,
+.preview-icon > div,
+.preview-icon > span {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Disable any special animations or effects */
+.preview-icon,
+.preview-icon * {
+    transition: none !important;
+    animation: none !important;
+}

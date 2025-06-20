@@ -1,0 +1,208 @@
+/* JavaScript Enhanced Wide Carousel Styles */
+/* These styles work with the enhanced carousel JavaScript to create a wider showcase */
+
+/* Wide showcase carousel container */
+.single-card-carousel.wide-showcase {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    padding: 2rem !important;
+    border-radius: 24px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.1) 0%, 
+        rgba(255, 68, 68, 0.05) 50%, 
+        rgba(139, 0, 0, 0.1) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.2) !important;
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.3),
+        0 8px 32px rgba(255, 68, 68, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Wide showcase cards */
+.single-card-carousel.wide-showcase .enhanced-card.wide-card {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    transform: scale(1.05) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 30, 0.95) 0%,
+        rgba(30, 30, 40, 0.9) 100%) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 15px 35px rgba(139, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Enhanced navigation for wide carousel */
+.carousel-nav.wide-nav {
+    width: 56px !important;
+    height: 56px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.9) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    border-radius: 16px !important;
+    box-shadow: 
+        0 10px 25px rgba(139, 0, 0, 0.4),
+        0 4px 12px rgba(255, 68, 68, 0.3) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.carousel-nav.wide-nav:hover {
+    transform: translateY(-50%) scale(1.15) !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.9) 100%) !important;
+    box-shadow: 
+        0 15px 35px rgba(139, 0, 0, 0.5),
+        0 6px 18px rgba(255, 68, 68, 0.4) !important;
+}
+
+/* Wide pagination */
+.carousel-pagination.wide-pagination {
+    bottom: -3rem !important;
+    gap: 1rem !important;
+}
+
+.carousel-pagination.wide-pagination .pagination-dot {
+    width: 12px !important;
+    height: 12px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.6) 0%,
+        rgba(255, 68, 68, 0.4) 100%) !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.carousel-pagination.wide-pagination .pagination-dot.active {
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    box-shadow: 
+        0 4px 12px rgba(139, 0, 0, 0.5),
+        0 0 20px rgba(255, 68, 68, 0.3) !important;
+    transform: scale(1.3) !important;
+}
+
+/* Auto-advance progress for wide carousel */
+.auto-advance-progress.wide-progress {
+    bottom: -4.5rem !important;
+    height: 3px !important;
+    background: rgba(139, 0, 0, 0.2) !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+}
+
+.auto-advance-progress.wide-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(139, 0, 0, 0.8) 0%,
+        rgba(255, 68, 68, 0.9) 50%,
+        rgba(139, 0, 0, 0.8) 100%) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.5) !important;
+    animation: progressAdvance 4s linear infinite !important;
+}
+
+/* Responsive adjustments for wide carousel */
+@media (max-width: 1200px) {
+    .single-card-carousel.wide-showcase {
+        max-width: 900px !important;
+        padding: 1.5rem !important;
+    }
+    
+    .single-card-carousel.wide-showcase .enhanced-card.wide-card {
+        max-width: 520px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-card-carousel.wide-showcase {
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin: 0 1rem !important;
+    }
+    
+    .single-card-carousel.wide-showcase .enhanced-card.wide-card {
+        max-width: 400px !important;
+        transform: scale(1) !important;
+    }
+    
+    .carousel-nav.wide-nav {
+        width: 48px !important;
+        height: 48px !important;
+        transform: translateY(-50%) scale(1) !important;
+    }
+    
+    .carousel-nav.wide-nav:hover {
+        transform: translateY(-50%) scale(1.05) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .single-card-carousel.wide-showcase {
+        padding: 0.75rem !important;
+    }
+    
+    .single-card-carousel.wide-showcase .enhanced-card.wide-card {
+        max-width: 320px !important;
+    }
+    
+    .carousel-pagination.wide-pagination {
+        bottom: -2.5rem !important;
+        gap: 0.75rem !important;
+    }
+    
+    .carousel-pagination.wide-pagination .pagination-dot {
+        width: 10px !important;
+        height: 10px !important;
+    }
+}
+
+/* Enhanced animation for wide cards */
+@keyframes progressAdvance {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Hover effects for the entire wide carousel */
+.single-card-carousel.wide-showcase:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 25px 50px rgba(139, 0, 0, 0.4),
+        0 10px 40px rgba(255, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Wide card content spacing */
+.single-card-carousel.wide-showcase .enhanced-card.wide-card .enhanced-card-content {
+    padding: 1.5rem !important;
+}
+
+.single-card-carousel.wide-showcase .enhanced-card.wide-card .game-image-container {
+    margin-bottom: 1.25rem !important;
+}
+
+.single-card-carousel.wide-showcase .enhanced-card.wide-card .game-title {
+    font-size: 1.4rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+.single-card-carousel.wide-showcase .enhanced-card.wide-card .game-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 1rem !important;
+}

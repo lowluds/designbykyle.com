@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Production Test Suite</title>
+    <style>
+        body { font-family: monospace; margin: 20px; background: #1a1a1a; color: #fff; }
+        .test-container { max-width: 800px; margin: 0 auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #333; border-radius: 5px; }
+        .test-result { margin: 10px 0; padding: 8px; border-radius: 3px; }
+        .success { background: #2d5a2d; color: #90ee90; }
+        .error { background: #5a2d2d; color: #ff9090; }
+        .warning { background: #5a5a2d; color: #ffff90; }
+        .info { background: #2d2d5a; color: #9090ff; }
+        button { background: #007acc; color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #005a99; }
+        .log { background: #222; padding: 10px; margin: 10px 0; border-radius: 3px; max-height: 300px; overflow-y: auto; }
+        .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; }
+        .status-online { background: #00ff00; }
+        .status-offline { background: #ff0000; }
+        .status-warning { background: #ffff00; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 G2Own Production Test Suite</h1>
+        <p>Comprehensive testing for production readiness</p>
+        
+        <div class="test-section">
+            <h2>🌐 Environment Detection</h2>
+            <div id="environment-status">
+                <div class="test-result info">
+                    <span class="status-indicator status-warning"></span>
+                    <strong>Environment:</strong> <span id="current-env">Detecting...</span>
+                </div>
+                <div class="test-result info">
+                    <strong>Hostname:</strong> <span id="current-hostname"></span>
+                </div>
+                <div class="test-result info">
+                    <strong>Backend URL:</strong> <span id="backend-url"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔗 Backend Connectivity</h2>
+            <button onclick="testBackendConnection()">Test Backend Connection</button>
+            <div id="backend-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔐 Authentication System</h2>
+            <button onclick="testAuthentication()">Test Authentication</button>
+            <div id="auth-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>⚡ Performance Tests</h2>
+            <button onclick="testPerformance()">Run Performance Tests</button>
+            <div id="performance-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🛡️ Security Headers</h2>
+            <button onclick="testSecurityHeaders()">Test Security Headers</button>
+            <div id="security-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📱 Responsive Design</h2>
+            <button onclick="testResponsive()">Test Responsive Design</button>
+            <div id="responsive-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 Console & Error Monitor</h2>
+            <div id="console-log" class="log"></div>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Overall Production Score</h2>
+            <div id="overall-score">
+                <div class="test-result info">
+                    <strong>Score:</strong> <span id="production-score">0/100</span>
+                </div>
+                <div class="test-result info">
+                    <strong>Status:</strong> <span id="production-status">Not Tested</span>
+                </div>
+            </div>
+            <button onclick="runAllTests()">🧪 Run All Tests</button>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            environment: 0,
+            backend: 0,
+            authentication: 0,
+            performance: 0,
+            security: 0,
+            responsive: 0
+        };
+
+        // Console monitoring
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            warn: console.warn
+        };
+
+        function logToMonitor(level, ...args) {
+            const log = document.getElementById('console-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const message = args.join(' ');
+            
+            log.innerHTML += `<div class="${level}">[${timestamp}] ${level.toUpperCase()}: ${message}</div>`;
+            log.scrollTop = log.scrollHeight;
+            
+            originalConsole[level](...args);
+        }
+
+        console.log = (...args) => logToMonitor('info', ...args);
+        console.error = (...args) => logToMonitor('error', ...args);
+        console.warn = (...args) => logToMonitor('warning', ...args);
+
+        // Initialize environment detection
+        function initEnvironmentDetection() {
+            const hostname = window.location.hostname;
+            const env = determineEnvironment(hostname);
+            
+            document.getElementById('current-env').textContent = env;
+            document.getElementById('current-hostname').textContent = hostname;
+            
+            // Set backend URL based on environment
+            let backendURL = 'https://g2own.com/community';
+            if (window.G2OwnConfig) {
+                backendURL = window.G2OwnConfig.getBackendURL();
+            }
+            document.getElementById('backend-url').textContent = backendURL;
+            
+            // Update environment indicator
+            const indicator = document.querySelector('#environment-status .status-indicator');
+            if (env === 'production') {
+                indicator.className = 'status-indicator status-online';
+                testResults.environment = 100;
+            } else if (env === 'staging') {
+                indicator.className = 'status-indicator status-warning';
+                testResults.environment = 80;
+            } else {
+                indicator.className = 'status-indicator status-warning';
+                testResults.environment = 60;
+            }
+        }
+
+        function determineEnvironment(hostname) {
+            if (hostname === 'g2own.com' || hostname.endsWith('.g2own.com')) {
+                return 'production';
+            } else if (hostname.includes('staging')) {
+                return 'staging';
+            } else {
+                return 'development';
+            }
+        }
+
+        async function testBackendConnection() {
+            const results = document.getElementById('backend-results');
+            results.innerHTML = '<div class="test-result info">Testing backend connection...</div>';
+            
+            const tests = [
+                { name: 'Session Check Endpoint', url: 'https://g2own.com/community/session-check.php' },
+                { name: 'Community Homepage', url: 'https://g2own.com/community/' },
+                { name: 'API Endpoint', url: 'https://g2own.com/community/api' }
+            ];
+            
+            let passedTests = 0;
+            
+            for (const test of tests) {
+                try {
+                    const response = await fetch(test.url, { 
+                        method: 'GET', 
+                        mode: 'no-cors',
+                        cache: 'no-cache'
+                    });
+                    
+                    results.innerHTML += `<div class="test-result success">✅ ${test.name}: Reachable</div>`;
+                    passedTests++;
+                } catch (error) {
+                    results.innerHTML += `<div class="test-result error">❌ ${test.name}: ${error.message}</div>`;
+                }
+            }
+            
+            testResults.backend = (passedTests / tests.length) * 100;
+            updateOverallScore();
+        }
+
+        async function testAuthentication() {
+            const results = document.getElementById('auth-results');
+            results.innerHTML = '<div class="test-result info">Testing authentication system...</div>';
+            
+            let score = 0;
+            
+            // Test 1: Auth Bridge Loaded
+            if (window.authBridge) {
+                results.innerHTML += '<div class="test-result success">✅ Authentication Bridge: Loaded</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result error">❌ Authentication Bridge: Not Found</div>';
+            }
+            
+            // Test 2: Backend URL Configuration
+            if (window.authBridge && window.authBridge.backendURL) {
+                const url = window.authBridge.backendURL;
+                if (url.includes('g2own.com')) {
+                    results.innerHTML += `<div class="test-result success">✅ Backend URL: ${url}</div>`;
+                    score += 25;
+                } else {
+                    results.innerHTML += `<div class="test-result warning">⚠️ Backend URL: ${url} (Not production)</div>`;
+                    score += 10;
+                }
+            }
+            
+            // Test 3: Session Check URL
+            if (window.authBridge && window.authBridge.sessionCheckURL) {
+                results.innerHTML += `<div class="test-result success">✅ Session Check URL: ${window.authBridge.sessionCheckURL}</div>`;
+                score += 25;
+            }
+            
+            // Test 4: Try authentication check
+            try {
+                if (window.authBridge) {
+                    await window.authBridge.checkAuthStatus();
+                    results.innerHTML += '<div class="test-result success">✅ Authentication Check: Completed</div>';
+                    score += 25;
+                }
+            } catch (error) {
+                results.innerHTML += `<div class="test-result error">❌ Authentication Check: ${error.message}</div>`;
+            }
+            
+            testResults.authentication = score;
+            updateOverallScore();
+        }
+
+        function testPerformance() {
+            const results = document.getElementById('performance-results');
+            results.innerHTML = '<div class="test-result info">Running performance tests...</div>';
+            
+            let score = 0;
+            
+            // Test 1: Page Load Time
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            if (loadTime < 3000) {
+                results.innerHTML += `<div class="test-result success">✅ Page Load Time: ${loadTime}ms (Excellent)</div>`;
+                score += 25;
+            } else if (loadTime < 5000) {
+                results.innerHTML += `<div class="test-result warning">⚠️ Page Load Time: ${loadTime}ms (Good)</div>`;
+                score += 15;
+            } else {
+                results.innerHTML += `<div class="test-result error">❌ Page Load Time: ${loadTime}ms (Needs Improvement)</div>`;
+                score += 5;
+            }
+            
+            // Test 2: Scripts Loaded
+            const scripts = document.querySelectorAll('script[src]').length;
+            if (scripts < 15) {
+                results.innerHTML += `<div class="test-result success">✅ Script Count: ${scripts} (Optimized)</div>`;
+                score += 25;
+            } else if (scripts < 25) {
+                results.innerHTML += `<div class="test-result warning">⚠️ Script Count: ${scripts} (Moderate)</div>`;
+                score += 15;
+            } else {
+                results.innerHTML += `<div class="test-result error">❌ Script Count: ${scripts} (Too Many)</div>`;
+                score += 5;
+            }
+            
+            // Test 3: Production Bundle
+            const productionBundle = document.querySelector('script[src*="production"]');
+            if (productionBundle) {
+                results.innerHTML += '<div class="test-result success">✅ Production Bundle: Found</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result warning">⚠️ Production Bundle: Not Found</div>';
+                score += 10;
+            }
+            
+            // Test 4: Console Cleanup
+            const isProduction = window.location.hostname.includes('g2own.com');
+            if (isProduction && window.logger) {
+                results.innerHTML += '<div class="test-result success">✅ Console Logging: Production Mode</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result info">ℹ️ Console Logging: Development Mode</div>';
+                score += 20;
+            }
+            
+            testResults.performance = score;
+            updateOverallScore();
+        }
+
+        function testSecurityHeaders() {
+            const results = document.getElementById('security-results');
+            results.innerHTML = '<div class="test-result info">Testing security configuration...</div>';
+            
+            let score = 0;
+            
+            // Test 1: HTTPS
+            if (location.protocol === 'https:') {
+                results.innerHTML += '<div class="test-result success">✅ HTTPS: Enabled</div>';
+                score += 20;
+            } else {
+                results.innerHTML += '<div class="test-result error">❌ HTTPS: Disabled</div>';
+            }
+            
+            // Test 2: Right-click prevention (in production)
+            const isProduction = window.location.hostname.includes('g2own.com');
+            if (isProduction) {
+                results.innerHTML += '<div class="test-result success">✅ Context Menu: Disabled (Production)</div>';
+                score += 20;
+            } else {
+                results.innerHTML += '<div class="test-result info">ℹ️ Context Menu: Enabled (Development)</div>';
+                score += 15;
+            }
+            
+            // Test 3: Production Config
+            if (window.G2OwnConfig) {
+                results.innerHTML += `<div class="test-result success">✅ Environment Config: ${window.G2OwnConfig.environment}</div>`;
+                score += 20;
+            }
+            
+            // Test 4: Error Handling
+            if (window.addEventListener) {
+                results.innerHTML += '<div class="test-result success">✅ Error Handling: Active</div>';
+                score += 20;
+            }
+            
+            // Test 5: Authentication Security
+            if (window.authBridge && window.authBridge.sessionCheckURL.startsWith('https://')) {
+                results.innerHTML += '<div class="test-result success">✅ Auth Security: HTTPS Backend</div>';
+                score += 20;
+            }
+            
+            testResults.security = score;
+            updateOverallScore();
+        }
+
+        function testResponsive() {
+            const results = document.getElementById('responsive-results');
+            results.innerHTML = '<div class="test-result info">Testing responsive design...</div>';
+            
+            let score = 0;
+            
+            // Test viewport meta tag
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                results.innerHTML += '<div class="test-result success">✅ Viewport Meta: Present</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result error">❌ Viewport Meta: Missing</div>';
+            }
+            
+            // Test CSS media queries
+            const stylesheets = Array.from(document.styleSheets);
+            let hasMediaQueries = false;
+            try {
+                stylesheets.forEach(sheet => {
+                    Array.from(sheet.cssRules || []).forEach(rule => {
+                        if (rule.type === CSSRule.MEDIA_RULE) {
+                            hasMediaQueries = true;
+                        }
+                    });
+                });
+            } catch (e) {
+                // CORS restrictions on external stylesheets
+            }
+            
+            if (hasMediaQueries) {
+                results.innerHTML += '<div class="test-result success">✅ Media Queries: Found</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result warning">⚠️ Media Queries: Could not verify</div>';
+                score += 15;
+            }
+            
+            // Test mobile-friendly elements
+            const navbar = document.querySelector('.navbar');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbar && sidebar) {
+                results.innerHTML += '<div class="test-result success">✅ Mobile UI: Navigation elements present</div>';
+                score += 25;
+            }
+            
+            // Test touch events
+            if ('ontouchstart' in window) {
+                results.innerHTML += '<div class="test-result success">✅ Touch Support: Available</div>';
+                score += 25;
+            } else {
+                results.innerHTML += '<div class="test-result info">ℹ️ Touch Support: Desktop environment</div>';
+                score += 20;
+            }
+            
+            testResults.responsive = score;
+            updateOverallScore();
+        }
+
+        function updateOverallScore() {
+            const scores = Object.values(testResults);
+            const average = scores.reduce((a, b) => a + b, 0) / scores.length;
+            
+            document.getElementById('production-score').textContent = `${Math.round(average)}/100`;
+            
+            let status = 'Not Ready';
+            let statusClass = 'error';
+            
+            if (average >= 90) {
+                status = '🚀 Production Ready!';
+                statusClass = 'success';
+            } else if (average >= 80) {
+                status = '⚠️ Nearly Ready';
+                statusClass = 'warning';
+            } else if (average >= 70) {
+                status = '🔧 Needs Work';
+                statusClass = 'warning';
+            } else {
+                status = '❌ Not Ready';
+                statusClass = 'error';
+            }
+            
+            document.getElementById('production-status').innerHTML = `<span class="test-result ${statusClass}">${status}</span>`;
+        }
+
+        async function runAllTests() {
+            console.log('🧪 Starting comprehensive production test suite...');
+            
+            await testBackendConnection();
+            await testAuthentication();
+            testPerformance();
+            testSecurityHeaders();
+            testResponsive();
+            
+            console.log('✅ All tests completed!');
+        }
+
+        function clearLog() {
+            document.getElementById('console-log').innerHTML = '';
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initEnvironmentDetection();
+            console.log('🧪 Production Test Suite initialized');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+/* Modern Professional Footer Styles */
+
+.modern-footer {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #e2e8f0;
+    margin-top: 4em;
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #349871, transparent);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+/* Footer Main Section */
+.footer-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3em;
+    padding: 3em 0;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.1);
+}
+
+.footer-brand h3 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5em;
+    background: linear-gradient(135deg, #349871, #4ade80);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-tagline {
+    font-size: 1.1em;
+    color: #a0aec0;
+    line-height: 1.6;
+    margin-bottom: 2em;
+    max-width: 300px;
+}
+
+/* Footer Links Grid */
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+}
+
+.footer-section h4 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1em;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #349871;
+    border-radius: 1px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8em;
+}
+
+.footer-section ul li a {
+    color: #a0aec0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95em;
+    position: relative;
+    padding-left: 1em;
+}
+
+.footer-section ul li a::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #349871;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ffffff;
+    padding-left: 1.5em;
+}
+
+.footer-section ul li a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.footer-section ul li:not(:has(a)) {
+    color: #a0aec0;
+    font-size: 0.95em;
+    padding-left: 1em;
+    position: relative;
+}
+
+.footer-section ul li:not(:has(a))::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #349871;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    gap: 0.8em;
+    margin-bottom: 1.5em;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(52, 152, 113, 0.1);
+    border: 1px solid rgba(52, 152, 113, 0.3);
+    border-radius: 10px;
+    color: #349871;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.1em;
+}
+
+.social-link:hover {
+    background: #349871;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52, 152, 113, 0.3);
+}
+
+/* Footer Contact */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    color: #a0aec0;
+    font-size: 0.95em;
+    margin-bottom: 0.6em;
+}
+
+.footer-contact i {
+    color: #349871;
+    width: 16px;
+    text-align: center;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding: 1.5em 0;
+    background: rgba(26, 32, 44, 0.5);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+}
+
+.copyright p {
+    margin: 0;
+    color: #a0aec0;
+    font-size: 0.9em;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2em;
+}
+
+.footer-nav a {
+    color: #a0aec0;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #349871;
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #349871, #2d8659);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(52, 152, 113, 0.2);
+}
+
+.back-to-top-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 113, 0.4);
+    background: linear-gradient(135deg, #2d8659, #349871);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 968px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2em;
+        text-align: center;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-tagline {
+        max-width: none;
+        margin: 0 auto 2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-content {
+        padding: 0 1.5em;
+    }
+    
+    .footer-main {
+        padding: 2em 0;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 1.5em;
+        text-align: center;
+    }
+    
+    .footer-nav {
+        order: -1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+    }
+    
+    .footer-brand h3 {
+        font-size: 1.5em;
+    }
+}
+
+/* Smooth scrolling for back to top */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Footer animations on scroll */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modern-footer.animate {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Subtle background pattern */
+.modern-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(52, 152, 113, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(52, 152, 113, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px, 30px 30px;
+    pointer-events: none;
+}

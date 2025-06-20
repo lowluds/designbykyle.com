@@ -1,0 +1,283 @@
+/**
+ * Responsive Left Sidebar Navigation
+ * Makes the left navigation bar buttons adapt to different screen sizes
+ */
+
+/* Base mobile-first styles for navigation icons and buttons */
+.nav-gaming-icon {
+    font-size: 1rem !important;
+    min-width: 1.2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-link {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.preview-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1rem !important;
+    margin: 0.4rem 0 !important;
+    border-width: 1.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+    .nav-gaming-icon {
+        font-size: 0.9rem !important;
+        min-width: 1rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .nav-text {
+        font-size: 0.8rem !important;
+    }
+    
+    .preview-icon {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+        font-size: 0.9rem !important;
+        margin: 0.3rem 0 !important;
+    }
+    
+    .left-sidebar {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+}
+
+/* Tablets and small laptops (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .nav-gaming-icon {
+        font-size: 1.1rem !important;
+        min-width: 1.3rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.7rem 1.2rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .nav-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .preview-icon {
+        width: 2.8rem !important;
+        height: 2.8rem !important;
+        font-size: 1.1rem !important;
+        margin: 0.5rem 0 !important;
+    }
+    
+    .left-sidebar {
+        width: 280px !important;
+    }
+}
+
+/* Desktop and larger tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-gaming-icon {
+        font-size: 1.2rem !important;
+        min-width: 1.4rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.8rem 1.3rem !important;
+        font-size: 1rem !important;
+    }
+    
+    .nav-text {
+        font-size: 1rem !important;
+    }
+    
+    .preview-icon {
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 1.2rem !important;
+        margin: 0.6rem 0 !important;
+    }
+    
+    .left-sidebar {
+        width: 320px !important;
+    }
+}
+
+/* Large desktop screens (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .nav-gaming-icon {
+        font-size: 1.3rem !important;
+        min-width: 1.5rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.9rem 1.4rem !important;
+        font-size: 1rem !important;
+    }
+    
+    .nav-text {
+        font-size: 1rem !important;
+    }
+    
+    .preview-icon {
+        width: 3.2rem !important;
+        height: 3.2rem !important;
+        font-size: 1.3rem !important;
+        margin: 0.7rem 0 !important;
+    }
+}
+
+/* Extra large screens (1441px and up) */
+@media (min-width: 1441px) {
+    .nav-gaming-icon {
+        font-size: 1.4rem !important;
+        min-width: 1.6rem !important;
+    }
+    
+    .nav-link {
+        padding: 1rem 1.5rem !important;
+        font-size: 1.1rem !important;
+    }
+    
+    .nav-text {
+        font-size: 1.1rem !important;
+    }
+    
+    .preview-icon {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        font-size: 1.4rem !important;
+        margin: 0.8rem 0 !important;
+    }
+}
+
+/* Hover effects that scale with button size */
+.nav-link:hover .nav-gaming-icon {
+    transform: scale(1.2) !important;
+}
+
+.preview-icon:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .nav-gaming-icon {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+    }
+    
+    .preview-icon {
+        border-width: 2px !important;
+        -webkit-font-smoothing: antialiased !important;
+    }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav-gaming-icon {
+        font-size: 0.95rem !important;
+        min-width: 1.1rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.6rem 1.1rem !important;
+    }
+    
+    .nav-text {
+        font-size: 0.85rem !important;
+    }
+    
+    .preview-icon {
+        width: 2.3rem !important;
+        height: 2.3rem !important;
+        margin: 0.3rem 0 !important;
+    }
+}
+
+/* Ultra-wide screens (21:9 aspect ratio) */
+@media (min-width: 2560px) {
+    .nav-gaming-icon {
+        font-size: 1.6rem !important;
+        min-width: 1.8rem !important;
+    }
+    
+    .nav-link {
+        padding: 1.2rem 1.8rem !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .nav-text {
+        font-size: 1.2rem !important;
+    }
+    
+    .preview-icon {
+        width: 4rem !important;
+        height: 4rem !important;
+        font-size: 1.6rem !important;margin: 1rem 0 !important;
+    }
+}
+
+/* Ensure navigation elements maintain consistent styling across all sizes */
+.nav-link {
+    background: transparent !important;
+    color: var(--sidebar-text-secondary, #9ca3af) !important;
+}
+
+.nav-link:hover {
+    background: var(--sidebar-hover, rgba(239, 68, 68, 0.1)) !important;
+    color: #8b0000 !important;
+}
+
+.nav-icon {
+    color: inherit !important;
+}
+
+.preview-icon {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+    border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* Touch-friendly adjustments for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    .nav-link {
+        min-height: 44px !important; /* Apple's recommended minimum touch target */
+        touch-action: manipulation !important;
+    }
+    
+    .preview-icon {
+        min-height: 44px !important;
+        min-width: 44px !important;
+        touch-action: manipulation !important;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .nav-icon,
+    .nav-link,
+    .preview-icon {
+        transition: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .nav-link {
+        border: 1px solid currentColor !important;
+    }
+    
+    .nav-icon {
+        font-weight: bold !important;
+    }
+}

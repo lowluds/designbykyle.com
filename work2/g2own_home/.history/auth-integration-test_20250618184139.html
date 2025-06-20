@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Authentication Integration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .result {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 10px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .error {
+            border-left-color: #f44336;
+        }
+        .info {
+            border-left-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <h1>G2Own Authentication Integration Test</h1>
+    
+    <div>
+        <h2>Test Authentication Flow</h2>
+        <button id="testPreLoginCheck">Test Pre-Login Check</button>
+        <button id="testRedirectLogin">Test Login Redirect</button>
+        <button id="testSessionStatus">Check Session Status</button>
+        <button id="simulateLoginSuccess">Simulate Login Success</button>
+        <button id="clearLogs">Clear Logs</button>
+    </div>
+    
+    <div>
+        <h2>Results</h2>
+        <div id="results"></div>
+    </div>
+    
+    <!-- Include necessary JS files -->
+    <script src="assets/js/session-bridge.js"></script>
+    <script src="assets/js/enhanced-oauth-integration.js"></script>
+    <script src="assets/js/login-redirect-handler.js"></script>
+    
+    <script>
+        // Simple security utils for testing
+        window.securityUtils = {
+            checkRateLimit: (key, limit, timeWindow) => true,
+            isValidReturnUrl: (url) => true,
+            safeEncodeUrl: (url) => encodeURIComponent(url),
+            secureRequest: (url) => ({
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+        };
+        
+        // DOM elements
+        const resultsEl = document.getElementById('results');
+        
+        // Log functions
+        function logResult(message, type = 'info') {
+            const resultEl = document.createElement('div');
+            resultEl.className = `result ${type}`;
+            resultEl.textContent = message;
+            resultsEl.prepend(resultEl);
+        }
+        
+        // Test functions
+        async function testPreLoginCheck() {
+            logResult('Testing pre-login session check...', 'info');
+            
+            try {
+                if (window.sessionBridge && typeof window.sessionBridge.checkLoginStateBeforeRedirect === 'function') {
+                    const isAuthenticated = await window.sessionBridge.checkLoginStateBeforeRedirect();
+                    logResult(`Pre-login check result: ${isAuthenticated ? 'Already authenticated' : 'Not authenticated'}`, isAuthenticated ? 'success' : 'info');
+                } else {
+                    logResult('Session bridge or checkLoginStateBeforeRedirect method not available', 'error');
+                }
+            } catch (error) {
+                logResult(`Error during pre-login check: ${error.message}`, 'error');
+            }
+        }
+        
+        function testRedirectLogin() {
+            logResult('Testing login redirect functionality...', 'info');
+            
+            try {
+                // Mark this as a test to prevent actual redirection
+                sessionStorage.setItem('test_mode', 'true');
+                
+                if (window.sessionBridge && typeof window.sessionBridge.redirectToLogin === 'function') {
+                    // Override the redirect method for testing
+                    const originalRedirect = window.location.href;
+                    window.location.href = '#test';
+                    
+                    window.sessionBridge.redirectToLogin();
+                    
+                    logResult('Login redirect called successfully. In a real scenario, you would be redirected to the community login page.', 'success');
+                } else {
+                    logResult('Session bridge or redirectToLogin method not available', 'error');
+                }
+            } catch (error) {
+                logResult(`Error during login redirect: ${error.message}`, 'error');
+            } finally {
+                // Clean up
+                sessionStorage.removeItem('test_mode');
+            }
+        }
+        
+        async function testSessionStatus() {
+            logResult('Checking current session status...', 'info');
+            
+            try {
+                if (window.sessionBridge) {
+                    await window.sessionBridge.checkSession();
+                    
+                    const isAuthenticated = window.sessionBridge.isAuthenticated;
+                    const user = window.sessionBridge.currentUser;
+                    
+                    if (isAuthenticated && user) {
+                        logResult(`Authenticated as: ${user.name || user.display_name || user.id}`, 'success');
+                    } else {
+                        logResult('Not currently authenticated', 'info');
+                    }
+                } else {
+                    logResult('Session bridge not available', 'error');
+                }
+            } catch (error) {
+                logResult(`Error checking session status: ${error.message}`, 'error');
+            }
+        }
+        
+        function simulateLoginSuccess() {
+            logResult('Simulating login success redirect...', 'info');
+            
+            try {
+                // Add login=success to current URL
+                const url = new URL(window.location);
+                url.searchParams.set('login', 'success');
+                url.searchParams.set('token', 'test_token_' + Date.now());
+                url.searchParams.set('user_id', '12345');
+                url.searchParams.set('user_name', 'Test User');
+                
+                window.history.replaceState({}, document.title, url.toString());
+                
+                logResult('URL parameters added. Refreshing in 2 seconds...', 'info');
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            } catch (error) {
+                logResult(`Error simulating login: ${error.message}`, 'error');
+            }
+        }
+        
+        // Event listeners
+        document.getElementById('testPreLoginCheck').addEventListener('click', testPreLoginCheck);
+        document.getElementById('testRedirectLogin').addEventListener('click', testRedirectLogin);
+        document.getElementById('testSessionStatus').addEventListener('click', testSessionStatus);
+        document.getElementById('simulateLoginSuccess').addEventListener('click', simulateLoginSuccess);
+        document.getElementById('clearLogs').addEventListener('click', () => {
+            resultsEl.innerHTML = '';
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            logResult('Test page loaded. Ready to run tests.', 'info');
+            
+            // Check if we're coming back from a simulated login
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('login') === 'success') {
+                logResult('Detected login=success parameter in URL. This simulates returning from a successful login.', 'info');
+            }
+        });
+    </script>
+</body>
+</html>

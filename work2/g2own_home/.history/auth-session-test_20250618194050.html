@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Auth Session Sync Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            line-height: 1.5;
+        }
+        h1, h2 {
+            color: #2563eb;
+        }
+        .card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #1e40af;
+        }
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .info {
+            background-color: #e0f2fe;
+            border-left: 4px solid #0ea5e9;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+        .warning {
+            background-color: #fef9c3;
+            border-left: 4px solid #eab308;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+        .success {
+            background-color: #dcfce7;
+            border-left: 4px solid #16a34a;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>G2Own Authentication Session Sync Test</h1>
+    
+    <div class="info">
+        This page tests if the authentication session sync between the G2Own main site and Invision Community is working properly.
+    </div>
+    
+    <div class="card">
+        <h2>Authentication Status</h2>
+        <div id="authStatus" class="warning">Checking authentication status...</div>
+        <div id="userInfo"></div>
+        <div style="margin-top: 15px;">
+            <button id="checkAuth">Check Authentication</button>
+            <button id="forceSync">Force Sync</button>
+            <button id="clearStorage">Clear Storage</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Storage Status</h2>
+        <table>
+            <tr>
+                <th>Storage Type</th>
+                <th>Status</th>
+                <th>User Data</th>
+            </tr>
+            <tr>
+                <td>safeStorage</td>
+                <td id="safeStorageStatus">Checking...</td>
+                <td id="safeStorageData">-</td>
+            </tr>
+            <tr>
+                <td>localStorage</td>
+                <td id="localStorageStatus">Checking...</td>
+                <td id="localStorageData">-</td>
+            </tr>
+            <tr>
+                <td>sessionStorage</td>
+                <td id="sessionStorageStatus">Checking...</td>
+                <td id="sessionStorageData">-</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="card">
+        <h2>Session Check Response</h2>
+        <pre id="sessionCheckResponse">No session check performed yet.</pre>
+    </div>
+    
+    <div class="card">
+        <h2>Debug Actions</h2>
+        <button id="checkCommunitySession">Check Community Session</button>
+        <button id="checkEnhancedSession">Check Enhanced Session</button>
+        <button id="goToMain">Go to Main Page</button>
+        <button id="goToCommunity">Go to Community</button>
+    </div>
+    
+    <script src="../assets/js/safe-storage.js"></script>
+    <script>
+        // Utility functions
+        function prettifyJson(data) {
+            try {
+                return JSON.stringify(data, null, 2);
+            } catch (e) {
+                return String(data);
+            }
+        }
+        
+        // Check authentication status
+        async function checkAuth() {
+            const authStatusEl = document.getElementById('authStatus');
+            const userInfoEl = document.getElementById('userInfo');
+            
+            authStatusEl.innerHTML = 'Checking authentication status...';
+            authStatusEl.className = 'warning';
+            
+            try {
+                // Check safe storage first
+                if (window.safeStorage) {
+                    const userData = window.safeStorage.getItem('g2own_user');
+                    if (userData) {
+                        const user = JSON.parse(userData);
+                        if (user && user.id) {
+                            authStatusEl.innerHTML = `✅ Authenticated as <strong>${user.display_name || user.name}</strong> (ID: ${user.id})`;
+                            authStatusEl.className = 'success';
+                            
+                            // Display user info
+                            userInfoEl.innerHTML = `
+                                <div style="margin-top: 15px;">
+                                    <div><strong>Username:</strong> ${user.name}</div>
+                                    <div><strong>Display Name:</strong> ${user.display_name || user.name}</div>
+                                    <div><strong>Email:</strong> ${user.email || 'Not available'}</div>
+                                    <div><strong>Member ID:</strong> ${user.id}</div>
+                                    <div><strong>Group:</strong> ${user.group_name || 'Unknown'}</div>
+                                </div>
+                            `;
+                            
+                            return;
+                        }
+                    }
+                }
+                
+                // Try localStorage as fallback
+                const lsUserData = localStorage.getItem('g2own_user') || localStorage.getItem('oauth_user');
+                if (lsUserData) {
+                    try {
+                        const user = JSON.parse(lsUserData);
+                        if (user && user.id) {
+                            authStatusEl.innerHTML = `✅ Authenticated via localStorage as <strong>${user.display_name || user.name}</strong>`;
+                            authStatusEl.className = 'success';
+                            return;
+                        }
+                    } catch (e) {
+                        console.error('Error parsing localStorage user data', e);
+                    }
+                }
+                
+                // Not authenticated
+                authStatusEl.innerHTML = '❌ Not authenticated';
+                authStatusEl.className = 'warning';
+                userInfoEl.innerHTML = '';
+                
+            } catch (e) {
+                authStatusEl.innerHTML = `❌ Error checking authentication: ${e.message}`;
+                authStatusEl.className = 'warning';
+                console.error('Auth check error', e);
+            }
+        }
+        
+        // Check storage status
+        function checkStorage() {
+            // Check safeStorage
+            if (window.safeStorage) {
+                document.getElementById('safeStorageStatus').textContent = '✅ Available';
+                const userData = window.safeStorage.getItem('g2own_user');
+                document.getElementById('safeStorageData').textContent = userData ? 'Data found' : 'No data';
+            } else {
+                document.getElementById('safeStorageStatus').textContent = '❌ Not available';
+            }
+            
+            // Check localStorage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                document.getElementById('localStorageStatus').textContent = '✅ Available';
+                
+                const userData = localStorage.getItem('g2own_user') || localStorage.getItem('oauth_user');
+                document.getElementById('localStorageData').textContent = userData ? 'Data found' : 'No data';
+                
+            } catch (e) {
+                document.getElementById('localStorageStatus').textContent = '❌ Not available or blocked';
+            }
+            
+            // Check sessionStorage
+            try {
+                sessionStorage.setItem('test', 'test');
+                sessionStorage.removeItem('test');
+                document.getElementById('sessionStorageStatus').textContent = '✅ Available';
+                
+                const userData = sessionStorage.getItem('g2own_user') || sessionStorage.getItem('oauth_user');
+                document.getElementById('sessionStorageData').textContent = userData ? 'Data found' : 'No data';
+                
+            } catch (e) {
+                document.getElementById('sessionStorageStatus').textContent = '❌ Not available or blocked';
+            }
+        }
+        
+        // Check community session
+        async function checkCommunitySession() {
+            const responseEl = document.getElementById('sessionCheckResponse');
+            responseEl.textContent = 'Checking community session...';
+            
+            try {
+                const response = await fetch('https://g2own.com/community/session-check.php', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                const data = await response.json();
+                responseEl.textContent = prettifyJson(data);
+                
+                // Update auth status based on response
+                if (data.authenticated && data.user) {
+                    // Store user data
+                    if (window.safeStorage) {
+                        window.safeStorage.setItem('g2own_user', JSON.stringify(data.user));
+                    } else {
+                        try {
+                            localStorage.setItem('g2own_user', JSON.stringify(data.user));
+                        } catch (e) {
+                            console.error('Error storing user data', e);
+                        }
+                    }
+                    
+                    // Update auth status display
+                    checkAuth();
+                }
+                
+            } catch (e) {
+                responseEl.textContent = `Error checking community session: ${e.message}`;
+                console.error('Session check error', e);
+            }
+        }
+        
+        // Check enhanced session
+        async function checkEnhancedSession() {
+            const responseEl = document.getElementById('sessionCheckResponse');
+            responseEl.textContent = 'Checking enhanced session...';
+            
+            try {
+                const response = await fetch('https://g2own.com/community/enhanced-session-check.php?force=1', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                
+                const data = await response.json();
+                responseEl.textContent = prettifyJson(data);
+                
+                // Update auth status based on response
+                if (data.authenticated && data.user) {
+                    // Store user data
+                    if (window.safeStorage) {
+                        window.safeStorage.setItem('g2own_user', JSON.stringify(data.user));
+                    } else {
+                        try {
+                            localStorage.setItem('g2own_user', JSON.stringify(data.user));
+                        } catch (e) {
+                            console.error('Error storing user data', e);
+                        }
+                    }
+                    
+                    // Update auth status display
+                    checkAuth();
+                }
+                
+            } catch (e) {
+                responseEl.textContent = `Error checking enhanced session: ${e.message}`;
+                console.error('Enhanced session check error', e);
+            }
+        }
+        
+        // Clear storage
+        function clearStorage() {
+            if (window.safeStorage) {
+                window.safeStorage.removeItem('g2own_user');
+                window.safeStorage.removeItem('oauth_user');
+            }
+            
+            try {
+                localStorage.removeItem('g2own_user');
+                localStorage.removeItem('oauth_user');
+            } catch (e) {
+                console.error('Error clearing localStorage', e);
+            }
+            
+            try {
+                sessionStorage.removeItem('g2own_user');
+                sessionStorage.removeItem('oauth_user');
+            } catch (e) {
+                console.error('Error clearing sessionStorage', e);
+            }
+            
+            checkAuth();
+            checkStorage();
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication status
+            checkAuth();
+            
+            // Check storage status
+            checkStorage();
+            
+            // Set up event listeners
+            document.getElementById('checkAuth').addEventListener('click', checkAuth);
+            document.getElementById('forceSync').addEventListener('click', function() {
+                if (window.forceSessionSync) {
+                    window.forceSessionSync();
+                    setTimeout(checkAuth, 1000);
+                } else {
+                    alert('Session sync function not available. Make sure session-sync-bridge.js is loaded.');
+                }
+            });
+            document.getElementById('clearStorage').addEventListener('click', clearStorage);
+            document.getElementById('checkCommunitySession').addEventListener('click', checkCommunitySession);
+            document.getElementById('checkEnhancedSession').addEventListener('click', checkEnhancedSession);
+            document.getElementById('goToMain').addEventListener('click', function() {
+                window.location.href = '/';
+            });
+            document.getElementById('goToCommunity').addEventListener('click', function() {
+                window.location.href = '/community/';
+            });
+        });
+    </script>
+</body>
+</html>

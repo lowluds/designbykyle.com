@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Premium Digital Marketplace</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts with display swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="G2Own - Premium digital marketplace for games, software, and digital goods. Best prices, instant delivery, secure transactions.">
+    <meta name="keywords" content="digital games, game keys, software, digital marketplace, gaming">
+    <meta name="author" content="G2Own">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="G2Own - Premium Digital Marketplace">
+    <meta property="og:description" content="Buy, sell, and trade digital games and goods">
+    <meta property="og:type" content="website">    <!-- CSS with optimized loading -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <link rel="stylesheet" href="assets/css/navbar-optimized.css">
+    <link rel="stylesheet" href="assets/css/navbar-performance.css">
+    <link rel="preload" href="assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.css"></noscript>
+    <link rel="stylesheet" href="assets/css/enhanced.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#ef4444">
+</head>
+<body class="loading">    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">G2Own</div>
+            <div class="loading-progress-container">
+                <div id="loading-progress" class="loading-progress-bar"></div>
+            </div>
+            <div id="loading-text" class="loading-status">0%</div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js" class="particles-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Enhanced Background System -->
+    <div class="bg-system">
+        <!-- Animated gradient orbs -->
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        
+        <!-- Grid overlay with animation -->
+        <div class="grid-overlay">
+            <div class="grid-lines horizontal"></div>
+            <div class="grid-lines vertical"></div>
+        </div>
+        
+        <!-- Scan lines effect -->
+        <div class="scan-lines"></div>
+    </div>    <!-- Optimized Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Logo moved to top-left -->
+            <div class="nav-brand">
+                <div class="nav-logo" aria-label="G2Own homepage">
+                    <div class="logo-icon">
+                        <span>G2</span>
+                        <div class="logo-glow"></div>
+                    </div>
+                    <div class="logo-text-container">
+                        <span class="logo-text">G2Own</span>
+                        <span class="logo-tagline">Digital Marketplace</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Navigation Links -->
+            <div class="nav-center">
+                <div class="nav-menu" id="nav-menu">
+                    <div class="nav-links">
+                        <a href="#marketplace" class="nav-link" data-section="marketplace">
+                            <span class="nav-icon">🛒</span>
+                            <span>Marketplace</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#games" class="nav-link" data-section="games">
+                            <span class="nav-icon">🎮</span>
+                            <span>Games</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#digital-goods" class="nav-link" data-section="digital-goods">
+                            <span class="nav-icon">💎</span>
+                            <span>Digital Goods</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#support" class="nav-link" data-section="support">
+                            <span class="nav-icon">🛠️</span>
+                            <span>Support</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side Actions (No Auth Buttons) -->
+            <div class="nav-actions">
+                <div class="action-group">
+                    <!-- Search -->
+                    <div class="search-container">
+                        <button class="search-toggle" id="search-toggle" aria-label="Search">
+                            <span class="search-icon">🔍</span>
+                        </button>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-container">
+                                <input type="search" id="search-input" class="search-input" placeholder="Search games, software..." aria-label="Search">
+                                <button class="search-clear" aria-label="Clear search">×</button>
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <!-- Search results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shopping Cart -->
+                    <button class="cart-toggle" id="cart-toggle" aria-label="Shopping cart">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                    
+                    <!-- User Profile/Settings -->
+                    <div class="user-menu-container">
+                        <button class="user-menu-toggle" id="user-menu-toggle" aria-label="User menu">
+                            <span class="user-icon">👤</span>
+                        </button>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <div class="user-dropdown-content">
+                                <a href="#" class="user-link">Profile</a>
+                                <a href="#" class="user-link">Orders</a>
+                                <a href="#" class="user-link">Wishlist</a>
+                                <hr class="user-divider">
+                                <a href="#" class="user-link">Settings</a>
+                                <a href="#" class="user-link">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+        
+        <!-- Navigation progress indicator -->
+        <div class="nav-progress" id="nav-progress"></div>
+    </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-header">
+                <div class="mobile-logo">
+                    <div class="logo-icon">
+                        <span>G2</span>
+                    </div>
+                    <span class="logo-text">G2Own</span>
+                </div>
+                <button class="mobile-nav-close" id="mobile-nav-close">×</button>
+            </div>
+            
+            <div class="mobile-nav-links">
+                <a href="#marketplace" class="mobile-nav-link">
+                    <span class="nav-icon">🛒</span>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#games" class="mobile-nav-link">
+                    <span class="nav-icon">🎮</span>
+                    <span>Games</span>
+                </a>
+                <a href="#digital-goods" class="mobile-nav-link">
+                    <span class="nav-icon">💎</span>
+                    <span>Digital Goods</span>
+                </a>
+                <a href="#support" class="mobile-nav-link">
+                    <span class="nav-icon">🛠️</span>
+                    <span>Support</span>
+                </a>
+            </div>
+            
+            <div class="mobile-nav-footer">
+                <div class="mobile-nav-actions">
+                    <button class="btn btn-outline btn-full">Sign In</button>
+                    <button class="btn btn-primary btn-full">Join Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Shopping Cart</h3>
+            <button id="cart-close" class="cart-close" aria-label="Close cart">×</button>
+        </div>
+        <div class="cart-content">
+            <div id="cart-items" class="cart-items">
+                <div class="cart-empty">Your cart is empty</div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total: </span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="cart-checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div><!-- Main Content -->
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-container">
+                <!-- Hero Content with better structure -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span>Premium Digital Marketplace</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="title-line-1">Next-Gen</span>
+                        <span class="title-line-2 gradient-text">Digital Marketplace</span>
+                        <span class="title-line-3">Experience</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                        Instant delivery, secure transactions, unbeatable prices.
+                    </p>
+                    
+                    <!-- Enhanced CTA Section -->
+                    <div class="hero-cta">
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-large magnetic-btn" data-action="explore">
+                                <span class="btn-text">Explore Marketplace</span>
+                                <span class="btn-icon">🚀</span>
+                                <div class="btn-particles"></div>
+                            </button>
+                            <button class="btn btn-outline btn-large" data-action="learn">
+                                <span class="btn-text">Learn More</span>
+                                <span class="btn-icon">📖</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Trust indicators -->
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <span class="trust-number">50K+</span>
+                                <span class="trust-label">Happy Customers</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">99.9%</span>
+                                <span class="trust-label">Uptime</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">24/7</span>
+                                <span class="trust-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Game Carousel -->
+                <div class="hero-showcase">
+                    <div class="showcase-header">
+                        <h3 class="showcase-title">Featured Games</h3>
+                        <div class="showcase-controls">
+                            <button class="showcase-btn prev-btn" id="carousel-prev" aria-label="Previous game">‹</button>
+                            <button class="showcase-btn next-btn" id="carousel-next" aria-label="Next game">›</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-carousel" id="game-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-track" id="carousel-track">
+                                <!-- Game cards will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Enhanced carousel indicators -->
+                        <div class="carousel-indicators" id="carousel-indicators">
+                            <!-- Dots will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Floating elements for visual appeal -->
+                    <div class="floating-elements">
+                        <div class="floating-card card-1">
+                            <div class="card-glow"></div>
+                            <span>💎</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-glow"></div>
+                            <span>🎮</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-glow"></div>
+                            <span>🔥</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll to explore</div>
+            </div>
+        </section>
+
+        <!-- Enhanced Stats Section -->
+        <section class="stats-section" id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item" data-count="1000000">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item" data-count="500000">
+                        <div class="stat-icon">🎮</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Games Sold</div>
+                    </div>
+                    <div class="stat-item" data-count="50000">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">5-Star Reviews</div>
+                    </div>
+                    <div class="stat-item" data-count="247">
+                        <div class="stat-icon">🛠️</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- Enhanced Categories Section -->
+        <section class="categories-section" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span>🏆</span>
+                        <span>Popular Categories</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Discover Digital Goods</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Explore our vast collection of digital products across multiple categories
+                    </p>
+                </div>
+                
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Enhanced Category Cards -->
+                    <div class="category-card animate-on-scroll magnetic" data-delay="100">
+                        <div class="category-icon">🎮</div>
+                        <h3 class="category-title">PC Games</h3>
+                        <p class="category-description">Latest AAA titles and indie games for PC gaming enthusiasts</p>
+                        <div class="category-stats">
+                            <span class="category-count">1,200+ Games</span>
+                            <span class="category-trending">📈 Trending</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Games</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="200">
+                        <div class="category-icon">🎯</div>
+                        <h3 class="category-title">Console Games</h3>
+                        <p class="category-description">PlayStation, Xbox, and Nintendo Switch digital games</p>
+                        <div class="category-stats">
+                            <span class="category-count">800+ Games</span>
+                            <span class="category-trending">🔥 Hot</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Games</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="300">
+                        <div class="category-icon">💻</div>
+                        <h3 class="category-title">Software</h3>
+                        <p class="category-description">Professional software, antivirus, and productivity tools</p>
+                        <div class="category-stats">
+                            <span class="category-count">500+ Programs</span>
+                            <span class="category-trending">💼 Professional</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Software</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="400">
+                        <div class="category-icon">💳</div>
+                        <h3 class="category-title">Gift Cards</h3>
+                        <p class="category-description">Steam, PlayStation, Xbox, and other platform gift cards</p>
+                        <div class="category-stats">
+                            <span class="category-count">50+ Cards</span>
+                            <span class="category-trending">💎 Popular</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Cards</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="500">
+                        <div class="category-icon">🎵</div>
+                        <h3 class="category-title">Media & Entertainment</h3>
+                        <p class="category-description">Music, movies, streaming subscriptions, and digital content</p>
+                        <div class="category-stats">
+                            <span class="category-count">300+ Items</span>
+                            <span class="category-trending">🌟 New</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Media</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="600">
+                        <div class="category-icon">🏆</div>
+                        <h3 class="category-title">Gaming Accounts</h3>
+                        <p class="category-description">Verified gaming accounts with rare items and achievements</p>
+                        <div class="category-stats">
+                            <span class="category-count">100+ Accounts</span>
+                            <span class="category-trending">🔒 Secure</span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Accounts</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- View all button -->
+                <div class="section-footer">
+                    <button class="btn btn-outline btn-large">
+                        <span>View All Categories</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Marketplace Section -->
+        <section class="marketplace-section" id="marketplace">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span>🔥</span>
+                        <span>Hot Deals</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Featured Products</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Hand-picked items with exclusive discounts and instant delivery
+                    </p>
+                </div>
+                
+                <!-- Enhanced filter system -->
+                <div class="marketplace-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="games">Games</button>
+                        <button class="filter-tab" data-filter="software">Software</button>
+                        <button class="filter-tab" data-filter="gift-cards">Gift Cards</button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <select class="filter-select" aria-label="Sort by">
+                            <option value="popular">Most Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                        
+                        <div class="view-toggle">
+                            <button class="view-btn grid-view active" aria-label="Grid view">⊞</button>
+                            <button class="view-btn list-view" aria-label="List view">☰</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="marketplace-grid" id="marketplace-grid">
+                    <!-- Sample Product Cards with Enhanced Features -->
+                    <div class="game-card magnetic" data-product-id="cyberpunk-2077">
+                        <div class="card-image">
+                            <img src="assets/images/cyberpunk-2077.jpg" alt="Cyberpunk 2077" class="game-image" 
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Image</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge hot">🔥 Hot</span>
+                                    <span class="badge discount">-50%</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Cyberpunk 2077: Ultimate Edition</h3>
+                            <p class="game-description">Experience Night City like never before with enhanced graphics and new content.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(4.8/5)</span>
+                                </div>
+                                <div class="game-platform">🖥️ PC</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="price-old">$59.99</span>
+                                    <span class="game-price">$29.99</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('cyberpunk-2077', 'Cyberpunk 2077: Ultimate Edition', 29.99, 'assets/images/cyberpunk-2077.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card magnetic" data-product-id="steam-wallet">
+                        <div class="card-image">
+                            <img src="assets/images/steam-wallet.jpg" alt="Steam Wallet" class="game-image"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Gift Card</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge popular">🏆 Popular</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Steam Wallet Code $50</h3>
+                            <p class="game-description">Instant delivery of Steam Wallet funds for game purchases.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(5.0/5)</span>
+                                </div>
+                                <div class="game-platform">💳 Digital</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="game-price">$50.00</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('steam-wallet', 'Steam Wallet Code $50', 50.00, 'assets/images/steam-wallet.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card magnetic" data-product-id="discord-nitro">
+                        <div class="card-image">
+                            <img src="assets/images/discord-nitro.jpg" alt="Discord Nitro" class="game-image"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Software</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge new">✨ New</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Discord Nitro - 1 Month</h3>
+                            <p class="game-description">Enhanced Discord experience with premium features and perks.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(4.9/5)</span>
+                                </div>
+                                <div class="game-platform">💻 Software</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="game-price">$9.99</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('discord-nitro', 'Discord Nitro - 1 Month', 9.99, 'assets/images/discord-nitro.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card magnetic" data-product-id="minecraft">
+                        <div class="card-image">
+                            <img src="assets/images/minecraft.jpg" alt="Minecraft" class="game-image"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Image</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge trending">📈 Trending</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Minecraft Java Edition</h3>
+                            <p class="game-description">Build, explore, and survive in the ultimate sandbox adventure.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(4.9/5)</span>
+                                </div>
+                                <div class="game-platform">🎮 Multi-platform</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="game-price">$26.95</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('minecraft', 'Minecraft Java Edition', 26.95, 'assets/images/minecraft.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card magnetic" data-product-id="valorant-points">
+                        <div class="card-image">
+                            <img src="assets/images/valorant.jpg" alt="Valorant Points" class="game-image"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Currency</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge exclusive">💎 Exclusive</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Valorant Points - 1000VP</h3>
+                            <p class="game-description">Premium currency for Valorant skins, battle passes, and more.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(4.8/5)</span>
+                                </div>
+                                <div class="game-platform">🎯 Valorant</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="game-price">$9.99</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('valorant-points', 'Valorant Points - 1000VP', 9.99, 'assets/images/valorant.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card magnetic" data-product-id="office-365">
+                        <div class="card-image">
+                            <img src="assets/images/office-365.jpg" alt="Office 365" class="game-image"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Office Software</text></svg>'">
+                            <div class="card-overlay">
+                                <div class="card-badges">
+                                    <span class="badge professional">💼 Professional</span>
+                                </div>
+                                <div class="card-actions">
+                                    <button class="action-btn" data-tooltip="Quick View">👁️</button>
+                                    <button class="action-btn" data-tooltip="Add to Wishlist">❤️</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="game-title">Microsoft Office 365 - 1 Year</h3>
+                            <p class="game-description">Complete productivity suite with Word, Excel, PowerPoint, and more.</p>
+                            <div class="game-meta">
+                                <div class="game-rating">
+                                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                                    <span class="rating-text">(4.7/5)</span>
+                                </div>
+                                <div class="game-platform">💻 Software</div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-container">
+                                    <span class="price-old">$99.99</span>
+                                    <span class="game-price">$69.99</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="g2ownEnhanced.addProductToCart('office-365', 'Microsoft Office 365 - 1 Year', 69.99, 'assets/images/office-365.jpg')">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Load more section -->
+                <div class="load-more-section">
+                    <button class="btn btn-primary btn-large load-more-btn">
+                        <span>Load More Products</span>
+                        <div class="loading-spinner hidden"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-container">
+                    <div class="newsletter-content">
+                        <h3 class="newsletter-title">Stay Updated</h3>
+                        <p class="newsletter-subtitle">Get exclusive deals and new arrivals delivered to your inbox</p>
+                    </div>
+                    
+                    <div class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address">
+                            <button class="btn btn-primary newsletter-btn">
+                                <span>Subscribe</span>
+                                <span>📧</span>
+                            </button>
+                        </div>
+                        <p class="newsletter-privacy">We respect your privacy. No spam, ever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>G2</span>
+                        </div>
+                        <span class="logo-text">G2Own</span>
+                    </div>
+                    <p class="footer-description">
+                        The most trusted digital marketplace for games, software, and digital goods.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Discord">🎮</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Marketplace</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">PC Games</a></li>
+                        <li><a href="#">Console Games</a></li>
+                        <li><a href="#">Software</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2025 G2Own. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cart-close">×</button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <span class="cart-empty-icon">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-primary btn-full">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>    <!-- Scripts with optimized loading -->
+    <script>
+        // Critical inline script for loading optimization
+        document.body.classList.add('js-enabled');
+        
+        // Loading screen management
+        let loadProgress = 0;
+        const progressBar = document.querySelector('.loading-progress');
+        const statusText = document.querySelector('.loading-status');
+        
+        const updateProgress = (progress, status) => {
+            loadProgress = progress;
+            if (progressBar) progressBar.style.width = progress + '%';
+            if (statusText) statusText.textContent = status;
+        };
+        
+        updateProgress(20, 'Loading assets...');
+    </script>
+      <!-- External libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="updateProgress(40, 'Loading animations...')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onload="updateProgress(50, 'Loading scroll effects...')"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" onload="updateProgress(60, 'Loading particles...')"></script>
+      <!-- Application scripts -->
+    <script src="assets/js/navbar-controller.js" onload="updateProgress(80, 'Loading navigation...')"></script>
+    <script src="assets/js/enhanced-main.js" onload="updateProgress(90, 'Finalizing...')"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/particles-config.js"></script>
+    
+    <script>
+        // Enhanced loading completion - let the enhanced JavaScript handle it
+        window.addEventListener('load', () => {
+            // The enhanced JavaScript will handle the loading screen removal
+            console.log('Page fully loaded - enhanced system taking over');
+        });
+    </script>
+</body>
+</html>

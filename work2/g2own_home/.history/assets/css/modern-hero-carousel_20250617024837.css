@@ -1,0 +1,300 @@
+/* Modern Card Carousel for G2Own Hero Section 
+   Implements a clean, modern card carousel with animations 
+   Styled to match the G2Own website theme
+*/
+
+.hero-modern-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.modern-carousel-container {
+  position: relative;
+  height: 280px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card styles - Enhanced with more depth */
+.modern-card {
+  display: flex;
+  flex-direction: column;
+  height: 300px; /* Increased height */
+  width: 220px; /* Increased width */
+  background-color: var(--bg-tertiary);
+  border-radius: 15px; /* Increased border radius */
+  box-shadow: 
+    -1rem 0 3rem rgba(0, 0, 0, 0.85),
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(139, 0, 0, 0.15); /* Multiple layered shadows for depth */
+  transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+  position: relative;
+  left: 0px;
+  border: 1px solid rgba(139, 0, 0, 0.3); /* More visible border with site brand color */
+  overflow: hidden;
+  backdrop-filter: blur(5px); /* Glass effect */
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modern-card:not(:first-child) {
+  margin-left: -50px;
+}
+
+.modern-card:hover {
+  transform: translateY(-30px) scale(1.05); /* More dramatic movement and slight scale */
+  transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    -1.5rem 0 4rem rgba(0, 0, 0, 0.9),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(139, 0, 0, 0.25),
+    0 0 15px rgba(139, 0, 0, 0.2); /* Enhanced shadow on hover */
+  z-index: 10; /* Ensure hovered card is on top */
+}
+
+.modern-card:hover ~ .modern-card {
+  position: relative;
+  left: 70px; /* Pushed further away */
+  transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.8; /* Slightly fade others to focus on hovered card */
+}
+
+.title {
+  color: var(--text-primary);
+  font-weight: 700; /* Bolder font */
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 1.25rem; /* Larger font size */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+  letter-spacing: 0.5px; /* Better letter spacing */
+  font-family: 'Space Grotesk', sans-serif; /* Match site font */
+  background: linear-gradient(135deg, #ffffff 30%, #cccccc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: var(--bg-tertiary);
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--primary-red) 0%, 
+    var(--neon-red) 50%, 
+    var(--primary-red) 100%);
+  transition: 0.6s ease-out;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Glow effect */
+  animation: pulseBrightness 2s infinite alternate;
+}
+
+@keyframes pulseBrightness {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.5); }
+}
+
+.modern-card:hover .filledbar {
+  width: 120px;
+  transition: 0.4s ease-out;
+}
+
+.circle {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 60px);
+}
+
+.stroke {
+  stroke: var(--primary-red);
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+}
+
+.modern-card svg {
+  fill: var(--bg-tertiary);
+  stroke-width: 2px;
+}
+
+.modern-card:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+}
+
+/* Card content additions to match G2Own style - Enhanced */
+.card-meta {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: var(--text-primary);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  transform: translateY(10px);
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.modern-card:hover .card-meta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-meta .meta-item {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.card-meta .meta-item i {
+  margin-right: 8px;
+  color: var(--primary-red);
+  font-size: 1.1rem;
+  filter: drop-shadow(0 0 2px rgba(139, 0, 0, 0.5));
+}
+
+/* Game card background image - Enhanced */
+.card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  filter: contrast(1.1) saturate(1.2); /* Enhanced colors */
+}
+
+.modern-card:hover .card-bg {
+  opacity: 0.6;
+  transform: scale(1.1); /* Slight zoom effect */
+  filter: contrast(1.2) saturate(1.4) brightness(1.1); /* More vibrant on hover */
+}
+
+/* Add gradient overlay for better text contrast */
+.card-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 30%,
+    rgba(139, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+/* Shimmer effect on cards */
+.modern-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.01) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 6s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modern-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .modern-carousel-container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 700px) {
+  .modern-carousel-container {
+    width: 400px;
+  }
+  
+  .modern-card {
+    width: 160px;
+    height: 250px;
+  }
+  
+  .modern-card:not(:first-child) {
+    margin-left: -40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-carousel-container {
+    width: 300px;
+  }
+  
+  .modern-card {
+    width: 140px;
+    height: 220px;
+  }
+  
+  .modern-card:not(:first-child) {
+    margin-left: -30px;
+  }
+  
+  .title {
+    font-size: 0.9rem;
+  }
+  
+  .bar {
+    width: 100px;
+  }
+}

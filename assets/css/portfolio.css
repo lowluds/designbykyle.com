@@ -1,0 +1,486 @@
+/* Portfolio Section Base Font Size Override */
+#work {
+    font-size: 16px; /* Override the 20pt base from main.css */
+    line-height: 1.6;
+}
+
+/* Portfolio Section Header Styling */
+#work header h2 {
+    font-size: 2.4em;
+    font-weight: 600;
+    color: #1f2937; /* Updated to match modern system */
+    margin-bottom: 1em;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: left;
+}
+
+#work > p {
+    font-size: 1em;
+    color: #6b7280;
+    line-height: 1.65;
+    margin-bottom: 3em;
+    font-weight: 400;
+    max-width: 700px;
+    letter-spacing: 0.01em;
+}
+
+/* Portfolio Card Styles */
+.portfolio-grid {
+    margin-top: 2em;
+}
+
+.portfolio-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f5f5f5;
+}
+
+.portfolio-image {
+    position: relative;
+    overflow: hidden;
+    height: 220px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(34, 139, 104, 0.9), rgba(52, 152, 113, 0.85));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.portfolio-card:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-content {
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-family: 'Source Sans Pro', sans-serif;
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover .preview-content {
+    transform: translateY(0);
+}
+
+.preview-content i {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.preview-content span {
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.portfolio-content {
+    padding: 1.3em 1.2em;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.portfolio-content h4 {
+    margin: 0 0 0.6em 0;
+    color: #1f2937; /* Updated to match modern system */
+    font-size: 1.05em;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    min-height: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    /* Force no text truncation */
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+    max-height: none !important;
+}
+
+.portfolio-content p {
+    font-size: 0.8em;
+    color: #6b7280;
+    margin-bottom: 1.2em;
+    line-height: 1.6;
+    flex-grow: 1;
+    min-height: auto;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    /* Force text wrapping and prevent truncation */
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+    max-height: none !important;
+    display: block !important;
+    -webkit-box-orient: unset !important;
+}
+
+.portfolio-content h4 + p {
+    margin-top: 0.3em;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+    margin-bottom: 0.9em;
+    margin-top: auto;
+}
+
+.tech-stack span {
+    background: #f3f4f6;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+    padding: 0.25em 0.6em;
+    border-radius: 6px;
+    font-size: 0.7em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.tech-stack span:hover {
+    background: linear-gradient(135deg, #349871, #2d7d5e);
+    border-color: #349871;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 1px 4px rgba(52, 152, 113, 0.2);
+}
+
+.portfolio-links {
+    display: flex;
+    gap: 1em;
+    margin-top: auto;
+}
+
+.portfolio-links a {
+    display: inline-flex;
+    align-items: center;
+    color: #4f46e5;
+    font-size: 0.85em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    letter-spacing: 0.01em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.portfolio-links a i {
+    margin-right: 0.4em;
+    font-size: 0.9em;
+}
+
+.portfolio-links a:hover {
+    color: #3730a3;
+}
+
+/* Modern Professional Typography System */
+
+/* Main site typography overrides for consistency */
+#main .panel.intro header h1 {
+    font-size: 2.6em !important;
+    font-weight: 700 !important;
+    color: #1f2937 !important; /* Modern dark gray */
+    letter-spacing: -0.04em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.4em !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+#main .panel.intro header p {
+    font-size: 1.1em !important;
+    font-weight: 400 !important;
+    color: #6b7280 !important; /* Sophisticated gray */
+    letter-spacing: 0.02em !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.8em !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+/* Contact section header modernization */
+#contact header h2 {
+    font-size: 2.4em !important;
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1em !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
+    text-align: center;
+}
+
+/* Navigation typography improvements */
+#nav ul li a {
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    color: #374151 !important;
+    transition: color 0.3s ease !important;
+}
+
+#nav ul li a:hover {
+    color: #1f2937 !important;
+}
+
+/* Responsive typography for headers */
+@media (max-width: 980px) {
+    #main .panel.intro header h1 {
+        font-size: 2.3em !important;
+    }
+    
+    #main .panel.intro header p {
+        font-size: 1em !important;
+    }
+    
+    #contact header h2 {
+        font-size: 2.1em !important;
+    }
+}
+
+@media (max-width: 736px) {
+    #main .panel.intro header h1 {
+        font-size: 2em !important;
+        letter-spacing: -0.02em !important;
+    }
+    
+    #main .panel.intro header p {
+        font-size: 0.95em !important;
+        margin-bottom: 1em !important;
+    }
+    
+    #contact header h2 {
+        font-size: 1.9em !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    #main .panel.intro header h1 {
+        font-size: 2.8em !important;
+    }
+    
+    #main .panel.intro header p {
+        font-size: 1.15em !important;
+    }
+    
+    #contact header h2 {
+        font-size: 2.6em !important;
+    }
+}
+
+/* Additional Typography Enhancements */
+
+/* Improved text selection */
+::selection {
+    background: #4f46e5;
+    color: white;
+}
+
+::-moz-selection {
+    background: #4f46e5;
+    color: white;
+}
+
+/* Better focus states for accessibility */
+.portfolio-links a:focus {
+    outline: 2px solid #4f46e5;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Enhanced typography for better readability */
+.portfolio-content {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Improved spacing for better visual hierarchy */
+.portfolio-content h4 + p {
+    margin-top: 0.3em;
+}
+
+.tech-stack + .portfolio-links {
+    margin-top: 0.1em;
+}
+
+/* Better typography for larger screens */
+@media (min-width: 1400px) {
+    #work {
+        font-size: 17px; /* Slightly larger base for large screens */
+    }
+    
+    #work header h2 {
+        font-size: 2.4em;
+        letter-spacing: -0.04em;
+    }
+    
+    #work > p {
+        font-size: 1em;
+        line-height: 1.7;
+    }
+      .portfolio-content h4 {
+        font-size: 1.1em;
+    }
+    
+    .portfolio-content p {
+        font-size: 0.85em;
+        line-height: 1.65;
+    }
+}
+
+/* Ultra-wide screen optimizations */
+@media (min-width: 1920px) {
+    #work {
+        font-size: 18px; /* Optimal base for ultra-wide screens */
+    }
+    
+    #work header h2 {
+        font-size: 2.6em;
+    }
+    
+    #work > p {
+        font-size: 1.05em;
+        max-width: 700px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 980px) {
+    #work {
+        font-size: 15px; /* Smaller base for tablets */
+    }
+    
+    .portfolio-image {
+        height: 160px;
+    }
+    
+    .portfolio-content {
+        padding: 1.1em 1em;
+    }
+      .portfolio-content h4 {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+    }
+    
+    .portfolio-content p {
+        font-size: 0.75em;
+    }
+      #work header h2 {
+        font-size: 2em;
+        margin-bottom: 0.7em;
+    }
+    
+    #work > p {
+        font-size: 0.9em;
+        margin-bottom: 2.5em;
+    }
+    
+    .tech-stack span {
+        font-size: 0.65em;
+        padding: 0.2em 0.5em;
+    }
+}
+
+@media (max-width: 736px) {
+    #work {
+        font-size: 14px; /* Even smaller base for mobile */
+    }
+    
+    .portfolio-card {
+        margin-bottom: 1.5em;
+    }
+    
+    .portfolio-image {
+        height: 140px;
+    }
+    
+    .portfolio-content {
+        padding: 1em 0.9em;
+    }
+      .portfolio-content h4 {
+        font-size: 0.95em;
+        margin-bottom: 0.5em;
+    }
+    
+    .portfolio-content p {
+        font-size: 0.7em;
+        margin-bottom: 1em;
+        min-height: auto;
+    }
+    
+    .tech-stack {
+        gap: 0.3em;
+        margin-bottom: 0.8em;
+    }
+    
+    .tech-stack span {
+        font-size: 0.6em;
+        padding: 0.2em 0.45em;
+    }
+      #work header h2 {
+        font-size: 1.8em;
+        margin-bottom: 0.6em;
+    }
+    
+    #work > p {
+        font-size: 0.85em;
+        margin-bottom: 2.2em;
+    }
+    
+    .preview-content i {
+        font-size: 1.3em;
+    }
+    
+    .preview-content span {
+        font-size: 0.8em;
+    }
+    
+    .portfolio-links a {
+        font-size: 0.8em;
+    }
+}

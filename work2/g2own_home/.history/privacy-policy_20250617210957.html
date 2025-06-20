@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - G2Own Digital Marketplace</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="G2Own Privacy Policy - Learn how we protect your data and respect your privacy in our digital marketplace.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Analytics Integration -->
+    <script async src="assets/js/analytics.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-red: #8b0000;
+            --primary-black: #000000;
+            --primary-white: #ffffff;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --border-glow: rgba(139, 0, 0, 0.3);
+            --glass-bg: rgba(0, 0, 0, 0.7);
+            --glass-border: rgba(139, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Background Effects */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .bg-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .bg-glow-1 {
+            top: 10%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+        
+        .bg-glow-2 {
+            top: 60%;
+            right: 20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.08) 0%, transparent 70%);
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+        
+        /* Header */
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            color: var(--primary-red);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-red);
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .page-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .last-updated {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(20px);
+        }
+        
+        .toc h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .toc-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .toc-item a:hover {
+            background: rgba(139, 0, 0, 0.1);
+            color: var(--primary-red);
+            transform: translateX(8px);
+        }
+        
+        .toc-item a i {
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+        
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-glow);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title i {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+        }
+        
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-content ul, .section-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .section-content li {
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .section-content strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        /* Highlight Boxes */
+        .highlight-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--primary-red);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(20px);
+        }
+        
+        .highlight-box.warning {
+            border-left-color: #f59e0b;
+        }
+        
+        .highlight-box.info {
+            border-left-color: #3b82f6;
+        }
+        
+        .highlight-box h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(20px);
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-2px);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+            
+            .toc {
+                padding: 1.5rem;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection styles */
+        ::selection {
+            background: rgba(139, 0, 0, 0.3);
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <i class="ph ph-shield-check"></i>
+                G2Own
+            </a>
+            <a href="/" class="back-link">
+                <i class="ph ph-arrow-left"></i>
+                Back to Homepage
+            </a>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Privacy Policy</h1>
+            <p class="page-subtitle">
+                Your privacy matters to us. Learn how we collect, use, and protect your personal information.
+            </p>
+            <div class="last-updated">
+                <i class="ph ph-calendar"></i>
+                Last Updated: June 17, 2025
+            </div>
+        </div>
+        
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h3>
+                <i class="ph ph-list"></i>
+                Table of Contents
+            </h3>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#information-we-collect">
+                        <i class="ph ph-database"></i>
+                        Information We Collect
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#how-we-use-information">
+                        <i class="ph ph-gear"></i>
+                        How We Use Your Information
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#data-sharing">
+                        <i class="ph ph-share-network"></i>
+                        Data Sharing and Disclosure
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#analytics-cookies">
+                        <i class="ph ph-chart-line"></i>
+                        Analytics and Cookies
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#data-security">
+                        <i class="ph ph-shield"></i>
+                        Data Security
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#your-rights">
+                        <i class="ph ph-user-check"></i>
+                        Your Rights and Choices
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#data-retention">
+                        <i class="ph ph-clock"></i>
+                        Data Retention
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#international-transfers">
+                        <i class="ph ph-globe"></i>
+                        International Data Transfers
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#children-privacy">
+                        <i class="ph ph-baby"></i>
+                        Children's Privacy
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#policy-changes">
+                        <i class="ph ph-note-pencil"></i>
+                        Policy Changes
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#contact-us">
+                        <i class="ph ph-envelope"></i>
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Content Sections -->
+        <section id="information-we-collect" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-database"></i>
+                Information We Collect
+            </h2>
+            <div class="section-content">
+                <p>We collect information to provide, improve, and protect our services. The types of information we collect include:</p>
+                
+                <h3>Information You Provide</h3>
+                <ul>
+                    <li><strong>Account Information:</strong> When you create an account through our OAuth integration with Invision Community, we collect your username, email address, and profile information.</li>
+                    <li><strong>Authentication Data:</strong> Login credentials and authentication tokens from third-party providers (Google, Discord, Steam).</li>
+                    <li><strong>Communication:</strong> Messages, support requests, and feedback you send to us.</li>
+                    <li><strong>Payment Information:</strong> Billing details processed securely through our payment partners (we do not store credit card information).</li>
+                </ul>
+                
+                <h3>Information We Collect Automatically</h3>
+                <ul>
+                    <li><strong>Usage Data:</strong> How you interact with our website, including pages visited, features used, and time spent.</li>
+                    <li><strong>Device Information:</strong> Browser type, operating system, device identifiers, and screen resolution.</li>
+                    <li><strong>Log Data:</strong> IP addresses, access times, and referring URLs for security and performance purposes.</li>
+                    <li><strong>Analytics Data:</strong> Website performance metrics collected through Google Analytics 4 (with your consent).</li>
+                </ul>
+                
+                <div class="highlight-box info">
+                    <h4>
+                        <i class="ph ph-info"></i>
+                        Analytics Consent
+                    </h4>
+                    <p>We use Google Analytics 4 to understand how visitors use our website. This data is collected only with your explicit consent and helps us improve your experience. You can withdraw consent at any time through our cookie preferences.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="how-we-use-information" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-gear"></i>
+                How We Use Your Information
+            </h2>
+            <div class="section-content">
+                <p>We use the information we collect for the following purposes:</p>
+                
+                <h3>Service Provision</h3>
+                <ul>
+                    <li>Creating and managing your account</li>
+                    <li>Processing purchases and managing your digital marketplace transactions</li>
+                    <li>Providing customer support and responding to inquiries</li>
+                    <li>Facilitating community interactions through Invision Community integration</li>
+                </ul>
+                
+                <h3>Improvement and Analytics</h3>
+                <ul>
+                    <li>Analyzing website usage to improve user experience</li>
+                    <li>Identifying popular content and features</li>
+                    <li>Optimizing website performance and loading times</li>
+                    <li>Understanding user preferences for better content curation</li>
+                </ul>
+                
+                <h3>Communication</h3>
+                <ul>
+                    <li>Sending transactional emails (purchase confirmations, account updates)</li>
+                    <li>Notifying you about service changes or security issues</li>
+                    <li>Providing technical support and customer service</li>
+                    <li>Sending marketing communications (with your explicit consent)</li>
+                </ul>
+                
+                <h3>Legal and Security</h3>
+                <ul>
+                    <li>Protecting against fraud and unauthorized access</li>
+                    <li>Complying with legal obligations and law enforcement requests</li>
+                    <li>Enforcing our Terms of Service and community guidelines</li>
+                    <li>Monitoring for security threats and system integrity</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="data-sharing" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-share-network"></i>
+                Data Sharing and Disclosure
+            </h2>
+            <div class="section-content">
+                <p>We respect your privacy and limit data sharing to essential business purposes:</p>
+                
+                <h3>Service Providers</h3>
+                <ul>
+                    <li><strong>Invision Community:</strong> User authentication and community management</li>
+                    <li><strong>Google Analytics:</strong> Website analytics and performance monitoring (with consent)</li>
+                    <li><strong>Payment Processors:</strong> Secure payment handling for purchases</li>
+                    <li><strong>Cloud Hosting:</strong> Website hosting and data storage infrastructure</li>
+                </ul>
+                
+                <h3>Legal Requirements</h3>
+                <p>We may disclose information when required by law or to:</p>
+                <ul>
+                    <li>Comply with legal processes, court orders, or government requests</li>
+                    <li>Protect our rights, property, or safety</li>
+                    <li>Prevent fraud or security threats</li>
+                    <li>Enforce our Terms of Service</li>
+                </ul>
+                
+                <div class="highlight-box warning">
+                    <h4>
+                        <i class="ph ph-warning"></i>
+                        Important Notice
+                    </h4>
+                    <p>We never sell your personal information to third parties for marketing purposes. Any data sharing is strictly limited to providing our services and meeting legal obligations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="analytics-cookies" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-chart-line"></i>
+                Analytics and Cookies
+            </h2>
+            <div class="section-content">
+                <p>We use cookies and similar technologies to enhance your experience:</p>
+                
+                <h3>Essential Cookies</h3>
+                <ul>
+                    <li><strong>Authentication:</strong> Keep you logged in securely</li>
+                    <li><strong>Preferences:</strong> Remember your settings and language choices</li>
+                    <li><strong>Security:</strong> Protect against fraud and unauthorized access</li>
+                    <li><strong>Shopping Cart:</strong> Maintain your cart contents between sessions</li>
+                </ul>
+                
+                <h3>Analytics Cookies (With Consent)</h3>
+                <ul>
+                    <li><strong>Google Analytics 4:</strong> Website usage statistics and performance metrics</li>
+                    <li><strong>User Behavior:</strong> How you navigate and interact with our site</li>
+                    <li><strong>Conversion Tracking:</strong> Effectiveness of our homepage in driving community engagement</li>
+                    <li><strong>Error Monitoring:</strong> Technical issues and page errors for improvement</li>
+                </ul>
+                
+                <h3>Managing Your Preferences</h3>
+                <p>You have full control over your cookie preferences:</p>
+                <ul>
+                    <li>Accept or decline analytics cookies through our consent banner</li>
+                    <li>Change your preferences at any time in your browser settings</li>
+                    <li>Opt out of Google Analytics through the Google Analytics Opt-out Browser Add-on</li>
+                    <li>Use private/incognito browsing to prevent cookie storage</li>
+                </ul>
+                
+                <div class="highlight-box info">
+                    <h4>
+                        <i class="ph ph-cookie"></i>
+                        Cookie Consent
+                    </h4>
+                    <p>We only use analytics cookies with your explicit consent. Essential cookies are necessary for our website to function properly and cannot be disabled without affecting core functionality.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="data-security" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-shield"></i>
+                Data Security
+            </h2>
+            <div class="section-content">
+                <p>We implement industry-standard security measures to protect your information:</p>
+                
+                <h3>Technical Safeguards</h3>
+                <ul>
+                    <li><strong>Encryption:</strong> All data transmission uses SSL/TLS encryption</li>
+                    <li><strong>Secure Storage:</strong> Data stored with encryption at rest</li>
+                    <li><strong>Access Controls:</strong> Limited access to personal data on a need-to-know basis</li>
+                    <li><strong>Regular Updates:</strong> Security patches and system updates maintained consistently</li>
+                </ul>
+                
+                <h3>Operational Security</h3>
+                <ul>
+                    <li><strong>Employee Training:</strong> Staff educated on privacy and security best practices</li>
+                    <li><strong>Incident Response:</strong> Procedures in place for security breach detection and response</li>
+                    <li><strong>Third-Party Audits:</strong> Regular security assessments of our systems and partners</li>
+                    <li><strong>Data Minimization:</strong> We collect only the information necessary for our services</li>
+                </ul>
+                
+                <div class="highlight-box warning">
+                    <h4>
+                        <i class="ph ph-shield-warning"></i>
+                        Your Role in Security
+                    </h4>
+                    <p>Please help us keep your account secure by using strong passwords, not sharing login credentials, and reporting any suspicious activity to our support team immediately.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="your-rights" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-user-check"></i>
+                Your Rights and Choices
+            </h2>
+            <div class="section-content">
+                <p>Under GDPR and other privacy laws, you have the following rights:</p>
+                
+                <h3>Access and Portability</h3>
+                <ul>
+                    <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+                    <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format</li>
+                    <li><strong>Explanation:</strong> Understand how we use your information and our legal basis</li>
+                </ul>
+                
+                <h3>Correction and Deletion</h3>
+                <ul>
+                    <li><strong>Rectification:</strong> Correct inaccurate or incomplete personal information</li>
+                    <li><strong>Erasure:</strong> Request deletion of your personal data ("right to be forgotten")</li>
+                    <li><strong>Restriction:</strong> Limit how we process your data in certain circumstances</li>
+                </ul>
+                
+                <h3>Consent and Objection</h3>
+                <ul>
+                    <li><strong>Withdraw Consent:</strong> Revoke permission for analytics and marketing communications</li>
+                    <li><strong>Object to Processing:</strong> Opt out of certain data processing activities</li>
+                    <li><strong>Automated Decisions:</strong> Object to automated decision-making and profiling</li>
+                </ul>
+                
+                <h3>How to Exercise Your Rights</h3>
+                <p>To exercise any of these rights, please contact us using the information in the "Contact Us" section. We will respond to your request within 30 days as required by law.</p>
+                
+                <div class="highlight-box info">
+                    <h4>
+                        <i class="ph ph-scales"></i>
+                        Legal Basis for Processing
+                    </h4>
+                    <p>We process your data based on: legitimate interests (website analytics, security), contract performance (providing services), legal obligations (compliance), and your consent (marketing, non-essential cookies).</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="data-retention" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-clock"></i>
+                Data Retention
+            </h2>
+            <div class="section-content">
+                <p>We retain your information for as long as necessary to provide our services and comply with legal obligations:</p>
+                
+                <h3>Account Data</h3>
+                <ul>
+                    <li><strong>Active Accounts:</strong> Retained while your account remains active</li>
+                    <li><strong>Inactive Accounts:</strong> Deleted after 3 years of inactivity</li>
+                    <li><strong>Account Deletion:</strong> Immediately deleted upon request (except where legally required to retain)</li>
+                </ul>
+                
+                <h3>Analytics Data</h3>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Automatically deleted after 14 months</li>
+                    <li><strong>Server Logs:</strong> Retained for 90 days for security purposes</li>
+                    <li><strong>Error Logs:</strong> Deleted after 30 days</li>
+                </ul>
+                
+                <h3>Legal Requirements</h3>
+                <ul>
+                    <li><strong>Financial Records:</strong> Retained for 7 years as required by law</li>
+                    <li><strong>Communication Records:</strong> Support tickets retained for 2 years</li>
+                    <li><strong>Legal Disputes:</strong> Relevant data retained until resolution</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="international-transfers" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-globe"></i>
+                International Data Transfers
+            </h2>
+            <div class="section-content">
+                <p>G2Own operates globally, and your information may be transferred to and processed in countries other than your own:</p>
+                
+                <h3>Data Protection Safeguards</h3>
+                <ul>
+                    <li><strong>Adequacy Decisions:</strong> Transfers to countries with adequate data protection laws</li>
+                    <li><strong>Standard Contractual Clauses:</strong> EU-approved contracts for international transfers</li>
+                    <li><strong>Service Provider Agreements:</strong> All partners must meet our data protection standards</li>
+                    <li><strong>Data Minimization:</strong> Only necessary data is transferred internationally</li>
+                </ul>
+                
+                <h3>Third-Party Services</h3>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Data processed in accordance with Google's Privacy Shield certification</li>
+                    <li><strong>Invision Community:</strong> Data processing governed by their privacy policy and our agreement</li>
+                    <li><strong>Cloud Providers:</strong> Infrastructure partners with robust international data protection measures</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="children-privacy" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-baby"></i>
+                Children's Privacy
+            </h2>
+            <div class="section-content">
+                <p>G2Own is not intended for use by children under 13 years of age, and we do not knowingly collect personal information from children under 13.</p>
+                
+                <h3>Age Verification</h3>
+                <ul>
+                    <li>Users must be at least 13 years old to create an account</li>
+                    <li>Age verification is required during the registration process</li>
+                    <li>Parental consent may be required for users between 13-16 depending on local laws</li>
+                </ul>
+                
+                <h3>If We Learn of Child Data Collection</h3>
+                <p>If we become aware that we have collected personal information from a child under 13 without parental consent, we will:</p>
+                <ul>
+                    <li>Delete the information immediately</li>
+                    <li>Terminate the associated account</li>
+                    <li>Notify the parents if contact information is available</li>
+                    <li>Implement additional safeguards to prevent future occurrences</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="policy-changes" class="content-section">
+            <h2 class="section-title">
+                <i class="ph ph-note-pencil"></i>
+                Policy Changes
+            </h2>
+            <div class="section-content">
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements:</p>
+                
+                <h3>Notification of Changes</h3>
+                <ul>
+                    <li><strong>Major Changes:</strong> Email notification to registered users at least 30 days in advance</li>
+                    <li><strong>Minor Updates:</strong> Updated "Last Modified" date and homepage notice</li>
+                    <li><strong>Legal Requirements:</strong> Immediate updates when required by law</li>
+                </ul>
+                
+                <h3>Your Continued Use</h3>
+                <p>By continuing to use G2Own after policy changes take effect, you accept the updated Privacy Policy. If you disagree with any changes, please discontinue use and contact us to delete your account.</p>
+                
+                <div class="highlight-box info">
+                    <h4>
+                        <i class="ph ph-bell"></i>
+                        Stay Informed
+                    </h4>
+                    <p>We recommend reviewing this Privacy Policy periodically to stay informed about how we protect your information. The current version will always be available at g2own.com/privacy-policy.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact-us" class="contact-section">
+            <h2 class="contact-title">Questions About Your Privacy?</h2>
+            <p>If you have any questions about this Privacy Policy or our data practices, please don't hesitate to contact us:</p>
+            
+            <div class="contact-methods">
+                <a href="mailto:privacy@g2own.com" class="contact-method">
+                    <i class="ph ph-envelope"></i>
+                    privacy@g2own.com
+                </a>
+                <a href="https://g2own.com/community/support/" target="_blank" class="contact-method">
+                    <i class="ph ph-lifebuoy"></i>
+                    Support Center
+                </a>
+                <a href="https://g2own.com/community/" target="_blank" class="contact-method">
+                    <i class="ph ph-users"></i>
+                    Community Forum
+                </a>
+            </div>
+            
+            <p style="margin-top: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+                For data protection officer inquiries or formal complaints, please use our dedicated privacy email address above.
+            </p>
+        </section>
+    </main>
+    
+    <script>
+        // Track privacy policy views in analytics
+        if (window.G2ownAnalytics) {
+            window.G2ownAnalytics.trackPageView('Privacy Policy View', window.location.href);
+            window.G2ownAnalytics.trackEvent('legal_page_view', {
+                page_type: 'privacy_policy',
+                section: 'legal_compliance'
+            });
+        }
+        
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('.toc-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Track TOC navigation
+                    if (window.G2ownAnalytics) {
+                        window.G2ownAnalytics.trackEvent('toc_navigation', {
+                            section: this.getAttribute('href').replace('#', ''),
+                            page: 'privacy_policy'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

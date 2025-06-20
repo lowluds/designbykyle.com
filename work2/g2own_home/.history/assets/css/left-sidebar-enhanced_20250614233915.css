@@ -1,0 +1,523 @@
+/* Enhanced Left Sidebar with Hover Indicators */
+/* Builds upon the existing left-sidebar.css */
+
+:root {
+    --indicator-width: 4px;
+    --preview-width: 60px;
+    --hover-delay: 300ms;
+    --hide-delay: 500ms;
+    --animation-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --edge-glow: rgba(239, 68, 68, 0.6);
+    --preview-bg: rgba(0, 0, 0, 0.85);
+}
+
+/* Hover Trigger Zone - Invisible area that detects mouse */
+.sidebar-hover-zone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 100vh;
+    z-index: 1001;
+    pointer-events: all;
+    background: transparent;
+}
+
+/* Edge Indicator - Subtle glowing line */
+.sidebar-edge-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--indicator-width);
+    height: 100vh;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--edge-glow) 20%,
+        rgba(239, 68, 68, 0.8) 50%,
+        var(--edge-glow) 80%,
+        transparent 100%
+    );
+    z-index: 1000;
+    opacity: 0.7;
+    animation: edgePulse 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    transition: all 0.3s ease;
+}
+
+.sidebar-edge-indicator.hover-active {
+    width: 6px;
+    opacity: 1;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+}
+
+@keyframes edgePulse {
+    0%, 100% { 
+        opacity: 0.7;
+        transform: scaleY(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scaleY(1.02);
+    }
+}
+
+/* Mini Icon Preview Strip */
+.sidebar-icon-preview {
+    position: fixed;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(-50%) translateX(-20px);
+    transition: all 0.4s var(--animation-spring);
+    pointer-events: none;
+}
+
+.sidebar-hover-zone:hover + .sidebar-edge-indicator + .sidebar-icon-preview,
+.sidebar-icon-preview.show {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+    pointer-events: all;
+}
+
+.preview-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--preview-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ef4444;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    animation: slideInLeft 0.4s ease-out;
+    animation-delay: var(--delay, 0ms);
+    animation-fill-mode: both;
+}
+
+.preview-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-icon:hover::before {
+    opacity: 1;
+}
+
+.preview-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+    border-color: rgba(239, 68, 68, 0.6);
+}
+
+.preview-icon:nth-child(1) { --delay: 100ms; }
+.preview-icon:nth-child(2) { --delay: 150ms; }
+.preview-icon:nth-child(3) { --delay: 200ms; }
+.preview-icon:nth-child(4) { --delay: 250ms; }
+.preview-icon:nth-child(5) { --delay: 300ms; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Tooltip for preview icons */
+.preview-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    pointer-events: none;
+}
+
+.preview-icon:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(4px);
+}
+
+/* Enhanced Left Sidebar Hover States */
+.left-sidebar.hover-preview {
+    transform: translateX(calc(-100% + var(--preview-width)));
+    transition: transform 0.4s var(--animation-spring);
+    transition-delay: var(--hover-delay);
+}
+
+.left-sidebar.hover-active {
+    transform: translateX(0);
+    transition: transform 0.4s var(--animation-spring);
+    transition-delay: var(--hover-delay);
+}
+
+.left-sidebar.mouse-left {
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-out;
+    transition-delay: var(--hide-delay);
+}
+
+/* Sidebar Content Adjustments for Hover */
+.left-sidebar .sidebar-container {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.left-sidebar.hover-active .sidebar-container {
+    opacity: 1;
+    transition-delay: 200ms;
+}
+
+.left-sidebar.hover-preview .sidebar-container {
+    opacity: 0.6;
+}
+
+/* Update existing floating toggle to be more subtle */
+.sidebar-floating-toggle {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+/* Show floating toggle only when hover system is not active */
+.sidebar-floating-toggle.show-fallback {
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* First-time User Hint */
+.sidebar-first-time-hint {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--edge-glow);
+    border-radius: 50%;
+    z-index: 1004;
+    animation: firstTimeHint 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.sidebar-first-time-hint::before {
+    content: '👈';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    animation: pointLeft 2s ease-in-out infinite;
+}
+
+@keyframes firstTimeHint {
+    0%, 100% { 
+        opacity: 0;
+        transform: translateY(-50%) scale(0.8);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+@keyframes pointLeft {
+    0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+    50% { transform: translate(-50%, -50%) translateX(-5px); }
+}
+
+/* Hide hint after interaction */
+.sidebar-first-time-hint.hidden {
+    animation: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+/* Breadcrumb Trail Effect */
+.sidebar-breadcrumb {
+    position: fixed;
+    top: 65%;
+    left: 25px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1001;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.sidebar-hover-zone:hover ~ .sidebar-breadcrumb,
+.sidebar-breadcrumb.show {
+    opacity: 1;
+}
+
+.breadcrumb-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--edge-glow);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    animation: breadcrumbPulse 2s ease-in-out infinite;
+    animation-delay: var(--delay, 0ms);
+}
+
+.breadcrumb-dot:nth-child(1) { --delay: 0ms; }
+.breadcrumb-dot:nth-child(2) { --delay: 200ms; }
+.breadcrumb-dot:nth-child(3) { --delay: 400ms; }
+
+@keyframes breadcrumbPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+/* Smart Hide/Show Logic */
+.sidebar-system.user-discovered .sidebar-first-time-hint {
+    display: none;
+}
+
+.sidebar-system.user-discovered .sidebar-edge-indicator {
+    opacity: 0.4;
+    animation: none;
+}
+
+.sidebar-system.user-discovered .sidebar-edge-indicator:hover {
+    opacity: 0.8;
+}
+
+/* State Management Classes */
+.sidebar-indicators.normal {
+    opacity: 1;
+}
+
+.sidebar-indicators.dimmed {
+    opacity: 0.5;
+}
+
+.sidebar-indicators.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ripple Effect for Icon Interactions */
+.ripple-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes ripple {
+    to {
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .sidebar-hover-zone {
+        width: 15px;
+    }
+    
+    .sidebar-icon-preview {
+        left: 5px;
+    }
+    
+    .preview-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .left-sidebar.hover-preview {
+        transform: translateX(calc(-100% + 50px));
+    }
+    
+    .sidebar-first-time-hint {
+        width: 50px;
+        height: 50px;
+        left: 10px;
+    }
+    
+    .sidebar-first-time-hint::before {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar-hover-zone {
+        width: 12px;
+    }
+    
+    .sidebar-edge-indicator {
+        width: 3px;
+    }
+    
+    .preview-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .sidebar-icon-preview {
+        gap: 10px;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-edge-indicator,
+    .sidebar-first-time-hint,
+    .breadcrumb-dot {
+        animation: none;
+    }
+    
+    .left-sidebar,
+    .preview-icon,
+    .sidebar-icon-preview {
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .sidebar-edge-indicator {
+        background: linear-gradient(180deg, transparent 0%, #ef4444 50%, transparent 100%);
+    }
+    
+    .preview-icon {
+        border-color: #ef4444;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .preview-icon:hover {
+        border-color: #ffffff;
+    }
+}
+
+/* Focus Management for Accessibility */
+.sidebar-system:focus-within .left-sidebar {
+    transform: translateX(0);
+}
+
+.preview-icon:focus {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+}
+
+/* Dark/Light Theme Adjustments */
+.light-theme .sidebar-edge-indicator {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(239, 68, 68, 0.7) 20%,
+        rgba(239, 68, 68, 0.9) 50%,
+        rgba(239, 68, 68, 0.7) 80%,
+        transparent 100%
+    );
+}
+
+.light-theme .preview-icon {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.light-theme .breadcrumb-dot {
+    background: rgba(239, 68, 68, 0.8);
+}
+
+/* Performance Optimizations */
+.sidebar-hover-zone,
+.sidebar-edge-indicator,
+.sidebar-icon-preview,
+.sidebar-breadcrumb {
+    will-change: transform, opacity;
+}
+
+/* Smooth Scrolling for Sidebar Content */
+.left-sidebar .sidebar-nav {
+    scroll-behavior: smooth;
+}
+
+.left-sidebar .sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.left-sidebar .sidebar-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.left-sidebar .sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(239, 68, 68, 0.3);
+    border-radius: 2px;
+}
+
+.left-sidebar .sidebar-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(239, 68, 68, 0.5);
+}
+
+/* Animation Performance */
+@supports (transform: translateZ(0)) {
+    .left-sidebar,
+    .sidebar-icon-preview,
+    .preview-icon {
+        transform: translateZ(0);
+    }
+}

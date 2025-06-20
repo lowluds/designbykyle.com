@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Authentication Integration Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #8b0000;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #444;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .test-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #6d0000;
+        }
+        button.secondary {
+            background: #444;
+        }
+        button.secondary:hover {
+            background: #333;
+        }
+        pre {
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            overflow: auto;
+            font-size: 14px;
+            max-height: 300px;
+        }
+        .log {
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 15px;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow: auto;
+            margin-top: 20px;
+        }
+        .status {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .status.success {
+            color: green;
+        }
+        .status.error {
+            color: red;
+        }
+        .status.warning {
+            color: orange;
+        }
+        .status.info {
+            color: blue;
+        }
+        #userInfo {
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>G2Own Authentication Integration Test</h1>
+    
+    <div class="card">
+        <h2>Authentication Status</h2>
+        <div id="authStatus">Checking...</div>
+        <div class="test-controls">
+            <button id="checkAuthBtn">Check Auth Status</button>
+            <button id="clearSessionBtn" class="secondary">Clear Session Storage</button>
+            <button id="clearLocalBtn" class="secondary">Clear Local Storage</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Login Tests</h2>
+        <div class="test-controls">
+            <button id="loginBtn">Login (Standard)</button>
+            <button id="loginNoAutoBtn">Login (No Auto-Redirect)</button>
+            <button id="loginDirectBtn">Login (Direct)</button>
+            <button id="simulateSuccessBtn">Simulate Login Success</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Session Tests</h2>
+        <div class="test-controls">
+            <button id="checkCommunitySessionBtn">Check Community Session</button>
+            <button id="forceSessionCheckBtn">Force Session Check</button>
+            <button id="importSessionBtn">Import Session (if exists)</button>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>User Information</h2>
+        <pre id="userInfo">No user information available</pre>
+    </div>
+    
+    <div class="card">
+        <h2>Debug Log</h2>
+        <div class="log" id="debugLog"></div>
+        <div class="test-controls">
+            <button id="clearLogBtn" class="secondary">Clear Log</button>
+        </div>
+    </div>
+
+    <script>
+        // Debug logging
+        function log(message, type = 'info') {
+            const debugLog = document.getElementById('debugLog');
+            const timestamp = new Date().toISOString().slice(11, 19);
+            
+            console.log(`[${timestamp}] ${message}`);
+            
+            const msgClass = type === 'error' ? 'color:red' : 
+                             type === 'success' ? 'color:lime' : 
+                             type === 'warning' ? 'color:orange' : 'color:white';
+            
+            debugLog.innerHTML += `<div style="${msgClass}">[${timestamp}] ${message}</div>`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+        }
+        
+        // Check Authentication Status
+        async function checkAuthStatus() {
+            try {
+                log('Checking authentication status...');
+                document.getElementById('authStatus').innerHTML = 'Checking...';
+                
+                // Check if we have the session bridge from the main site
+                if (window.sessionBridge) {
+                    log('Using session bridge');
+                    
+                    // Force fresh check
+                    await window.sessionBridge.checkSession();
+                    
+                    if (window.sessionBridge.isAuthenticated && window.sessionBridge.currentUser) {
+                        const user = window.sessionBridge.currentUser;
+                        log(`✅ Authenticated as ${user.name || user.display_name}`, 'success');
+                        document.getElementById('authStatus').innerHTML = `
+                            <div class="status success">Authenticated as ${user.name || user.display_name}</div>
+                        `;
+                        document.getElementById('userInfo').textContent = JSON.stringify(user, null, 2);
+                    } else {
+                        log('❌ Not authenticated', 'error');
+                        document.getElementById('authStatus').innerHTML = `
+                            <div class="status error">Not authenticated</div>
+                        `;
+                        document.getElementById('userInfo').textContent = 'No user information available';
+                    }
+                } else {
+                    // Fallback to checking localStorage
+                    log('Session bridge not available, checking localStorage', 'warning');
+                    
+                    const userData = localStorage.getItem('g2own_user') || localStorage.getItem('oauth_user');
+                    if (userData && userData !== '{}' && userData !== 'null') {
+                        const user = JSON.parse(userData);
+                        log(`✅ User data found in localStorage: ${user.name || user.display_name}`, 'success');
+                        document.getElementById('authStatus').innerHTML = `
+                            <div class="status success">User data found in localStorage</div>
+                        `;
+                        document.getElementById('userInfo').textContent = JSON.stringify(user, null, 2);
+                    } else {
+                        log('❌ No user data found in localStorage', 'error');
+                        document.getElementById('authStatus').innerHTML = `
+                            <div class="status error">Not authenticated</div>
+                        `;
+                        document.getElementById('userInfo').textContent = 'No user information available';
+                    }
+                }
+            } catch (error) {
+                log(`Error checking auth status: ${error.message}`, 'error');
+                document.getElementById('authStatus').innerHTML = `
+                    <div class="status error">Error: ${error.message}</div>
+                `;
+            }
+        }
+        
+        // Check Community Session
+        async function checkCommunitySession() {
+            try {
+                log('Checking community session directly...');
+                
+                const timestamp = Date.now();
+                const response = await fetch(`/community/session-check.php?_=${timestamp}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`Community session check response: ${JSON.stringify(data)}`, 'info');
+                    
+                    if (data.authenticated && data.user) {
+                        log(`✅ Authenticated on community as ${data.user.name || data.user.display_name}`, 'success');
+                        document.getElementById('userInfo').textContent = JSON.stringify(data.user, null, 2);
+                    } else {
+                        log('❌ Not authenticated on community', 'error');
+                    }
+                } else {
+                    log(`❌ Failed to check community session: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log(`Error checking community session: ${error.message}`, 'error');
+            }
+        }
+        
+        // Force Session Check
+        async function forceSessionCheck() {
+            try {
+                log('Forcing enhanced session check...');
+                
+                const timestamp = Date.now();
+                const response = await fetch(`/community/enhanced-session-check.php?force=1&_=${timestamp}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`Enhanced session check response: ${JSON.stringify(data)}`, 'info');
+                    
+                    if (data.authenticated && data.user) {
+                        log(`✅ Authenticated on community as ${data.user.name || data.user.display_name}`, 'success');
+                        document.getElementById('userInfo').textContent = JSON.stringify(data.user, null, 2);
+                    } else {
+                        log('❌ Not authenticated on community', 'error');
+                    }
+                } else {
+                    log(`❌ Failed to force session check: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log(`Error forcing session check: ${error.message}`, 'error');
+            }
+        }
+        
+        // Import Session
+        async function importSession() {
+            try {
+                log('Attempting to import session if it exists...');
+                
+                // Try to use session bridge
+                if (window.sessionBridge && typeof window.sessionBridge.checkLoginStateBeforeRedirect === 'function') {
+                    log('Using session bridge to check and import session');
+                    
+                    const isAuthenticated = await window.sessionBridge.checkLoginStateBeforeRedirect();
+                    if (isAuthenticated) {
+                        log(`✅ Session imported successfully`, 'success');
+                        checkAuthStatus(); // Refresh the status display
+                    } else {
+                        log('❌ No session available to import', 'error');
+                    }
+                } else {
+                    log('Session bridge not available, using direct check', 'warning');
+                    
+                    // Fallback to direct check
+                    const timestamp = Date.now();
+                    const response = await fetch(`/community/session-check.php?_=${timestamp}`, {
+                        method: 'GET',
+                        credentials: 'include',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        if (data.authenticated && data.user) {
+                            log(`✅ Community session found, importing: ${data.user.name}`, 'success');
+                            
+                            // Store user data
+                            localStorage.setItem('g2own_user', JSON.stringify(data.user));
+                            localStorage.setItem('oauth_user', JSON.stringify(data.user));
+                            
+                            // Dispatch event
+                            window.dispatchEvent(new CustomEvent('g2own:auth-update', { 
+                                detail: { user: data.user } 
+                            }));
+                            
+                            // Refresh status
+                            checkAuthStatus();
+                        } else {
+                            log('❌ No community session available to import', 'error');
+                        }
+                    } else {
+                        log(`❌ Failed to check community session: ${response.status}`, 'error');
+                    }
+                }
+            } catch (error) {
+                log(`Error importing session: ${error.message}`, 'error');
+            }
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check initial auth status
+            checkAuthStatus();
+            
+            // Check auth status button
+            document.getElementById('checkAuthBtn').addEventListener('click', checkAuthStatus);
+            
+            // Clear session storage button
+            document.getElementById('clearSessionBtn').addEventListener('click', () => {
+                sessionStorage.clear();
+                log('Session storage cleared', 'warning');
+            });
+            
+            // Clear local storage button
+            document.getElementById('clearLocalBtn').addEventListener('click', () => {
+                localStorage.clear();
+                log('Local storage cleared', 'warning');
+                checkAuthStatus();
+            });
+            
+            // Login buttons
+            document.getElementById('loginBtn').addEventListener('click', () => {
+                log('Redirecting to standard login...');
+                window.location.href = '/community/login/?return=' + encodeURIComponent(window.location.href);
+            });
+            
+            document.getElementById('loginNoAutoBtn').addEventListener('click', () => {
+                log('Redirecting to login with no_auto_redirect parameter...');
+                window.location.href = '/community/login/?return=' + encodeURIComponent(window.location.href) + '&no_auto_redirect=1';
+            });
+            
+            document.getElementById('loginDirectBtn').addEventListener('click', () => {
+                log('Redirecting directly to login page...');
+                window.location.href = '/community/login/';
+            });
+            
+            document.getElementById('simulateSuccessBtn').addEventListener('click', () => {
+                log('Simulating login success redirect...');
+                window.location.href = window.location.origin + window.location.pathname + '?login=success';
+            });
+            
+            // Session test buttons
+            document.getElementById('checkCommunitySessionBtn').addEventListener('click', checkCommunitySession);
+            document.getElementById('forceSessionCheckBtn').addEventListener('click', forceSessionCheck);
+            document.getElementById('importSessionBtn').addEventListener('click', importSession);
+            
+            // Clear log button
+            document.getElementById('clearLogBtn').addEventListener('click', () => {
+                document.getElementById('debugLog').innerHTML = '';
+            });
+            
+            // Log initialization
+            log('Test page initialized');
+            log(`URL: ${window.location.href}`);
+            
+            // Check URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('login')) {
+                log(`Login parameter detected: ${urlParams.get('login')}`, 'warning');
+            }
+        });
+    </script>
+</body>
+</html>

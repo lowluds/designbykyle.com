@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Analytics Consent Test - G2Own</title>
+    
+    <!-- Analytics Consent Styles -->
+    <link rel="stylesheet" href="assets/css/analytics-consent.css">
+    
+    <style>
+        body {
+            font-family: Inter, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        button {
+            background: linear-gradient(45deg, #8b0000, #a50000);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .info-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+        .console-output {
+            background: #000;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍪 Analytics Consent Test</h1>
+        
+        <div class="info-box">
+            <p>This page tests the analytics consent functionality. Open your browser's developer console to see the detailed logs.</p>
+        </div>
+
+        <div class="test-buttons">
+            <button onclick="testShowBanner()">Show Consent Banner</button>
+            <button onclick="testDebugStatus()">Debug Consent Status</button>
+            <button onclick="testClearConsent()">Clear Consent</button>
+            <button onclick="reloadPage()">Reload Page</button>
+        </div>
+
+        <div class="info-box">
+            <h3>Expected Behavior:</h3>
+            <ul style="text-align: left;">
+                <li>First visit: Banner should appear automatically</li>
+                <li>After clicking Accept/Decline: Banner should not appear for 1 year</li>
+                <li>Console should show clear logs about consent status</li>
+                <li>localStorage and cookie should be set correctly</li>
+            </ul>
+        </div>
+
+        <div id="console-output" class="console-output">
+            Console output will appear here...
+        </div>
+    </div>
+
+    <!-- Analytics Script -->
+    <script src="assets/js/analytics.js"></script>
+
+    <!-- Test Functions -->
+    <script>
+        // Capture console logs and display them
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        const outputDiv = document.getElementById('console-output');
+
+        function addToOutput(message, type = 'log') {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌ ERROR:' : '🔧 LOG:';
+            outputDiv.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            addToOutput(args.join(' '), 'log');
+        };
+
+        console.error = function(...args) {
+            originalConsoleError.apply(console, args);
+            addToOutput(args.join(' '), 'error');
+        };
+
+        // Test functions
+        function testShowBanner() {
+            // Remove any existing banner first
+            const existingBanner = document.getElementById('analytics-consent-banner');
+            if (existingBanner) {
+                existingBanner.remove();
+            }
+            
+            // Force show banner
+            if (typeof showConsentBanner === 'function') {
+                showConsentBanner();
+                console.log('Test: Manually triggered consent banner');
+            } else {
+                console.error('Test: showConsentBanner function not available');
+            }
+        }
+
+        function testDebugStatus() {
+            if (typeof debugConsentStatus === 'function') {
+                debugConsentStatus();
+            } else {
+                console.error('Test: debugConsentStatus function not available');
+            }
+        }
+
+        function testClearConsent() {
+            if (typeof clearAnalyticsConsent === 'function') {
+                clearAnalyticsConsent();
+            } else {
+                console.error('Test: clearAnalyticsConsent function not available');
+            }
+        }
+
+        function reloadPage() {
+            console.log('Test: Reloading page to test consent persistence...');
+            window.location.reload();
+        }
+
+        // Initialize output
+        console.log('Analytics Consent Test Page loaded');
+        console.log('Checking initial consent status...');
+        
+        // Check if analytics functions are available
+        setTimeout(() => {
+            if (typeof window.debugConsentStatus === 'function') {
+                window.debugConsentStatus();
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

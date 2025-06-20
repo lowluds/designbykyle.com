@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Layout Test</title>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #0d0d0d;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .layout-container {
+            width: 100vw;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background: rgba(13, 13, 13, 0.95);
+            border-right: 1px solid rgba(139, 0, 0, 0.2);
+            z-index: 999;
+            transition: transform 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            background: rgba(13, 13, 13, 0.95);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .main-content {
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .toggle-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+            z-index: 10000;
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 767px) {
+            .sidebar {
+                width: 280px;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .navbar {
+                left: 0;
+                width: 100vw;
+                height: 60px;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100vw;
+                margin-top: 60px;
+            }
+        }
+        
+        /* Tablet and desktop styles */
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 280px;
+                transform: translateX(0);
+            }
+            
+            .navbar {
+                left: 280px;
+                width: calc(100vw - 280px);
+                height: 70px;
+            }
+            
+            .main-content {
+                margin-left: 280px;
+                width: calc(100vw - 280px);
+                margin-top: 70px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .sidebar {
+                width: 320px;
+            }
+            
+            .navbar {
+                left: 320px;
+                width: calc(100vw - 320px);
+            }
+            
+            .main-content {
+                margin-left: 320px;
+                width: calc(100vw - 320px);
+            }
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Status indicator -->
+        <div class="status" id="status">
+            Loading...
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <h3>Navigation</h3>
+            <p>Screen: <span id="screen-size">-</span></p>
+            <p>Breakpoint: <span id="breakpoint">-</span></p>
+            <p>Sidebar: <span id="sidebar-status">-</span></p>
+            <button class="toggle-btn" onclick="toggleSidebar()">Toggle Sidebar</button>
+        </aside>
+        
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <span>G2Own Layout Test</span>
+            <button class="toggle-btn" onclick="toggleSidebar()" style="margin-left: auto;">☰</button>
+        </nav>
+        
+        <!-- Main content -->
+        <main class="main-content" id="main-content">
+            <div class="hero">
+                <h1 class="hero-title">
+                    <div>Next-Gen</div>
+                    <div style="background: linear-gradient(135deg, #8b0000, #ffffff, #8b0000); -webkit-background-clip: text; background-clip: text; color: transparent;">Digital Marketplace</div>
+                    <div>Experience</div>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                    Instant delivery, secure transactions, unbeatable prices.
+                </p>
+                
+                <div>
+                    <button class="toggle-btn">Explore Marketplace</button>
+                    <button class="toggle-btn">Learn More</button>
+                </div>
+            </div>
+            
+            <div style="margin: 40px 0; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;">
+                <h2>Layout Testing</h2>
+                <p><strong>Expected Behavior:</strong></p>
+                <ul>
+                    <li>✅ Mobile (< 768px): Sidebar hidden, slides in when toggled</li>
+                    <li>✅ Tablet (768px+): Sidebar visible (280px wide)</li>
+                    <li>✅ Desktop (1024px+): Sidebar visible (320px wide)</li>
+                    <li>✅ No horizontal overflow at any screen size</li>
+                    <li>✅ Hero text fully visible without cutoff</li>
+                </ul>
+                
+                <p><strong>Current Status:</strong></p>
+                <div id="test-results">Running tests...</div>
+            </div>
+        </main>
+        
+        <!-- Mobile overlay -->
+        <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    </div>
+
+    <script>
+        let currentBreakpoint = '';
+        
+        function updateStatus() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const bodyWidth = document.body.scrollWidth;
+            
+            // Update screen info
+            document.getElementById('screen-size').textContent = `${width}x${height}`;
+            
+            // Determine breakpoint
+            let breakpoint = '';
+            if (width < 768) breakpoint = 'mobile';
+            else if (width < 1024) breakpoint = 'tablet';
+            else breakpoint = 'desktop';
+            
+            document.getElementById('breakpoint').textContent = breakpoint;
+            currentBreakpoint = breakpoint;
+            
+            // Check sidebar status
+            const sidebar = document.getElementById('sidebar');
+            const isVisible = window.getComputedStyle(sidebar).transform === 'matrix(1, 0, 0, 1, 0, 0)';
+            document.getElementById('sidebar-status').textContent = isVisible ? 'Visible' : 'Hidden';
+            
+            // Update main status
+            const hasOverflow = bodyWidth > width;
+            const status = document.getElementById('status');
+            if (hasOverflow) {
+                status.innerHTML = `❌ OVERFLOW: ${bodyWidth - width}px<br>${breakpoint} (${width}px)`;
+                status.style.background = 'rgba(255, 0, 0, 0.9)';
+            } else {
+                status.innerHTML = `✅ NO OVERFLOW<br>${breakpoint} (${width}px)`;
+                status.style.background = 'rgba(0, 100, 0, 0.9)';
+            }
+            
+            // Update test results
+            const results = document.getElementById('test-results');
+            let resultText = '';
+            
+            if (breakpoint === 'mobile') {
+                resultText += isVisible ? '❌ Sidebar should be hidden on mobile<br>' : '✅ Sidebar correctly hidden on mobile<br>';
+            } else {
+                resultText += isVisible ? '✅ Sidebar correctly visible on tablet/desktop<br>' : '❌ Sidebar should be visible on tablet/desktop<br>';
+            }
+            
+            resultText += hasOverflow ? '❌ Horizontal overflow detected<br>' : '✅ No horizontal overflow<br>';
+            
+            results.innerHTML = resultText;
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (currentBreakpoint === 'mobile') {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                // Prevent body scroll when sidebar is open
+                if (sidebar.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            setTimeout(updateStatus, 350);
+        }
+        
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            setTimeout(updateStatus, 350);
+        }
+        
+        // Initialize
+        updateStatus();
+        
+        // Update on resize
+        window.addEventListener('resize', () => {
+            setTimeout(updateStatus, 100);
+        });
+        
+        // Update on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateStatus, 500);
+        });
+        
+        // Close sidebar on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        });
+    </script>
+</body>
+</html>

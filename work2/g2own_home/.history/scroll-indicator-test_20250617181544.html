@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Indicator Test - G2Own</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-top: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            font-size: 0.8rem;
+            z-index: 10000;
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+        }
+        
+        @media (min-width: 481px) and (max-width: 767px) {
+            h1 { font-size: 2.5rem; }
+        }
+        
+        @media (min-width: 768px) and (max-width: 1024px) {
+            h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <div>Scroll Position: <span id="scroll-pos">0</span>px</div>
+        <div>Screen Width: <span id="screen-width"></span>px</div>
+        <div>Breakpoint: <span id="breakpoint"></span></div>
+    </div>
+
+    <section id="hero" class="hero">
+        <div class="content">
+            <h1>Scroll Indicator Test</h1>
+            <p>The red "Scroll to explore" indicator should appear at the bottom of this section only when you're at the very top of the page (scroll position = 0).</p>
+            <p>Try scrolling down and back up to test the behavior.</p>
+            <p>The indicator should be fully responsive and match the red theme.</p>
+        </div>
+    </section>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator preloader-complete" id="scroll-indicator">
+        <div class="scroll-text">Scroll to explore</div>
+    </div>
+
+    <section class="section">
+        <div class="content">
+            <h2>Section 2</h2>
+            <p>The scroll indicator should be hidden when you reach this section.</p>
+            <p>Scroll back to the top to see it reappear.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="content">
+            <h2>Section 3</h2>
+            <p>More content to test scrolling behavior.</p>
+            <p>The indicator should only be visible when at the very top of the hero section.</p>
+        </div>
+    </section>
+
+    <script>
+        // Update test info
+        function updateTestInfo() {
+            const scrollPos = document.getElementById('scroll-pos');
+            const screenWidth = document.getElementById('screen-width');
+            const breakpoint = document.getElementById('breakpoint');
+            
+            const width = window.innerWidth;
+            let bp = 'Desktop (1025px+)';
+            if (width <= 480) bp = 'Mobile (≤480px)';
+            else if (width <= 767) bp = 'Large Mobile (481-767px)';
+            else if (width <= 1024) bp = 'Tablet (768-1024px)';
+            
+            scrollPos.textContent = Math.round(window.scrollY);
+            screenWidth.textContent = width;
+            breakpoint.textContent = bp;
+        }
+        
+        // Update on scroll and resize
+        window.addEventListener('scroll', updateTestInfo);
+        window.addEventListener('resize', updateTestInfo);
+        updateTestInfo();
+        
+        // Simple scroll indicator logic for testing
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        let isVisible = true;
+        
+        function handleScrollIndicator() {
+            const shouldShow = window.scrollY === 0;
+            
+            if (shouldShow && !isVisible) {
+                scrollIndicator.classList.remove('hidden');
+                scrollIndicator.style.display = 'block';
+                scrollIndicator.style.visibility = 'visible';
+                scrollIndicator.style.opacity = '1';
+                isVisible = true;
+            } else if (!shouldShow && isVisible) {
+                scrollIndicator.classList.add('hidden');
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.visibility = 'hidden';
+                setTimeout(() => {
+                    if (scrollIndicator.classList.contains('hidden')) {
+                        scrollIndicator.style.display = 'none';
+                    }
+                }, 400);
+                isVisible = false;
+            }
+        }
+        
+        // Initial state
+        handleScrollIndicator();
+        
+        // Throttled scroll handler
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    handleScrollIndicator();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // Click to scroll
+        scrollIndicator.addEventListener('click', () => {
+            document.querySelector('.section').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+</body>
+</html>

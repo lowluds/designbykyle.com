@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful - G2Own</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .success-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 400px;
+        }
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(34, 197, 94, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 24px;
+            color: rgba(34, 197, 94, 0.9);
+            animation: successPulse 2s ease-in-out infinite;
+        }
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+        }
+        h2 { color: rgba(34, 197, 94, 0.9); margin-bottom: 1rem; }
+        p { color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem; }
+        .redirect-btn {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .redirect-btn:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h2>Login Successful!</h2>
+        <p>Welcome to G2Own! You will be redirected to the homepage shortly.</p>
+        <button class="redirect-btn" onclick="redirectNow()">Continue to G2Own</button>
+    </div>
+
+    <script>
+        console.log('✅ OAuth Success Handler - Login completed');
+        
+        // Auto redirect after 3 seconds
+        let countdown = 3;
+        const autoRedirect = setTimeout(() => {
+            redirectToHome();
+        }, 3000);
+        
+        function redirectNow() {
+            clearTimeout(autoRedirect);
+            redirectToHome();
+        }
+        
+        function redirectToHome() {
+            console.log('🔄 Redirecting to G2Own homepage...');
+            
+            // Add success parameter to trigger any welcome actions
+            window.location.href = '/?login_success=true';
+        }
+        
+        // Handle any post-login setup here if needed
+        try {
+            // Signal to parent window if in popup
+            if (window.opener && !window.opener.closed) {
+                window.opener.postMessage({
+                    type: 'oauth_success',
+                    success: true
+                }, 'https://g2own.com');
+            }
+        } catch (e) {
+            console.log('No parent window communication needed');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+/* G2Own Analytics Consent Banner Styles
+ * GDPR-compliant cookie consent banner with G2Own branding
+ */
+
+#analytics-consent-banner {
+    /* Positioning */
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10000;
+    
+    /* Visual Design */
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    
+    /* Typography */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: white;
+    
+    /* Layout */
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 1.25rem;
+    
+    /* Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+#analytics-consent-banner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Banner Content */
+#analytics-consent-banner h4 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: #ff6b6b;
+    line-height: 1.3;
+}
+
+#analytics-consent-banner p {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#analytics-consent-banner p:last-child {
+    margin: 0.75rem 0 0 0;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Button Container */
+.consent-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Accept Button */
+#consent-accept-btn {
+    background: linear-gradient(45deg, #8b0000, #a50000);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: inherit;
+    
+    /* Animation */
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+#consent-accept-btn:hover {
+    background: linear-gradient(45deg, #a50000, #c00000);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
+#consent-accept-btn:active {
+    transform: scale(0.98);
+}
+
+/* Decline Button */
+#consent-decline-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: inherit;
+    
+    /* Animation */
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+#consent-decline-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+#consent-decline-btn:active {
+    transform: scale(0.98);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    #analytics-consent-banner {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 1rem;
+    }
+    
+    #analytics-consent-banner h4 {
+        font-size: 0.9rem;
+    }
+    
+    #analytics-consent-banner p {
+        font-size: 0.8rem;
+    }
+    
+    .consent-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    #consent-accept-btn,
+    #consent-decline-btn {
+        width: 100%;
+        padding: 0.875rem 1rem;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    #analytics-consent-banner {
+        background: rgba(0, 0, 0, 0.98);
+        border: 2px solid #ffffff;
+    }
+    
+    #consent-accept-btn {
+        background: #ff0000;
+        border: 1px solid #ffffff;
+    }
+    
+    #consent-decline-btn {
+        border: 2px solid #ffffff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    #analytics-consent-banner {
+        transition: opacity 0.2s ease;
+        transform: none;
+    }
+    
+    #consent-accept-btn,
+    #consent-decline-btn {
+        transition: background-color 0.2s ease;
+        transform: none !important;
+    }
+    
+    #consent-accept-btn:hover,
+    #consent-decline-btn:hover {
+        transform: none !important;
+    }
+}
+
+/* Focus Styles for Accessibility */
+#consent-accept-btn:focus,
+#consent-decline-btn:focus {
+    outline: 2px solid #ff6b6b;
+    outline-offset: 2px;
+}
+
+/* Dark Mode Override (in case theme changes) */
+@media (prefers-color-scheme: light) {
+    #analytics-consent-banner {
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    
+    #analytics-consent-banner h4 {
+        color: #8b0000;
+    }
+    
+    #analytics-consent-banner p {
+        color: rgba(0, 0, 0, 0.8);
+    }
+    
+    #analytics-consent-banner p:last-child {
+        color: rgba(0, 0, 0, 0.6);
+    }
+    
+    #consent-decline-btn {
+        color: #333;
+        border-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    #consent-decline-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.6);
+    }
+}

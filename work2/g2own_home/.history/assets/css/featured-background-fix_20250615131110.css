@@ -1,0 +1,27 @@
+/* EMERGENCY BACKGROUND FIX - Load this LAST */
+/* Absolute maximum priority background fix for Featured Games section */
+
+.featured-products-section {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.05) 1px, transparent 1px) !important;
+    background-size: 80px 80px !important;
+}
+
+.featured-products-section::before,
+.featured-products-section::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    opacity: 0 !important;
+}
+
+/* Ensure all child elements have transparent backgrounds */
+.featured-products-container,
+.featured-products-header,
+.featured-products-grid,
+.featured-view-all {
+    background: transparent !important;
+}

@@ -1,0 +1,174 @@
+/**
+ * Responsive Left Sidebar Navigation
+ * Makes the left navigation bar buttons adapt to different screen sizes
+ */
+
+/* Base mobile-first styles for navigation icons and buttons */
+.nav-icon {
+    font-size: 1rem !important;
+    min-width: 1.2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-link {
+    padding: 0.75rem 1.25rem !important;
+    font-size: 0.9rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.preview-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    font-size: 1rem !important;
+    margin: 0.4rem 0 !important;
+    border-width: 1.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+    .nav-icon {
+        font-size: 0.9rem !important;
+        min-width: 1rem !important;
+    }
+    
+    .nav-link {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .nav-text {
+        font-size: 0.8rem !important;
+    }
+    
+    .preview-icon {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+        font-size: 0.9rem !important;
+        margin: 0.3rem 0 !important;
+    }
+    
+    .left-sidebar {
+        width: 100% !important;
+        max-width: 300px !important;
+    }
+}
+
+/* Tablets and small laptops (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .preview-icon {
+        width: 2.8rem !important;
+        height: 2.8rem !important;
+        font-size: 1.1rem !important;
+        margin: 0.5rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 70px !important;
+        padding: 0.8rem 0.5rem !important;
+    }
+}
+
+/* Desktop and larger tablets (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .preview-icon {
+        width: 3rem !important;
+        height: 3rem !important;
+        font-size: 1.2rem !important;
+        margin: 0.6rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 80px !important;
+        padding: 1rem 0.6rem !important;
+    }
+}
+
+/* Large desktop screens (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .preview-icon {
+        width: 3.2rem !important;
+        height: 3.2rem !important;
+        font-size: 1.3rem !important;
+        margin: 0.7rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 85px !important;
+        padding: 1.2rem 0.7rem !important;
+    }
+}
+
+/* Extra large screens (1441px and up) */
+@media (min-width: 1441px) {
+    .preview-icon {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        font-size: 1.4rem !important;
+        margin: 0.8rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 90px !important;
+        padding: 1.5rem 0.8rem !important;
+    }
+}
+
+/* Hover effects that scale with button size */
+.preview-icon:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .preview-icon {
+        border-width: 2px !important;
+    }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .preview-icon {
+        width: 2.3rem !important;
+        height: 2.3rem !important;
+        margin: 0.3rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 65px !important;
+        padding: 0.5rem 0.4rem !important;
+    }
+}
+
+/* Ultra-wide screens (21:9 aspect ratio) */
+@media (min-width: 2560px) {
+    .preview-icon {
+        width: 4rem !important;
+        height: 4rem !important;
+        font-size: 1.6rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .sidebar-icon-preview {
+        width: 100px !important;
+        padding: 2rem 1rem !important;
+    }
+}
+
+/* Ensure buttons maintain consistent black background across all sizes */
+.preview-icon {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+    border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* Touch-friendly adjustments for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    .preview-icon {
+        min-height: 44px !important; /* Apple's recommended minimum touch target */
+        min-width: 44px !important;
+        touch-action: manipulation !important;
+    }
+}

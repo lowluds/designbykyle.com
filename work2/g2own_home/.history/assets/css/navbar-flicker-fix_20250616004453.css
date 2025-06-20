@@ -1,0 +1,141 @@
+/*!
+ * Navbar Flicker Fix
+ * Prevents navbar from fading in/out during initial load
+ */
+
+/* CRITICAL: Force immediate navbar visibility - BUT ALLOW ICON ANIMATIONS */
+.navbar, #navbar {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+}
+
+/* Prevent navbar container from animating, not the icons */
+.navbar .nav-container,
+.navbar .nav-brand,
+.navbar .nav-menu,
+.navbar .nav-actions {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Prevent navbar flickering during auth initialization */
+.navbar-loading {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    animation: none !important;
+}
+
+/* Ensure navbar stays stable during loading */
+.navbar {
+    opacity: 1;
+    visibility: visible;
+    transition: none !important;
+}
+
+/* Only allow transitions after page is fully loaded */
+.navbar-loaded {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease !important;
+}
+
+/* Prevent auth elements from causing layout shifts */
+.navbar .user-menu-toggle,
+.navbar .user-dropdown,
+.navbar #authButtonContainer,
+.navbar #profileContainer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Only enable smooth transitions after everything loads */
+.page-loaded .navbar .user-menu-toggle,
+.page-loaded .navbar .user-dropdown,
+.page-loaded .navbar #authButtonContainer,
+.page-loaded .navbar #profileContainer {
+    transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Force navbar to be immediately visible */
+#navbar {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+}
+
+/* Prevent any CSS animations from affecting navbar during load */
+body:not(.page-loaded) .navbar *,
+body:not(.page-loaded) #navbar *,
+body.loading .navbar *,
+body.loading #navbar * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Emergency override for any flickering elements */
+.navbar-loading .nav-container,
+.navbar-loading .nav-brand,
+.navbar-loading .nav-menu,
+.navbar-loading .nav-actions {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Prevent global page animations from affecting navbar */
+.navbar,
+.navbar *,
+#navbar,
+#navbar * {
+    will-change: auto !important;
+}
+
+/* Override any fadeIn animations specifically for navbar */
+.navbar.animate-fade-in,
+#navbar.animate-fade-in,
+.navbar .animate-fade-in,
+#navbar .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* IMPORTANT: Allow icon animations while preventing navbar flicker */
+/* Re-enable animations for navbar icons after page load */
+.navbar-loaded .nav-gaming-icon,
+.navbar-loaded .ph-storefront,
+.navbar-loaded .ph-game-controller,
+.navbar-loaded .ph-cube,
+.navbar-loaded .ph-shield-check,
+.navbar-loaded .ph-magnifying-glass,
+.navbar-loaded .ph-shopping-cart,
+.navbar-loaded .ph-user-circle {
+    animation: unset !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Override flicker fix specifically for icon hover animations */
+.navbar .nav-gaming-icon:hover,
+.navbar .ph-storefront:hover,
+.navbar .ph-game-controller:hover,
+.navbar .ph-cube:hover,
+.navbar .ph-shield-check:hover,
+.navbar .ph-magnifying-glass:hover,
+.navbar .ph-shopping-cart:hover,
+.navbar .ph-user-circle:hover {
+    animation: unset !important;
+    transform: unset !important;
+}

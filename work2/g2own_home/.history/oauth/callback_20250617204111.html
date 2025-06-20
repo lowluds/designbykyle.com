@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback - G2Own</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .callback-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 400px;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(239, 68, 68, 0.3);
+            border-top: 3px solid rgba(239, 68, 68, 0.9);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 { color: rgba(239, 68, 68, 0.9); margin-bottom: 1rem; }
+        p { color: rgba(255, 255, 255, 0.7); }
+    </style>
+</head>
+<body>
+    <div class="callback-container">
+        <div class="spinner"></div>
+        <h2>Processing Login...</h2>
+        <p>Please wait while we complete your authentication.</p>
+    </div>
+
+    <script>
+        console.log('🔐 OAuth Callback Handler - Processing...');
+        
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const state = urlParams.get('state');
+        const error = urlParams.get('error');
+        const errorDescription = urlParams.get('error_description');
+        
+        if (error) {
+            console.error('❌ OAuth Error:', error, errorDescription);
+            document.querySelector('h2').textContent = 'Login Error';
+            document.querySelector('p').textContent = errorDescription || 'Authentication failed. Please try again.';
+            
+            // Redirect back to main site with error
+            setTimeout(() => {
+                window.location.href = '/?oauth_error=' + encodeURIComponent(error);
+            }, 3000);
+            
+        } else if (code) {
+            console.log('✅ OAuth Code received:', code);
+            
+            // Check if this is a popup window
+            if (window.opener && !window.opener.closed) {
+                console.log('📤 Sending code to parent window...');
+                
+                // Send code to parent window
+                window.opener.postMessage({
+                    type: 'oauth_callback',
+                    code: code,
+                    state: state,
+                    success: true
+                }, 'https://g2own.com');
+                
+                // Close popup
+                window.close();
+                
+            } else {
+                console.log('🔄 Direct redirect - processing code...');
+                
+                // Store code temporarily and redirect to main site
+                sessionStorage.setItem('oauth_code', code);
+                if (state) sessionStorage.setItem('oauth_state', state);
+                
+                // Redirect to main site
+                window.location.href = '/?oauth_success=true';
+            }
+            
+        } else {
+            console.error('❌ No code or error in callback');
+            document.querySelector('h2').textContent = 'Invalid Callback';
+            document.querySelector('p').textContent = 'No authentication data received.';
+            
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - G2Own</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Analytics for Error Tracking -->
+    <script>
+        // Basic analytics for error pages
+        if (window.parent === window && typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '404 - Page Not Found',
+                page_location: window.location.href,
+                error_type: '404'
+            });
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background system matching main site */
+        .bg-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%);
+            filter: blur(40px);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 30%;
+            left: 60%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+        
+        /* Grid overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes grid-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+        
+        /* Main error container */
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 0 2rem;
+            z-index: 10;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Error number */
+        .error-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(8rem, 15vw, 12rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(239, 68, 68, 0.6));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            from { text-shadow: 0 0 30px rgba(239, 68, 68, 0.3); }
+            to { text-shadow: 0 0 50px rgba(239, 68, 68, 0.5); }
+        }
+        
+        /* Error title */
+        .error-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Error message */
+        .error-message {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Action buttons */
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border-color: rgba(239, 68, 68, 0.9);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(239, 68, 68, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Quick links */
+        .quick-links {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .quick-links h3 {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .quick-links-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .quick-link {
+            color: rgba(239, 68, 68, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .quick-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: rgba(239, 68, 68, 0.8);
+            transition: width 0.3s ease;
+        }
+        
+        .quick-link:hover {
+            color: rgba(239, 68, 68, 1);
+        }
+        
+        .quick-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Logo */
+        .error-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 0 1rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .quick-links-list {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background System -->
+    <div class="bg-system">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    
+    <!-- Error Content -->
+    <div class="error-container">
+        <div class="error-logo">G2Own</div>
+        
+        <div class="error-number">404</div>
+        
+        <h1 class="error-title">Page Not Found</h1>
+        
+        <p class="error-message">
+            The page you're looking for seems to have vanished into the digital void. Let's get you back on track.
+        </p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <i class="ph ph-house"></i>
+                Back to Home
+            </a>            <a href="#" class="btn btn-secondary">
+                <i class="ph ph-magnifying-glass"></i>
+                Search Demo (Disabled)
+            </a>
+        </div>
+        
+        <div class="quick-links">
+            <h3>Popular Destinations</h3>            <div class="quick-links-list">
+                <a href="#" class="quick-link">Demo Store</a>
+                <a href="#" class="quick-link">Demo Support</a>
+                <a href="#" class="quick-link">Demo Community</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* Digital Marketplace Text Animation - Synchronized with Other Headers */
+
+/* Base gradient styling for Digital Marketplace text */
+.hero-title .title-line-2.gradient-text {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-white) 50%, var(--primary-red) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+    position: relative;
+}
+
+/* Synchronized gradient animation matching other section headers */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Performance optimization */
+.hero-title .title-line-2.gradient-text {
+    will-change: background-position;
+    transform: translateZ(0);
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-title .title-line-2.gradient-text {
+        animation: none;
+        background-position: 50% 50%;
+    }
+}
+
+/* Fallback for browsers without gradient text support */
+@supports not (-webkit-background-clip: text) {
+    .hero-title .title-line-2.gradient-text {
+        background: none;
+        color: var(--primary-white);
+        -webkit-text-fill-color: var(--primary-white);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .hero-title .title-line-2.gradient-text {
+        background: var(--primary-white);
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        color: var(--primary-white);
+    }
+}

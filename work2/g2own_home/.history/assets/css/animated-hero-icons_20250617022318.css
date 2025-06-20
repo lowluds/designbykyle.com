@@ -1,0 +1,197 @@
+/* Animated Hero Button Icons
+   Provides unique animated icons for each hero button
+   Replaces cart icons with context-appropriate animated SVGs
+*/
+
+/* Base styles for all animated icons */
+.animated-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+
+.animated-icon svg {
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+}
+
+/* ===== Marketplace/Globe Icon Animation ===== */
+.marketplace-icon .globe-circle {
+    animation: pulseOpacity 4s infinite alternate;
+}
+
+.marketplace-icon .globe-horizontal,
+.marketplace-icon .globe-vertical {
+    animation: dashFlow 4s infinite linear;
+    stroke-dasharray: 30;
+    stroke-dashoffset: 0;
+}
+
+.marketplace-icon .storefront-roof {
+    animation: roofPulse 3s infinite alternate;
+    transform-origin: center;
+}
+
+.marketplace-icon .pulse-circle {
+    animation: expandCircle 3s infinite;
+    transform-origin: center;
+    stroke-width: 0.5;
+}
+
+.marketplace-icon .inner-circle {
+    animation: pulseOpacity 2s infinite alternate;
+}
+
+@keyframes dashFlow {
+    0% {
+        stroke-dashoffset: 30;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes roofPulse {
+    0%, 100% {
+        transform: translateY(0);
+        stroke-width: 2;
+    }
+    50% {
+        transform: translateY(-1px);
+        stroke-width: 2.5;
+    }
+}
+
+@keyframes expandCircle {
+    0% {
+        transform: scale(0.1);
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* ===== Learn More/Book Icon Animation ===== */
+.learn-more-icon .book-left {
+    animation: bookLeft 4s infinite alternate ease-in-out;
+    transform-origin: left center;
+}
+
+.learn-more-icon .book-right {
+    animation: bookRight 4s infinite alternate ease-in-out;
+    transform-origin: right center;
+}
+
+.learn-more-icon .page-line-1 {
+    animation: pulseLine 2s infinite alternate;
+    animation-delay: 0s;
+}
+
+.learn-more-icon .page-line-2 {
+    animation: pulseLine 2s infinite alternate;
+    animation-delay: 0.5s;
+}
+
+.learn-more-icon .page-line-3 {
+    animation: pulseLine 2s infinite alternate;
+    animation-delay: 1s;
+}
+
+.learn-more-icon .page-line-4 {
+    animation: pulseLine 2s infinite alternate;
+    animation-delay: 1.5s;
+}
+
+.learn-more-icon .info-dot {
+    animation: pulseDot 2s infinite alternate;
+}
+
+.learn-more-icon .info-line {
+    animation: dashFlow 3s infinite linear;
+    stroke-dasharray: 10;
+    stroke-dashoffset: 0;
+}
+
+@keyframes bookLeft {
+    0% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(-15deg);
+    }
+}
+
+@keyframes bookRight {
+    0% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(15deg);
+    }
+}
+
+@keyframes pulseLine {
+    0%, 100% {
+        stroke-width: 1;
+        opacity: 0.5;
+    }
+    50% {
+        stroke-width: 1.5;
+        opacity: 1;
+    }
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseOpacity {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Hover states - enhance animations on hover */
+.btn:hover .marketplace-icon .globe-horizontal,
+.btn:hover .marketplace-icon .globe-vertical {
+    animation-duration: 2s;
+}
+
+.btn:hover .marketplace-icon .pulse-circle {
+    animation-duration: 1.5s;
+}
+
+.btn:hover .learn-more-icon .book-left {
+    animation-duration: 2s;
+}
+
+.btn:hover .learn-more-icon .book-right {
+    animation-duration: 2s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .animated-icon {
+        width: 20px;
+        height: 20px;
+    }
+}

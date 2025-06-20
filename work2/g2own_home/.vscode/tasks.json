@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Open G2Own Website",
+			"type": "shell",
+			"command": "start",
+			"args": [
+				"file:///d:/All%20Projects/Web%20Projects/g2own_home/index.html"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

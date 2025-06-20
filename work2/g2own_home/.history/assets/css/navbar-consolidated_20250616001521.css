@@ -1,0 +1,162 @@
+/* 
+ * G2Own Navbar - Consolidated Styles
+ * Combines: navbar-optimized.css, navbar-performance.css, navbar-flicker-fix.css
+ * Eliminates redundancies and provides unified navbar styling
+ */
+
+/* ===== CRITICAL PERFORMANCE & FLICKER FIX ===== */
+.navbar, #navbar {
+    /* Performance optimizations */
+    contain: layout style paint;
+    will-change: background-color, backdrop-filter;
+    
+    /* Flicker prevention */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    
+    /* Core positioning */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    
+    /* Styling */
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+    height: 70px;
+}
+
+/* Only allow transitions after page is fully loaded */
+.navbar-loaded {
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease !important;
+}
+
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.98);
+    border-bottom-color: rgba(139, 0, 0, 0.4);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== NAVBAR CONTAINER ===== */
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* ===== LOGO SECTION ===== */
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    contain: layout style;
+    will-change: transform;
+}
+
+.nav-logo:hover {
+    transform: translateY(-1px);
+}
+
+/* ===== NAVIGATION LINKS ===== */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-self: center;
+}
+
+.nav-link {
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    contain: layout style;
+    will-change: color, transform;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background: rgba(139, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.nav-link.active {
+    color: #ff4444;
+    background: rgba(139, 0, 0, 0.15);
+}
+
+/* ===== AUTH SECTION ===== */
+.navbar .user-menu-toggle,
+.navbar .user-dropdown,
+.navbar #authButtonContainer,
+.navbar #profileContainer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+.nav-mobile-toggle {
+    display: none;
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        grid-template-columns: auto 1fr auto;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .nav-mobile-toggle {
+        display: flex;
+    }
+}
+
+/* ===== HARDWARE ACCELERATION ===== */
+.nav-logo,
+.nav-link,
+.nav-mobile-toggle,
+.search-dropdown,
+.user-dropdown {
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transform: translateZ(0);
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Premium Digital Marketplace</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts with display swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="G2Own - Premium digital marketplace for games, software, and digital goods. Best prices, instant delivery, secure transactions.">
+    <meta name="keywords" content="digital games, game keys, software, digital marketplace, gaming">
+    <meta name="author" content="G2Own">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="G2Own - Premium Digital Marketplace">
+    <meta property="og:description" content="Buy, sell, and trade digital games and goods">
+    <meta property="og:type" content="website">
+    
+    <!-- CSS with optimized loading -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <link rel="preload" href="assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.css"></noscript>
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#ef4444">
+</head>
+<body class="loading"><!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-glow bg-glow-3"></div>
+        <div class="bg-grid"></div>
+    </div>    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <!-- Logo -->
+                <div class="navbar-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <span>G2</span>
+                        </div>
+                        <span class="logo-text">G2Own</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="navbar-nav">
+                    <a href="#marketplace" class="nav-link">Marketplace</a>
+                    <a href="#games" class="nav-link">Games</a>
+                    <a href="#digital-goods" class="nav-link">Digital Goods</a>
+                    <a href="#support" class="nav-link">Support</a>
+                    
+                    <div class="navbar-actions">
+                        <button class="btn btn-outline">Sign In</button>
+                        <button class="btn btn-primary">Join Now</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-content">
+                    <a href="#marketplace" class="mobile-nav-link">Marketplace</a>
+                    <a href="#games" class="mobile-nav-link">Games</a>
+                    <a href="#digital-goods" class="mobile-nav-link">Digital Goods</a>
+                    <a href="#support" class="mobile-nav-link">Support</a>
+                    <div class="mobile-menu-actions">
+                        <button class="btn btn-outline">Sign In</button>
+                        <button class="btn btn-primary">Join Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>    <!-- Main Content -->
+    <main>
+        <!-- Hero Section with Game Carousel -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="hero-title-line">Digital</span>
+                            <span class="hero-title-line">Marketplace</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Buy, sell, and trade digital games and goods in the most advanced marketplace
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large">
+                                Explore Marketplace
+                            </button>
+                            <button class="btn btn-outline btn-large">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Game Carousel -->
+                    <div class="carousel-wrapper">
+                        <div class="carousel" id="game-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-track" id="carousel-track">
+                                    <!-- Carousel slides will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <!-- Carousel Controls -->
+                            <button class="carousel-btn carousel-prev" id="prev-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            <button class="carousel-btn carousel-next" id="next-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>        <!-- Featured Categories -->
+        <section class="categories" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Popular Categories</span>
+                    <h2 class="section-title">Discover Digital Goods</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Game Keys Category -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Game Keys</h3>
+                        <p class="category-description">Instant digital game keys for all major platforms including Steam, Epic, Origin and more.</p>
+                        <a href="#" class="category-link">
+                            Explore Games
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- In-Game Items Category -->
+                    <div class="category-card category-card-featured">
+                        <div class="category-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">In-Game Items</h3>
+                        <p class="category-description">Rare skins, weapons, currencies, and collectibles for your favorite games.</p>
+                        <a href="#" class="category-link">
+                            Browse Items
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Accounts Category -->
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="category-title">Game Accounts</h3>
+                        <p class="category-description">Pre-leveled accounts with rare items, achievements, and exclusive content.</p>
+                        <a href="#" class="category-link">
+                            View Accounts
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo logo-small">
+                        <div class="logo-icon">
+                            <span>G2</span>
+                        </div>
+                        <span class="logo-text">G2Own</span>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <a href="#marketplace">Marketplace</a>
+                    <a href="#games">Games</a>
+                    <a href="#digital-goods">Digital Goods</a>
+                    <a href="#support">Support</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="#" class="social-link">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.745.098.118.112.222.085.343-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.748-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 G2Own. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+    <script src="assets/js/particles-config.js"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

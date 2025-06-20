@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Test - G2Own</title>
+    <style>
+        body { 
+            margin: 0; 
+            background: #1a1a1a; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+        }
+        
+        .navbar {
+            background: #2a2a2a;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-btn {
+            background: #8b0000;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .search-dropdown {
+            position: fixed;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 20px;
+            z-index: 1000;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background: #444;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .debug {
+            margin: 20px;
+            padding: 20px;
+            background: #333;
+            border-radius: 8px;
+        }
+        
+        .test-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>G2Own Search Test</div>
+        <div class="search-container">
+            <button class="search-btn" id="top-search-toggle">🔍 Search</button>
+        </div>
+    </div>
+    
+    <div class="search-dropdown" id="top-search-dropdown" style="display: none;">
+        <div class="search-input-container">
+            <input type="text" id="top-search-input" class="search-input" placeholder="Type to search...">
+            <button class="search-submit" id="search-submit">→</button>
+            <button class="search-clear" id="search-clear">×</button>
+        </div>
+    </div>
+    
+    <div class="debug">
+        <h3>Debug Information</h3>
+        <p id="debug-output">Waiting for search initialization...</p>
+        
+        <h3>Test Controls</h3>
+        <button class="test-btn" onclick="testSearchToggle()">Test Toggle</button>
+        <button class="test-btn" onclick="testSearchInput()">Test Input</button>
+        <button class="test-btn" onclick="testSearchSubmit()">Test Submit</button>
+    </div>
+    
+    <script>
+        // Simple debug functions
+        function updateDebug(message) {
+            document.getElementById('debug-output').innerHTML += '<br>' + new Date().toLocaleTimeString() + ': ' + message;
+        }
+        
+        function testSearchToggle() {
+            const btn = document.getElementById('top-search-toggle');
+            if (btn) {
+                updateDebug('Clicking search toggle button...');
+                btn.click();
+            } else {
+                updateDebug('ERROR: Search toggle button not found!');
+            }
+        }
+        
+        function testSearchInput() {
+            const input = document.getElementById('top-search-input');
+            if (input) {
+                input.value = 'test search';
+                updateDebug('Set input value to: ' + input.value);
+                
+                // Trigger Enter key
+                const event = new KeyboardEvent('keypress', {
+                    key: 'Enter',
+                    code: 'Enter',
+                    keyCode: 13
+                });
+                input.dispatchEvent(event);
+                updateDebug('Triggered Enter key event');
+            } else {
+                updateDebug('ERROR: Search input not found!');
+            }
+        }
+        
+        function testSearchSubmit() {
+            const btn = document.getElementById('search-submit');
+            if (btn) {
+                updateDebug('Clicking search submit button...');
+                btn.click();
+            } else {
+                updateDebug('ERROR: Search submit button not found!');
+            }
+        }
+        
+        // Load the actual search.js
+        updateDebug('Loading search functionality...');
+    </script>
+    
+    <!-- Load the actual search script -->
+    <script src="assets/js/search.js"></script>
+    
+    <script>
+        // Add additional debugging after search.js loads
+        setTimeout(() => {
+            updateDebug('Search script loaded. Elements check:');
+            updateDebug('- Toggle: ' + (document.getElementById('top-search-toggle') ? 'Found' : 'NOT FOUND'));
+            updateDebug('- Dropdown: ' + (document.getElementById('top-search-dropdown') ? 'Found' : 'NOT FOUND'));
+            updateDebug('- Input: ' + (document.getElementById('top-search-input') ? 'Found' : 'NOT FOUND'));
+            updateDebug('- Submit: ' + (document.getElementById('search-submit') ? 'Found' : 'NOT FOUND'));
+            updateDebug('- Clear: ' + (document.getElementById('search-clear') ? 'Found' : 'NOT FOUND'));
+        }, 1000);
+    </script>
+</body>
+</html>

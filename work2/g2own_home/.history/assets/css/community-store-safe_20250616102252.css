@@ -1,0 +1,77 @@
+/*!
+ * G2Own Community Store Integration Styles - Non-Breaking Version
+ * Minimal styles that enhance existing design without conflicts
+ * Version: 1.0.0 Safe
+ */
+
+/* Community Cart Link Enhancement */
+.community-cart-link:hover {
+    background: rgba(139, 0, 0, 0.2) !important;
+    color: #ffffff !important;
+    transform: scale(1.05) !important;
+}
+
+/* Community Store FAB Enhancements */
+.community-store-fab button:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 6px 25px rgba(139, 0, 0, 0.4) !important;
+}
+
+/* Community Categories Enhancement */
+.community-categories-added {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Safe animations that won't conflict */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .community-store-fab {
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .community-store-fab button {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+    }
+    
+    .community-cart-link {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+        margin-left: 8px !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .community-cart-link {
+        border-width: 2px !important;
+    }
+    
+    .community-store-fab button {
+        border: 2px solid #ffffff !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .community-cart-link,
+    .community-store-fab button,
+    .community-categories-added {
+        transition: none !important;
+        animation: none !important;
+    }
+}

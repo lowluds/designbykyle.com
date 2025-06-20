@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Private Browsing Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2563eb;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+        .card {
+            background-color: #f3f4f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .output {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+        .warning {
+            color: #f59e0b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+        }
+        .note {
+            background-color: #fef3c7;
+            padding: 10px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>G2Own Private Browsing Test</h1>
+    
+    <div class="card">
+        <h2>Storage Availability Test</h2>
+        <p>This page tests if the SafeStorage implementation works correctly in private browsing mode.</p>
+        
+        <div class="actions">
+            <button onclick="testStorage()">Test Storage</button>
+            <button onclick="clearStorage()">Clear Storage</button>
+            <button onclick="writeData()">Write Test Data</button>
+            <button onclick="readData()">Read Test Data</button>
+        </div>
+        
+        <div id="storage-output" class="output">Results will appear here...</div>
+    </div>
+    
+    <div class="card">
+        <h2>Storage Availability</h2>
+        <table id="storage-table">
+            <tr>
+                <th>Storage Type</th>
+                <th>Available</th>
+                <th>Test Value</th>
+            </tr>
+            <tr>
+                <td>localStorage</td>
+                <td id="localStorage-available">Checking...</td>
+                <td id="localStorage-value">-</td>
+            </tr>
+            <tr>
+                <td>sessionStorage</td>
+                <td id="sessionStorage-available">Checking...</td>
+                <td id="sessionStorage-value">-</td>
+            </tr>
+            <tr>
+                <td>Cookies</td>
+                <td id="cookies-available">Checking...</td>
+                <td id="cookies-value">-</td>
+            </tr>
+            <tr>
+                <td>SafeStorage</td>
+                <td id="safeStorage-available">Checking...</td>
+                <td id="safeStorage-value">-</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="note">
+        <strong>Note:</strong> In private browsing mode, localStorage and sessionStorage may fail silently or throw exceptions. 
+        The SafeStorage implementation provides fallbacks to ensure data can always be stored.
+    </div>
+    
+    <!-- Include the storage scripts from the main site -->
+    <script src="assets/js/safe-storage.js"></script>
+    
+    <script>
+        // Helper function to log to the output area
+        function log(message, type = 'info') {
+            const output = document.getElementById('storage-output');
+            const date = new Date().toLocaleTimeString();
+            output.innerHTML += `<span class="${type}">[${date}] ${message}</span>\n`;
+            // Auto-scroll to bottom
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        // Test if storage types are available
+        function testStorage() {
+            log('Testing storage availability...', 'info');
+            
+            // Test localStorage
+            try {
+                localStorage.setItem('test', 'localStorage');
+                document.getElementById('localStorage-available').textContent = '✅ Available';
+                document.getElementById('localStorage-value').textContent = localStorage.getItem('test');
+                log('localStorage: Available', 'success');
+            } catch (e) {
+                document.getElementById('localStorage-available').textContent = '❌ Not available';
+                log('localStorage: Not available - ' + e.message, 'error');
+            }
+            
+            // Test sessionStorage
+            try {
+                sessionStorage.setItem('test', 'sessionStorage');
+                document.getElementById('sessionStorage-available').textContent = '✅ Available';
+                document.getElementById('sessionStorage-value').textContent = sessionStorage.getItem('test');
+                log('sessionStorage: Available', 'success');
+            } catch (e) {
+                document.getElementById('sessionStorage-available').textContent = '❌ Not available';
+                log('sessionStorage: Not available - ' + e.message, 'error');
+            }
+            
+            // Test cookies
+            try {
+                document.cookie = "testCookie=cookieStorage; path=/";
+                const hasCookie = document.cookie.indexOf("testCookie=") !== -1;
+                if (hasCookie) {
+                    document.getElementById('cookies-available').textContent = '✅ Available';
+                    document.getElementById('cookies-value').textContent = 'cookieStorage';
+                    log('Cookies: Available', 'success');
+                } else {
+                    document.getElementById('cookies-available').textContent = '❌ Not available';
+                    log('Cookies: Not available', 'error');
+                }
+            } catch (e) {
+                document.getElementById('cookies-available').textContent = '❌ Not available';
+                log('Cookies: Not available - ' + e.message, 'error');
+            }
+            
+            // Test SafeStorage
+            if (window.safeStorage) {
+                try {
+                    window.safeStorage.setItem('test', 'safeStorage');
+                    const value = window.safeStorage.getItem('test');
+                    document.getElementById('safeStorage-available').textContent = '✅ Available';
+                    document.getElementById('safeStorage-value').textContent = value;
+                    log('SafeStorage: Available and working', 'success');
+                } catch (e) {
+                    document.getElementById('safeStorage-available').textContent = '⚠️ Error';
+                    log('SafeStorage: Error - ' + e.message, 'error');
+                }
+            } else {
+                document.getElementById('safeStorage-available').textContent = '❌ Not loaded';
+                log('SafeStorage: Not loaded', 'error');
+            }
+        }
+        
+        // Clear all storage
+        function clearStorage() {
+            log('Clearing all storage...', 'warning');
+            
+            // Clear localStorage
+            try {
+                localStorage.clear();
+                localStorage.removeItem('test');
+                document.getElementById('localStorage-value').textContent = '-';
+                log('localStorage: Cleared', 'success');
+            } catch (e) {
+                log('localStorage: Failed to clear - ' + e.message, 'error');
+            }
+            
+            // Clear sessionStorage
+            try {
+                sessionStorage.clear();
+                sessionStorage.removeItem('test');
+                document.getElementById('sessionStorage-value').textContent = '-';
+                log('sessionStorage: Cleared', 'success');
+            } catch (e) {
+                log('sessionStorage: Failed to clear - ' + e.message, 'error');
+            }
+            
+            // Clear cookies
+            try {
+                document.cookie = "testCookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+                document.getElementById('cookies-value').textContent = '-';
+                log('Cookies: Cleared', 'success');
+            } catch (e) {
+                log('Cookies: Failed to clear - ' + e.message, 'error');
+            }
+            
+            // Clear SafeStorage
+            if (window.safeStorage) {
+                try {
+                    window.safeStorage.clear();
+                    window.safeStorage.removeItem('test');
+                    document.getElementById('safeStorage-value').textContent = '-';
+                    log('SafeStorage: Cleared', 'success');
+                } catch (e) {
+                    log('SafeStorage: Failed to clear - ' + e.message, 'error');
+                }
+            } else {
+                log('SafeStorage: Not loaded', 'error');
+            }
+            
+            // Update display
+            testStorage();
+        }
+        
+        // Write test data to simulate auth data
+        function writeData() {
+            log('Writing test authentication data...', 'info');
+            
+            const testUser = {
+                id: '123456',
+                name: 'Test User',
+                email: 'test@example.com',
+                avatar: 'https://example.com/avatar.jpg',
+                role: 'member',
+                lastLogin: new Date().toISOString()
+            };
+            
+            if (window.safeStorage) {
+                try {
+                    window.safeStorage.setItem('g2own_user', JSON.stringify(testUser));
+                    window.safeStorage.setItem('last_login_redirect', Date.now().toString());
+                    window.safeStorage.setItem('login_redirect_time', Date.now().toString());
+                    log('SafeStorage: Test data written successfully', 'success');
+                } catch (e) {
+                    log('SafeStorage: Failed to write test data - ' + e.message, 'error');
+                }
+            } else {
+                log('SafeStorage: Not loaded', 'error');
+            }
+        }
+        
+        // Read auth data
+        function readData() {
+            log('Reading authentication data...', 'info');
+            
+            if (window.safeStorage) {
+                try {
+                    const userData = window.safeStorage.getItem('g2own_user');
+                    const lastRedirect = window.safeStorage.getItem('last_login_redirect');
+                    const redirectTime = window.safeStorage.getItem('login_redirect_time');
+                    
+                    log('SafeStorage - User data: ' + (userData || 'Not found'), userData ? 'success' : 'warning');
+                    log('SafeStorage - Last redirect: ' + (lastRedirect || 'Not found'), lastRedirect ? 'success' : 'warning');
+                    log('SafeStorage - Redirect time: ' + (redirectTime || 'Not found'), redirectTime ? 'success' : 'warning');
+                    
+                    if (userData) {
+                        try {
+                            const user = JSON.parse(userData);
+                            log('Parsed user data:', 'success');
+                            log(JSON.stringify(user, null, 2), 'success');
+                        } catch (e) {
+                            log('Failed to parse user data: ' + e.message, 'error');
+                        }
+                    }
+                } catch (e) {
+                    log('SafeStorage: Failed to read data - ' + e.message, 'error');
+                }
+            } else {
+                log('SafeStorage: Not loaded', 'error');
+            }
+        }
+        
+        // Run tests when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                testStorage();
+                log('Page loaded. Ready for testing.', 'info');
+                log('Tip: Open this page in private/incognito mode to test the fallback mechanisms.', 'info');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
