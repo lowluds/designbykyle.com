@@ -1218,19 +1218,6 @@ body.section-active .panel.visible {
     }
 }
 
-@media (max-width: 600px) {
-  .hero-stats-modern {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-  }
-  .stat-pill {
-    min-width: 0;
-    width: 100%;
-    max-width: 260px;
-  }
-}
-
 /* Hide animated background on Recent Works page/section */
 body.section-active #work.visible ~ .animated-background,
 #work.visible ~ .animated-background,
@@ -1368,10 +1355,18 @@ h1, .panel h2 {
 /* Buttons */
 .hero-cta {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 2.2rem 0 1.2rem 0;
+}
+
+@media (max-width: 600px) {
+    .hero-cta {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
 }
 
 .cta-button {
@@ -1868,4 +1863,69 @@ h1, .panel h2 {
 }
 .portfolio-card:hover .preview-overlay {
   opacity: 1;
+}
+
+/* Preloader Spinner Styles */
+#preloader-spinner {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: #0a1020; /* dark blue-black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.7s cubic-bezier(.77,0,.18,1);
+}
+#preloader-spinner.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+.pl {
+    display: block;
+    width: 6.25em;
+    height: 6.25em;
+}
+.pl__ring, .pl__ball {
+    animation: ring 2s ease-out infinite;
+}
+.pl__ball {
+    animation-name: ball;
+}
+@media (prefers-color-scheme: dark) {
+    #preloader-spinner {
+        background: #0a1020;
+    }
+}
+@keyframes ring {
+    from {
+        stroke-dasharray: 0 257 0 0 1 0 0 258;
+    }
+    25% {
+        stroke-dasharray: 0 0 0 0 257 0 258 0;
+    }
+    50%, to {
+        stroke-dasharray: 0 0 0 0 0 515 0 0;
+    }
+}
+@keyframes ball {
+    from, 50% {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: 1;
+    }
+    64% {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: -109;
+    }
+    78% {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: -145;
+    }
+    92% {
+        animation-timing-function: ease-in;
+        stroke-dashoffset: -157;
+    }
+    57%, 71%, 85%, 99%, to {
+        animation-timing-function: ease-out;
+        stroke-dashoffset: -163;
+    }
 }

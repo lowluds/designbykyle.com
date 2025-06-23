@@ -50,6 +50,25 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
 <body>
+    <!-- Preloader Spinner -->
+    <div id="preloader-spinner">
+        <svg class="pl" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="pl-grad1" x1="1" y1="0.5" x2="0" y2="0.5">
+                    <stop offset="0%" stop-color="#2196f3" /> <!-- blue -->
+                    <stop offset="50%" stop-color="#fff" /> <!-- white -->
+                    <stop offset="100%" stop-color="#0a1020" /> <!-- dark blue-black -->
+                </linearGradient>
+                <linearGradient id="pl-grad2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#2196f3" />
+                    <stop offset="50%" stop-color="#fff" />
+                    <stop offset="100%" stop-color="#0a1020" />
+                </linearGradient>
+            </defs>
+            <circle class="pl__ring" cx="100" cy="100" r="82" fill="none" stroke="url(#pl-grad1)" stroke-width="36" stroke-dasharray="0 257 1 257" stroke-dashoffset="0.01" stroke-linecap="round" transform="rotate(-90,100,100)" />
+            <line class="pl__ball" stroke="url(#pl-grad2)" x1="100" y1="18" x2="100.01" y2="182" stroke-width="36" stroke-dasharray="1 165" stroke-linecap="round" />
+        </svg>
+    </div>
     <!-- Animated Background -->
     <div class="animated-background" id="animatedBg"></div>
     
@@ -379,6 +398,15 @@
         }
 
         typeSkill();
+    });
+
+    // Preloader fade out on window load
+    window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader-spinner');
+        if (preloader) {
+            preloader.classList.add('hide');
+            setTimeout(() => preloader.style.display = 'none', 2000); // slower fade out
+        }
     });
     </script>
 
