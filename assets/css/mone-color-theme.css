@@ -1,0 +1,325 @@
+/*
+	Mone-Inspired Color Scheme - Vibrant Parallax Theme
+	Matching the beautiful gradient and color palette from mone.flatheme.net
+*/
+
+:root {
+	/* Primary Colors - Darker Mone Inspired */
+	--primary-purple: #6D28D9;
+	--primary-pink: #BE185D;
+	--primary-orange: #C2410C;
+	--primary-blue: #1E40AF;
+	
+	/* Gradient Combinations - Darker */
+	--gradient-primary: linear-gradient(135deg, #6D28D9 0%, #BE185D 50%, #C2410C 100%);
+	--gradient-secondary: linear-gradient(135deg, #0F0C29 0%, #1A1625 50%, #2D1B69 100%);
+	--gradient-hero: linear-gradient(135deg, #0A0A0A 0%, #1A1625 50%, #1E1B4B 100%);
+	--gradient-card: linear-gradient(135deg, rgba(109, 40, 217, 0.08) 0%, rgba(190, 24, 93, 0.08) 100%);
+	
+	/* Background Colors - Much Darker */
+	--bg-primary: #0A0A0A;
+	--bg-secondary: #111111;
+	--bg-card: rgba(20, 20, 30, 0.7);
+	--bg-glass: rgba(255, 255, 255, 0.03);
+	
+	/* Text Colors - Muted */
+	--text-primary: #E5E7EB;
+	--text-secondary: #D1D5DB;
+	--text-muted: #6B7280;
+	--text-accent: #6D28D9;
+	
+	/* Border Colors - Subtle */
+	--border-primary: rgba(109, 40, 217, 0.2);
+	--border-secondary: rgba(255, 255, 255, 0.08);
+	
+	/* Shadow Colors - Darker */
+	--shadow-primary: rgba(109, 40, 217, 0.25);
+	--shadow-secondary: rgba(190, 24, 93, 0.2);
+	--shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+/* Global Background Override - Darker */
+body {
+	background: var(--bg-primary) !important;
+	background-image: var(--gradient-hero) !important;
+	color: var(--text-primary) !important;
+}
+
+body::before {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #0A0A0A 0%, #111111 50%, #1E1B4B 100%);
+	z-index: -1;
+}
+
+/* Navigation - Darker Style */
+#nav {
+	background: rgba(10, 10, 10, 0.98) !important;
+	backdrop-filter: blur(20px) !important;
+	border: 1px solid var(--border-primary) !important;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+#nav a {
+	color: var(--text-secondary) !important;
+	transition: all 0.3s ease;
+}
+
+#nav a:hover,
+#nav a:focus,
+#nav a.active {
+	background: linear-gradient(135deg, rgba(109, 40, 217, 0.3), rgba(190, 24, 93, 0.2)) !important;
+	color: var(--text-primary) !important;
+	transform: scale(1.05);
+	box-shadow: 0 4px 15px var(--shadow-primary);
+}
+
+/* Hero Section - Darker Inspired */
+#main > .panel.intro {
+	background: var(--gradient-hero) !important;
+	position: relative;
+	overflow: hidden;
+}
+
+#main > .panel.intro::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: 
+		radial-gradient(circle at 20% 80%, rgba(109, 40, 217, 0.15) 0%, transparent 50%),
+		radial-gradient(circle at 80% 20%, rgba(190, 24, 93, 0.15) 0%, transparent 50%),
+		radial-gradient(circle at 40% 40%, rgba(194, 65, 12, 0.1) 0%, transparent 50%);
+	animation: parallaxFloat 20s ease-in-out infinite;
+	z-index: 1;
+}
+
+@keyframes parallaxFloat {
+	0%, 100% { transform: translateY(0px) rotate(0deg); }
+	50% { transform: translateY(-30px) rotate(2deg); }
+}
+
+/* Typography - Mone Style */
+#main > .panel.intro header h1 {
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-shadow: none !important;
+	animation: gradientGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes gradientGlow {
+	from { 
+		filter: drop-shadow(0 0 15px rgba(109, 40, 217, 0.3));
+	}
+	to { 
+		filter: drop-shadow(0 0 25px rgba(190, 24, 93, 0.4));
+	}
+}
+
+.typewriter {
+	color: rgba(109, 40, 217, 0.9) !important;
+	border-right-color: var(--primary-pink) !important;
+}
+
+.hero-tagline {
+	color: rgba(209, 213, 219, 0.8) !important;
+}
+
+/* Stats Section - Darker Inspired */
+.stat {
+	background: rgba(20, 20, 30, 0.6) !important;
+	backdrop-filter: blur(15px);
+	border: 1px solid rgba(109, 40, 217, 0.15) !important;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.stat:hover {
+	background: rgba(30, 30, 40, 0.7) !important;
+	border-color: rgba(109, 40, 217, 0.3) !important;
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.stat-number {
+	background: var(--gradient-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.stat-label {
+	color: var(--text-muted) !important;
+}
+
+/* Buttons - Darker Style */
+.cta-button.primary,
+.modern-submit-btn {
+	background: linear-gradient(135deg, #6D28D9, #BE185D) !important;
+	color: var(--text-primary) !important;
+	border: none !important;
+	box-shadow: 0 8px 25px rgba(109, 40, 217, 0.25);
+}
+
+.cta-button.primary:hover,
+.modern-submit-btn:hover {
+	box-shadow: 0 12px 35px rgba(109, 40, 217, 0.35);
+	transform: translateY(-3px);
+}
+
+.cta-button.secondary {
+	background: transparent !important;
+	border: 2px solid rgba(109, 40, 217, 0.6) !important;
+	color: rgba(109, 40, 217, 0.9) !important;
+}
+
+.cta-button.secondary:hover {
+	background: rgba(109, 40, 217, 0.1) !important;
+	color: var(--text-primary) !important;
+	border-color: rgba(190, 24, 93, 0.7) !important;
+}
+
+/* Portfolio Cards - Darker Inspired */
+.portfolio-card {
+	background: rgba(20, 20, 30, 0.6) !important;
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(109, 40, 217, 0.1) !important;
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio-card:hover {
+	background: rgba(30, 30, 40, 0.7) !important;
+	border-color: rgba(109, 40, 217, 0.3) !important;
+	box-shadow: 
+		0 15px 40px rgba(0, 0, 0, 0.5),
+		0 0 30px rgba(109, 40, 217, 0.2);
+	transform: translateY(-8px);
+}
+
+.portfolio-content h4 {
+	color: var(--text-primary) !important;
+}
+
+.portfolio-content p {
+	color: rgba(209, 213, 219, 0.8) !important;
+}
+
+/* Tech Stack Tags - Darker Style */
+.tech-stack span {
+	background: rgba(109, 40, 217, 0.15) !important;
+	color: rgba(109, 40, 217, 0.9) !important;
+	border: 1px solid rgba(109, 40, 217, 0.2);
+	box-shadow: 0 2px 8px rgba(109, 40, 217, 0.1);
+}
+
+/* Contact Form - Darker Inspired */
+.modern-contact-form {
+	background: rgba(20, 20, 30, 0.7) !important;
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(109, 40, 217, 0.15) !important;
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.modern-input,
+.modern-textarea {
+	background: rgba(15, 15, 25, 0.8) !important;
+	border: 1px solid rgba(109, 40, 217, 0.15) !important;
+	color: var(--text-primary) !important;
+}
+
+.modern-input:focus,
+.modern-textarea:focus {
+	background: rgba(20, 20, 30, 0.9) !important;
+	border-color: rgba(109, 40, 217, 0.4) !important;
+	box-shadow: 0 0 20px rgba(109, 40, 217, 0.2) !important;
+}
+
+.modern-input::placeholder,
+.modern-textarea::placeholder {
+	color: rgba(107, 114, 128, 0.8) !important;
+}
+
+/* Form Labels */
+.form-group label {
+	color: rgba(109, 40, 217, 0.8) !important;
+}
+
+/* Contact Info */
+.contact-info {
+	background: rgba(20, 20, 30, 0.6) !important;
+	backdrop-filter: blur(15px);
+	border: 1px solid rgba(109, 40, 217, 0.1);
+}
+
+.contact-method {
+	color: rgba(209, 213, 219, 0.8) !important;
+}
+
+.contact-method i {
+	background: linear-gradient(135deg, #6D28D9, #BE185D);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Profile Ring - Mone Style */
+.profile-ring {
+	border: 3px solid transparent !important;
+	background: var(--gradient-primary);
+	-webkit-mask: 
+		radial-gradient(farthest-side, transparent calc(100% - 3px), white calc(100% - 3px));
+	mask: 
+		radial-gradient(farthest-side, transparent calc(100% - 3px), white calc(100% - 3px));
+	box-shadow: 
+		0 0 30px var(--shadow-primary),
+		inset 0 0 30px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Success Message */
+.success-message {
+	background: var(--gradient-card) !important;
+	border: 1px solid var(--border-primary) !important;
+	color: var(--primary-purple) !important;
+}
+
+/* Scrollbar - Mone Style */
+::-webkit-scrollbar {
+	width: 8px;
+	background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-track {
+	background: rgba(139, 92, 246, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--gradient-primary);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--primary-pink);
+}
+
+/* Parallax Particles */
+.floating-particle {
+	background: var(--gradient-primary) !important;
+	border-radius: 50%;
+	box-shadow: 0 0 20px var(--shadow-primary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+	.portfolio-card,
+	.modern-contact-form,
+	.contact-info {
+		background: rgba(15, 12, 41, 0.9) !important;
+		border-color: var(--border-primary);
+	}
+}

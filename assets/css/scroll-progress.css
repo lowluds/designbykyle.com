@@ -1,0 +1,194 @@
+/* Scroll Progress Bar Styles */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 200%;
+    animation: progressShimmer 3s ease-in-out infinite;
+    transition: width 0.1s ease-out;
+    position: relative;
+}
+
+@keyframes progressShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.scroll-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+    border-radius: 0 2px 2px 0;
+}
+
+/* Smooth entrance animation */
+.scroll-progress.visible {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Section indicators (optional enhancement) */
+.section-indicators {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.section-indicator.active {
+    background: #667eea;
+    border-color: #667eea;
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+}
+
+.section-indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
+}
+
+/* Tooltip for section indicators */
+.section-indicator::before {
+    content: attr(data-section);
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.section-indicator:hover::before {
+    opacity: 1;
+}
+
+/* Reading progress indicator (alternative style) */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 9999;
+}
+
+.reading-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .section-indicators {
+        right: 10px;
+        gap: 8px;
+    }
+    
+    .section-indicator {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .section-indicator::before {
+        right: 20px;
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .scroll-progress {
+        height: 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .section-indicators {
+        display: none; /* Hide on very small screens */
+    }
+    
+    .scroll-progress {
+        height: 2px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress-bar {
+        animation: none;
+        transition: width 0.2s ease;
+    }
+    
+    .section-indicator {
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    
+    .section-indicator:hover,
+    .section-indicator.active {
+        transform: none;
+    }
+}
+
+/* Hide progress bar when at top of page */
+.scroll-progress.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Smooth show/hide transition */
+.scroll-progress {
+    transition: opacity 0.3s ease;
+}

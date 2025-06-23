@@ -1,0 +1,812 @@
+/* Clean Apple-Inspired Design System */
+/* Reset and optimization for a truly clean, modern look */
+
+/* CSS Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Variables - Apple-inspired colors */
+:root {
+    --background-primary: #000000;
+    --background-secondary: #1d1d1f;
+    --background-tertiary: #2d2d30;
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1a6;
+    --accent-blue: #007aff;
+    --accent-purple: #5856d6;
+    --accent-gradient: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+    --glass-bg: rgba(29, 29, 31, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --border-radius-small: 8px;
+    --border-radius-medium: 12px;
+    --border-radius-large: 16px;
+    --border-radius-pill: 50px;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+}
+
+/* Base Styles */
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-system) !important;
+    background: var(--background-primary) !important;
+    color: var(--text-primary) !important;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    height: 100vh;
+    overflow: hidden; /* Prevent all scrolling on home page */
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* Allow scrolling only when viewing other sections */
+body.section-active {
+    overflow-y: auto;
+    height: auto;
+}
+
+/* Override existing wrapper styles */
+#wrapper {
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important; /* Exact viewport height */
+    position: relative;
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    overflow: hidden; /* No overflow */
+}
+
+/* Override any existing main styles */
+#main {
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100vh !important; /* Exact viewport height */
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: block !important;
+    overflow: hidden; /* No overflow */
+}
+
+/* Hide animated background for clean look */
+.animated-background {
+    display: none !important;
+}
+
+/* Modern Navigation Bar */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 0 6px;
+    border-radius: var(--border-radius-medium);
+    background: transparent;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    font-size: 18px;
+    position: relative;
+}
+
+#nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+#nav a.active {
+    background: rgba(0, 122, 255, 0.15);
+    color: var(--accent-blue);
+}
+
+#nav a span {
+    display: none;
+}
+
+/* Hero Section - Full viewport, override any existing styles */
+.panel.intro {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--background-primary) !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 1200px; /* Increased from 980px for wider content */
+    width: 90%; /* Use percentage for responsive width */
+    padding: 0 3rem; /* Increased padding for better spacing */
+    z-index: 2;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    max-height: 100vh; /* Never exceed viewport */
+    overflow: hidden; /* Prevent content overflow */
+    box-sizing: border-box; /* Include padding in height calculation */
+    margin: 0 auto; /* Center horizontally */
+}
+
+.hero-content h1 {
+    font-size: clamp(3rem, 6vw, 6rem) !important; /* Adjusted for better fit */
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    background: var(--accent-gradient) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.1 !important;
+}
+
+.typewriter {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important; /* Adjusted for better proportion */
+    color: var(--text-secondary) !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.01em !important;
+}
+
+.hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.3rem) !important; /* Adjusted for better readability */
+    color: var(--text-secondary) !important;
+    margin-bottom: 2.5rem !important; /* Reduced margin */
+    max-width: 800px !important; /* Increased max-width */
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+}
+
+/* Apple-style CTA Buttons */
+.hero-cta {
+    display: flex;
+    gap: 1.5rem; /* Increased gap for better spacing */
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem; /* Reduced margin to prevent overflow */
+    max-width: 100%; /* Ensure buttons don't exceed container */
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 28px; /* Slightly adjusted padding */
+    border-radius: var(--border-radius-pill);
+    font-size: clamp(15px, 2vw, 17px); /* Responsive font size */
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+    min-width: 160px; /* Slightly reduced min-width */
+    font-family: var(--font-system);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.cta-button.primary {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: var(--shadow-subtle);
+}
+
+.cta-button.primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+}
+
+.cta-button.secondary:hover {
+    background: var(--accent-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Contact Section Specific */
+.contact-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.contact-cta .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    border-radius: var(--border-radius-pill);
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    border: none;
+    cursor: pointer;
+    gap: 10px;
+    min-width: 180px;
+    font-family: var(--font-system);
+}
+
+.contact-cta .cta-button.primary {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: var(--shadow-subtle);
+}
+
+.contact-cta .cta-button.primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+}
+
+.contact-cta .cta-button.secondary {
+    background: transparent;
+    color: var(--accent-blue);
+    border: 2px solid var(--accent-blue);
+}
+
+.contact-cta .cta-button.secondary:hover {
+    background: var(--accent-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .contact-cta {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact-cta .cta-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Minimalist Stats */
+.hero-stats {
+    display: flex;
+    gap: 3rem; /* Reduced gap for better fit */
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem; /* Controlled spacing */
+    margin-bottom: 0; /* No bottom margin to prevent overflow */
+    max-width: 100%; /* Ensure stats don't exceed container */
+}
+
+.stat {
+    text-align: center;
+    flex-shrink: 0; /* Prevent shrinking */
+    min-width: 80px; /* Ensure minimum width for readability */
+}
+
+.stat-number {
+    display: block;
+    font-size: clamp(2rem, 4vw, 2.5rem); /* Responsive sizing */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.stat-label {
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem); /* Responsive sizing */
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Section Management - Simplified approach */
+/* Default state: Show only hero section */
+.panel {
+    display: none;
+}
+
+.panel.intro {
+    display: flex !important;
+    width: 100vw;
+    height: 100vh; /* Exact viewport height */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: hidden; /* Prevent any content overflow */
+    max-height: 100vh; /* Ensure it never exceeds viewport */
+    padding: 0; /* Remove any padding that might cause issues */
+}
+
+/* Show home section by default */
+#home {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: hidden; /* Prevent scrolling on home page */
+    height: 100vh; /* Exact viewport height */
+    max-height: 100vh; /* Never exceed viewport */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    width: 100vw; /* Full viewport width */
+}
+
+/* Proper section management - only hide non-current sections */
+/* Show home by default */
+#home {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hide other sections by default - IMPORTANT! */
+#about,
+#work, 
+#contact {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* When a specific section is active, hide others */
+body.section-active .panel:not(.visible) {
+    display: none !important;
+}
+
+/* Show the active section */
+body.section-active .panel.visible {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: calc(100vh - 64px);
+    margin-top: 64px;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* When going back to home, ensure others are hidden */
+body:not(.section-active) #about,
+body:not(.section-active) #work,
+body:not(.section-active) #contact {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Only show sections that are explicitly made visible by JavaScript */
+body.section-active .panel.visible {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    min-height: calc(100vh - 64px);
+    margin-top: 64px;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--background-primary);
+}
+
+
+
+/* Subtle background gradient */
+.hero-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 122, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(88, 86, 214, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: subtle-float 25s ease-in-out infinite;
+}
+
+@keyframes subtle-float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(20px, -20px) rotate(1deg); }
+    66% { transform: translate(-15px, 15px) rotate(-1deg); }
+}
+
+/* Clean Section Styles */
+.panel h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.panel p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.service-card {
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-large);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(0, 122, 255, 0.3);
+}
+
+.service-card .service-icon {
+    font-size: 2.5rem;
+    color: var(--accent-blue);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.portfolio-item {
+    position: relative;
+}
+
+.portfolio-card {
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: rgba(0, 122, 255, 0.3);
+}
+
+.portfolio-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--background-tertiary);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.portfolio-card:hover .portfolio-image img {
+    transform: scale(1.05);
+}
+
+.portfolio-content {
+    padding: 1.5rem;
+}
+
+.portfolio-content h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.portfolio-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-stack span {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--accent-blue);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-small);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Contact Section Styling */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-medium);
+    transition: var(--transition-smooth);
+}
+
+.contact-method:hover {
+    border-color: rgba(0, 122, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.contact-method i {
+    font-size: 1.5rem;
+    color: var(--accent-blue);
+    min-width: 24px;
+}
+
+.contact-method .method-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.contact-method .method-value {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contact-method .method-value:hover {
+    color: var(--accent-blue);
+}
+
+/* Basic Profile Image Styling */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Focus states for accessibility */
+.cta-button:focus,
+#nav a:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Force override any existing styles that might conflict */
+body.is-preload * {
+    animation: none !important;
+    transition: var(--transition-smooth) !important;
+}
+
+/* Ensure no conflicting styles from any other CSS */
+.panel {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+/* Remove any grid or flexbox conflicts */
+.row, .col-4, .col-6-medium, .col-12-small {
+    display: initial !important;
+    width: auto !important;
+    float: none !important;
+}
+
+/* Ensure clean typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-system) !important;
+    font-weight: inherit;
+    color: inherit;
+}
+
+/* Clean button states */
+button, a, input {
+    font-family: var(--font-system) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #nav {
+        height: 56px;
+        padding: 0 1rem;
+    }
+    
+    #nav a {
+        width: 44px;
+        height: 44px;
+        margin: 0 4px;
+        font-size: 16px;
+    }
+    
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .hero-stats {
+        gap: 2.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2.25rem;
+    }
+    
+    body.section-active .panel:not(.intro) {
+        margin-top: 56px;
+        padding: 3rem 1.5rem;
+    }
+    
+    .services-grid,
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-card,
+    .portfolio-content {
+        padding: 1.5rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        gap: 2rem;
+    }
+    
+    .cta-button {
+        padding: 14px 28px;
+        font-size: 16px;
+        min-width: 160px;
+    }
+    
+    .hero-content {
+        padding: 0 1rem;
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    #nav,
+    .animated-background {
+        display: none !important;
+    }
+    
+    .hero-content {
+        color: black !important;
+    }
+}

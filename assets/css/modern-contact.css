@@ -1,0 +1,320 @@
+/* Modern Contact Form Styles */
+
+/* Contact Section Enhancement */
+#contact {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#contact header {
+    text-align: center;
+    margin-bottom: 2.5em;
+}
+
+#contact header h2 {
+    font-size: 2.2em;
+    font-weight: 300;
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.02em;
+}
+
+#contact header h2:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #349871, #4ade80);
+    margin: 1em auto 0;
+    border-radius: 2px;
+}
+
+/* Modern Form Styling */
+.modern-contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 2em;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Input Field Enhancements */
+.modern-input,
+.modern-textarea {
+    width: 100%;
+    padding: 1em 1.2em;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1em;
+    font-family: inherit;
+    color: #2d3748;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.modern-input:focus,
+.modern-textarea:focus {
+    border-color: #349871;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 3px rgba(52, 152, 113, 0.1);
+    transform: translateY(-2px);
+}
+
+.modern-input::placeholder,
+.modern-textarea::placeholder {
+    color: #a0aec0;
+    transition: opacity 0.3s ease;
+}
+
+.modern-input:focus::placeholder,
+.modern-textarea:focus::placeholder {
+    opacity: 0.7;
+}
+
+/* Floating Label Effect */
+.form-group label {
+    position: absolute;
+    top: 1em;
+    left: 1.2em;
+    color: #a0aec0;
+    font-size: 1em;
+    font-weight: 400;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    padding: 0 0.5em;
+    margin: 0;
+}
+
+.form-group.has-value label,
+.modern-input:focus + label,
+.modern-textarea:focus + label {
+    top: -0.5em;
+    left: 1em;
+    font-size: 0.85em;
+    color: #349871;
+    background: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+/* Textarea Specific */
+.modern-textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Modern Submit Button */
+.modern-submit-btn {
+    width: 100%;
+    padding: 1.2em 2em;
+    background: linear-gradient(135deg, #349871 0%, #2d8659 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(52, 152, 113, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(52, 152, 113, 0.3);
+    background: linear-gradient(135deg, #2d8659 0%, #349871 100%);
+}
+
+.modern-submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(52, 152, 113, 0.2);
+}
+
+/* Button Loading State */
+.modern-submit-btn.loading {
+    color: transparent;
+    pointer-events: none;
+}
+
+.modern-submit-btn.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Contact Info Section */
+.contact-info {
+    margin-top: 3em;
+    padding-top: 2.5em;
+    border-top: 1px solid rgba(226, 232, 240, 0.6);
+    text-align: center;
+}
+
+.contact-info h3 {
+    font-size: 1.3em;
+    color: #2c3e50;
+    margin-bottom: 1.5em;
+    font-weight: 500;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    color: #64748b;
+    font-size: 0.95em;
+    padding: 0.8em 1.2em;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+    background: rgba(52, 152, 113, 0.1);
+    color: #349871;
+    transform: translateY(-2px);
+}
+
+.contact-method i {
+    font-size: 1.2em;
+    color: #349871;
+}
+
+/* Validation Styles */
+.form-group.error .modern-input,
+.form-group.error .modern-textarea {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+}
+
+.form-group.error label {
+    color: #e53e3e;
+}
+
+.error-message {
+    position: absolute;
+    bottom: -1.5em;
+    left: 0;
+    color: #e53e3e;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.form-group.success .modern-input,
+.form-group.success .modern-textarea {
+    border-color: #349871;
+    box-shadow: 0 0 0 3px rgba(52, 152, 113, 0.1);
+}
+
+/* Success Message */
+.success-message {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    padding: 1.5em;
+    border-radius: 12px;
+    margin-bottom: 2em;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 2em;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+    
+    .contact-method {
+        justify-content: center;
+        min-width: 200px;
+    }
+    
+    #contact header h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modern-input,
+    .modern-textarea {
+        padding: 0.9em 1em;
+    }
+    
+    .modern-submit-btn {
+        padding: 1em 1.5em;
+        font-size: 1em;
+    }
+    
+    #contact {
+        margin: 0 1em;
+    }
+}

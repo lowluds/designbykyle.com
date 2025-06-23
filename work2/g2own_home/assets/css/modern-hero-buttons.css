@@ -1,0 +1,462 @@
+/* Modern Hero CTA Buttons - G2Own Custom Icons & Styling */
+
+/* Hero Buttons Container */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* Base modern button styling */
+.hero-buttons .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    z-index: 1;
+}
+
+/* Modern Explore Marketplace Button */
+.hero-buttons .btn-primary {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    );
+    background-size: 200% 200%;
+    color: var(--primary-white);
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.hero-buttons .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.hero-buttons .btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+.hero-buttons .btn-primary:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 12px 40px rgba(139, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 69, 0, 0.5);
+}
+
+/* Modern Learn More Button - Matching Explore Marketplace Style (High Priority) */
+.hero-buttons .btn-outline {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    ) !important;
+    background-size: 200% 200% !important;
+    color: var(--primary-white) !important;
+    border: 2px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.hero-buttons .btn-outline::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    ) !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.6s ease !important;
+    z-index: -1 !important;
+}
+
+.hero-buttons .btn-outline:hover::before {
+    transform: translateX(100%) !important;
+}
+
+.hero-buttons .btn-outline:hover {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    ) !important;
+    background-position: 100% 100% !important;
+    background-size: 200% 200% !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 
+        0 12px 40px rgba(139, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 69, 0, 0.5) !important;
+    color: var(--primary-white) !important;
+}
+
+/* CRITICAL OVERRIDE: Ensure Learn More button matches Explore Marketplace exactly */
+body .hero-buttons .btn.btn-outline,
+html body .hero-buttons .btn.btn-outline {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    ) !important;
+    background-size: 200% 200% !important;
+    color: var(--primary-white) !important;
+    border: 2px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+body .hero-buttons .btn.btn-outline:hover,
+html body .hero-buttons .btn.btn-outline:hover {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    ) !important;
+    background-position: 100% 100% !important;
+    background-size: 200% 200% !important;
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 
+        0 12px 40px rgba(139, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 69, 0, 0.5) !important;
+    color: var(--primary-white) !important;
+}
+
+/* Ensure shimmer text works on Learn More button */
+body .hero-buttons .btn.btn-outline:hover .btn-text,
+html body .hero-buttons .btn.btn-outline:hover .btn-text {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    ) !important;
+    background-size: 200px 100% !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    animation: textShimmer 1.5s ease-in-out infinite !important;
+    color: transparent !important;
+}
+
+/* Custom SVG Icons */
+.hero-buttons .btn-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+    transition: all 0.3s ease;
+}
+
+.hero-buttons .btn:hover .btn-icon svg {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* Button text styling */
+.hero-buttons .btn-text {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Magnetic effect for primary button */
+.hero-buttons .btn-primary.magnetic-btn {
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Particle effect container */
+.btn-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+/* Active state animations */
+.hero-buttons .btn:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+}
+
+/* Glow effect on focus */
+.hero-buttons .btn:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(139, 0, 0, 0.3),
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 1.5rem 0;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .hero-buttons .btn-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .hero-buttons .btn {
+        transition: none;
+    }
+    
+    .hero-buttons .btn::before {
+        display: none;
+    }
+    
+    .hero-buttons .btn:hover {
+        transform: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .hero-buttons .btn-primary {
+        background: var(--primary-red);
+        border-color: var(--primary-white);
+    }
+    
+    .hero-buttons .btn-outline {
+        background: transparent;
+        border-color: var(--primary-white);
+    }
+}
+
+/* Advanced Button Micro-interactions */
+
+/* Breathing animation for both buttons when idle */
+@keyframes breathe {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 
+            0 8px 32px rgba(139, 0, 0, 0.3),
+            0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+    50% { 
+        transform: scale(1.01); 
+        box-shadow: 
+            0 10px 40px rgba(139, 0, 0, 0.4),
+            0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.hero-buttons .btn-primary:not(:hover):not(:active),
+.hero-buttons .btn-outline:not(:hover):not(:active) {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+/* Remove the separate pulse animation - using breathe for both */
+
+/* Icon rotation on hover */
+.hero-buttons .btn:hover .btn-icon {
+    animation: iconBounce 0.6s ease-out;
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(5deg); }
+    50% { transform: scale(1.1) rotate(-3deg); }
+    75% { transform: scale(1.15) rotate(2deg); }
+}
+
+/* Text shimmer effect (High Priority) */
+@keyframes textShimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.hero-buttons .btn-primary:hover .btn-text {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    ) !important;
+    background-size: 200px 100% !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    animation: textShimmer 1.5s ease-in-out infinite !important;
+}
+
+/* Add shimmer effect to outline button as well (High Priority) */
+.hero-buttons .btn-outline:hover .btn-text {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    ) !important;
+    background-size: 200px 100% !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    animation: textShimmer 1.5s ease-in-out infinite !important;
+}
+
+/* Button loading state */
+.hero-buttons .btn.loading {
+    pointer-events: none;
+    position: relative;
+}
+
+.hero-buttons .btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hero-buttons .btn.loading .btn-text,
+.hero-buttons .btn.loading .btn-icon {
+    opacity: 0;
+}
+
+/* Success state */
+.hero-buttons .btn.success {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-color: #16a34a;
+    animation: successPulse 0.6s ease-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Enhanced focus states for accessibility */
+.hero-buttons .btn:focus-visible {
+    outline: 3px solid rgba(139, 0, 0, 0.5);
+    outline-offset: 2px;
+    box-shadow: 
+        0 0 0 3px rgba(139, 0, 0, 0.3),
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode adaptations */
+@media (prefers-color-scheme: dark) {
+    .hero-buttons .btn-outline {
+        background: rgba(10, 10, 10, 0.9);
+        border-color: rgba(139, 0, 0, 0.6);
+    }
+    
+    .hero-buttons .btn-outline:hover {
+        background: rgba(20, 20, 20, 0.95);
+    }
+}
+
+/* Performance optimizations */
+.hero-buttons .btn {
+    contain: layout style paint;
+}
+
+/* Will-change for animations */
+.hero-buttons .btn:hover {
+    will-change: transform, box-shadow;
+}
+
+.hero-buttons .btn:not(:hover) {
+    will-change: auto;
+}

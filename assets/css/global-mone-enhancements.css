@@ -1,0 +1,329 @@
+/* Global Mone-Inspired Enhancements */
+
+/* Ensure all sections have proper spacing and consistency */
+body {
+    background: linear-gradient(135deg, 
+        #0a0a0f 0%,
+        #1a1a25 25%,
+        #2a1a35 50%,
+        #1a1a25 75%,
+        #0a0a0f 100%);
+    background-size: 400% 400%;
+    animation: globalBackgroundShift 20s ease-in-out infinite;
+    min-height: 100vh;
+}
+
+@keyframes globalBackgroundShift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 50%; }
+    50% { background-position: 50% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+/* Global text styling improvements */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+p, span, div {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(10, 10, 15, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+        #6D28D9 0%,
+        #EC4899 50%,
+        #FB923C 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+        #7C3AED 0%,
+        #F472B6 50%,
+        #FBBF24 100%);
+}
+
+/* Selection styling */
+::selection {
+    background: rgba(109, 40, 217, 0.3);
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background: rgba(109, 40, 217, 0.3);
+    color: #ffffff;
+}
+
+/* Enhanced focus states for accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+    outline: 3px solid rgba(109, 40, 217, 0.5);
+    outline-offset: 2px;
+}
+
+/* Global loading animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Wrapper enhancements */
+#wrapper {
+    backdrop-filter: blur(5px);
+    border-radius: 0;
+}
+
+/* Navigation improvements */
+#nav {
+    background: rgba(15, 15, 25, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#nav a {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+#nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(109, 40, 217, 0.2) 50%,
+        transparent 100%);
+    transition: left 0.5s ease;
+}
+
+#nav a:hover::before {
+    left: 100%;
+}
+
+#nav a:hover {
+    background: rgba(109, 40, 217, 0.1);
+    border-color: rgba(109, 40, 217, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(109, 40, 217, 0.2);
+}
+
+/* Footer enhancements */
+#footer {
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    position: relative;
+}
+
+#footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(109, 40, 217, 0.5) 25%,
+        rgba(236, 72, 153, 0.5) 50%,
+        rgba(251, 146, 60, 0.5) 75%,
+        transparent 100%);
+}
+
+/* Enhanced preloader */
+.is-preload {
+    animation: preloadFade 1s ease-out;
+}
+
+@keyframes preloadFade {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Global link styling */
+a {
+    color: #EC4899;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a:hover {
+    color: #FB923C;
+}
+
+a:not(.cta-button):not(.modern-submit-btn)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        #6D28D9 0%,
+        #EC4899 50%,
+        #FB923C 100%);
+    transition: width 0.3s ease;
+}
+
+a:not(.cta-button):not(.modern-submit-btn):hover::after {
+    width: 100%;
+}
+
+/* Enhanced image styling */
+img {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+img:hover {
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* Global shadow utilities */
+.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-lg {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-xl {
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+}
+
+/* Global gradient utilities */
+.gradient-bg-primary {
+    background: linear-gradient(135deg, 
+        #6D28D9 0%,
+        #EC4899 50%,
+        #FB923C 100%);
+}
+
+.gradient-bg-secondary {
+    background: linear-gradient(135deg, 
+        rgba(109, 40, 217, 0.1) 0%,
+        rgba(236, 72, 153, 0.1) 50%,
+        rgba(251, 146, 60, 0.1) 100%);
+}
+
+/* Responsive typography scaling */
+@media (max-width: 1200px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+/* Performance optimizations */
+* {
+    box-sizing: border-box;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .panel {
+        border: 2px solid #ffffff;
+    }
+    
+    .gradient-text,
+    .gradient-text-reverse {
+        background: #ffffff;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+/* Dark mode improvements */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0a0a0f;
+    }
+}
+
+/* Print styles */
+@media print {
+    .animated-background,
+    #nav,
+    .cta-button,
+    .modern-submit-btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .panel {
+        border: 1px solid #ccc !important;
+        background: white !important;
+        box-shadow: none !important;
+    }
+}

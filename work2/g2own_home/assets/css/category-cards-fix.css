@@ -1,0 +1,93 @@
+/* Category Cards Animation Fix */
+/* Quick fixes for immediate loading and enhanced effects */
+
+/* Ripple animation for category cards */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Enhanced category card states */
+.category-card {
+    position: relative;
+    overflow: hidden;
+    will-change: transform, opacity;
+}
+
+.category-card.animate-in {
+    animation: categorySlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes categorySlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Enhanced hover effects */
+.category-card:hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Improved performance for animations */
+.category-card {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+/* Loading state indicator */
+.category-card[data-loading="true"] {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+}
+
+/* Loaded state */
+.category-card[data-loaded="true"] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-card.animate-in {
+        animation-duration: 0.4s;
+    }
+    
+    .category-card:hover {
+        transform: translateY(-4px) scale(1.01) !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .category-card:hover {
+        border: 2px solid rgba(220, 20, 60, 0.8);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .category-card,
+    .category-card:hover,
+    .category-card.animate-in {
+        animation: none !important;
+        transition: opacity 0.2s ease !important;
+        transform: none !important;
+    }
+    
+    @keyframes ripple {
+        to {
+            transform: scale(1.1);
+            opacity: 0;
+        }
+    }
+}

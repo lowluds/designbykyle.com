@@ -1,0 +1,149 @@
+/* Fix for the profile image and arrow on the home page */
+
+/* Ensure the arrow icon is visible and properly styled */
+#main > .panel.intro .pic .arrow {
+    display: block !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    margin-top: -1.375em !important;
+    width: 2.75em !important;
+    height: 2.75em !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    color: #ffffff !important;
+    text-align: center !important;
+    line-height: 2.75em !important;
+    font-size: 1.5em !important;
+    z-index: 1 !important;
+    transition: width .15s ease-in-out, padding-right .15s ease-in-out !important;
+}
+
+#main > .panel.intro .pic .arrow:before {
+    position: relative !important;
+    padding-right: 0 !important;
+    top: 0.125em !important;
+    display: block !important;
+}
+
+#main > .panel.intro .pic .arrow span {
+    display: block !important;
+    text-indent: -9999px !important;
+}
+
+#main > .panel.intro .pic:hover .arrow {
+    width: 3em !important;
+    padding-right: 0.25em !important;
+}
+
+/* Ensure profile image displays correctly */
+#main > .panel.intro .pic img {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    z-index: 0 !important;
+}
+
+/* Enhanced Typography for Site-wide Consistency */
+
+/* Improve font rendering across the site */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Better navigation typography */
+#nav ul li a {
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+/* Enhanced button and link styles */
+.button {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Improved form input typography */
+input[type="text"],
+input[type="email"],
+textarea {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+}
+
+/* Contact section typography improvements */
+#contact h2 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #2d3748;
+}
+
+#contact p {
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.65;
+}
+
+/* Better selection highlighting */
+::selection {
+    background: #4f46e5;
+    color: white;
+}
+
+::-moz-selection {
+    background: #4f46e5;
+    color: white;
+}
+
+/* ===== NAVIGATION FOCUS FIX ===== */
+/* Remove black squares around nav icons when clicked */
+
+/* Remove all focus outlines and make them invisible */
+#nav a:focus,
+#nav a:active,
+#nav a:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Prevent any visible focus indicators */
+#nav a {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-focus-ring-color: transparent !important;
+    border: none !important;
+}
+
+/* Remove any unwanted selection highlighting */
+#nav a::selection {
+    background: transparent !important;
+}
+
+#nav a::-moz-selection {
+    background: transparent !important;
+}
+
+/* Ensure icons don't show focus squares */
+#nav a .icon {
+    outline: none !important;
+}
+
+/* Additional fix for FontAwesome icons */
+#nav a i,
+#nav a .fa,
+#nav a .fas,
+#nav a .fab {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}

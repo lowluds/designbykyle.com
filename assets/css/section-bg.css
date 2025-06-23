@@ -1,0 +1,22 @@
+/* Section background container for improved readability */
+.section-bg-main {
+    background: rgba(18, 20, 30, 0.92); /* dark, nearly opaque for strong contrast */
+    border-radius: 2.2rem;
+    box-shadow: 0 8px 48px 0 rgba(0,0,0,0.22);
+    padding: 3.5rem 2.5rem;
+    margin: 3.5rem auto;
+    max-width: 1200px;
+    width: 95%;
+    position: relative;
+    z-index: 1;
+    display: block;
+    /* Optional: add a subtle border for separation */
+    border: 1.5px solid rgba(255,255,255,0.06);
+}
+
+@media (max-width: 900px) {
+    .section-bg-main {
+        padding: 2rem 0.5rem;
+        border-radius: 1.2rem;
+    }
+}
