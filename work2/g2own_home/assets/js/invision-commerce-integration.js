@@ -30,7 +30,7 @@
             addCartIndicator();
             
             // Add store quick access (floating button)
-            addQuickAccess();
+            // addQuickAccess(); // DISABLED: Remove persistent floating store button
             
             console.log('✅ G2Own Community Store integration loaded safely');
         } catch (error) {

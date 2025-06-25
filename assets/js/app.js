@@ -137,14 +137,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const typewriterElement = document.querySelector('.typewriter');
     if (typewriterElement) {
         const titles = [
-            "Front End Developer",
-            "Web Designer",
-            "Full Stack Developer",
-            "JavaScript Specialist",
-            "Python Automation Developer",
-            "UI and UX Designer",
-            "Responsive Design Expert",
-            "E-Commerce Integrator"
+            "Freelance Web Developer",
+            "Modern UI/UX Designer",
+            "Responsive Frontend Developer",
+            "Backend Tools: Python, PHP & C++",
+            "Clean Code, Beautiful Interfaces"
         ];
         
         let currentTitleIndex = 0;

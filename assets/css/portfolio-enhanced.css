@@ -351,3 +351,21 @@
 .portfolio-image a:focus .preview-overlay {
     opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

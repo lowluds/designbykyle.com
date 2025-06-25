@@ -173,8 +173,8 @@ body.section-active {
     padding: 0 3rem; /* Increased padding for better spacing */
     z-index: 2;
     position: relative;
-    height: 100vh; /* Full viewport height */
-    max-height: 100vh; /* Never exceed viewport */
+    height: auto;           /* Remove or override height: 100vh */
+    max-height: none;       /* Remove or override max-height: 100vh */
     overflow: hidden; /* Prevent content overflow */
     box-sizing: border-box; /* Include padding in height calculation */
     margin: 0 auto; /* Center horizontally */
@@ -381,11 +381,11 @@ body.section-active {
     visibility: visible !important;
     opacity: 1 !important;
     overflow: hidden; /* Prevent scrolling on home page */
-    height: 100vh; /* Exact viewport height */
-    max-height: 100vh; /* Never exceed viewport */
+    height: calc(100vh - 64px); /* Subtract navbar height */
+    max-height: calc(100vh - 64px);
     align-items: center; /* Center content vertically */
     justify-content: center; /* Center content horizontally */
-    width: 100vw; /* Full viewport width */
+    padding-top: 64px; /* Add space for navbar */
 }
 
 /* Proper section management - only hide non-current sections */
@@ -808,5 +808,13 @@ button, a, input {
     
     .hero-content {
         color: black !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #home {
+        height: calc(100vh - 56px) !important;
+        max-height: calc(100vh - 56px) !important;
+        padding-top: 56px !important;
     }
 }

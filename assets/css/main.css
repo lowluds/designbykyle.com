@@ -1,11 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 @import url("fontawesome-all.min.css");
 
-/*
-	Astral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -1868,7 +1863,31 @@ button:active,
 	margin-top: 2em;
 }
 
+@media (max-width: 768px) {
+    .portfolio-grid {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        box-sizing: border-box;
+    }
+}
+
 .portfolio-item {
+	width: 100%;
+    min-width: 0;
 	margin-bottom: 1em;
 	transition: all 0.3s ease;
 }
@@ -1980,60 +1999,51 @@ button:active,
 }
 
 .tech-stack span {
-	display: inline-block;
-	background: #f0f0f0;
-	color: #333333;
-	padding: 0.15em 0.4em;
-	margin: 0.1em 0.1em 0.1em 0;
-	border-radius: 8px;
-	font-size: 0.6em;
-	border: 1px solid #ddd;
-	transition: all 0.3s ease;
-	cursor: pointer;
-	position: relative;
-	background: #18191b;
-	color: #fff;
-	border: 2px solid transparent;
-	box-shadow: none !important;
-	transition: color 0.3s, background 0.3s;
-	z-index: 1;
-	overflow: visible;
+  position: relative;
+  box-shadow: none !important;
+  border: 2px solid transparent;
+  background: #18191b;
+  color: #fff;
+  transition: color 0.3s, background 0.3s;
+  z-index: 1;
+  overflow: visible;
 }
 
 .tech-stack span::after {
-	content: '';
-	position: absolute;
-	top: -3px;
-	left: -3px;
-	width: calc(100% + 6px);
-	height: calc(100% + 6px);
-	border-radius: 20px;
-	border: 2px solid #349871;
-	opacity: 0;
-	pointer-events: none;
-	box-sizing: border-box;
-	transition: opacity 0.3s;
-	z-index: 2;
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  border-radius: 18px;
+  border: 2px solid #349871;
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  transition: opacity 0.3s;
+  z-index: 2;
 }
 
-.tech-stack span:hover::after {
-	opacity: 1;
-	animation: about-badge-border-animate 0.7s cubic-bezier(0.4,0,0.2,1);
+.tech-stack span:hover::after,
+.tech-stack span:focus::after {
+  opacity: 1;
+  animation: service-card-border-animate 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
-@keyframes about-badge-border-animate {
-	0% {
-		clip-path: inset(0 100% 0 0 round 20px);
-		opacity: 0.2;
-	}
-	60% {
-		clip-path: inset(0 0 0 0 round 20px);
-		opacity: 1;
-	}
-	100% {
-		clip-path: inset(0 0 0 0 round 20px);
-		opacity: 1;
-	}
+@keyframes service-card-border-animate {
+  0% {
+    clip-path: inset(0 100% 0 0 round 18px);
+    opacity: 0.2;
+  }
+  60% {
+    clip-path: inset(0 0 0 0 round 18px);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0 round 18px);
+    opacity: 1;
+  }
 }
 
 .tech-stack span:hover {
@@ -2397,9 +2407,7 @@ button:active,
   background: #18191b;
   color: #fff;
 }
-.tech-stack span::after {
-  display: none !important;
-}
+
 
 /* Animated Gradient Text with Grain Effect */
 .animated-gradient-text {
@@ -2478,3 +2486,4 @@ header:focus-within .section-icon {
     color: #007BFF;
     font-weight: bold;
 }
+
