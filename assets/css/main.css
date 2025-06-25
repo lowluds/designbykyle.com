@@ -1603,8 +1603,16 @@ button:active,
 				-webkit-align-items: center;
 				-ms-align-items: center;
 				align-items: center;
+				border: 2px solid transparent;
+				transition: border-color 0.3s, box-shadow 0.3s;
 			}
 
+				#main > .panel.intro:hover,
+				#main > .panel.intro:focus-within {
+					border-color: #2196f3; /* Bright blue */
+					box-shadow: 0 8px 32px rgba(33, 150, 243, 0.15);
+				}
+				
 				#main > .panel.intro .pic {
 					text-decoration: none;
 					position: relative;
