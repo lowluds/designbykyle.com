@@ -738,6 +738,7 @@ body.section-active .panel.visible {
   .hero-stats-modern {
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 1.2rem;
   }
   .stat-pill {
@@ -811,12 +812,14 @@ body.section-active .panel.visible {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     box-sizing: border-box;
+    text-align: center !important;
   }
 }
 @media (max-width: 480px) {
   .portfolio-grid {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    text-align: center !important;
   }
 }
 
@@ -1392,8 +1395,9 @@ h1, .panel h2 {
 }
 
 .cta-button {
-       display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 16px 32px;
     border-radius: 50px;
@@ -1404,6 +1408,7 @@ h1, .panel h2 {
     border: none;
     cursor: pointer;
     font-family: var(--font-system);
+    text-align: center;
 }
 
 .cta-button.primary {

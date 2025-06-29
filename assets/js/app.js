@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typewriterElement) {
         const titles = [
             "Freelance Web Developer",
-            "Modern UI/UX Designer",
             "Responsive Frontend Developer",
+            "Modern UX/UI Designer",
             "Backend Tools: Python, PHP & C++",
             "Clean Code, Beautiful Interfaces"
         ];
