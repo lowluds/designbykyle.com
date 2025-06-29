@@ -1984,3 +1984,15 @@ h1, .panel h2 {
     padding-right: 0.75rem !important;
   }
 }
+
+/* Ensure stat numbers and typewriter are white in dark, black in light mode */
+body.light-mode .stat-number,
+body.light-mode .stat-label,
+body.light-mode .typewriter {
+  color: var(--text-primary) !important;
+}
+body:not(.light-mode) .stat-number,
+body:not(.light-mode) .stat-label,
+body:not(.light-mode) .typewriter {
+  color: #f5f5f7 !important;
+}
