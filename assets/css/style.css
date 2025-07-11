@@ -837,8 +837,10 @@ body.section-active .panel.visible {
 }
 
 .portfolio-image {
-    aspect-ratio: 16/10;
     overflow: hidden;
+    min-height: 220px; /* Adjust as needed */
+    height: auto;
+    width: 100%;
 }
 
 .portfolio-image img {
@@ -1679,6 +1681,9 @@ h1, .panel h2 {
 }
 
 .portfolio-content {
+        display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 1.5rem;
 }
 
@@ -1690,7 +1695,7 @@ h1, .panel h2 {
 
 .portfolio-content p {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.3rem;
 }
 
 .tech-stack-container {
@@ -1716,6 +1721,8 @@ h1, .panel h2 {
     gap: 1.3rem;
     justify-content: center;
     width: 100%;
+    margin-top: auto; /* This pushes it to the bottom */
+    
 }
 .stack-badge {
     display: flex;
@@ -1858,8 +1865,11 @@ h1, .panel h2 {
 
 /* --- Portfolio Card Preview Hover Effect --- */
 .portfolio-card {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: auto;
 }
 .portfolio-card .portfolio-image {
   position: relative;
@@ -1982,6 +1992,18 @@ h1, .panel h2 {
   .panel.visible {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-image {
+    min-height: 180px; /* Shorter for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-image {
+    min-height: 120px; /* Shortest for phones */
   }
 }
 
