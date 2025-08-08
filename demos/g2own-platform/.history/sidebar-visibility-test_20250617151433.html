@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Visibility Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+        }
+        .status {
+            padding: 15px;
+            background: #333;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff0000;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #444;
+            border-radius: 8px;
+        }
+        .iframe-container {
+            margin: 20px 0;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            background: white;
+            height: 600px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .resize-controls {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .resize-btn {
+            padding: 10px 15px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .resize-btn:hover {
+            background: #cc0000;
+        }
+        .current-size {
+            background: #555;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        .success { background: #2d5a2d; color: #90ee90; }
+        .warning { background: #5a5a2d; color: #ffff90; }
+        .info { background: #2d4a5a; color: #87ceeb; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Sidebar Visibility Fix Test</h1>
+        <p><strong>Test Date:</strong> <span id="currentDate"></span></p>
+        
+        <div class="status success">
+            <h3>✅ Fix Applied:</h3>
+            <p>Updated CSS to hide sidebar by default with toggle button visible on mobile/small screens.</p>
+        </div>
+        
+        <div class="test-section">
+            <h3>📱 Test Different Screen Sizes:</h3>
+            <div class="resize-controls">
+                <button class="resize-btn" onclick="resizeFrame(375, 667)">📱 Mobile</button>
+                <button class="resize-btn" onclick="resizeFrame(768, 1024)">📱 Tablet</button>
+                <button class="resize-btn" onclick="resizeFrame(1024, 768)">💻 Desktop</button>
+                <button class="resize-btn" onclick="resizeFrame(1920, 1080)">🖥️ Large Desktop</button>
+            </div>
+            <div class="current-size" id="currentSize">Current Size: Full Width</div>
+        </div>
+        
+        <div class="iframe-container">
+            <iframe id="testFrame" src="index.html"></iframe>
+        </div>
+        
+        <div class="status info">
+            <h3>📋 Expected Behavior:</h3>
+            <ul>
+                <li><strong>Mobile (≤767px):</strong> Sidebar hidden, red toggle button (☰) visible in top-left</li>
+                <li><strong>Tablet (768-1023px):</strong> Sidebar visible (240px), no toggle button</li>
+                <li><strong>Desktop (≥1024px):</strong> Sidebar visible (280px), no toggle button</li>
+            </ul>
+        </div>
+        
+        <div class="status warning">
+            <h3>🎯 What to Check:</h3>
+            <ul>
+                <li>On mobile: Sidebar should be completely hidden by default</li>
+                <li>On mobile: Red hamburger button should be visible</li>
+                <li>On mobile: Clicking toggle should show/hide sidebar</li>
+                <li>On tablet/desktop: Sidebar should be visible automatically</li>
+                <li>On tablet/desktop: No toggle button should be visible</li>
+                <li>Main content should be properly positioned in all cases</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔍 Current Browser Info:</h3>
+            <div id="browserInfo" class="status info"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleString();
+        
+        function updateBrowserInfo() {
+            const browserInfo = document.getElementById('browserInfo');
+            const width = window.innerWidth;
+            let breakpoint = '';
+            
+            if (width <= 767) {
+                breakpoint = '📱 Mobile - Sidebar should be HIDDEN';
+            } else if (width <= 1023) {
+                breakpoint = '📱 Tablet - Sidebar should be VISIBLE';
+            } else {
+                breakpoint = '💻 Desktop - Sidebar should be VISIBLE';
+            }
+            
+            browserInfo.innerHTML = `
+                <strong>Viewport:</strong> ${width}x${window.innerHeight}<br>
+                <strong>Breakpoint:</strong> ${breakpoint}
+            `;
+        }
+        
+        function resizeFrame(width, height) {
+            const frame = document.getElementById('testFrame');
+            const currentSize = document.getElementById('currentSize');
+            
+            frame.style.width = width + 'px';
+            frame.style.height = height + 'px';
+            
+            let breakpoint = '';
+            if (width <= 767) {
+                breakpoint = '📱 Mobile - Sidebar should be HIDDEN';
+            } else if (width <= 1023) {
+                breakpoint = '📱 Tablet - Sidebar should be VISIBLE';
+            } else {
+                breakpoint = '💻 Desktop - Sidebar should be VISIBLE';
+            }
+            
+            currentSize.innerHTML = `
+                Size: ${width}px x ${height}px<br>
+                <strong>${breakpoint}</strong>
+            `;
+        }
+        
+        updateBrowserInfo();
+        window.addEventListener('resize', updateBrowserInfo);
+    </script>
+</body>
+</html>

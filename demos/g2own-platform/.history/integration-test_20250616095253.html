@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Commerce Integration Test</title>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+        .test-button {
+            background: linear-gradient(135deg, #8b0000, #660000);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+        }
+        .status {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .success { 
+            background: rgba(34, 197, 94, 0.1); 
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+        .error { 
+            background: rgba(239, 68, 68, 0.1); 
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+        .info { 
+            background: rgba(139, 0, 0, 0.1); 
+            border-color: #8b0000;
+            color: #8b0000;
+        }
+        .log-container {
+            background: #000;
+            border-radius: 8px;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+        h1, h2 {
+            color: #8b0000;
+            font-weight: 700;
+        }
+        .integration-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="test-container">
+        <div class="integration-badge">
+            <i class="ph ph-storefront"></i>
+            <span>G2Own Commerce Integration Test</span>
+        </div>
+        
+        <h1>🛒 G2Own Invision Community Integration Test</h1>
+        
+        <div class="test-section">
+            <h2>Integration Status</h2>
+            <div id="integration-status" class="status info">Checking integration status...</div>
+            <button class="test-button" onclick="checkIntegration()">Refresh Status</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>Store Features Test</h2>
+            <p>Test the key features from the Invision Community store:</p>
+            
+            <button class="test-button" onclick="testCategory('game-accounts')">
+                <i class="ph ph-game-controller"></i> Game Accounts
+            </button>
+            <button class="test-button" onclick="testCategory('movie-accounts')">
+                <i class="ph ph-television"></i> Movie Accounts
+            </button>
+            <button class="test-button" onclick="testCategory('software-accounts')">
+                <i class="ph ph-desktop-tower"></i> Software Accounts
+            </button>
+            
+            <div id="category-status" class="status info">Click a category to test navigation...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Product Integration Test</h2>
+            <p>Test products from https://g2own.com/community/store/:</p>
+            
+            <button class="test-button" onclick="testProduct(6, 'WINDOWS 10 KEY')">Windows 10 Key ($5)</button>
+            <button class="test-button" onclick="testProduct(5, 'NORD VPN ACCOUNT')">NordVPN Account ($5)</button>
+            <button class="test-button" onclick="testProduct(4, 'DISNEY+ ACCOUNT')">Disney+ Account ($5)</button>
+            <button class="test-button" onclick="testProduct(3, 'NETFLIX ACCOUNT')">Netflix Account ($5)</button>
+            <button class="test-button" onclick="testProduct(2, 'RUST')">Rust ($10)</button>
+            <button class="test-button" onclick="testProduct(1, 'DEATHLOOP')">Deathloop ($10)</button>
+            
+            <div id="product-status" class="status info">Click a product to test...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Cart System Test</h2>
+            <p>Current cart count: <strong id="current-cart-count">0</strong></p>
+            
+            <button class="test-button" onclick="testAddToCart()">Add Test Item</button>
+            <button class="test-button" onclick="testViewCart()">View Cart</button>
+            <button class="test-button" onclick="clearTestCart()">Clear Cart</button>
+            
+            <div id="cart-status" class="status info">Cart system ready...</div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Integration Log</h2>
+            <div id="integration-log" class="log-container"></div>
+            <button class="test-button" onclick="clearLog()">Clear Log</button>
+            <button class="test-button" onclick="exportLog()">Export Log</button>
+        </div>
+    </div>
+
+    <!-- Include integration script -->
+    <script src="assets/js/invision-commerce-integration.js"></script>
+    
+    <script>
+        let testItemId = 'test-item-' + Date.now();
+        
+        function log(message, type = 'info') {
+            const logEl = document.getElementById('integration-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const typeEmoji = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+            logEl.innerHTML += `[${timestamp}] ${typeEmoji} ${message}\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(message);
+        }
+        
+        function updateStatus(elementId, message, type = 'info') {
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.textContent = message;
+                el.className = 'status ' + type;
+            }
+        }
+        
+        function checkIntegration() {
+            log('Checking integration status...');
+            
+            const checks = [
+                { name: 'G2OwnCommerceIntegration Class', check: () => window.G2OwnCommerceIntegration },
+                { name: 'Integration Instance', check: () => window.g2ownCommerce },
+                { name: 'Categories Data', check: () => window.g2ownCommerce?.categories },
+                { name: 'Products Data', check: () => window.g2ownCommerce?.products },
+                { name: 'Cart System', check: () => typeof window.g2ownCommerce?.addToCart === 'function' }
+            ];
+            
+            let passed = 0;
+            let results = [];
+            
+            checks.forEach(check => {
+                try {
+                    if (check.check()) {
+                        results.push(`✅ ${check.name}`);
+                        passed++;
+                        log(`${check.name}: OK`, 'success');
+                    } else {
+                        results.push(`❌ ${check.name}`);
+                        log(`${check.name}: FAILED`, 'error');
+                    }
+                } catch (error) {
+                    results.push(`❌ ${check.name} (Error)`);
+                    log(`${check.name}: ERROR - ${error.message}`, 'error');
+                }
+            });
+            
+            const success = passed === checks.length;
+            updateStatus('integration-status', 
+                `${passed}/${checks.length} checks passed\\n${results.join('\\n')}`, 
+                success ? 'success' : 'error'
+            );
+            
+            if (success) {
+                log('Integration fully functional!', 'success');
+            } else {
+                log(`Integration partially working: ${passed}/${checks.length}`, 'error');
+            }
+        }
+        
+        function testCategory(categorySlug) {
+            log(`Testing category: ${categorySlug}`);
+            
+            if (window.g2ownCommerce && window.g2ownCommerce.categories[categorySlug]) {
+                const category = window.g2ownCommerce.categories[categorySlug];
+                const url = `https://g2own.com/community/store/${category.url}`;
+                
+                log(`Opening category: ${category.name} at ${url}`, 'success');
+                updateStatus('category-status', `Opened ${category.name}`, 'success');
+                
+                // Open in new tab
+                window.open(url, '_blank');
+            } else {
+                log(`Category ${categorySlug} not found`, 'error');
+                updateStatus('category-status', `Category ${categorySlug} not found`, 'error');
+            }
+        }
+        
+        function testProduct(productId, productName) {
+            log(`Testing product: ${productName} (ID: ${productId})`);
+            
+            const url = `https://g2own.com/community/store/product/${productId}-${productName.toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '')}/`;
+            
+            log(`Opening product: ${productName} at ${url}`, 'success');
+            updateStatus('product-status', `Opened ${productName}`, 'success');
+            
+            // Open in new tab
+            window.open(url, '_blank');
+        }
+        
+        function testAddToCart() {
+            log('Testing add to cart functionality...');
+            
+            if (window.g2ownCommerce && typeof window.g2ownCommerce.addToCart === 'function') {
+                window.g2ownCommerce.addToCart(testItemId);
+                log('Test item added to cart', 'success');
+                updateStatus('cart-status', `Test item added to cart`, 'success');
+                updateCartDisplay();
+            } else {
+                log('Add to cart function not available', 'error');
+                updateStatus('cart-status', 'Add to cart not available', 'error');
+            }
+        }
+        
+        function testViewCart() {
+            log('Opening cart...');
+            const cartUrl = 'https://g2own.com/community/store/cart/';
+            window.open(cartUrl, '_blank');
+            log(`Cart opened at ${cartUrl}`, 'success');
+            updateStatus('cart-status', 'Cart opened in new tab', 'success');
+        }
+        
+        function clearTestCart() {
+            log('Clearing test cart...');
+            localStorage.removeItem('g2own_cart');
+            if (window.g2ownCommerce) {
+                window.g2ownCommerce.cartItems = [];
+                window.g2ownCommerce.updateCartCount();
+            }
+            updateCartDisplay();
+            log('Test cart cleared', 'success');
+            updateStatus('cart-status', 'Cart cleared', 'success');
+        }
+        
+        function updateCartDisplay() {
+            const cartCount = window.g2ownCommerce ? window.g2ownCommerce.cartCount : 0;
+            document.getElementById('current-cart-count').textContent = cartCount;
+        }
+        
+        function clearLog() {
+            document.getElementById('integration-log').innerHTML = '';
+            log('Log cleared');
+        }
+        
+        function exportLog() {
+            const logContent = document.getElementById('integration-log').textContent;
+            const blob = new Blob([logContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'g2own-integration-test-log.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            log('Log exported to file', 'success');
+        }
+        
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            log('Test page loaded, checking integration...');
+            setTimeout(checkIntegration, 1000);
+            
+            // Listen for cart updates
+            window.addEventListener('cartUpdated', (e) => {
+                log(`Cart updated: ${e.detail.count} items`);
+                updateCartDisplay();
+            });
+        });
+        
+        // Auto-refresh status every 5 seconds
+        setInterval(() => {
+            updateCartDisplay();
+        }, 5000);
+    </script>
+</body>
+</html>

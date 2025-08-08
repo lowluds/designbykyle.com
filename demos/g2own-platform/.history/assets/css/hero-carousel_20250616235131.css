@@ -1,0 +1,286 @@
+/* Independent Hero Carousel Positioning Styles */
+/* Positions the carousel independently beside the hero section for maximum width */
+
+/* Remove grid constraints from hero container */
+.hero-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    align-items: center !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+/* Independent carousel container - positioned dynamically */
+.hero-carousel-independent {
+    position: absolute !important;
+    top: 180px !important; /* Closer to navbar - will be overridden by JS */
+    right: 5% !important;
+    width: 500px !important;
+    max-width: 500px !important;
+    z-index: 10 !important;
+    pointer-events: all !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Dynamic positioning support */
+.hero-carousel-independent.dynamic-positioning {
+    position: fixed !important;
+    transition: top 0.2s ease, right 0.2s ease !important;
+}
+
+/* Featured games section within independent carousel */
+.hero-carousel-independent .featured-games-section {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+/* Header styling for independent carousel */
+.hero-carousel-independent .featured-games-header {
+    margin-bottom: 2rem !important;
+}
+
+.hero-carousel-independent .featured-title {
+    font-size: 2rem !important;
+    margin-bottom: 0.75rem !important;
+    font-weight: 700 !important;
+}
+
+.hero-carousel-independent .featured-subtitle {
+    font-size: 1rem !important;
+    opacity: 0.85 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Carousel container within independent positioning */
+.hero-carousel-independent .featured-games {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-carousel-independent .game-grid {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+}
+
+/* Independent carousel specific styling */
+.hero-carousel-independent .single-card-carousel {
+    width: 100% !important;
+    max-width: 460px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    padding: 2rem !important;
+    border-radius: 24px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.12) 0%, 
+        rgba(255, 68, 68, 0.06) 50%, 
+        rgba(139, 0, 0, 0.12) 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.3),
+        0 8px 25px rgba(255, 68, 68, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Independent carousel hover effect */
+.hero-carousel-independent .single-card-carousel:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 
+        0 25px 50px rgba(139, 0, 0, 0.4),
+        0 12px 35px rgba(255, 68, 68, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Independent carousel cards */
+.hero-carousel-independent .single-card-carousel .enhanced-card {
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 30, 0.95) 0%,
+        rgba(30, 30, 40, 0.9) 100%) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 18px 35px rgba(0, 0, 0, 0.45),
+        0 10px 25px rgba(139, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Navigation buttons for independent carousel */
+.hero-carousel-independent .carousel-nav {
+    width: 52px !important;
+    height: 52px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.9) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    border-radius: 14px !important;
+    box-shadow: 
+        0 10px 25px rgba(139, 0, 0, 0.35),
+        0 4px 15px rgba(255, 68, 68, 0.25) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero-carousel-independent .carousel-nav:hover {
+    transform: translateY(-50%) scale(1.08) !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.9) 100%) !important;
+    box-shadow: 
+        0 15px 30px rgba(139, 0, 0, 0.45),
+        0 6px 20px rgba(255, 68, 68, 0.35) !important;
+}
+
+/* Pagination for independent carousel */
+.hero-carousel-independent .carousel-pagination {
+    bottom: -2.5rem !important;
+    gap: 1rem !important;
+}
+
+.hero-carousel-independent .carousel-pagination .pagination-dot {
+    width: 12px !important;
+    height: 12px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.6) 0%,
+        rgba(255, 68, 68, 0.4) 100%) !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero-carousel-independent .carousel-pagination .pagination-dot.active {
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    box-shadow: 
+        0 4px 12px rgba(139, 0, 0, 0.5),
+        0 0 20px rgba(255, 68, 68, 0.4) !important;
+    transform: scale(1.25) !important;
+}
+
+/* Auto-advance progress for independent carousel */
+.hero-carousel-independent .auto-advance-progress {
+    bottom: -4rem !important;
+    height: 3px !important;
+    background: rgba(139, 0, 0, 0.2) !important;
+    border-radius: 2px !important;
+    overflow: hidden !important;
+}
+
+.hero-carousel-independent .auto-advance-progress::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(139, 0, 0, 0.8) 0%,
+        rgba(255, 68, 68, 0.9) 50%,
+        rgba(139, 0, 0, 0.8) 100%) !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.5) !important;
+    animation: progressAdvance 4s linear infinite !important;
+}
+
+@keyframes progressAdvance {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Responsive design for independent carousel */
+@media (max-width: 1400px) {
+    .hero-carousel-independent {
+        width: 500px !important;
+        right: 5% !important;
+        top: 200px !important; /* Adjusted for medium screens */
+    }
+    
+    .hero-carousel-independent .single-card-carousel {
+        max-width: 460px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-carousel-independent {
+        width: 480px !important;
+        right: 3% !important;
+        top: 220px !important; /* Slightly lower for smaller screens */
+    }
+    
+    .hero-carousel-independent .single-card-carousel {
+        max-width: 440px !important;
+        padding: 1.75rem !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Switch to bottom positioning for tablets and mobile */
+    .hero-carousel-independent {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        width: 100% !important;
+        max-width: 600px !important;
+        margin: 3rem auto 0 !important;
+        transition: none !important;
+    }
+    
+    .hero-carousel-independent .single-card-carousel {
+        max-width: 500px !important;
+        padding: 2rem !important;
+    }
+    
+    .hero-carousel-independent .enhanced-card {
+        max-width: 460px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel-independent .single-card-carousel {
+        max-width: 420px !important;
+        padding: 1.5rem !important;
+    }
+    
+    .hero-carousel-independent .enhanced-card {
+        max-width: 380px !important;
+    }
+    
+    .hero-carousel-independent .carousel-nav {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .hero-carousel-independent .featured-title {
+        font-size: 1.75rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-carousel-independent .single-card-carousel {
+        max-width: 340px !important;
+        padding: 1.25rem !important;
+    }
+    
+    .hero-carousel-independent .enhanced-card {
+        max-width: 300px !important;
+    }
+    
+    .hero-carousel-independent .featured-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-carousel-independent .featured-subtitle {
+        font-size: 0.9rem !important;
+    }
+}

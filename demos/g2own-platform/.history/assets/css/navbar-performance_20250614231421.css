@@ -1,0 +1,112 @@
+/* Navbar Performance Optimizations */
+/* Preload critical navbar styles for instant visibility */
+
+/* Critical Above-the-Fold Styles */
+.navbar {
+    contain: layout style paint;
+    will-change: background-color, backdrop-filter;
+}
+
+/* Optimize animations */
+.nav-link {
+    contain: layout style;
+    will-change: color, transform;
+}
+
+.nav-link-indicator {
+    contain: layout style paint;
+    will-change: transform, opacity;
+}
+
+/* Optimize mobile toggle */
+.nav-mobile-toggle {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Optimize search dropdown */
+.search-dropdown {
+    contain: layout style paint;
+    will-change: opacity, transform;
+}
+
+/* Reduce repaints for user menu */
+.user-dropdown {
+    contain: layout style paint;
+    will-change: opacity, transform;
+}
+
+/* Optimize mobile overlay */
+.mobile-nav-overlay {
+    contain: layout style paint;
+    will-change: opacity, transform;
+}
+
+/* Hardware acceleration for smooth animations */
+.nav-logo,
+.nav-link,
+.nav-mobile-toggle,
+.search-dropdown,
+.user-dropdown,
+.mobile-nav-overlay {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Optimize scroll progress bar */
+.nav-progress {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Reduce layout thrashing */
+.nav-container {
+    contain: layout style;
+}
+
+/* Optimize logo glow effect */
+.logo-glow {
+    contain: layout style paint;
+    will-change: opacity;
+}
+
+/* Critical font loading */
+@media (prefers-reduced-motion: no-preference) {
+    .navbar {
+        transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    
+    .nav-link {
+        transition: color 0.2s ease, transform 0.2s ease;
+    }
+    
+    .nav-link-indicator {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .nav-link,
+    .nav-link-indicator,
+    .nav-mobile-toggle,
+    .search-dropdown,
+    .user-dropdown,
+    .mobile-nav-overlay {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Critical loading state */
+.navbar-loading {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.navbar-loaded {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}

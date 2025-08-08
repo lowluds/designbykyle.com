@@ -1,0 +1,2156 @@
+/* Gaming Icons Animations */
+
+/* Base icon styling */
+.gaming-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #8b0000;
+}
+
+.gaming-icon:hover {
+    color: #ff4444;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.7));
+}
+
+/* Navigation Icons */
+.nav-gaming-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.nav-gaming-icon:hover {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+}
+
+/* Gaming Controller Pulse */
+.ph-game-controller {
+    animation: controller-pulse 2s infinite;
+}
+
+@keyframes controller-pulse {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.5)); 
+    }
+    50% { 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 1)); 
+    }
+}
+
+/* Shopping Cart Animation */
+.ph-shopping-cart:hover {
+    animation: cart-shake 0.5s ease-in-out;
+}
+
+@keyframes cart-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px) rotate(-2deg); }
+    75% { transform: translateX(3px) rotate(2deg); }
+}
+
+/* Digital Cube 3D Rotation */
+.ph-cube:hover {
+    animation: cube-3d 1s ease-in-out;
+}
+
+@keyframes cube-3d {
+    0% { transform: perspective(200px) rotateY(0deg); }
+    50% { transform: perspective(200px) rotateY(180deg) scale(1.1); }
+    100% { transform: perspective(200px) rotateY(360deg); }
+}
+
+/* User Profile Glow */
+.ph-user-circle:hover {
+    animation: profile-glow 0.8s ease-out;
+}
+
+@keyframes profile-glow {
+    0% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(139, 0, 0, 0));
+    }
+    50% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 20px rgba(139, 0, 0, 0.8));
+    }
+    100% { 
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.6));
+    }
+}
+
+/* Category Icons */
+.category-gaming-icon {
+    font-size: 3rem;
+    color: #8b0000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.category-gaming-icon:hover {
+    transform: translateY(-10px) scale(1.1);
+    color: #ff4444;
+    filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+}
+
+/* Desktop Monitor Animation */
+.ph-desktop:hover {
+    animation: monitor-flicker 1s ease-in-out;
+}
+
+@keyframes monitor-flicker {
+    0%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.8; }
+    50% { opacity: 0.9; }
+}
+
+/* Gear Rotation */
+.ph-gear:hover {
+    animation: gear-spin 2s linear infinite;
+}
+
+@keyframes gear-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Lightning Power Effect */
+.ph-lightning:hover {
+    animation: lightning-strike 0.3s ease-out;
+}
+
+@keyframes lightning-strike {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; transform: scale(1.2); }
+}
+
+/* Trophy Achievement Glow */
+.ph-trophy {
+    animation: trophy-glow 3s infinite;
+}
+
+@keyframes trophy-glow {
+    0%, 100% { 
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); 
+    }
+    50% { 
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8)); 
+    }
+}
+
+/* Shield Security Scan */
+.ph-shield:hover, .ph-shield-check:hover {
+    animation: security-scan 1s ease-in-out;
+}
+
+@keyframes security-scan {
+    0%, 100% { 
+        color: #8b0000;
+        filter: drop-shadow(0 0 5px rgba(139, 0, 0, 0.5)); 
+    }
+    50% { 
+        color: #00ff00;
+        filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8)); 
+    }
+}
+
+/* Support Icons - Updated to match Category Cards */
+.support-gaming-icon {
+    font-size: 3rem; /* Matching the benefit-gaming-icon size */
+    color: #8b0000;
+    margin-bottom: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.support-gaming-icon:hover {
+    transform: translateY(-10px) scale(1.1);
+    color: #ff4444;
+    filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+}
+
+/* Social Media Icons */
+.social-gaming-icon {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-gaming-icon:hover {
+    transform: scale(1.3) rotate(15deg);
+    filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+}
+
+/* Magnifying Glass Search */
+.ph-magnifying-glass:hover {
+    animation: search-pulse 0.6s ease-out;
+}
+
+@keyframes search-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) rotate(10deg); }
+    100% { transform: scale(1.1); }
+}
+
+/* Mobile Device Animation */
+.ph-device-mobile:hover {
+    animation: phone-vibrate 0.5s ease-in-out;
+}
+
+@keyframes phone-vibrate {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Film Strip Animation */
+.ph-film-strip:hover {
+    animation: film-roll 1s ease-in-out;
+}
+
+@keyframes film-roll {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+/* Question Mark Bounce */
+.ph-question:hover {
+    animation: question-bounce 0.6s ease-out;
+}
+
+@keyframes question-bounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-8px) scale(1.1); }
+    50% { transform: translateY(-4px); }
+    75% { transform: translateY(-2px); }
+}
+
+/* Envelope Send Animation */
+.ph-envelope:hover {
+    animation: envelope-send 0.8s ease-out;
+}
+
+@keyframes envelope-send {
+    0% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(5px) rotate(5deg); }
+    50% { transform: translateX(10px) rotate(-2deg); }
+    75% { transform: translateX(15px) rotate(3deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
+/* ===================================================
+   Enhanced Why Choose Us Section Animations
+   ================================================ */
+
+/* Benefit Icon Base Styling */
+.benefit-gaming-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    color: #8b0000;
+    transform: scale(1);
+    filter: none;
+    animation: none;
+}
+
+/* Enhanced Lightning Animation */
+.ph-lightning.benefit-gaming-icon:hover {
+    animation: premiumLightningStrike 1s ease-out;
+}
+
+@keyframes premiumLightningStrike {
+    0% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+    25% { 
+        transform: scale(1.3) rotateY(15deg) rotateZ(5deg);
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+        color: #ffffff;
+    }
+    50% { 
+        transform: scale(1.25) rotateY(5deg) rotateZ(-3deg);
+        filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }    75% { 
+        transform: scale(1.35) rotateY(20deg) rotateZ(8deg);
+        filter: drop-shadow(0 0 35px rgba(255, 68, 68, 1));
+        color: #ff4444;
+    }
+    100% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+}
+
+/* Enhanced Security Shield Animation */
+.ph-shield-check.benefit-gaming-icon:hover {
+    animation: premiumSecurityScan 1.2s ease-out;
+}
+
+@keyframes premiumSecurityScan {
+    0% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+    25% { 
+        transform: scale(1.25) rotateY(15deg);
+        filter: drop-shadow(0 0 25px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    50% { 
+        transform: scale(1.3) rotateY(5deg);
+        filter: drop-shadow(0 0 30px rgba(0, 136, 255, 0.9));
+        color: #0088ff;
+    }    75% { 
+        transform: scale(1.25) rotateY(20deg);
+        filter: drop-shadow(0 0 25px rgba(68, 255, 68, 0.8));
+        color: #44ff44;
+    }
+    100% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+}
+
+/* Enhanced Price Tag Animation */
+.ph-tag.benefit-gaming-icon:hover {
+    animation: premiumPriceWiggle 0.8s ease-out;
+}
+
+@keyframes premiumPriceWiggle {
+    0% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+    20% { 
+        transform: scale(1.25) rotateY(-10deg) rotateZ(-5deg);
+        filter: drop-shadow(0 0 25px rgba(255, 170, 68, 0.8));
+        color: #ffaa44;
+    }
+    40% { 
+        transform: scale(1.3) rotateY(15deg) rotateZ(8deg);
+        filter: drop-shadow(0 0 30px rgba(68, 255, 68, 0.9));
+        color: #44ff44;
+    }
+    60% { 
+        transform: scale(1.25) rotateY(-15deg) rotateZ(-8deg);
+        filter: drop-shadow(0 0 25px rgba(255, 68, 255, 0.8));
+        color: #ff44ff;
+    }    80% { 
+        transform: scale(1.35) rotateY(20deg) rotateZ(5deg);
+        filter: drop-shadow(0 0 35px rgba(255, 215, 0, 1));
+        color: #ffd700;
+    }
+    100% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+}
+
+/* Enhanced Headset Support Animation */
+.ph-headset.benefit-gaming-icon:hover {
+    animation: premiumSupportGlow 1s ease-out;
+}
+
+@keyframes premiumSupportGlow {
+    0% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+    25% { 
+        transform: scale(1.25) rotateY(15deg);
+        filter: drop-shadow(0 0 25px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.3) rotateY(5deg);
+        filter: drop-shadow(0 0 30px rgba(170, 68, 255, 0.9));
+        color: #aa44ff;
+    }    75% { 
+        transform: scale(1.25) rotateY(20deg);
+        filter: drop-shadow(0 0 25px rgba(68, 255, 170, 0.8));
+        color: #44ffaa;
+    }
+    100% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+}
+
+/* Enhanced Certificate Animation */
+.ph-certificate.benefit-gaming-icon:hover {
+    animation: premiumCertificateShine 1.5s ease-out;
+}
+
+@keyframes premiumCertificateShine {
+    0% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+    20% { 
+        transform: scale(1.2) rotateY(15deg) rotateZ(3deg);
+        filter: drop-shadow(0 0 22px rgba(255, 215, 0, 0.8));
+        color: #ffd700;
+    }
+    40% { 
+        transform: scale(1.3) rotateY(5deg) rotateZ(-5deg);
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1));
+        color: #ffffff;
+    }
+    60% { 
+        transform: scale(1.25) rotateY(20deg) rotateZ(8deg);
+        filter: drop-shadow(0 0 25px rgba(255, 170, 68, 0.9));
+        color: #ffaa44;
+    }    80% { 
+        transform: scale(1.35) rotateY(10deg) rotateZ(-3deg);
+        filter: drop-shadow(0 0 35px rgba(139, 0, 0, 1));
+        color: #8b0000;
+    }
+    100% { 
+        transform: scale(1);
+        filter: none;
+        color: #8b0000;
+    }
+}
+
+/* Disable glow effect that creates white background */
+.benefit-gaming-icon::after {
+    display: none !important;
+    content: none !important;
+}
+
+.benefit-card:hover .benefit-gaming-icon::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Reset glow effect when not hovering */
+.benefit-card:not(:hover) .benefit-gaming-icon::after {
+    display: none !important;
+    content: none !important;
+}
+
+@keyframes iconGlow {
+    0% { 
+        transform: translate(-50%, -50%) scale(1);
+        background: radial-gradient(circle at center, 
+            rgba(139, 0, 0, 0.1) 0%, 
+            transparent 60%);
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        background: radial-gradient(circle at center, 
+            rgba(255, 68, 68, 0.2) 0%, 
+            transparent 70%);
+    }
+}
+
+/* SSL Lock Icon Animation */
+.ph-lock:hover {
+    animation: ssl-lock-secure 0.8s ease-out;
+}
+
+@keyframes ssl-lock-secure {
+    0% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.7));
+    }
+    25% { 
+        transform: scale(1.2) rotateZ(-3deg);
+        filter: drop-shadow(0 0 12px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    50% { 
+        transform: scale(1.25) rotateZ(3deg);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    75% { 
+        transform: scale(1.2) rotateZ(-2deg);
+        filter: drop-shadow(0 0 12px rgba(0, 136, 255, 0.8));
+        color: #0088ff;
+    }
+    100% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* ===================================================
+   Category Card Icon Hover Animations
+   ================================================ */
+
+/* Desktop PC Games Animation */
+.category-card:hover .ph-desktop.category-gaming-icon {
+    animation: desktopBootUp 1s ease-out;
+}
+
+@keyframes desktopBootUp {
+    0% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.7));
+    }
+    25% { 
+        transform: scale(1.2) rotateY(10deg);
+        filter: drop-shadow(0 0 15px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.25) rotateY(-5deg);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+        color: #ffffff;
+    }
+    75% { 
+        transform: scale(1.2) rotateY(8deg);
+        filter: drop-shadow(0 0 18px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    100% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Console Game Controller Animation */
+.category-card:hover .ph-game-controller.category-gaming-icon {
+    animation: controllerVibrate 0.8s ease-out;
+}
+
+@keyframes controllerVibrate {
+    0%, 100% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+    }
+    10% { transform: scale(1.2) translateX(-2px) rotateZ(-2deg); }
+    20% { transform: scale(1.25) translateX(2px) rotateZ(2deg); }
+    30% { transform: scale(1.2) translateX(-1px) rotateZ(-1deg); }
+    40% { transform: scale(1.25) translateX(1px) rotateZ(1deg); }
+    50% { 
+        transform: scale(1.3) rotateZ(0deg);
+        filter: drop-shadow(0 0 20px rgba(255, 68, 68, 1));
+        color: #ff4444;
+    }
+    60% { transform: scale(1.25) translateX(-1px) rotateZ(1deg); }
+    70% { transform: scale(1.2) translateX(1px) rotateZ(-1deg); }
+    80% { transform: scale(1.25) translateX(-0.5px) rotateZ(0.5deg); }
+    90% { transform: scale(1.2) translateX(0.5px) rotateZ(-0.5deg); }
+}
+
+/* Software Gear Rotation Animation */
+.category-card:hover .ph-gear.category-gaming-icon {
+    animation: gearTechSpin 1.2s ease-out;
+}
+
+@keyframes gearTechSpin {
+    0% { 
+        transform: scale(1.15) rotate(0deg);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(90deg);
+        filter: drop-shadow(0 0 15px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.25) rotate(180deg);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    75% { 
+        transform: scale(1.2) rotate(270deg);
+        filter: drop-shadow(0 0 18px rgba(170, 68, 255, 0.8));
+        color: #aa44ff;
+    }
+    100% { 
+        transform: scale(1.15) rotate(360deg);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Gift Card Unwrap Animation */
+.category-card:hover .ph-gift.category-gaming-icon {
+    animation: giftUnwrap 1s ease-out;
+}
+
+@keyframes giftUnwrap {
+    0% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+    }
+    20% { 
+        transform: scale(1.25) rotateY(15deg) rotateZ(5deg);
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+        color: #ffd700;
+    }
+    40% { 
+        transform: scale(1.1) rotateY(-10deg) rotateZ(-3deg);
+        filter: drop-shadow(0 0 10px rgba(255, 170, 68, 0.7));
+        color: #ffaa44;
+    }
+    60% { 
+        transform: scale(1.3) rotateY(20deg) rotateZ(8deg);
+        filter: drop-shadow(0 0 25px rgba(255, 68, 68, 1));
+        color: #ff4444;
+    }
+    80% { 
+        transform: scale(1.2) rotateY(-5deg) rotateZ(-2deg);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+        color: #ffffff;
+    }
+    100% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Film Strip Media Animation */
+.category-card:hover .ph-film-strip.category-gaming-icon {
+    animation: filmRoll 1s ease-out;
+}
+
+@keyframes filmRoll {
+    0% { 
+        transform: scale(1.15) translateX(0);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) translateX(-3px);
+        filter: drop-shadow(0 0 15px rgba(255, 68, 68, 0.8));
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.25) translateX(3px);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    75% { 
+        transform: scale(1.2) translateX(-2px);
+        filter: drop-shadow(0 0 18px rgba(170, 68, 255, 0.8));
+        color: #aa44ff;
+    }
+    100% { 
+        transform: scale(1.15) translateX(0);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Trophy Gaming Accounts Animation */
+.category-card:hover .ph-trophy.category-gaming-icon {
+    animation: trophyShine 1.2s ease-out;
+}
+
+@keyframes trophyShine {
+    0% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+    }
+    20% { 
+        transform: scale(1.25) rotateY(10deg);
+        filter: drop-shadow(0 0 18px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    40% { 
+        transform: scale(1.3) rotateY(-5deg);
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1));
+        color: #ffffff;
+    }
+    60% { 
+        transform: scale(1.25) rotateY(15deg);
+        filter: drop-shadow(0 0 20px rgba(255, 170, 68, 0.9));
+        color: #ffaa44;
+    }
+    80% { 
+        transform: scale(1.35) rotateY(-8deg);
+        filter: drop-shadow(0 0 30px rgba(255, 215, 0, 1));
+        color: #ffd700;
+    }
+    100% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Enhanced base category icon styling */
+.category-gaming-icon {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* Category card hover enhancement */
+.category-card:hover .category-gaming-icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+}
+
+/* ===================================================
+   NAVBAR PARENT HOVER ANIMATIONS
+   ================================================ */
+
+/* Navigation Links - Animate icons when hovering the entire nav-link */
+.nav-link:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+}
+
+/* Search Button - Animate icon when hovering the search-toggle button */
+.search-toggle:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    animation: search-pulse 0.6s ease-out;
+}
+
+/* Cart Button - Animate icon when hovering the cart-toggle button */
+.cart-toggle:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    animation: cart-shake 0.5s ease-in-out;
+}
+
+/* Specific animations triggered by parent hover */
+.nav-link:hover .ph-storefront {
+    animation: storefrontOpen 0.8s ease-out;
+}
+
+.nav-link:hover .ph-game-controller {
+    animation: controller-pulse 0.8s ease-out;
+}
+
+.nav-link:hover .ph-cube {
+    animation: cube-3d 1s ease-in-out;
+}
+
+.nav-link:hover .ph-shield-check {
+    animation: security-scan 1s ease-in-out;
+}
+
+.search-toggle:hover .ph-magnifying-glass {
+    animation: search-pulse 0.6s ease-out;
+}
+
+.cart-toggle:hover .ph-shopping-cart {
+    animation: cart-shake 0.5s ease-in-out;
+}
+
+/* ===================================================
+   MISSING KEYFRAME ANIMATIONS FOR NAVBAR
+   ================================================ */
+
+/* Storefront Animation */
+@keyframes storefrontOpen {
+    0% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.25) rotate(5deg) rotateY(10deg);
+        filter: drop-shadow(0 0 15px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.3) rotate(-2deg) rotateY(-5deg);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    75% { 
+        transform: scale(1.25) rotate(8deg) rotateY(15deg);
+        filter: drop-shadow(0 0 18px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* ===================================================
+   LEFT SIDEBAR PARENT HOVER ANIMATIONS
+   ================================================ */
+
+/* Left Sidebar Navigation Links - Animate icons when hovering entire nav-link */
+.left-sidebar .nav-link:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+}
+
+/* Left Sidebar Social Buttons */
+.left-sidebar .social-btn:hover .social-gaming-icon {
+    transform: scale(1.3) rotate(15deg);
+    filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+}
+
+/* Specific left sidebar icon animations on parent hover */
+.left-sidebar .nav-link:hover .ph-heart {
+    animation: heartBeat 0.8s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-books {
+    animation: booksFlip 0.8s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-package {
+    animation: packageBounce 0.6s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-currency-dollar {
+    animation: moneyShine 0.8s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-desktop {
+    animation: leftSidebarDesktop 1s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-game-controller {
+    animation: leftSidebarController 0.8s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-gear {
+    animation: gear-spin 2s linear infinite;
+}
+
+.left-sidebar .nav-link:hover .ph-gift {
+    animation: giftUnwrap 1s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-question {
+    animation: question-bounce 0.6s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-chat-circle {
+    animation: chatBubble 0.6s ease-out;
+}
+
+.left-sidebar .nav-link:hover .ph-note-pencil {
+    animation: pencilWrite 0.8s ease-out;
+}
+
+/* Left Sidebar Social Media Specific Animations */
+.left-sidebar .social-btn:hover .ph-google-logo {
+    animation: googleSpin 0.8s ease-out;
+}
+
+.left-sidebar .social-btn:hover .ph-discord-logo {
+    animation: discordPulse 0.8s ease-out;
+}
+
+.left-sidebar .social-btn:hover .ph-steam-logo {
+    animation: steamPuff 0.8s ease-out;
+}
+
+/* ===================================================
+   MISSING KEYFRAMES FOR LEFT SIDEBAR ANIMATIONS
+   ================================================ */
+
+/* Heart Beat Animation */
+@keyframes heartBeat {
+    0%, 100% { 
+        transform: scale(1.15) rotate(3deg); 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.3) rotate(5deg); 
+        color: #ff69b4; 
+        filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.8));
+    }
+    50% { 
+        transform: scale(1.15) rotate(-2deg); 
+        color: #ff1493; 
+        filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.8));
+    }
+    75% { 
+        transform: scale(1.25) rotate(4deg); 
+        color: #dc143c; 
+        filter: drop-shadow(0 0 18px rgba(220, 20, 60, 0.8));
+    }
+}
+
+/* Books Flip Animation */
+@keyframes booksFlip {
+    0% { 
+        transform: scale(1.15) rotate(3deg) rotateY(0deg); 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(5deg) rotateY(45deg); 
+        color: #4169e1; 
+        filter: drop-shadow(0 0 15px rgba(65, 105, 225, 0.8));
+    }
+    50% { 
+        transform: scale(1.25) rotate(-2deg) rotateY(180deg); 
+        color: #6495ed; 
+        filter: drop-shadow(0 0 20px rgba(100, 149, 237, 0.8));
+    }
+    75% { 
+        transform: scale(1.2) rotate(4deg) rotateY(315deg); 
+        color: #87ceeb; 
+        filter: drop-shadow(0 0 15px rgba(135, 206, 235, 0.8));
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg) rotateY(360deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* Package Bounce Animation */
+@keyframes packageBounce {
+    0%, 100% { 
+        transform: scale(1.15) rotate(3deg) translateY(0); 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(5deg) translateY(-5px); 
+        color: #8b4513; 
+        filter: drop-shadow(0 0 15px rgba(139, 69, 19, 0.8));
+    }
+    50% { 
+        transform: scale(1.25) rotate(-2deg) translateY(-8px); 
+        color: #d2691e; 
+        filter: drop-shadow(0 0 20px rgba(210, 105, 30, 0.8));
+    }
+    75% { 
+        transform: scale(1.2) rotate(4deg) translateY(-3px); 
+        color: #ff8c00; 
+        filter: drop-shadow(0 0 15px rgba(255, 140, 0, 0.8));
+    }
+}
+
+/* Money Shine Animation */
+@keyframes moneyShine {
+    0% { 
+        transform: scale(1.15) rotate(3deg); 
+        color: #8b0000; 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(8deg) rotateZ(5deg); 
+        color: #00ff00; 
+        filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8));
+    }
+    50% { 
+        transform: scale(1.25) rotate(-5deg) rotateZ(-5deg); 
+        color: #ffd700; 
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+    }
+    75% { 
+        transform: scale(1.2) rotate(6deg) rotateZ(3deg); 
+        color: #00ff80; 
+        filter: drop-shadow(0 0 18px rgba(0, 255, 128, 0.8));
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* Chat Bubble Animation */
+@keyframes chatBubble {
+    0%, 100% { 
+        transform: scale(1.15) rotate(3deg); 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(5deg) translateX(-2px); 
+        color: #00bfff; 
+        filter: drop-shadow(0 0 15px rgba(0, 191, 255, 0.8));
+    }
+    50% { 
+        transform: scale(1.25) rotate(-2deg) translateX(2px); 
+        color: #87ceeb; 
+        filter: drop-shadow(0 0 20px rgba(135, 206, 235, 0.8));
+    }
+    75% { 
+        transform: scale(1.2) rotate(4deg) translateX(-1px); 
+        color: #add8e6; 
+        filter: drop-shadow(0 0 15px rgba(173, 216, 230, 0.8));
+    }
+}
+
+/* Pencil Write Animation */
+@keyframes pencilWrite {
+    0% { 
+        transform: scale(1.15) rotate(3deg); 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.2) rotate(-5deg) translateX(-2px); 
+        color: #ff6347; 
+        filter: drop-shadow(0 0 15px rgba(255, 99, 71, 0.8));
+    }
+    50% { 
+        transform: scale(1.25) rotate(5deg) translateX(2px); 
+        color: #ffa500; 
+        filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.8));
+    }
+    75% { 
+        transform: scale(1.2) rotate(-3deg) translateX(-1px); 
+        color: #ffff00; 
+        filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8));
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* Google Spin Animation */
+@keyframes googleSpin {
+    0% { 
+        transform: scale(1.3) rotate(15deg); 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.4) rotate(105deg); 
+        color: #4285f4; 
+        filter: drop-shadow(0 0 20px rgba(66, 133, 244, 0.8));
+    }
+    50% { 
+        transform: scale(1.45) rotate(195deg); 
+        color: #ea4335; 
+        filter: drop-shadow(0 0 25px rgba(234, 67, 53, 0.8));
+    }
+    75% { 
+        transform: scale(1.4) rotate(285deg); 
+        color: #fbbc04; 
+        filter: drop-shadow(0 0 20px rgba(251, 188, 4, 0.8));
+    }
+    100% { 
+        transform: scale(1.3) rotate(375deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* Discord Pulse Animation */
+@keyframes discordPulse {
+    0% { 
+        transform: scale(1.3) rotate(15deg); 
+        color: #8b0000; 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.4) rotate(20deg); 
+        color: #7289da; 
+        filter: drop-shadow(0 0 20px rgba(114, 137, 218, 0.8));
+    }
+    50% { 
+        transform: scale(1.45) rotate(10deg); 
+        color: #5865f2; 
+        filter: drop-shadow(0 0 25px rgba(88, 101, 242, 0.8));
+    }
+    75% { 
+        transform: scale(1.4) rotate(25deg); 
+        color: #99aab5; 
+        filter: drop-shadow(0 0 20px rgba(153, 170, 181, 0.8));
+    }
+    100% { 
+        transform: scale(1.3) rotate(15deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* Steam Puff Animation */
+@keyframes steamPuff {
+    0% { 
+        transform: scale(1.3) rotate(15deg); 
+        color: #8b0000; 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+    25% { 
+        transform: scale(1.4) rotate(20deg); 
+        color: #1b2838; 
+        filter: drop-shadow(0 0 20px rgba(27, 40, 56, 0.8));
+    }
+    50% { 
+        transform: scale(1.45) rotate(10deg); 
+        color: #66c0f4; 
+        filter: drop-shadow(0 0 25px rgba(102, 192, 244, 0.8));
+    }
+    75% { 
+        transform: scale(1.4) rotate(25deg); 
+        color: #2a475e; 
+        filter: drop-shadow(0 0 20px rgba(42, 71, 94, 0.8));
+    }
+    100% { 
+        transform: scale(1.3) rotate(15deg); 
+        color: #ff4444; 
+        filter: drop-shadow(0 0 15px rgba(139, 0, 0, 0.8));
+    }
+}
+
+/* ===================================================
+   LEFT SIDEBAR SPECIFIC PC GAMES & CONSOLE ANIMATIONS
+   ================================================ */
+
+/* Left Sidebar Desktop/PC Games Animation */
+@keyframes leftSidebarDesktop {
+    0% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.7));
+        color: #8b0000;
+    }
+    25% { 
+        transform: scale(1.25) rotate(5deg) rotateY(15deg);
+        filter: drop-shadow(0 0 15px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.3) rotate(-2deg) rotateY(-10deg);
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+        color: #ffffff;
+    }
+    75% { 
+        transform: scale(1.25) rotate(8deg) rotateY(12deg);
+        filter: drop-shadow(0 0 18px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Left Sidebar Console/Game Controller Animation */
+@keyframes leftSidebarController {
+    0%, 100% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+        color: #8b0000;
+    }
+    15% { 
+        transform: scale(1.2) rotate(5deg) translateX(-2px) rotateZ(-2deg); 
+        color: #ff6600;
+        filter: drop-shadow(0 0 12px rgba(255, 102, 0, 0.8));
+    }
+    30% { 
+        transform: scale(1.25) rotate(-1deg) translateX(2px) rotateZ(2deg); 
+        color: #ff9900;
+        filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.8));
+    }
+    45% { 
+        transform: scale(1.2) rotate(4deg) translateX(-1px) rotateZ(-1deg); 
+        color: #ffcc00;
+        filter: drop-shadow(0 0 12px rgba(255, 204, 0, 0.8));
+    }
+    60% { 
+        transform: scale(1.3) rotate(-2deg) translateX(1px) rotateZ(1deg); 
+        color: #ff4444;
+        filter: drop-shadow(0 0 20px rgba(255, 68, 68, 1));
+    }
+    75% { 
+        transform: scale(1.25) rotate(6deg) translateX(-0.5px) rotateZ(0.5deg); 
+        color: #ff6666;
+        filter: drop-shadow(0 0 15px rgba(255, 102, 102, 0.8));
+    }
+    90% { 
+        transform: scale(1.2) rotate(-1deg) translateX(0.5px) rotateZ(-0.5deg); 
+        color: #ff8888;
+        filter: drop-shadow(0 0 12px rgba(255, 136, 136, 0.8));
+    }
+}
+
+/* ===================================================
+   LOGIN/SIGNUP BUTTON ANIMATIONS - TOP NAVBAR & LEFT SIDEBAR
+   ================================================ */
+
+/* Top Navbar Login/Signup Button */
+.login-signup-btn:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    animation: userLoginGlow 0.8s ease-out;
+}
+
+/* Left Sidebar Login/Signup Button */
+.auth-combined:hover .nav-gaming-icon {
+    transform: scale(1.15) rotate(3deg);
+    color: #ff4444;
+    filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+    animation: userLoginGlow 0.8s ease-out;
+}
+
+/* User Login/Signup Glow Animation */
+@keyframes userLoginGlow {
+    0% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.8));
+        color: #8b0000;
+    }
+    25% { 
+        transform: scale(1.25) rotate(8deg) rotateY(15deg);
+        filter: drop-shadow(0 0 15px rgba(68, 170, 255, 0.8));
+        color: #44aaff;
+    }
+    50% { 
+        transform: scale(1.3) rotate(-2deg) rotateY(-10deg);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+        color: #ffd700;
+    }
+    75% { 
+        transform: scale(1.25) rotate(12deg) rotateY(20deg);
+        filter: drop-shadow(0 0 18px rgba(0, 255, 0, 0.8));
+        color: #00ff00;
+    }
+    100% { 
+        transform: scale(1.15) rotate(3deg);
+        filter: drop-shadow(0 0 12px rgba(139, 0, 0, 0.8));
+        color: #ff4444;
+    }
+}
+
+/* Enhanced User Profile Circle Animation */
+.ph-user-circle:hover {
+    animation: userLoginGlow 0.8s ease-out;
+}
+
+/* Additional pulse effect for login buttons */
+.login-signup-btn:hover,
+.auth-combined:hover {
+    transform: translateY(-1px);
+}
+
+/* Make sure user-circle icons have proper base styling */
+.ph-user-circle {
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+/* =================================================
+   Login/Signup Icon Animation Variations
+   ================================================ */
+
+/* Top Navbar Login/Signup Animation - User Profile Reveal */
+.login-signup-btn:hover .ph-user-circle.auth-icon {
+    animation: navbarProfileReveal 1.4s ease-out;
+}
+
+@keyframes navbarProfileReveal {
+    0% { 
+        transform: scale(1);
+        color: #ffffff;
+        filter: none;
+        opacity: 1;
+    }
+    15% { 
+        transform: scale(1.2) rotateY(45deg);
+        color: #ff4444;
+        filter: drop-shadow(0 0 15px rgba(255, 68, 68, 0.8));
+        opacity: 0.9;
+    }
+    30% { 
+        transform: scale(1.4) rotateY(90deg);
+        color: #00ff88;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.9));
+        opacity: 0.3;
+    }
+    45% { 
+        transform: scale(1.6) rotateY(135deg);
+        color: #0088ff;
+        filter: drop-shadow(0 0 25px rgba(0, 136, 255, 1));
+        opacity: 0.1;
+    }
+    60% { 
+        transform: scale(1.8) rotateY(180deg);
+        color: #ffaa00;
+        filter: drop-shadow(0 0 30px rgba(255, 170, 0, 1));
+        opacity: 0.8;
+    }
+    75% { 
+        transform: scale(1.5) rotateY(225deg);
+        color: #ff0088;
+        filter: drop-shadow(0 0 25px rgba(255, 0, 136, 0.9));
+        opacity: 1;
+    }
+    90% { 
+        transform: scale(1.3) rotateY(315deg);
+        color: #8800ff;
+        filter: drop-shadow(0 0 20px rgba(136, 0, 255, 0.8));
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(1) rotateY(360deg);
+        color: #ffffff;
+        filter: none;
+        opacity: 1;
+    }
+}
+
+/* Left Sidebar Login/Signup Animation - Digital Portal Entry */
+.auth-combined:hover .ph-user-circle.btn-icon {
+    animation: sidebarPortalEntry 1.6s ease-out;
+}
+
+@keyframes sidebarPortalEntry {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        color: #8b0000;
+        filter: none;
+        box-shadow: none;
+    }
+    10% { 
+        transform: scale(0.7) rotate(30deg);
+        color: #ff4444;
+        filter: drop-shadow(0 0 10px rgba(255, 68, 68, 0.6));
+        box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+    }
+    25% { 
+        transform: scale(1.5) rotate(90deg);
+        color: #00ffff;
+        filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.9));
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+    }
+    40% { 
+        transform: scale(2.2) rotate(180deg);
+        color: #ffffff;
+        filter: drop-shadow(0 0 35px rgba(255, 255, 255, 1));
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.7);
+    }
+    55% { 
+        transform: scale(1.8) rotate(270deg);
+        color: #ff8800;
+        filter: drop-shadow(0 0 30px rgba(255, 136, 0, 0.9));
+        box-shadow: 0 0 50px rgba(255, 136, 0, 0.6);
+    }
+    70% { 
+        transform: scale(2.5) rotate(360deg);
+        color: #8800ff;
+        filter: drop-shadow(0 0 40px rgba(136, 0, 255, 1));
+        box-shadow: 0 0 70px rgba(136, 0, 255, 0.8);
+    }
+    85% { 
+        transform: scale(1.3) rotate(450deg);
+        color: #00ff00;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8));
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+    }
+    100% { 
+        transform: scale(1) rotate(540deg);
+        color: #8b0000;
+        filter: none;
+        box-shadow: none;
+    }
+}
+
+/* Alternative Animation Set 1 - Gaming Power-Up Theme */
+.login-signup-btn:hover .ph-user-circle.auth-icon {
+    animation: navbarGamingPowerUp 1.2s ease-out;
+}
+
+@keyframes navbarGamingPowerUp {
+    0%, 100% { 
+        transform: scale(1);
+        color: #ffffff;
+        filter: none;
+    }
+    20% { 
+        transform: scale(1.3) rotateZ(45deg);
+        color: #ffff00;
+        filter: drop-shadow(0 0 18px rgba(255, 255, 0, 0.9));
+    }
+    40% { 
+        transform: scale(1.6) rotateZ(90deg);
+        color: #ff0000;
+        filter: drop-shadow(0 0 25px rgba(255, 0, 0, 1));
+    }
+    60% { 
+        transform: scale(1.4) rotateZ(135deg);
+        color: #00ff00;
+        filter: drop-shadow(0 0 22px rgba(0, 255, 0, 0.9));
+    }
+    80% { 
+        transform: scale(1.7) rotateZ(180deg);
+        color: #0000ff;
+        filter: drop-shadow(0 0 28px rgba(0, 0, 255, 1));
+    }
+}
+
+/* Alternative Animation Set 2 - Digital Matrix Theme */
+.auth-combined:hover .ph-user-circle.btn-icon {
+    animation: sidebarDigitalMatrix 1.5s ease-out;
+}
+
+@keyframes sidebarDigitalMatrix {
+    0%, 100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+        text-shadow: none;
+    }
+    25% { 
+        transform: scale(1.4) rotateY(90deg);
+        color: #00ff00;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.8));
+        text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    }
+    50% { 
+        transform: scale(1.8) rotateY(180deg);
+        color: #00aa00;
+        filter: drop-shadow(0 0 30px rgba(0, 170, 0, 1));
+        text-shadow: 0 0 25px rgba(0, 170, 0, 0.8);
+    }
+    75% { 
+        transform: scale(1.5) rotateY(270deg);
+        color: #88ff88;
+        filter: drop-shadow(0 0 25px rgba(136, 255, 136, 0.9));
+        text-shadow: 0 0 20px rgba(136, 255, 136, 0.7);
+    }
+}
+
+/* Button Container Animations */
+.login-signup-btn:hover {
+    background: linear-gradient(135deg, 
+        rgba(255, 68, 68, 0.2) 0%, 
+        rgba(139, 0, 0, 0.3) 100%);
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.auth-combined:hover {
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.8) 0%, 
+        rgba(255, 68, 68, 0.6) 100%);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Text Animation for Login/Signup */
+.login-signup-btn:hover .auth-text {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.auth-combined:hover .btn-text {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transform: scale(1.08);
+}
+
+/* Reset Animations */
+.login-signup-btn:not(:hover) .ph-user-circle.auth-icon,
+.auth-combined:not(:hover) .ph-user-circle.btn-icon {
+    animation: none !important;
+    transform: scale(1) !important;
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* ===================================================
+   BENEFIT CARD PARENT HOVER ANIMATIONS 
+   ================================================ */
+
+/* Trigger animations when hovering entire benefit cards */
+.benefit-card:hover .ph-lightning.benefit-gaming-icon {
+    animation: premiumLightningStrike 1s ease-out;
+}
+
+.benefit-card:hover .ph-shield-check.benefit-gaming-icon {
+    animation: premiumSecurityScan 1.2s ease-out;
+}
+
+.benefit-card:hover .ph-tag.benefit-gaming-icon {
+    animation: premiumPriceWiggle 0.8s ease-out;
+}
+
+.benefit-card:hover .ph-headset.benefit-gaming-icon {
+    animation: premiumSupportGlow 1s ease-out;
+}
+
+.benefit-card:hover .ph-certificate.benefit-gaming-icon {
+    animation: premiumCertificateShine 1.5s ease-out;
+}
+
+/* Override Previous Animations with New Variations */
+.benefit-card:hover .ph-lightning.benefit-gaming-icon {
+    animation: benefitPulse 1.2s ease-out !important;
+}
+
+.benefit-card:hover .ph-shield-check.benefit-gaming-icon {
+    animation: benefitBounce 1s ease-out !important;
+}
+
+.benefit-card:hover .ph-tag.benefit-gaming-icon {
+    animation: benefitFlip 1.3s ease-out !important;
+}
+
+.benefit-card:hover .ph-headset.benefit-gaming-icon {
+    animation: benefitWobble 1.1s ease-out !important;
+}
+
+.benefit-card:hover .ph-certificate.benefit-gaming-icon {
+    animation: benefitZoomRotate 1.5s ease-out !important;
+}
+
+/* Ensure clean reset for all new animations */
+.benefit-card:not(:hover) .benefit-gaming-icon {
+    animation: none !important;
+    transform: scale(1) !important;
+    color: #8b0000 !important;
+    filter: none !important;
+}
+
+/* Enhanced base hover for all benefit icons on card hover */
+.benefit-card:hover .benefit-gaming-icon {
+    transform: scale(1.05);
+    color: #ff4444;
+    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.7));
+}
+
+/* Explicit reset states when not hovering */
+.benefit-card:not(:hover) .benefit-gaming-icon {
+    transform: scale(1) !important;
+    color: #8b0000 !important;
+    filter: none !important;
+    animation: none !important;
+}
+
+/* Ensure smooth transitions on mouse leave */
+.benefit-card .benefit-gaming-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* =================================================
+   Trust Bar Icon Animations
+   ================================================ */
+
+/* Users/Community Icon Animation */
+.trust-item:hover .ph-users.gaming-icon {
+    animation: trustedCommunity 1.2s ease-out;
+}
+
+@keyframes trustedCommunity {
+    0% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    25% { 
+        transform: scale(1.15) rotateY(15deg);
+        color: #00ff88;
+        filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8));
+    }
+    50% { 
+        transform: scale(1.2) rotateY(-10deg);
+        color: #0088ff;
+        filter: drop-shadow(0 0 20px rgba(0, 136, 255, 1));
+    }
+    75% { 
+        transform: scale(1.15) rotateY(20deg);
+        color: #ff8800;
+        filter: drop-shadow(0 0 18px rgba(255, 136, 0, 0.8));
+    }
+    100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+}
+
+/* Star Rating Icon Animation */
+.trust-item:hover .ph-star.gaming-icon {
+    animation: starRating 1s ease-out;
+}
+
+@keyframes starRating {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        color: #8b0000;
+        filter: none;
+    }
+    20% { 
+        transform: scale(1.1) rotate(72deg);
+        color: #ffd700;
+        filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+    }
+    40% { 
+        transform: scale(1.2) rotate(144deg);
+        color: #ffff00;
+        filter: drop-shadow(0 0 18px rgba(255, 255, 0, 0.9));
+    }
+    60% { 
+        transform: scale(1.15) rotate(216deg);
+        color: #ff8800;
+        filter: drop-shadow(0 0 15px rgba(255, 136, 0, 0.8));
+    }
+    80% { 
+        transform: scale(1.25) rotate(288deg);
+        color: #ff4400;
+        filter: drop-shadow(0 0 20px rgba(255, 68, 0, 0.9));
+    }
+    100% { 
+        transform: scale(1) rotate(360deg);
+        color: #8b0000;
+        filter: none;
+    }
+}
+
+/* SSL Lock Icon Animation */
+.trust-item:hover .ph-lock.gaming-icon {
+    animation: sslSecurity 1.5s ease-out;
+}
+
+@keyframes sslSecurity {
+    0% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    15% { 
+        transform: scale(1.1) rotateZ(-5deg);
+        color: #ff4444;
+        filter: drop-shadow(0 0 10px rgba(255, 68, 68, 0.7));
+    }
+    30% { 
+        transform: scale(1.15) rotateZ(5deg);
+        color: #ffaa00;
+        filter: drop-shadow(0 0 15px rgba(255, 170, 0, 0.8));
+    }
+    50% { 
+        transform: scale(1.2) rotateZ(-3deg);
+        color: #00ff00;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.9));
+    }
+    70% { 
+        transform: scale(1.15) rotateZ(8deg);
+        color: #0088ff;
+        filter: drop-shadow(0 0 18px rgba(0, 136, 255, 0.8));
+    }
+    85% { 
+        transform: scale(1.25) rotateZ(-2deg);
+        color: #8800ff;
+        filter: drop-shadow(0 0 22px rgba(136, 0, 255, 0.9));
+    }
+    100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+}
+
+/* Trust Bar Base Icon Styling */
+.trust-item .gaming-icon {
+    font-size: 1.5rem;
+    color: #8b0000;
+    margin-right: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    filter: none;
+    background: transparent;
+}
+
+/* Ensure trust icons animate on parent hover */
+.trust-item:hover .gaming-icon {
+    color: #ff4444;
+    transform: scale(1.1);
+}
+
+/* =================================================
+   Alternative Animation Variations for Why Choose Us Icons
+   ================================================ */
+
+/* Variation 1: Pulse Animation */
+@keyframes benefitPulse {
+    0%, 100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    25% { 
+        transform: scale(1.2);
+        color: #ff4444;
+        filter: drop-shadow(0 0 15px rgba(255, 68, 68, 0.8));
+    }
+    50% { 
+        transform: scale(1.35);
+        color: #ffffff;
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 1));
+    }
+    75% { 
+        transform: scale(1.15);
+        color: #ffd700;
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+    }
+}
+
+/* Variation 2: Bounce Animation */
+@keyframes benefitBounce {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    25% { 
+        transform: translateY(-10px) scale(1.15);
+        color: #00ff88;
+        filter: drop-shadow(0 0 18px rgba(0, 255, 136, 0.8));
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.25);
+        color: #0088ff;
+        filter: drop-shadow(0 0 25px rgba(0, 136, 255, 0.9));
+    }
+    75% { 
+        transform: translateY(-5px) scale(1.1);
+        color: #ff8800;
+        filter: drop-shadow(0 0 15px rgba(255, 136, 0, 0.8));
+    }
+}
+
+/* Variation 3: Flip Animation */
+@keyframes benefitFlip {
+    0%, 100% { 
+        transform: rotateY(0deg) scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    25% { 
+        transform: rotateY(90deg) scale(1.2);
+        color: #aa44ff;
+        filter: drop-shadow(0 0 20px rgba(170, 68, 255, 0.8));
+    }
+    50% { 
+        transform: rotateY(180deg) scale(1.3);
+        color: #ffff00;
+        filter: drop-shadow(0 0 30px rgba(255, 255, 0, 1));
+    }
+    75% { 
+        transform: rotateY(270deg) scale(1.15);
+        color: #ff0088;
+        filter: drop-shadow(0 0 22px rgba(255, 0, 136, 0.9));
+    }
+}
+
+/* Variation 4: Wobble Animation */
+@keyframes benefitWobble {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1);
+        color: #8b0000;
+        filter: none;
+    }
+    15% { 
+        transform: rotate(-15deg) scale(1.1);
+        color: #ff4444;
+        filter: drop-shadow(0 0 12px rgba(255, 68, 68, 0.7));
+    }
+    30% { 
+        transform: rotate(10deg) scale(1.2);
+        color: #00ff44;
+        filter: drop-shadow(0 0 18px rgba(0, 255, 68, 0.8));
+    }
+    45% { 
+        transform: rotate(-8deg) scale(1.15);
+        color: #4400ff;
+        filter: drop-shadow(0 0 15px rgba(68, 0, 255, 0.8));
+    }
+    60% { 
+        transform: rotate(5deg) scale(1.25);
+        color: #ff8800;
+        filter: drop-shadow(0 0 20px rgba(255, 136, 0, 0.9));
+    }
+    75% { 
+        transform: rotate(-3deg) scale(1.1);
+        color: #00aaff;
+        filter: drop-shadow(0 0 14px rgba(0, 170, 255, 0.8));
+    }
+}
+
+/* Variation 5: Zoom-Rotate Animation */
+@keyframes benefitZoomRotate {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        color: #8b0000;
+        filter: none;
+    }
+    20% { 
+        transform: scale(1.3) rotate(45deg);
+        color: #ff0044;
+        filter: drop-shadow(0 0 16px rgba(255, 0, 68, 0.8));
+    }
+    40% { 
+        transform: scale(1.5) rotate(90deg);
+        color: #44ff00;
+        filter: drop-shadow(0 0 25px rgba(68, 255, 0, 0.9));
+    }
+    60% { 
+        transform: scale(1.2) rotate(180deg);
+        color: #0044ff;
+        filter: drop-shadow(0 0 20px rgba(0, 68, 255, 0.9));
+    }
+    80% { 
+        transform: scale(1.4) rotate(270deg);
+        color: #ff8844;
+        filter: drop-shadow(0 0 22px rgba(255, 136, 68, 0.8));
+    }
+}
+
+/* Variation 6: Matrix Digital Rain Effect */
+@keyframes benefitMatrix {
+    0%, 100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+        text-shadow: none;
+    }
+    25% { 
+        transform: scale(1.1);
+        color: #00ff00;
+        filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.8));
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    50% { 
+        transform: scale(1.25);
+        color: #00aa00;
+        filter: drop-shadow(0 0 25px rgba(0, 170, 0, 1));
+        text-shadow: 0 0 20px rgba(0, 170, 0, 0.8);
+    }
+    75% { 
+        transform: scale(1.15);
+        color: #88ff88;
+        filter: drop-shadow(0 0 18px rgba(136, 255, 136, 0.9));
+        text-shadow: 0 0 15px rgba(136, 255, 136, 0.6);
+    }
+}
+
+/* Variation 7: Neon Glow Pulse */
+@keyframes benefitNeonGlow {
+    0%, 100% { 
+        transform: scale(1);
+        color: #8b0000;
+        filter: none;
+        box-shadow: none;
+    }
+    20% { 
+        transform: scale(1.2);
+        color: #ff0099;
+        filter: drop-shadow(0 0 20px rgba(255, 0, 153, 0.9));
+        box-shadow: 0 0 30px rgba(255, 0, 153, 0.5);
+    }
+    40% { 
+        transform: scale(1.35);
+        color: #0099ff;
+        filter: drop-shadow(0 0 30px rgba(0, 153, 255, 1));
+        box-shadow: 0 0 40px rgba(0, 153, 255, 0.6);
+    }
+    60% { 
+        transform: scale(1.25);
+        color: #99ff00;
+        filter: drop-shadow(0 0 25px rgba(153, 255, 0, 0.9));
+        box-shadow: 0 0 35px rgba(153, 255, 0, 0.5);
+    }
+    80% { 
+        transform: scale(1.4);
+        color: #ff9900;
+        filter: drop-shadow(0 0 35px rgba(255, 153, 0, 1));
+        box-shadow: 0 0 45px rgba(255, 153, 0, 0.7);
+    }
+}
+
+/* Variation 8: Gaming Power-Up Effect */
+@keyframes benefitPowerUp {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        color: #8b0000;
+        filter: none;
+    }
+    10% { 
+        transform: scale(0.8) rotate(10deg);
+        color: #ff4444;
+        filter: drop-shadow(0 0 10px rgba(255, 68, 68, 0.7));
+    }
+    25% { 
+        transform: scale(1.5) rotate(-15deg);
+        color: #ffff00;
+        filter: drop-shadow(0 0 25px rgba(255, 255, 0, 1));
+    }
+    50% { 
+        transform: scale(1.8) rotate(20deg);
+        color: #ffffff;
+        filter: drop-shadow(0 0 35px rgba(255, 255, 255, 1));
+    }
+    75% { 
+        transform: scale(1.3) rotate(-10deg);
+        color: #00ffff;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.9));
+    }
+    90% { 
+        transform: scale(1.1) rotate(5deg);
+        color: #ff8800;
+        filter: drop-shadow(0 0 15px rgba(255, 136, 0, 0.8));
+    }
+}
+
+/* Alternative Icon Assignment (Uncomment to use) */
+/*
+.benefit-card:hover .ph-lightning.benefit-gaming-icon {
+    animation: benefitMatrix 1.4s ease-out !important;
+}
+
+.benefit-card:hover .ph-shield-check.benefit-gaming-icon {
+    animation: benefitNeonGlow 1.6s ease-out !important;
+}
+
+.benefit-card:hover .ph-tag.benefit-gaming-icon {
+    animation: benefitPowerUp 1.2s ease-out !important;
+}
+
+.benefit-card:hover .ph-headset.benefit-gaming-icon {
+    animation: benefitMatrix 1.3s ease-out !important;
+}
+
+.benefit-card:hover .ph-certificate.benefit-gaming-icon {
+    animation: benefitNeonGlow 1.5s ease-out !important;
+}
+
+/* =================================================
+   Support Section Card Animations
+   ================================================ */
+
+/* Base Support Card Styling */
+.support-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Support Card Hover Animation */
+.support-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 
+        0 25px 50px rgba(139, 0, 0, 0.25),
+        0 0 40px rgba(139, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 68, 68, 0.3);
+}
+
+/* Support Card Icon Animations - Updated to match Category Cards */
+.support-card:hover .support-gaming-icon {
+    transform: translateY(-10px) scale(1.1);
+    color: #ff4444;
+    filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+}
+
+/* Technical Support Card Animation - Simplified to match Category Cards */
+.support-card:hover .ph-shield-check.support-gaming-icon {
+    animation: supportTechnical 1.3s ease-out;
+}
+
+@keyframes supportTechnical {
+    0% { 
+        transform: translateY(-10px) scale(1.1);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+    25% { 
+        transform: translateY(-15px) scale(1.15);
+        color: #00ff00;
+        filter: drop-shadow(0 15px 25px rgba(0, 255, 0, 0.5));
+    }
+    50% { 
+        transform: translateY(-20px) scale(1.2);
+        color: #0088ff;
+        filter: drop-shadow(0 20px 30px rgba(0, 136, 255, 0.6));
+    }
+    75% { 
+        transform: translateY(-15px) scale(1.15);
+        color: #ffaa00;
+        filter: drop-shadow(0 15px 25px rgba(255, 170, 0, 0.5));
+    }
+    100% { 
+        transform: translateY(-10px) scale(1.1);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+}
+
+/* Contact Us Card Animation - Simplified to match Category Cards */
+.support-card:hover .ph-envelope.support-gaming-icon {
+    animation: supportContact 1.1s ease-out;
+}
+
+@keyframes supportContact {
+    0% { 
+        transform: translateY(-10px) scale(1.1);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+    20% { 
+        transform: translateY(-15px) scale(1.15) rotateZ(-5deg);
+        color: #ff8800;
+        filter: drop-shadow(0 15px 22px rgba(255, 136, 0, 0.4));
+    }
+    40% { 
+        transform: translateY(-20px) scale(1.2) rotateZ(5deg);
+        color: #00ff88;
+        filter: drop-shadow(0 20px 28px rgba(0, 255, 136, 0.5));
+    }
+    60% { 
+        transform: translateY(-15px) scale(1.15) rotateZ(-3deg);
+        color: #8800ff;
+        filter: drop-shadow(0 15px 25px rgba(136, 0, 255, 0.5));
+    }
+    80% { 
+        transform: translateY(-12px) scale(1.12) rotateZ(2deg);
+        color: #ff0088;
+        filter: drop-shadow(0 12px 23px rgba(255, 0, 136, 0.4));
+    }
+    100% { 
+        transform: translateY(-10px) scale(1.1) rotateZ(0deg);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+}
+
+/* FAQ Card Animation - Simplified to match Category Cards */
+.support-card:hover .ph-question.support-gaming-icon {
+    animation: supportFAQ 1.2s ease-out;
+}
+
+@keyframes supportFAQ {
+    0% { 
+        transform: translateY(-10px) scale(1.1) rotate(0deg);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+    15% { 
+        transform: translateY(-12px) scale(1.13) rotate(45deg);
+        color: #ffff00;
+        filter: drop-shadow(0 12px 25px rgba(255, 255, 0, 0.5));
+    }
+    30% { 
+        transform: translateY(-15px) scale(1.15) rotate(90deg);
+        color: #00ffff;
+        filter: drop-shadow(0 15px 30px rgba(0, 255, 255, 0.6));
+    }
+    45% { 
+        transform: translateY(-12px) scale(1.13) rotate(135deg);
+        color: #ff00ff;
+        filter: drop-shadow(0 12px 28px rgba(255, 0, 255, 0.5));
+    }
+    60% { 
+        transform: translateY(-18px) scale(1.18) rotate(180deg);
+        color: #00ff00;
+        filter: drop-shadow(0 18px 32px rgba(0, 255, 0, 0.6));
+    }
+    75% { 
+        transform: translateY(-12px) scale(1.13) rotate(270deg);
+        color: #ff8800;
+        filter: drop-shadow(0 12px 26px rgba(255, 136, 0, 0.5));
+    }
+    100% { 
+        transform: translateY(-10px) scale(1.1) rotate(360deg);
+        color: #ff4444;
+        filter: drop-shadow(0 10px 20px rgba(139, 0, 0, 0.4));
+    }
+}
+
+/* Support Card Content Animations */
+.support-card:hover .support-card-title {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.support-card:hover .support-card-description {
+    color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.support-card:hover .support-card-btn {
+    background: linear-gradient(135deg, #ff4444, #8b0000);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+}
+
+/* Support Feature Icons Animation */
+.support-card:hover .support-feature .gaming-icon {
+    color: #ff4444;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(139, 0, 0, 0.6));
+}
+
+/* Support Feature Icons Individual Animations */
+.support-card:hover .support-feature:nth-child(1) .gaming-icon {
+    animation: supportFeature1 0.8s ease-out 0.1s;
+}
+
+.support-card:hover .support-feature:nth-child(2) .gaming-icon {
+    animation: supportFeature2 0.8s ease-out 0.2s;
+}
+
+.support-card:hover .support-feature:nth-child(3) .gaming-icon {
+    animation: supportFeature3 0.8s ease-out 0.3s;
+}
+
+@keyframes supportFeature1 {
+    0%, 100% { 
+        transform: scale(1.15);
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.3) rotateZ(15deg);
+        color: #00ff88;
+        filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.8));
+    }
+}
+
+@keyframes supportFeature2 {
+    0%, 100% { 
+        transform: scale(1.15);
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.3) rotateZ(-15deg);
+        color: #8800ff;
+        filter: drop-shadow(0 0 12px rgba(136, 0, 255, 0.8));
+    }
+}
+
+@keyframes supportFeature3 {
+    0%, 100% { 
+        transform: scale(1.15);
+        color: #ff4444;
+    }
+    50% { 
+        transform: scale(1.3) rotateZ(20deg);
+        color: #ff8800;
+        filter: drop-shadow(0 0 12px rgba(255, 136, 0, 0.8));
+    }
+}
+
+/* Support Stats Animation on Card Hover */
+.support-card:hover ~ .support-stats .support-stat {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.support-card:hover ~ .support-stats .support-stat-number {
+    color: #ff4444;
+    text-shadow: 0 0 10px rgba(255, 68, 68, 0.6);
+}

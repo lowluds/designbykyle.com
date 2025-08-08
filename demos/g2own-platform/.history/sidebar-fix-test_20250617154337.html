@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Fix Test</title>
+    
+    <!-- Load our responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        
+        .test-title {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #ff5252;
+        }
+        
+        .log-area {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+            border: 1px solid #444;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin: 2px;
+        }
+        
+        .status-good { background: #2d5a2d; color: #90ee90; }
+        .status-bad { background: #5a2d2d; color: #ff9090; }
+        .status-warning { background: #5a5a2d; color: #ffff90; }
+        
+        .mobile-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hover Zone for Sidebar -->
+    <div class="sidebar-hover-zone debug" id="sidebar-hover-zone"></div>
+
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle-btn" id="sidebar-floating-toggle">☰</button>
+
+    <!-- Left Sidebar -->
+    <aside class="left-sidebar" id="left-sidebar">
+        <div class="sidebar-container">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">G2</div>
+                    <span class="sidebar-logo-text">Menu</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Test Menu</h3>
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Home</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🎮</span>
+                        <span class="nav-text">Games</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🛒</span>
+                        <span class="nav-text">Store</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay"></div>
+
+    <div class="test-container">
+        <h1>🔧 Sidebar Fix Test</h1>
+        <p>Testing the fixed sidebar hover and click functionality.</p>
+        
+        <div class="test-section">
+            <div class="test-title">Status Check</div>
+            <div id="status-display"></div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">Manual Controls</div>
+            <div class="controls">
+                <button onclick="manualShowSidebar()">Force Show Sidebar</button>
+                <button onclick="manualHideSidebar()">Force Hide Sidebar</button>
+                <button onclick="debugSidebar()">Debug Info</button>
+                <button onclick="testHoverZone()">Test Hover Zone</button>
+                <button onclick="testMobileToggle()">Test Mobile Toggle</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Instructions</div>
+            <ul>
+                <li><strong>Desktop/Tablet:</strong> Move mouse to the red tinted area on the far left edge</li>
+                <li><strong>Mobile:</strong> Click the red hamburger button (☰) in the top-left corner</li>
+                <li><strong>Manual Test:</strong> Use the "Force Show Sidebar" button to test CSS</li>
+                <li><strong>Debug:</strong> Use "Debug Info" button to see element status</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Event Log</div>
+            <div id="event-log" class="log-area"></div>
+        </div>
+    </div>
+
+    <!-- Load our responsive JavaScript -->
+    <script src="assets/js/responsive.js"></script>
+    
+    <script>
+        const eventLog = document.getElementById('event-log');
+        const statusDisplay = document.getElementById('status-display');
+
+        function log(message) {
+            const time = new Date().toLocaleTimeString();
+            eventLog.innerHTML += `<div>[${time}] ${message}</div>`;
+            eventLog.scrollTop = eventLog.scrollHeight;
+            console.log(message);
+        }
+
+        function updateStatus() {
+            const sidebar = document.getElementById('left-sidebar');
+            const hoverZone = document.getElementById('sidebar-hover-zone');
+            const toggleBtn = document.getElementById('sidebar-floating-toggle');
+            
+            let status = '';
+            
+            status += sidebar ? '<span class="status-good">Sidebar: Found</span>' : '<span class="status-bad">Sidebar: Missing</span>';
+            status += hoverZone ? '<span class="status-good">Hover Zone: Found</span>' : '<span class="status-bad">Hover Zone: Missing</span>';
+            status += toggleBtn ? '<span class="status-good">Toggle Button: Found</span>' : '<span class="status-bad">Toggle Button: Missing</span>';
+            
+            if (sidebar) {
+                const transform = getComputedStyle(sidebar).transform;
+                const isVisible = !transform.includes('translateX(-100%)') && !transform.includes('-280px');
+                status += isVisible ? '<span class="status-good">Sidebar: Visible</span>' : '<span class="status-warning">Sidebar: Hidden</span>';
+            }
+            
+            statusDisplay.innerHTML = status;
+        }
+
+        function testHoverZone() {
+            const hoverZone = document.getElementById('sidebar-hover-zone');
+            if (!hoverZone) {
+                log('❌ Test failed: Hover zone not found');
+                return;
+            }
+            
+            log('🧪 Testing hover zone events...');
+            
+            // Simulate mouseenter
+            const enterEvent = new MouseEvent('mouseenter', { bubbles: true });
+            hoverZone.dispatchEvent(enterEvent);
+            log('📨 Dispatched mouseenter event');
+            
+            setTimeout(() => {
+                updateStatus();
+                
+                // Simulate mouseleave after 2 seconds
+                setTimeout(() => {
+                    const leaveEvent = new MouseEvent('mouseleave', { bubbles: true });
+                    hoverZone.dispatchEvent(leaveEvent);
+                    log('📨 Dispatched mouseleave event');
+                    
+                    setTimeout(updateStatus, 500);
+                }, 2000);
+            }, 100);
+        }
+
+        function testMobileToggle() {
+            const toggleBtn = document.getElementById('sidebar-floating-toggle');
+            if (!toggleBtn) {
+                log('❌ Test failed: Toggle button not found');
+                return;
+            }
+            
+            log('📱 Testing mobile toggle click...');
+            
+            const clickEvent = new MouseEvent('click', { bubbles: true });
+            toggleBtn.dispatchEvent(clickEvent);
+            log('📨 Dispatched click event on toggle button');
+            
+            setTimeout(updateStatus, 100);
+        }
+
+        // Initial status update
+        setTimeout(() => {
+            updateStatus();
+            log('🚀 Sidebar fix test initialized');
+            log('💡 Try hovering over the red area on the left, or click the red button');
+        }, 500);
+
+        // Update status every 2 seconds
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

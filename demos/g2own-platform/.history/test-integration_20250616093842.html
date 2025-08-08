@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Store Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 8px;
+            border: 1px solid #475569;
+        }
+        .test-button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #dc2626;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { background: #10b981; }
+        .error { background: #ef4444; }
+        .info { background: #3b82f6; }
+    </style>
+</head>
+<body>
+    <h1>G2Own Store Integration Test</h1>
+    
+    <div class="test-section">
+        <h2>Integration Status</h2>
+        <div id="integration-status" class="status info">Testing...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Store Categories Test</h2>
+        <button class="test-button" onclick="testCategory('steam-games')">Steam Games</button>
+        <button class="test-button" onclick="testCategory('game-items')">Game Items</button>
+        <button class="test-button" onclick="testCategory('gaming-accounts')">Gaming Accounts</button>
+        <button class="test-button" onclick="testCategory('software')">Software</button>
+        <div id="category-status" class="status info">Click a category to test...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Cart Integration Test</h2>
+        <button class="test-button" onclick="testAddToCart()">Add Test Item to Cart</button>
+        <button class="test-button" onclick="testRemoveFromCart()">Remove Test Item</button>
+        <button class="test-button" onclick="testOpenCart()">Open Cart</button>
+        <div id="cart-status" class="status info">Cart count: <span id="cart-count">0</span></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Store Search Test</h2>
+        <input type="text" id="search-input" placeholder="Enter search term..." style="padding: 8px; border-radius: 4px; border: 1px solid #475569; background: #334155; color: white; margin-right: 10px;">
+        <button class="test-button" onclick="testSearch()">Search Store</button>
+        <div id="search-status" class="status info">Enter a search term...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Integration Events Log</h2>
+        <div id="event-log" style="background: #0f172a; padding: 10px; border-radius: 4px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+        <button class="test-button" onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <!-- Include the integration scripts -->
+    <script src="assets/js/invision-commerce-integration.js"></script>
+    <script src="assets/js/cart-integration.js"></script>
+    <script src="assets/js/store-deep-links.js"></script>
+    
+    <script>
+        // Test functions
+        let testItemId = 'test-item-' + Date.now();
+        
+        function log(message) {
+            const logEl = document.getElementById('event-log');
+            const timestamp = new Date().toLocaleTimeString();
+            logEl.innerHTML += `[${timestamp}] ${message}\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function updateStatus(elementId, message, type = 'info') {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = 'status ' + type;
+        }
+        
+        function testCategory(category) {
+            log(`Testing category: ${category}`);
+            if (window.storeDeepLinks) {
+                window.storeDeepLinks.openCategory(category);
+                updateStatus('category-status', `Opened category: ${category}`, 'success');
+                log(`✅ Category ${category} opened successfully`);
+            } else {
+                updateStatus('category-status', 'Store deep links not available', 'error');
+                log(`❌ Store deep links not available`);
+            }
+        }
+        
+        function testAddToCart() {
+            log(`Adding test item to cart: ${testItemId}`);
+            if (window.cartIntegration) {
+                window.cartIntegration.addToCart(testItemId, 1);
+                updateStatus('cart-status', `Cart count: ${window.cartIntegration.cartCount}`, 'success');
+                log(`✅ Item added to cart`);
+            } else {
+                updateStatus('cart-status', 'Cart integration not available', 'error');
+                log(`❌ Cart integration not available`);
+            }
+        }
+        
+        function testRemoveFromCart() {
+            log(`Removing test item from cart: ${testItemId}`);
+            if (window.cartIntegration) {
+                window.cartIntegration.removeFromCart(testItemId);
+                updateStatus('cart-status', `Cart count: ${window.cartIntegration.cartCount}`, 'success');
+                log(`✅ Item removed from cart`);
+            } else {
+                updateStatus('cart-status', 'Cart integration not available', 'error');
+                log(`❌ Cart integration not available`);
+            }
+        }
+        
+        function testOpenCart() {
+            log('Opening cart...');
+            if (window.cartIntegration) {
+                window.cartIntegration.openCart();
+                updateStatus('cart-status', 'Cart opened', 'success');
+                log(`✅ Cart opened`);
+            } else {
+                updateStatus('cart-status', 'Cart integration not available', 'error');
+                log(`❌ Cart integration not available`);
+            }
+        }
+        
+        function testSearch() {
+            const query = document.getElementById('search-input').value;
+            if (!query.trim()) {
+                updateStatus('search-status', 'Please enter a search term', 'error');
+                return;
+            }
+            
+            log(`Searching for: ${query}`);
+            if (window.storeDeepLinks) {
+                window.storeDeepLinks.searchStore(query);
+                updateStatus('search-status', `Searched for: ${query}`, 'success');
+                log(`✅ Search executed for: ${query}`);
+            } else {
+                updateStatus('search-status', 'Store deep links not available', 'error');
+                log(`❌ Store deep links not available`);
+            }
+        }
+        
+        function clearLog() {
+            document.getElementById('event-log').innerHTML = '';
+        }
+        
+        // Check integration status
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                let status = [];
+                
+                if (window.InvisionCommerceIntegration) {
+                    status.push('✅ Commerce Integration');
+                    log('✅ Invision Commerce Integration loaded');
+                } else {
+                    status.push('❌ Commerce Integration');
+                    log('❌ Invision Commerce Integration failed to load');
+                }
+                
+                if (window.cartIntegration) {
+                    status.push('✅ Cart Integration');
+                    log('✅ Cart Integration loaded');
+                } else {
+                    status.push('❌ Cart Integration');
+                    log('❌ Cart Integration failed to load');
+                }
+                
+                if (window.storeDeepLinks) {
+                    status.push('✅ Deep Links');
+                    log('✅ Store Deep Links loaded');
+                } else {
+                    status.push('❌ Deep Links');
+                    log('❌ Store Deep Links failed to load');
+                }
+                
+                const allGood = status.every(s => s.includes('✅'));
+                updateStatus('integration-status', status.join(', '), allGood ? 'success' : 'error');
+                
+                log('Integration test page loaded');
+            }, 1000);
+        });
+        
+        // Listen for cart updates
+        window.addEventListener('cartUpdated', (e) => {
+            document.getElementById('cart-count').textContent = e.detail.count;
+            log(`Cart updated: ${e.detail.count} items`);
+        });
+        
+        // Listen for store events
+        window.addEventListener('storeEvent', (e) => {
+            log(`Store event: ${e.detail.event} - ${JSON.stringify(e.detail.data)}`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+/**
+ * ULTIMATE LAYOUT FIX - Final Override
+ * This CSS loads last and provides ultimate specificity to fix layout issues
+ */
+
+/* ===== ULTIMATE HERO SECTION OVERRIDE ===== */
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    margin: 0 0 1.5rem 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: visible !important;
+    display: block !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+}
+
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-title .title-line-1,
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-title .title-line-2,
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-title .title-line-3 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem) !important;
+    color: #888 !important;
+    max-width: 600px !important;
+    margin: 0 auto 2rem auto !important;
+    padding: 0 1rem !important;
+    text-align: center !important;
+    line-height: 1.6 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-cta {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin: 0 !important;
+    padding: 0 1rem !important;
+}
+
+html body .layout-container .main-content .hero .hero-container .hero-content .hero-cta .hero-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ===== ULTIMATE SIDEBAR CONTROL ===== */
+html body .layout-container .left-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    z-index: 999 !important;
+    background: rgba(13, 13, 13, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-right: 1px solid rgba(139, 0, 0, 0.2) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Mobile: Hidden by default */
+@media (max-width: 767px) {
+    html body .layout-container .left-sidebar {
+        width: 280px !important;
+        transform: translateX(-100%) !important;
+    }
+    
+    html body .layout-container .left-sidebar.mobile-active {
+        transform: translateX(0) !important;
+    }
+    
+    html body .layout-container .navbar {
+        left: 0 !important;
+        width: 100vw !important;
+    }
+    
+    html body .layout-container .main-content {
+        margin-left: 0 !important;
+        width: 100vw !important;
+    }
+}
+
+/* Tablet and up: Show sidebar */
+@media (min-width: 768px) {
+    html body .layout-container .left-sidebar {
+        width: 280px !important;
+        transform: translateX(0) !important;
+    }
+    
+    html body .layout-container .navbar {
+        left: 280px !important;
+        width: calc(100vw - 280px) !important;
+    }
+    
+    html body .layout-container .main-content {
+        margin-left: 280px !important;
+        width: calc(100vw - 280px) !important;
+    }
+}
+
+/* Desktop: Wider sidebar */
+@media (min-width: 1024px) {
+    html body .layout-container .left-sidebar {
+        width: 320px !important;
+    }
+    
+    html body .layout-container .navbar {
+        left: 320px !important;
+        width: calc(100vw - 320px) !important;
+    }
+    
+    html body .layout-container .main-content {
+        margin-left: 320px !important;
+        width: calc(100vw - 320px) !important;
+    }
+}
+
+/* ===== ULTIMATE OVERFLOW PREVENTION ===== */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+html body .layout-container {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+html body .layout-container .main-content {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+html body .layout-container .main-content .hero {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+html body .layout-container .main-content .hero .hero-container {
+    overflow-x: hidden !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+    box-sizing: border-box !important;
+}
+
+html body .layout-container .main-content .hero .hero-container .hero-content {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+}
+
+/* ===== ULTIMATE BACKGROUND SYSTEM ===== */
+html body .bg-system,
+html body #particles-js,
+html body #particles-canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: -10 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
+/* ===== ULTIMATE NAVBAR POSITIONING ===== */
+html body .layout-container .navbar {
+    position: fixed !important;
+    top: 0 !important;
+    height: 60px !important;
+    z-index: 1000 !important;
+    background: rgba(13, 13, 13, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.2) !important;
+    box-sizing: border-box !important;
+}
+
+@media (min-width: 768px) {
+    html body .layout-container .navbar {
+        height: 70px !important;
+    }
+    
+    html body .layout-container .main-content {
+        margin-top: 70px !important;
+        min-height: calc(100vh - 70px) !important;
+    }
+}
+
+html body .layout-container .main-content {
+    margin-top: 60px !important;
+    min-height: calc(100vh - 60px) !important;
+    position: relative !important;
+    padding: 0 !important;
+}
+
+/* ===== EMERGENCY DEBUG INFO (Remove in production) ===== */
+/*
+.debug-info {
+    position: fixed;
+    top: 80px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    z-index: 9999;
+    border-radius: 4px;
+}
+*/

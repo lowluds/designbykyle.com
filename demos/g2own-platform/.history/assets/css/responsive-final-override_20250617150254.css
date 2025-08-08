@@ -1,0 +1,282 @@
+/**
+ * RESPONSIVE FINAL OVERRIDE - HIGHEST PRIORITY
+ * This CSS file ensures responsive layout works regardless of other CSS conflicts
+ * Load this LAST to override all other styles
+ */
+
+/* ===== EMERGENCY RESPONSIVE FIXES ===== */
+/* These rules use maximum specificity and !important to override everything */
+
+/* Global Box Model Fix */
+*, *::before, *::after {
+    box-sizing: border-box !important;
+}
+
+/* Global Overflow Prevention */
+html {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ===== SIDEBAR RESPONSIVE BEHAVIOR ===== */
+/* Force sidebar behavior regardless of other CSS */
+
+.left-sidebar,
+#left-sidebar,
+.sidebar,
+.navigation-sidebar,
+[class*="sidebar"] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    z-index: 999 !important;
+    transition: transform 0.3s ease !important;
+    background: rgba(13, 13, 13, 0.95) !important;
+    border-right: 1px solid rgba(255, 0, 0, 0.3) !important;
+}
+
+/* ===== MOBILE LAYOUT (0-767px) ===== */
+@media screen and (max-width: 767px) {
+    /* Hide sidebar by default on mobile */
+    .left-sidebar,
+    #left-sidebar,
+    .sidebar,
+    .navigation-sidebar,
+    [class*="sidebar"] {
+        width: 280px !important;
+        transform: translateX(-100%) !important;
+    }
+    
+    /* Show sidebar when active */
+    .left-sidebar.mobile-active,
+    #left-sidebar.mobile-active,
+    .sidebar.mobile-active,
+    .navigation-sidebar.mobile-active,
+    [class*="sidebar"].mobile-active,
+    .left-sidebar.active,
+    #left-sidebar.active,
+    .sidebar.active,
+    .navigation-sidebar.active,
+    [class*="sidebar"].active {
+        transform: translateX(0) !important;
+    }
+    
+    /* Main content takes full width on mobile */
+    .main-content,
+    #main-content,
+    .content,
+    .page-content,
+    [class*="main"],
+    [class*="content"] {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Navbar full width on mobile */
+    .navbar,
+    .nav,
+    .navigation,
+    .top-nav,
+    [class*="nav"] {
+        left: 0 !important;
+        width: 100vw !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Hero section mobile fixes */
+    .hero-section,
+    .hero,
+    [class*="hero"] {
+        padding: 60px 15px 30px 15px !important;
+        margin-left: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+    
+    .hero-content,
+    .hero-text,
+    [class*="hero"] h1,
+    [class*="hero"] h2,
+    [class*="hero"] .title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+        line-height: 1.2 !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+        max-width: 90vw !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    /* Hide desktop elements */
+    .desktop-only,
+    [class*="desktop"] {
+        display: none !important;
+    }
+    
+    /* Mobile toggle button */
+    .sidebar-floating-toggle,
+    .mobile-menu-toggle,
+    [class*="toggle"] {
+        display: block !important;
+        position: fixed !important;
+        top: 15px !important;
+        left: 15px !important;
+        z-index: 1001 !important;
+        background: rgba(255, 0, 0, 0.8) !important;
+        color: white !important;
+        border: none !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+    }
+}
+
+/* ===== TABLET LAYOUT (768px-1023px) ===== */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .left-sidebar,
+    #left-sidebar,
+    .sidebar,
+    .navigation-sidebar,
+    [class*="sidebar"] {
+        width: 250px !important;
+        transform: translateX(0) !important;
+    }
+    
+    .main-content,
+    #main-content,
+    .content,
+    .page-content,
+    [class*="main"],
+    [class*="content"] {
+        margin-left: 250px !important;
+        width: calc(100vw - 250px) !important;
+        max-width: calc(100vw - 250px) !important;
+    }
+    
+    .navbar,
+    .nav,
+    .navigation,
+    .top-nav,
+    [class*="nav"] {
+        left: 250px !important;
+        width: calc(100vw - 250px) !important;
+    }
+    
+    /* Hide mobile toggle on tablet */
+    .sidebar-floating-toggle,
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+/* ===== DESKTOP LAYOUT (1024px+) ===== */
+@media screen and (min-width: 1024px) {
+    .left-sidebar,
+    #left-sidebar,
+    .sidebar,
+    .navigation-sidebar,
+    [class*="sidebar"] {
+        width: 280px !important;
+        transform: translateX(0) !important;
+    }
+    
+    .main-content,
+    #main-content,
+    .content,
+    .page-content,
+    [class*="main"],
+    [class*="content"] {
+        margin-left: 280px !important;
+        width: calc(100vw - 280px) !important;
+        max-width: calc(100vw - 280px) !important;
+    }
+    
+    .navbar,
+    .nav,
+    .navigation,
+    .top-nav,
+    [class*="nav"] {
+        left: 280px !important;
+        width: calc(100vw - 280px) !important;
+    }
+    
+    /* Hide mobile toggle on desktop */
+    .sidebar-floating-toggle,
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+/* ===== EMERGENCY OVERFLOW FIXES ===== */
+/* Prevent any element from causing horizontal scroll */
+div, section, main, article, aside, header, footer, nav {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Container fixes */
+.container,
+.container-fluid,
+[class*="container"] {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+/* Mobile overlay */
+.mobile-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 998 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.3s ease !important;
+    pointer-events: none !important;
+}
+
+.mobile-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* ===== TEXT AND CONTENT SCALING ===== */
+/* Ensure text scales properly on all devices */
+@media screen and (max-width: 480px) {
+    h1, .h1 { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+    h2, .h2 { font-size: clamp(1.3rem, 5vw, 1.8rem) !important; }
+    h3, .h3 { font-size: clamp(1.1rem, 4vw, 1.5rem) !important; }
+    p, span, div { font-size: clamp(0.9rem, 3vw, 1.1rem) !important; }
+}
+
+/* ===== FINAL SAFETY NET ===== */
+/* This ensures nothing can break the layout */
+* {
+    max-width: 100% !important;
+}
+
+*:not(.left-sidebar):not(#left-sidebar):not(.sidebar):not(.navigation-sidebar) {
+    margin-left: 0 !important;
+}
+
+/* Force immediate application */
+.responsive-ready * {
+    transition: all 0.3s ease !important;
+}

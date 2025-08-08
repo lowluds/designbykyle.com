@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle L. - Frontend Developer & UI Designer</title>
+    <meta name="description" content="Frontend Developer & UI Designer crafting beautiful, modern web experiences. Specializing in React, Python, Node.js, and modern web technologies.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Kyle L. - Frontend Developer & UI Designer">
+    <meta property="og:description" content="Crafting beautiful, modern web experiences that help businesses connect with their customers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://designbykyle.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-dark text-light">
+    <!-- Navigation -->
+    <nav class="navbar fixed-top" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="#home" class="brand-link">
+                        <span class="brand-text">Kyle L.</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-grid"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-greeting">
+                        <span class="greeting-text">Hello Everyone 👋</span>
+                    </div>
+                    <h1 class="hero-title">
+                        I'm <span class="highlight">Kyle L.</span><br>
+                        <span class="hero-subtitle">
+                            <span class="animated-text" id="animated-role">Frontend Developer</span>
+                        </span>
+                    </h1>
+                    <p class="hero-description">
+                        Crafting beautiful, modern web experiences that help businesses connect with their customers and grow their digital presence.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary">
+                            <span>View Portfolio</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get Started</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <div class="hero-image">
+                            <img src="assets/images/profile-photo.jpg" alt="Kyle L. - Frontend Developer" class="profile-photo">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-icon floating-icon-1">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-2">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-3">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-4">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="24">0</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Frontend Developer & UI Designer with passion for creating amazing digital experiences</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm a Creative Developer for interactive projects that usually are apps, VR and Creative websites. I spend most of time coding outstanding projects or studying new technologies to improve my development stack. I develop compelling designs that spring to life using transitions and animations that suit my clients, using the most sophisticated technologies available today for fully interactive and responsive websites and apps.
+                    </p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>kyle@designbykyle.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toronto, Canada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Sass</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What I Do</h2>
+                <p class="section-subtitle">I help businesses craft impactful digital experiences through modern web development, clean design, and smart strategy.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Application Development</h3>
+                    <p class="service-description">From sleek interfaces to efficient backend logic, I build modern, scalable web apps using tools like React, Python, and Node.js.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Frontend Development</h3>
+                    <p class="service-description">Responsive designs that look sharp and perform fast on every device. Built with user experience and accessibility in mind.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">Intuitive, user-focused design that blends clean visuals with seamless interaction to keep users engaged.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Strategy and Branding</h3>
+                    <p class="service-description">Technical guidance and smart digital strategy to help you make confident decisions and move your projects forward.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="service-title">Product Photography</h3>
+                    <p class="service-description">Professional product photography that showcases your products in the best light for digital marketing.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Improve your website's visibility and ranking in search engines with modern SEO techniques and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recent Works</h2>
+                <p class="section-subtitle">A collection of recent projects showcasing modern web development and design solutions.</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="branding">
+                    <div class="portfolio-image">
+                        <img src="assets/images/project1.jpg" alt="ASP All Solutions Printing">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-actions">
+                                <a href="https://github.com/lowluds/asp-printing" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Project">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/lowluds/asp-printing" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">ASP All Solutions Printing</h3>
+                        <p class="portfolio-description">Professional branding and logo design for printing company with clean, eco-friendly visual identity.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Logo Design</span>
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Web Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/images/project2.jpg" alt="G2Own Platform">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-actions">
+                                <a href="https://github.com/lowluds/g2own-platform" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Project">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/lowluds/g2own-platform" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">G2Own Platform</h3>
+                        <p class="portfolio-description">Sleek gaming platform interface with modern dark design, animated particles, and clean typography.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">CSS3</span>
+                            <span class="tag">Animation</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item" data-category="fullstack">
+                    <div class="portfolio-image">
+                        <img src="assets/images/project3.jpg" alt="Flask Authentication System">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-actions">
+                                <a href="https://github.com/lowluds/python-basic-port-scanner" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Project">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/lowluds/python-basic-port-scanner" target="_blank" rel="noopener noreferrer" class="portfolio-link" title="View Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Python Port Scanner</h3>
+                        <p class="portfolio-description">Basic network port scanner built with Python for security testing and network analysis.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Networking</span>
+                            <span class="tag">Security</span>
+                            <span class="tag">CLI Tool</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your project to life? Let's discuss your goals and create something amazing together.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>kyle@designbykyle.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <p>Connect with me</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>GitHub</h3>
+                                <p>View my code</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Response Time</h3>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form" action="contact.php" method="POST">
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Kyle L.</h3>
+                    <p>Frontend Developer & UI Designer</p>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kyle L. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

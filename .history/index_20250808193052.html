@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle L. - Frontend Developer & UI Designer</title>
+    <meta name="description" content="Frontend Developer & UI Designer crafting beautiful, modern web experiences. Specializing in React, Python, Node.js, and modern web technologies.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Kyle L. - Frontend Developer & UI Designer">
+    <meta property="og:description" content="Crafting beautiful, modern web experiences that help businesses connect with their customers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://designbykyle.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- 3D Card Preview Styling -->
+    <style>
+        /* Portfolio overlay for 3D cards */
+        .portfolio-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: rgba(0, 0, 0, 0.75) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            opacity: 0 !important;
+            transition: opacity 0.4s ease !important;
+            z-index: 10 !important;
+            border-radius: var(--radius-xl) !important;
+        }
+
+        /* Preview text styling */
+        .portfolio-preview-text {
+            color: white !important;
+            font-size: 1.8rem !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 3px !important;
+            text-align: center !important;
+            pointer-events: none !important;
+            transform: translateZ(80px) !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+            transition: transform 0.3s ease !important;
+        }
+
+        /* Show overlay on hover */
+        .portfolio-item:hover .portfolio-overlay,
+        .card-container:hover .portfolio-overlay {
+            opacity: 1 !important;
+        }
+
+        /* Enhanced 3D effect on hover */
+        .card-container:hover .portfolio-preview-text {
+            transform: translateZ(100px) scale(1.05) !important;
+        }
+
+        /* Ensure the image link works properly */
+        .portfolio-image-link {
+            display: block !important;
+            position: relative !important;
+            cursor: pointer !important;
+            border-radius: inherit !important;
+        }
+
+        /* Hide any existing button elements */
+        .portfolio-center-button,
+        .portfolio-view-button,
+        .portfolio-actions {
+            display: none !important;
+        }
+
+        /* 3D card compatibility */
+        .card-item-image .portfolio-overlay {
+            border-radius: var(--radius-xl) !important;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .portfolio-preview-text {
+                font-size: 1.5rem !important;
+                letter-spacing: 2px !important;
+            }
+        }
+
+        /* Enhanced Hero Section for Animated Beams - Restore Original Background */
+        .hero-section {
+            background: var(--bg-dark) !important;
+        }
+
+        /* Ensure hero background elements are visible above beams but below content */
+        .hero-background {
+            z-index: 2 !important;
+        }
+
+        .hero-grid {
+            z-index: 3 !important;
+        }
+
+        .hero-gradient {
+            z-index: 4 !important;
+        }
+
+        .hero-content {
+            position: relative !important;
+            z-index: 10 !important;
+        }
+
+        .hero-visual {
+            position: relative !important;
+            z-index: 10 !important;
+        }
+
+        /* Subtle glow effect for hero text */
+        .hero-title .highlight {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.3) !important;
+        }
+
+        /* Floating icons - restore original styling compatibility */
+        .floating-icon {
+            z-index: 15 !important;
+        }
+
+        /* Animated text styling with gradient last word */
+        .animated-text .gradient-word {
+            background: var(--gradient-primary) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            font-weight: 600 !important;
+        }
+
+        /* Enhanced animated text - subtle gradient for whole text */
+        .animated-text {
+            color: var(--text-primary) !important;
+        }
+
+        /* Scroll indicator enhancement */
+        .scroll-indicator {
+            position: relative !important;
+            z-index: 15 !important;
+        }
+
+        /* Portfolio Performance Optimizations */
+        .portfolio-item {
+            will-change: transform, opacity !important;
+            backface-visibility: hidden !important;
+            perspective: 1000px !important;
+        }
+
+        .card-body {
+            transform-style: preserve-3d !important;
+            backface-visibility: hidden !important;
+        }
+
+        .card-item {
+            will-change: transform !important;
+            backface-visibility: hidden !important;
+        }
+
+        /* Smoother initial loading */
+        .portfolio-item:not(.animated) {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+        }
+
+        .portfolio-item.animated {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Optimized image loading */
+        .portfolio-image img {
+            transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+            will-change: transform !important;
+        }
+
+        /* Reduce animation intensity for smoother performance */
+        @media (prefers-reduced-motion: reduce) {
+            .portfolio-item,
+            .card-body,
+            .card-item {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* Enhanced Hello Everyone Greeting - Remove Box, Add Immersive Effects */
+        .greeting-text {
+            display: inline-block !important;
+            padding: 0 !important;
+            background: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            font-size: 1.1rem !important;
+            font-weight: 500 !important;
+            color: var(--text-secondary) !important;
+            position: relative !important;
+            animation: floatInGlow 2s ease-out 0.3s both !important;
+        }
+
+        .greeting-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(99, 102, 241, 0.1) 0%,
+                rgba(139, 92, 246, 0.05) 50%,
+                rgba(168, 85, 247, 0.1) 100%
+            );
+            border-radius: 8px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .greeting-text:hover::before {
+            opacity: 1;
+        }
+
+        .greeting-text:hover {
+            color: var(--text-primary) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* Enhanced greeting animation */
+        @keyframes floatInGlow {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+                filter: blur(1px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateY(5px) scale(0.95);
+                filter: blur(0.5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* Add subtle glow effect */
+        .hero-greeting {
+            margin-bottom: var(--space-6) !important;
+            position: relative !important;
+        }
+
+        .hero-greeting::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 40px;
+            background: radial-gradient(
+                ellipse,
+                rgba(99, 102, 241, 0.08) 0%,
+                transparent 70%
+            );
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .hero-greeting:hover::after {
+            opacity: 1;
+        }
+    </style>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-dark text-light">
+    <!-- Navigation -->
+    <nav class="navbar fixed-top" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="#home" class="brand-link">
+                        <span class="brand-text">Kyle L.</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-grid"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-greeting">
+                        <span class="greeting-text">Hello Everyone 👋</span>
+                    </div>
+                    <h1 class="hero-title">
+                        I'm <span class="highlight">Kyle L.</span><br>
+                        <span class="hero-subtitle">
+                            <span class="animated-text" id="animated-role">Frontend Developer</span>
+                        </span>
+                    </h1>
+                    <p class="hero-description">
+                        Crafting beautiful, modern web experiences that help businesses connect with their customers and grow their digital presence.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary">
+                            <span>View Portfolio</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get Started</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <div class="hero-image">
+                            <img src="assets/images/profile-photo.jpg" alt="Kyle L. - Frontend Developer" class="profile-photo">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="floating-elements">
+                            <div class="floating-icon floating-icon-1">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-2">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-3">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-4">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24HR</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Frontend Developer & UI Designer with passion for creating amazing digital experiences</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm a Creative Developer for interactive projects that usually are apps, VR and Creative websites. I spend most of time coding outstanding projects or studying new technologies to improve my development stack. I develop compelling designs that spring to life using transitions and animations that suit my clients, using the most sophisticated technologies available today for fully interactive and responsive websites and apps.
+                    </p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>kyle@designbykyle.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toronto, Canada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Sass</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Flask</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What I Do</h2>
+                <p class="section-subtitle">I help businesses craft impactful digital experiences through modern web development, clean design, and smart strategy.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Application Development</h3>
+                    <p class="service-description">From sleek interfaces to efficient backend logic, I build modern, scalable web apps using tools like React, Python, and Node.js.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Frontend Development</h3>
+                    <p class="service-description">Responsive designs that look sharp and perform fast on every device. Built with user experience and accessibility in mind.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">Intuitive, user-focused design that blends clean visuals with seamless interaction to keep users engaged.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Strategy and Branding</h3>
+                    <p class="service-description">Technical guidance and smart digital strategy to help you make confident decisions and move your projects forward.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="service-title">Product Photography</h3>
+                    <p class="service-description">Professional product photography that showcases your products in the best light for digital marketing.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Improve your website's visibility and ranking in search engines with modern SEO techniques and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recent Works</h2>
+                <p class="section-subtitle">A collection of recent projects showcasing modern web development and design solutions.</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Portfolio items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your project to life? Let's discuss your goals and create something amazing together.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>kyle@designbykyle.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <p>Connect with me</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>GitHub</h3>
+                                <p>View my code</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Response Time</h3>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form" action="contact.php" method="POST">
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Kyle L.</h3>
+                    <p>Frontend Developer & UI Designer</p>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kyle L. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/portfolio-data.js"></script>
+    <script src="assets/js/portfolio-loader.js"></script>
+    <script src="assets/js/background-beams.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

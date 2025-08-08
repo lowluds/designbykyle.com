@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Icons Test - G2Own</title>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .test-content {
+            padding: 100px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        /* Simple sidebar for testing */
+        .left-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(239, 68, 68, 0.2);
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px;
+            color: white;
+        }
+        
+        .left-sidebar.definitive-visible {
+            transform: translateX(0);
+        }
+        
+        .sidebar-hover-zone {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 100vh;
+            z-index: 1001;
+            background: rgba(255, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Hover Zone -->
+    <div class="sidebar-hover-zone" id="sidebar-hover-zone"></div>
+    
+    <!-- Sidebar -->
+    <aside class="left-sidebar" id="left-sidebar">
+        <h2>Sidebar Menu</h2>
+        <p>This is the sidebar content.</p>
+        <ul>
+            <li>Store</li>
+            <li>Activity</li>
+            <li>Search</li>
+            <li>PC Games</li>
+            <li>Console Games</li>
+            <li>Help</li>
+        </ul>
+    </aside>
+      <!-- Floating Sidebar Icons -->
+    <div class="floating-sidebar-icons" id="floating-sidebar-icons">        <button class="floating-icon main-toggle" id="sidebar-floating-toggle" aria-label="Open sidebar" title="Menu">
+            <div class="pulse-ring"></div>
+            <i class="ph ph-list"></i>
+        </button>
+        
+        <button class="floating-icon" data-target="store" aria-label="Store" title="Marketplace">
+            <i class="ph ph-storefront"></i>
+        </button>
+        
+        <button class="floating-icon" data-target="activity" aria-label="Activity" title="Games">
+            <i class="ph ph-game-controller"></i>
+        </button>
+        
+        <button class="floating-icon" data-target="search" aria-label="Search" title="Digital Goods">
+            <i class="ph ph-desktop"></i>
+        </button>
+        
+        <button class="floating-icon" data-target="pc-games" aria-label="PC Games" title="Support">
+            <i class="ph ph-headset"></i>
+        </button>
+        
+        <button class="floating-icon" data-target="console-games" aria-label="Console Games" title="Settings">
+            <i class="ph ph-gear"></i>
+        </button>    </div>
+      <!-- Hover to Navigate Text (left side vertical) -->
+    <div class="hover-to-navigate" id="hover-to-navigate">
+        <span class="navigate-text">HOVER TO NAVIGATE</span>
+        <span class="navigate-arrow">→</span>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="test-content">
+        <h1>🎯 Floating Icons Test</h1>
+        
+        <div class="test-section">
+            <h2>✅ Test Instructions</h2>
+            <p>1. You should see floating circular icons on the left side</p>
+            <p>2. Hover over the red zone on the far left to open sidebar</p>
+            <p>3. Click on floating icons to open sidebar</p>
+            <p>4. When sidebar opens, floating icons should disappear</p>
+            <p>5. When sidebar closes, floating icons should reappear</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎮 Debug Controls</h2>
+            <button onclick="definitiveSidebar.show()" style="padding: 10px 20px; margin: 5px; background: #ef4444; color: white; border: none; border-radius: 5px; cursor: pointer;">Show Sidebar</button>
+            <button onclick="definitiveSidebar.hide()" style="padding: 10px 20px; margin: 5px; background: #6b7280; color: white; border: none; border-radius: 5px; cursor: pointer;">Hide Sidebar</button>
+            <button onclick="definitiveSidebar.debug()" style="padding: 10px 20px; margin: 5px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer;">Debug Info</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>📱 Expected Behavior</h2>
+            <ul>
+                <li><strong>Desktop:</strong> Hover over red zone to reveal sidebar</li>
+                <li><strong>Mobile:</strong> Tap main floating icon to toggle sidebar</li>
+                <li><strong>All devices:</strong> Floating icons hide when sidebar is open</li>
+                <li><strong>All devices:</strong> Floating icons show when sidebar is closed</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Our JavaScript -->
+    <script src="definitive-sidebar.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,308 @@
+/* ===========================================
+   GLASSMORPHISM BUTTON STYLES
+   =========================================== */
+
+/* Base Glass Button Styling */
+.btn,
+.button,
+.cta-button,
+.action-btn,
+button:not(.unstyled) {
+    /* Glass Background */
+    background: rgba(139, 0, 0, 0.08) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+      /* Clean Border */
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    
+    /* Minimal Shadow - No Glow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Typography */
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* Border Radius */
+    border-radius: 12px !important;
+    
+    /* Remove default styles */
+    text-shadow: none !important;
+}
+
+/* Glass Button Hover State */
+.btn:hover,
+.button:hover,
+.cta-button:hover,
+.action-btn:hover,
+button:not(.unstyled):hover {
+    /* Enhanced Glass Effect */
+    background: rgba(139, 0, 0, 0.12) !important;
+      /* Hard Red Border Highlight */
+    border: 2px solid #8b0000 !important;    /* Clean Shadow - No Glow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Subtle Transform */
+    transform: translateY(-1px) !important;
+    
+    /* Enhanced Text */
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Glass Button Active State */
+.btn:active,
+.button:active,
+.cta-button:active,
+.action-btn:active,
+button:not(.unstyled):active {
+    /* Pressed Effect */
+    transform: translateY(0) !important;
+    
+    /* Subtle Inner Shadow */
+    box-shadow: 
+        inset 0 2px 4px rgba(139, 0, 0, 0.15),
+        0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Glass Button Focus State */
+.btn:focus,
+.button:focus,
+.cta-button:focus,
+.action-btn:focus,
+button:not(.unstyled):focus {
+    outline: none !important;
+      /* Hard Focus Ring - Clean Border */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 0 0 3px #8b0000,
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Primary CTA Button Enhancement */
+.hero .cta-button,
+.marketplace-btn,
+.explore-btn {
+    /* Slightly more prominent */
+    background: rgba(139, 0, 0, 0.12) !important;    /* Clean border */
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    
+    /* Clean shadow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.hero .cta-button:hover,
+.marketplace-btn:hover,
+.explore-btn:hover {
+    background: rgba(139, 0, 0, 0.16) !important;
+    
+    /* Hard Red Border */
+    border: 2px solid #8b0000 !important;
+    
+    /* Clean Shadow - No Glow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Glass Carousel Navigation Buttons */
+.carousel-btn,
+.carousel-nav,
+.carousel-prev,
+.carousel-next {
+    /* Glass Background */
+    background: rgba(139, 0, 0, 0.08) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    
+    /* Subtle Border */
+    border: 1px solid rgba(139, 0, 0, 0.25) !important;    
+    /* Minimal Shadow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Clean Styling */
+    border-radius: 50% !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    
+    /* Smooth Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.carousel-btn:hover,
+.carousel-nav:hover {
+    /* Enhanced Glass on Hover */
+    background: rgba(139, 0, 0, 0.12) !important;
+    
+    /* Subtle Border Glow */
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    
+    /* Border Glow Only */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 0 0 1px rgba(139, 0, 0, 0.15),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Subtle Scale */
+    transform: translateY(-50%) scale(1.05) !important;
+    
+    /* Enhanced Icon Visibility */
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Glass Pagination Dots */
+.carousel-dots .dot,
+.pagination-dot {
+    /* Glass Effect */
+    background: rgba(139, 0, 0, 0.15) !important;
+    backdrop-filter: blur(10px) !important;    -webkit-backdrop-filter: blur(10px) !important;
+    
+    /* Subtle Border */
+    border: 1px solid rgba(139, 0, 0, 0.2) !important;
+    
+    /* Minimal Shadow */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Smooth Transition */
+    transition: all 0.3s ease !important;
+}
+
+.carousel-dots .dot.active,
+.pagination-dot.active {
+    /* Active Glass State */
+    background: rgba(139, 0, 0, 0.25) !important;
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    
+    /* Subtle Border Glow Only */
+    box-shadow: 
+        0 0 0 1px rgba(139, 0, 0, 0.15),        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.carousel-dots .dot:hover,
+.pagination-dot:hover {
+    background: rgba(139, 0, 0, 0.18) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 0 1px rgba(139, 0, 0, 0.1) !important;
+}
+
+/* Glass Game Card Buttons */
+.game-card .add-to-cart,
+.game-card .purchase-btn,
+.add-cart-btn {
+    /* Glass Background */
+    background: rgba(139, 0, 0, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+      /* Subtle Border */
+    border: 1px solid rgba(139, 0, 0, 0.25) !important;
+    
+    /* Minimal Shadow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Typography */
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    
+    /* Smooth Animation */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    /* Border Radius */
+    border-radius: 8px !important;
+}
+
+.game-card .add-to-cart:hover,
+.game-card .purchase-btn:hover,
+.add-cart-btn:hover {
+    /* Enhanced Glass */
+    background: rgba(139, 0, 0, 0.12) !important;
+    
+    /* Highlighted Border */
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    
+    /* Border Glow Only */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),        0 0 0 1px rgba(139, 0, 0, 0.12),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Gentle Lift */
+    transform: translateY(-1px) !important;
+    
+    /* Enhanced Text */
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Glass Navigation Links */
+.navbar .nav-link:hover,
+.nav-item:hover {
+    /* Subtle Glass Background */
+    background: rgba(139, 0, 0, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    
+    /* Minimal Border */
+    border: 1px solid rgba(139, 0, 0, 0.2) !important;
+    border-radius: 6px !important;    
+    /* Minimal Border Glow */
+    box-shadow: 0 0 0 1px rgba(139, 0, 0, 0.1) !important;
+    
+    /* Smooth Transition */
+    transition: all 0.3s ease !important;
+}
+
+/* Glass Modal Buttons */
+.auth-modal .btn,
+.modal .button,
+.form-submit,
+input[type="submit"] {
+    /* Glass Effect */
+    background: rgba(139, 0, 0, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    
+    /* Subtle Border */
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    
+    /* Minimal Shadow */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Typography */
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 500 !important;
+    
+    /* Smooth Transition */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.auth-modal .btn:hover,
+.modal .button:hover,
+.form-submit:hover,
+input[type="submit"]:hover {
+    /* Enhanced Glass */
+    background: rgba(139, 0, 0, 0.14) !important;
+    
+    /* Border Highlight */
+    border: 1px solid rgba(139, 0, 0, 0.45) !important;
+    
+    /* Subtle Border Glow Only */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 0 0 1px rgba(139, 0, 0, 0.15),
+        0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    
+    /* Gentle Transform */
+    transform: translateY(-1px) !important;
+}

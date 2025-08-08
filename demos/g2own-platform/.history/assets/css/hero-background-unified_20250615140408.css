@@ -1,0 +1,188 @@
+/* HERO BACKGROUND UNIFIED SYSTEM - Light Black with White Gradient + Red Grid */
+
+/* Apply Hero Section's Exact Background to All Sections */
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section,
+section {
+    /* EXACT HERO GRADIENT - Light Black with White Gradient */
+    background: linear-gradient(135deg, 
+        #1a1a1a 0%,           /* Light black start */
+        #0d0d0d 25%,          /* Darker transition */
+        #262626 50%,          /* Light black middle */
+        #0a0a0a 75%,          /* Dark transition */
+        #1f1f1f 100%          /* Light black end */
+    );
+    
+    /* Add subtle white gradient overlay + red grid */
+    background-image: 
+        /* Red grid pattern from hero */
+        linear-gradient(rgba(139, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.1) 1px, transparent 1px),
+        /* White gradient overlay for depth */
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.015) 0%, transparent 60%),
+        /* Base gradient */
+        linear-gradient(135deg, 
+            rgba(26, 26, 26, 0.9) 0%,
+            rgba(13, 13, 13, 0.95) 25%,
+            rgba(38, 38, 38, 0.9) 50%,
+            rgba(10, 10, 10, 0.95) 75%,
+            rgba(31, 31, 31, 0.9) 100%
+        );
+    
+    background-size: 
+        80px 80px,           /* Red grid */
+        80px 80px,           /* Red grid */
+        800px 800px,         /* White gradient 1 */
+        600px 600px,         /* White gradient 2 */
+        100% 100%;           /* Base gradient */
+    
+    background-position:
+        0 0,                 /* Grid */
+        0 0,                 /* Grid */
+        0 0,                 /* White gradient 1 */
+        100% 100%,           /* White gradient 2 */
+        0 0;                 /* Base gradient */
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enhanced white gradient animations for depth */
+.hero-section::before,
+.categories-section::before,
+.categories::before,
+.featured-products-section::before,
+.stats-section::before,
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Animated white gradients */
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.008) 0%, transparent 45%),
+        /* Subtle red accents */
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.02) 0%, transparent 70%);
+    animation: heroLightFloat 25s ease-in-out infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-section::after,
+.categories-section::after,
+.categories::after,
+.featured-products-section::after,
+.stats-section::after,
+section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Additional white gradient layers */
+        radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.012) 0%, transparent 50%),
+        radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.006) 0%, transparent 55%),
+        /* Light black variations */
+        radial-gradient(circle at 25% 75%, rgba(45, 45, 45, 0.3) 0%, transparent 30%);
+    animation: heroLightFloat 30s ease-in-out infinite alternate-reverse;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes heroLightFloat {
+    0% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translate(-8px, -5px) scale(1.03);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translate(-15px, -10px) scale(1.06);
+        opacity: 1;
+    }
+}
+
+/* Ensure all content appears above the gradient background */
+.hero-section .container,
+.hero-section .hero-content,
+.hero-section .hero-text,
+.categories-section .container,
+.categories-section .section-header,
+.categories-section .categories-grid,
+.categories .container,
+.categories .section-header,
+.categories .categories-grid,
+.featured-products-section .featured-products-container,
+.featured-products-section .featured-products-header,
+.featured-products-section .featured-products-grid,
+.stats-section .container,
+.stats-section .stats-grid {
+    position: relative;
+    z-index: 10;
+}
+
+/* Enhanced lighting effects for hero-style depth */
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section,
+section {
+    /* Subtle inner glow like hero section */
+    box-shadow: 
+        inset 0 0 200px rgba(255, 255, 255, 0.005),
+        inset 0 0 100px rgba(139, 0, 0, 0.008);
+}
+
+/* Override any existing background styles */
+.hero-section,
+.categories-section,
+.categories,
+.featured-products-section,
+.stats-section {
+    background-color: #1a1a1a !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section,
+    .categories-section,
+    .categories,
+    .featured-products-section,
+    .stats-section,
+    section {
+        background-size: 
+            60px 60px,           /* Smaller grid */
+            60px 60px,
+            600px 600px,         /* Smaller white gradients */
+            400px 400px,
+            100% 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section,
+    .categories-section,
+    .categories,
+    .featured-products-section,
+    .stats-section,
+    section {
+        background-size: 
+            40px 40px,           /* Even smaller grid */
+            40px 40px,
+            400px 400px,
+            300px 300px,
+            100% 100%;
+    }
+}

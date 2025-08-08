@@ -1,0 +1,84 @@
+/* EMERGENCY HERO BACKGROUND FIX - No White Squares */
+
+.featured-products-section,
+.categories-section,
+.categories,
+.stats-section {
+    /* EXACT HERO GRADIENT - Light Black Only */
+    background: linear-gradient(135deg, 
+        #1a1a1a 0%,           /* Light black start */
+        #0d0d0d 25%,          /* Darker transition */
+        #262626 50%,          /* Light black middle */
+        #0a0a0a 75%,          /* Dark transition */
+        #1f1f1f 100%          /* Light black end */
+    ) !important;
+    
+    /* ONLY red grid - NO WHITE GRADIENTS */
+    background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.1) 1px, transparent 1px) !important;
+    
+    background-size: 80px 80px, 80px 80px !important;
+}
+
+/* Remove any white gradient pseudo-elements */
+.featured-products-section::before,
+.categories-section::before,
+.categories::before,
+.stats-section::before {
+    background: radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.01) 0%, transparent 70%) !important;
+}
+
+.featured-products-section::after,
+.categories-section::after,
+.categories::after,
+.stats-section::after {
+    background: radial-gradient(circle at 25% 75%, rgba(45, 45, 45, 0.2) 0%, transparent 40%) !important;
+}
+
+.featured-products-section::after,
+.categories-section::after,
+.categories::after,
+.stats-section::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: 
+        radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.012) 0%, transparent 50%),
+        radial-gradient(circle at 25% 75%, rgba(45, 45, 45, 0.3) 0%, transparent 30%) !important;
+    animation: heroLightFloat 30s ease-in-out infinite alternate-reverse !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    display: block !important;
+    opacity: 1 !important;
+}
+
+@keyframes heroLightFloat {
+    0% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translate(-8px, -5px) scale(1.03);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translate(-15px, -10px) scale(1.06);
+        opacity: 1;
+    }
+}
+
+/* Ensure all child elements have proper z-index */
+.featured-products-container,
+.featured-products-header,
+.featured-products-grid,
+.featured-view-all,
+.categories-section .container,
+.categories .container,
+.stats-section .container {
+    position: relative !important;
+    z-index: 10 !important;
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Responsive Test - Final Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            line-height: 1.6;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #333;
+            border-radius: 5px;
+            border-left: 4px solid #ff0000;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .pass { background: #2d5a2d; color: #90ee90; }
+        .fail { background: #5a2d2d; color: #ff6b6b; }
+        .info { background: #2d4a5a; color: #87ceeb; }
+        .iframe-container {
+            margin: 20px 0;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            background: white;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 3px;
+        }
+        .resize-controls {
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .resize-btn {
+            padding: 8px 16px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .resize-btn:hover {
+            background: #cc0000;
+        }
+        .current-size {
+            background: #444;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-good { background: #90ee90; }
+        .status-warning { background: #ffd700; }
+        .status-error { background: #ff6b6b; }
+        
+        @media (max-width: 768px) {
+            .resize-controls {
+                flex-direction: column;
+            }
+            .resize-btn {
+                width: 100%;
+                margin: 2px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 G2Own Responsive Fix - Final Verification</h1>
+        <p><strong>Test Date:</strong> <span id="currentDate"></span></p>
+        <p>This comprehensive test verifies that all responsive issues have been resolved.</p>
+        
+        <div class="test-section">
+            <h2>🎯 Current Browser Information</h2>
+            <div id="browserInfo"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📱 Responsive Breakpoint Testing</h2>
+            <div class="resize-controls">
+                <button class="resize-btn" onclick="resizeFrame(320, 568)">Mobile (320x568)</button>
+                <button class="resize-btn" onclick="resizeFrame(375, 667)">iPhone (375x667)</button>
+                <button class="resize-btn" onclick="resizeFrame(768, 1024)">Tablet (768x1024)</button>
+                <button class="resize-btn" onclick="resizeFrame(1024, 768)">Desktop (1024x768)</button>
+                <button class="resize-btn" onclick="resizeFrame(1920, 1080)">Large Desktop (1920x1080)</button>
+                <button class="resize-btn" onclick="resizeFrame('100%', 600)">Full Width</button>
+            </div>
+            <div class="current-size" id="currentSize">Current Size: 100% x 600px</div>
+        </div>
+        
+        <div class="iframe-container">
+            <iframe id="testFrame" src="index.html"></iframe>
+        </div>
+        
+        <div class="test-section">
+            <h2>✅ Automated Test Results</h2>
+            <div id="testResults"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📋 Manual Testing Checklist</h2>
+            <div class="test-result info">
+                <strong>Instructions:</strong> Resize the iframe above using the buttons and verify the following:
+            </div>
+            
+            <div class="test-result" id="checklist">
+                <ul>
+                    <li><strong>Mobile (≤767px):</strong>
+                        <ul>
+                            <li>✓ Left sidebar should be hidden by default</li>
+                            <li>✓ Mobile toggle button (☰) should be visible in top-left</li>
+                            <li>✓ Clicking toggle should show sidebar with overlay</li>
+                            <li>✓ Hero text should be properly sized and not cut off</li>
+                            <li>✓ No horizontal scrolling</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tablet (768-1023px):</strong>
+                        <ul>
+                            <li>✓ Sidebar should be visible and fixed</li>
+                            <li>✓ Main content should have proper margins</li>
+                            <li>✓ No mobile toggle button</li>
+                            <li>✓ Layout should be stable</li>
+                        </ul>
+                    </li>
+                    <li><strong>Desktop (≥1024px):</strong>
+                        <ul>
+                            <li>✓ Full sidebar should be visible</li>
+                            <li>✓ Main content properly offset</li>
+                            <li>✓ Hero section fully visible</li>
+                            <li>✓ All elements properly positioned</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔍 Real-Time Analysis</h2>
+            <div id="analysisResults"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📊 Performance Metrics</h2>
+            <div id="performanceMetrics"></div>
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleString();
+        
+        // Browser information
+        const browserInfo = document.getElementById('browserInfo');
+        browserInfo.innerHTML = `
+            <div class="test-result info">
+                <span class="status-indicator status-good"></span>
+                <strong>User Agent:</strong> ${navigator.userAgent}
+            </div>
+            <div class="test-result info">
+                <span class="status-indicator status-good"></span>
+                <strong>Screen Resolution:</strong> ${screen.width}x${screen.height}
+            </div>
+            <div class="test-result info">
+                <span class="status-indicator status-good"></span>
+                <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}
+            </div>
+        `;
+        
+        // Resize iframe function
+        function resizeFrame(width, height) {
+            const frame = document.getElementById('testFrame');
+            const currentSize = document.getElementById('currentSize');
+            
+            if (width === '100%') {
+                frame.style.width = '100%';
+                frame.style.height = height + 'px';
+                currentSize.textContent = `Current Size: 100% x ${height}px`;
+            } else {
+                frame.style.width = width + 'px';
+                frame.style.height = height + 'px';
+                currentSize.textContent = `Current Size: ${width}px x ${height}px`;
+            }
+            
+            // Trigger analysis after resize
+            setTimeout(analyzeFrame, 500);
+        }
+        
+        // Automated tests
+        function runAutomatedTests() {
+            const results = document.getElementById('testResults');
+            const tests = [
+                {
+                    name: "CSS Files Loaded",
+                    test: () => document.querySelector('link[href*="responsive-final-override.css"]') !== null,
+                    description: "Final responsive override CSS is loaded"
+                },
+                {
+                    name: "JavaScript Controllers Loaded",
+                    test: () => typeof window.emergencyToggleSidebar === 'function',
+                    description: "Emergency responsive controller is loaded"
+                },
+                {
+                    name: "Viewport Meta Tag",
+                    test: () => {
+                        const viewport = document.querySelector('meta[name="viewport"]');
+                        return viewport && viewport.getAttribute('content').includes('width=device-width');
+                    },
+                    description: "Proper viewport meta tag is set"
+                },
+                {
+                    name: "No Horizontal Overflow",
+                    test: () => document.body.scrollWidth <= window.innerWidth,
+                    description: "Page has no horizontal overflow"
+                }
+            ];
+            
+            let html = '';
+            tests.forEach(test => {
+                const passed = test.test();
+                const statusClass = passed ? 'pass' : 'fail';
+                const statusIcon = passed ? 'status-good' : 'status-error';
+                
+                html += `
+                    <div class="test-result ${statusClass}">
+                        <span class="status-indicator ${statusIcon}"></span>
+                        <strong>${test.name}:</strong> ${passed ? 'PASS' : 'FAIL'} - ${test.description}
+                    </div>
+                `;
+            });
+            
+            results.innerHTML = html;
+        }
+        
+        // Frame analysis
+        function analyzeFrame() {
+            const frame = document.getElementById('testFrame');
+            const analysis = document.getElementById('analysisResults');
+            
+            try {
+                const frameWidth = parseInt(frame.style.width) || frame.offsetWidth;
+                const frameHeight = parseInt(frame.style.height) || frame.offsetHeight;
+                
+                let breakpoint = '';
+                if (frameWidth <= 767) breakpoint = 'Mobile';
+                else if (frameWidth <= 1023) breakpoint = 'Tablet';
+                else breakpoint = 'Desktop';
+                
+                analysis.innerHTML = `
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Current Breakpoint:</strong> ${breakpoint}
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Frame Dimensions:</strong> ${frameWidth}px x ${frameHeight}px
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-warning"></span>
+                        <strong>Note:</strong> Due to iframe restrictions, some JavaScript tests may not work. Test directly in the main page for full functionality.
+                    </div>
+                `;
+            } catch (error) {
+                analysis.innerHTML = `
+                    <div class="test-result fail">
+                        <span class="status-indicator status-error"></span>
+                        <strong>Analysis Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Performance metrics
+        function measurePerformance() {
+            const metrics = document.getElementById('performanceMetrics');
+            
+            if ('performance' in window) {
+                const nav = performance.getEntriesByType('navigation')[0];
+                const loadTime = nav ? Math.round(nav.loadEventEnd - nav.loadEventStart) : 'N/A';
+                const domReady = nav ? Math.round(nav.domContentLoadedEventEnd - nav.domContentLoadedEventStart) : 'N/A';
+                
+                metrics.innerHTML = `
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Page Load Time:</strong> ${loadTime}ms
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>DOM Ready Time:</strong> ${domReady}ms
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Memory Usage:</strong> ${(performance.memory?.usedJSHeapSize / 1024 / 1024).toFixed(2) || 'N/A'} MB
+                    </div>
+                `;
+            } else {
+                metrics.innerHTML = `
+                    <div class="test-result info">
+                        <span class="status-indicator status-warning"></span>
+                        <strong>Performance API not available</strong>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize tests
+        document.addEventListener('DOMContentLoaded', function() {
+            runAutomatedTests();
+            analyzeFrame();
+            measurePerformance();
+        });
+        
+        // Update metrics on resize
+        window.addEventListener('resize', function() {
+            setTimeout(function() {
+                document.getElementById('browserInfo').innerHTML = `
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>User Agent:</strong> ${navigator.userAgent}
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Screen Resolution:</strong> ${screen.width}x${screen.height}
+                    </div>
+                    <div class="test-result info">
+                        <span class="status-indicator status-good"></span>
+                        <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}
+                    </div>
+                `;
+                runAutomatedTests();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

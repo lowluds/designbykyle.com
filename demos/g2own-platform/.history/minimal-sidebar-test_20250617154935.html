@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Sidebar Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* HOVER ZONE - ALWAYS VISIBLE */
+        .hover-zone {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100vh;
+            background: rgba(255, 0, 0, 0.5);
+            z-index: 1001;
+            cursor: pointer;
+            border-right: 3px solid red;
+        }
+
+        /* SIDEBAR - HIDDEN BY DEFAULT */
+        .test-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            border-right: 2px solid #ff0000;
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* SIDEBAR VISIBLE STATE */
+        .test-sidebar.visible {
+            transform: translateX(0);
+        }
+
+        /* TOGGLE BUTTON */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1002;
+            font-size: 16px;
+        }
+
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+        }
+
+        .status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 1003;
+        }
+
+        .log {
+            background: #333;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HOVER ZONE -->
+    <div class="hover-zone" id="hoverZone"></div>
+
+    <!-- SIDEBAR -->
+    <div class="test-sidebar" id="testSidebar">
+        <h2>🎯 Test Sidebar</h2>
+        <p>If you can see this, the sidebar is working!</p>
+        <ul>
+            <li>✅ Hover detection: Working</li>
+            <li>✅ CSS transform: Working</li>
+            <li>✅ JavaScript: Working</li>
+        </ul>
+        <p><strong>This proves the sidebar can work.</strong></p>
+    </div>
+
+    <!-- TOGGLE BUTTON -->
+    <button class="toggle-btn" id="toggleBtn">Toggle Sidebar</button>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+        <h1>🔍 Minimal Sidebar Test</h1>
+        <p>This is a completely isolated test to prove sidebar functionality works.</p>
+        
+        <h2>Test Instructions:</h2>
+        <ol>
+            <li><strong>Hover Test:</strong> Move mouse over the RED ZONE on the left</li>
+            <li><strong>Click Test:</strong> Click the "Toggle Sidebar" button</li>
+            <li><strong>Manual Test:</strong> Open console and type <code>showSidebar()</code></li>
+        </ol>
+
+        <h2>Event Log:</h2>
+        <div class="log" id="eventLog"></div>
+    </div>
+
+    <!-- STATUS DISPLAY -->
+    <div class="status" id="statusDisplay">
+        Status: Loading...
+    </div>
+
+    <script>
+        // MINIMAL SIDEBAR SCRIPT - NO DEPENDENCIES
+        const hoverZone = document.getElementById('hoverZone');
+        const sidebar = document.getElementById('testSidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const eventLog = document.getElementById('eventLog');
+        const statusDisplay = document.getElementById('statusDisplay');
+
+        let hideTimeout = null;
+        let isVisible = false;
+
+        function log(message) {
+            const time = new Date().toLocaleTimeString();
+            const logEntry = `[${time}] ${message}`;
+            eventLog.innerHTML += `<div>${logEntry}</div>`;
+            eventLog.scrollTop = eventLog.scrollHeight;
+            console.log(logEntry);
+        }
+
+        function updateStatus() {
+            statusDisplay.innerHTML = `
+                Sidebar: ${isVisible ? 'VISIBLE' : 'HIDDEN'}<br>
+                Transform: ${sidebar.style.transform || getComputedStyle(sidebar).transform}<br>
+                Classes: ${sidebar.className}
+            `;
+        }
+
+        function showSidebar() {
+            log('🟢 SHOWING SIDEBAR');
+            clearTimeout(hideTimeout);
+            sidebar.classList.add('visible');
+            isVisible = true;
+            updateStatus();
+        }
+
+        function hideSidebar() {
+            log('🔴 HIDING SIDEBAR');
+            sidebar.classList.remove('visible');
+            isVisible = false;
+            updateStatus();
+        }
+
+        function toggleSidebar() {
+            log('🔄 TOGGLING SIDEBAR');
+            if (isVisible) {
+                hideSidebar();
+            } else {
+                showSidebar();
+            }
+        }
+
+        // HOVER EVENTS
+        hoverZone.addEventListener('mouseenter', function() {
+            log('🖱️ Mouse ENTERED hover zone');
+            showSidebar();
+        });
+
+        hoverZone.addEventListener('mouseleave', function() {
+            log('🖱️ Mouse LEFT hover zone');
+            hideTimeout = setTimeout(() => {
+                log('⏰ Hiding after timeout');
+                hideSidebar();
+            }, 300);
+        });
+
+        // SIDEBAR HOVER EVENTS
+        sidebar.addEventListener('mouseenter', function() {
+            log('🖱️ Mouse ENTERED sidebar');
+            clearTimeout(hideTimeout);
+        });
+
+        sidebar.addEventListener('mouseleave', function() {
+            log('🖱️ Mouse LEFT sidebar');
+            hideTimeout = setTimeout(() => {
+                log('⏰ Hiding after timeout');
+                hideSidebar();
+            }, 300);
+        });
+
+        // TOGGLE BUTTON
+        toggleBtn.addEventListener('click', function() {
+            log('🖱️ Toggle button CLICKED');
+            toggleSidebar();
+        });
+
+        // GLOBAL FUNCTIONS FOR MANUAL TESTING
+        window.showSidebar = showSidebar;
+        window.hideSidebar = hideSidebar;
+        window.toggleSidebar = toggleSidebar;
+
+        // INITIALIZATION
+        log('🚀 Minimal sidebar test initialized');
+        log('🎯 TRY: Hover over red area or click toggle button');
+        updateStatus();
+
+        // TEST AUTO-SHOW AFTER 2 SECONDS
+        setTimeout(() => {
+            log('🧪 AUTO-TEST: Showing sidebar for 2 seconds...');
+            showSidebar();
+            setTimeout(() => {
+                log('🧪 AUTO-TEST: Hiding sidebar');
+                hideSidebar();
+            }, 2000);
+        }, 2000);
+    </script>
+</body>
+</html>

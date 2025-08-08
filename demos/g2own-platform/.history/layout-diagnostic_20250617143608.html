@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Layout Diagnostic</title>
+    
+    <!-- Include critical CSS files in correct order -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <link rel="stylesheet" href="assets/css/layout-fix-final.css">
+    <link rel="stylesheet" href="assets/css/ultimate-layout-fix.css">
+    
+    <style>
+        /* Test specific styles */
+        .diagnostic-overlay {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 10000;
+            max-width: 300px;
+        }
+        
+        .status-good { color: #00ff00; }
+        .status-bad { color: #ff0000; }
+        .status-info { color: #00aaff; }
+        
+        .test-button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        /* Mock navigation for testing */
+        .mock-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(13, 13, 13, 0.95);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+        }
+        
+        .mock-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(13, 13, 13, 0.95);
+            border-right: 1px solid rgba(139, 0, 0, 0.2);
+            z-index: 999;
+            padding: 20px;
+            color: white;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mock-sidebar.show {
+            transform: translateX(0);
+        }
+        
+        @media (min-width: 768px) {
+            .mock-sidebar {
+                transform: translateX(0);
+            }
+            
+            .mock-nav {
+                left: 280px;
+                width: calc(100% - 280px);
+            }
+            
+            .main-content {
+                margin-left: 280px;
+                width: calc(100% - 280px);
+            }
+        }
+        
+        .main-content {
+            margin-top: 60px;
+            padding: 20px;
+            min-height: calc(100vh - 60px);
+        }
+        
+        .hero-test {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-title-test {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero-subtitle-test {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Layout container -->
+    <div class="layout-container">
+        
+        <!-- Mock navigation -->
+        <nav class="mock-nav">
+            <span>G2Own - Layout Test</span>
+        </nav>
+        
+        <!-- Mock sidebar -->
+        <aside class="mock-sidebar left-sidebar" id="mock-sidebar">
+            <h3>Mock Sidebar</h3>
+            <p>This sidebar should be:</p>
+            <ul>
+                <li>Hidden on mobile</li>
+                <li>Visible on tablet+</li>
+                <li>Not push content off-screen</li>
+            </ul>
+            <button class="test-button" onclick="toggleSidebar()">Toggle (Mobile)</button>
+        </aside>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="hero-test">
+                <h1 class="hero-title-test">
+                    <span style="display: block;">Next-Gen</span>
+                    <span style="display: block; background: linear-gradient(135deg, #8b0000, #ffffff, #8b0000); -webkit-background-clip: text; background-clip: text; color: transparent;">Digital Marketplace</span>
+                    <span style="display: block;">Experience</span>
+                </h1>
+                
+                <p class="hero-subtitle-test">
+                    Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                    Instant delivery, secure transactions, unbeatable prices.
+                </p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    <button class="test-button" style="padding: 10px 20px;">Explore Marketplace</button>
+                    <button class="test-button" style="padding: 10px 20px;">Learn More</button>
+                </div>
+            </div>
+            
+            <div style="margin: 40px 0; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;">
+                <h2>Layout Test Content</h2>
+                <p>This content should:</p>
+                <ul>
+                    <li>✅ Not be cut off or pushed off-screen</li>
+                    <li>✅ Have proper spacing from sidebar</li>
+                    <li>✅ Adjust properly on different screen sizes</li>
+                    <li>✅ Contain all text within visible area</li>
+                </ul>
+                
+                <div style="margin: 20px 0; padding: 15px; background: rgba(255, 0, 0, 0.2); border: 1px solid #ff0000; border-radius: 4px;">
+                    <strong>Overflow Test:</strong> This is a very long line of text that should wrap properly and not cause horizontal scrolling or extend beyond the visible viewport area. It should be fully contained within the layout boundaries.
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Diagnostic overlay -->
+    <div class="diagnostic-overlay" id="diagnostic">
+        <div><strong>Layout Diagnostic</strong></div>
+        <div id="screen-info">Loading...</div>
+        <div id="sidebar-info">Loading...</div>
+        <div id="overflow-info">Loading...</div>
+        <div>
+            <button class="test-button" onclick="runDiagnostic()">Refresh</button>
+            <button class="test-button" onclick="toggleSidebar()">Toggle Sidebar</button>
+        </div>
+    </div>
+
+    <script>
+        function runDiagnostic() {
+            const screenInfo = document.getElementById('screen-info');
+            const sidebarInfo = document.getElementById('sidebar-info');
+            const overflowInfo = document.getElementById('overflow-info');
+            
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const bodyWidth = document.body.scrollWidth;
+            const hasOverflow = bodyWidth > width;
+            
+            // Screen info
+            let breakpoint = '';
+            if (width < 768) breakpoint = 'mobile';
+            else if (width < 1024) breakpoint = 'tablet';
+            else breakpoint = 'desktop';
+            
+            screenInfo.innerHTML = `<span class="status-info">Screen:</span> ${width}x${height} (${breakpoint})`;
+            
+            // Sidebar info
+            const sidebar = document.getElementById('mock-sidebar');
+            const sidebarVisible = window.getComputedStyle(sidebar).transform === 'matrix(1, 0, 0, 1, 0, 0)';
+            sidebarInfo.innerHTML = `<span class="status-info">Sidebar:</span> ${sidebarVisible ? 'Visible' : 'Hidden'}`;
+            
+            // Overflow info
+            if (hasOverflow) {
+                overflowInfo.innerHTML = `<span class="status-bad">❌ Overflow:</span> ${bodyWidth - width}px`;
+            } else {
+                overflowInfo.innerHTML = `<span class="status-good">✅ No overflow</span>`;
+            }
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mock-sidebar');
+            sidebar.classList.toggle('show');
+            setTimeout(runDiagnostic, 350);
+        }
+        
+        // Auto-run diagnostic
+        window.addEventListener('load', runDiagnostic);
+        window.addEventListener('resize', () => {
+            setTimeout(runDiagnostic, 100);
+        });
+        
+        // Run initial diagnostic
+        setTimeout(runDiagnostic, 500);
+    </script>
+</body>
+</html>

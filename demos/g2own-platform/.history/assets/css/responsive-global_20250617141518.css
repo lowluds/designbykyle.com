@@ -1,0 +1,456 @@
+/**
+ * Global Responsive System for G2Own
+ * Comprehensive responsive design for all screen sizes
+ */
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+:root {
+    /* Responsive breakpoints */
+    --mobile-small: 320px;
+    --mobile: 480px;
+    --tablet-small: 600px;
+    --tablet: 768px;
+    --laptop: 1024px;
+    --desktop: 1200px;
+    --desktop-large: 1440px;
+    --desktop-xl: 1920px;
+    
+    /* Responsive spacing scale */
+    --spacing-xs: clamp(0.25rem, 1vw, 0.5rem);
+    --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+    --spacing-md: clamp(1rem, 3vw, 1.5rem);
+    --spacing-lg: clamp(1.5rem, 4vw, 2rem);
+    --spacing-xl: clamp(2rem, 5vw, 3rem);
+    --spacing-2xl: clamp(3rem, 6vw, 4rem);
+    
+    /* Responsive font sizes */
+    --font-xs: clamp(0.75rem, 2vw, 0.875rem);
+    --font-sm: clamp(0.875rem, 2.5vw, 1rem);
+    --font-base: clamp(1rem, 3vw, 1.125rem);
+    --font-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+    --font-xl: clamp(1.25rem, 4vw, 1.5rem);
+    --font-2xl: clamp(1.5rem, 5vw, 2rem);
+    --font-3xl: clamp(2rem, 6vw, 3rem);
+    --font-4xl: clamp(2.5rem, 7vw, 4rem);
+    
+    /* Responsive button sizes */
+    --btn-padding-sm: clamp(0.5rem 1rem, 2vw, 0.75rem 1.5rem);
+    --btn-padding-md: clamp(0.75rem 1.5rem, 3vw, 1rem 2rem);
+    --btn-padding-lg: clamp(1rem 2rem, 4vw, 1.25rem 2.5rem);
+    
+    /* Responsive border radius */
+    --radius-sm: clamp(0.25rem, 1vw, 0.5rem);
+    --radius-md: clamp(0.5rem, 2vw, 0.75rem);
+    --radius-lg: clamp(0.75rem, 3vw, 1rem);
+    --radius-xl: clamp(1rem, 4vw, 1.5rem);
+}
+
+/* ===== GLOBAL RESPONSIVE UTILITIES ===== */
+
+/* Make all images responsive by default */
+img, 
+video, 
+iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive text utilities */
+.text-responsive {
+    font-size: var(--font-base);
+    line-height: 1.5;
+}
+
+.text-responsive-sm {
+    font-size: var(--font-sm);
+    line-height: 1.4;
+}
+
+.text-responsive-lg {
+    font-size: var(--font-lg);
+    line-height: 1.6;
+}
+
+.text-responsive-xl {
+    font-size: var(--font-xl);
+    line-height: 1.4;
+}
+
+/* Responsive spacing utilities */
+.spacing-responsive {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.spacing-responsive-sm {
+    padding: var(--spacing-sm);
+    margin: var(--spacing-sm) 0;
+}
+
+.spacing-responsive-lg {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+/* ===== LAYOUT RESPONSIVE SYSTEM ===== */
+
+/* Main content area that adjusts to sidebar */
+.main-content {
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition-sidebar);
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    width: calc(100vw - var(--sidebar-width));
+    box-sizing: border-box;
+}
+
+/* When sidebar is collapsed */
+.sidebar-collapsed .main-content {
+    margin-left: var(--sidebar-width-collapsed);
+    width: calc(100vw - var(--sidebar-width-collapsed));
+}
+
+/* When sidebar is hidden on mobile */
+.sidebar-hidden .main-content {
+    margin-left: 0;
+    width: 100vw;
+}
+
+/* ===== MOBILE FIRST RESPONSIVE BREAKPOINTS ===== */
+
+/* Extra Small Mobile (320px - 479px) */
+@media (max-width: 479px) {
+    :root {
+        --sidebar-width: 100vw;
+        --sidebar-width-collapsed: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100vw;
+        padding: var(--spacing-sm);
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    /* Hide sidebar by default on mobile */
+    .left-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .left-sidebar.mobile-active {
+        transform: translateX(0);
+        z-index: 9999;
+    }
+}
+
+/* Small Mobile (480px - 599px) */
+@media (min-width: 480px) and (max-width: 599px) {
+    :root {
+        --sidebar-width: min(320px, 80vw);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100vw;
+        padding: var(--spacing-md);
+    }
+    
+    .container {
+        max-width: 95%;
+        padding: 0 var(--spacing-md);
+    }
+}
+
+/* Tablet Small (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+    :root {
+        --sidebar-width: min(280px, 35vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-md);
+    }
+    
+    .container {
+        max-width: 90%;
+        padding: 0 var(--spacing-md);
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --sidebar-width: min(300px, 30vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-lg);
+    }
+    
+    .container {
+        max-width: 95%;
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+/* Laptop (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    :root {
+        --sidebar-width: min(320px, 25vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-lg);
+    }
+    
+    .container {
+        max-width: 1200px;
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+/* Desktop (1200px - 1439px) */
+@media (min-width: 1200px) and (max-width: 1439px) {
+    :root {
+        --sidebar-width: min(320px, 22vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-xl);
+    }
+    
+    .container {
+        max-width: 1200px;
+        padding: 0 var(--spacing-xl);
+    }
+}
+
+/* Large Desktop (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    :root {
+        --sidebar-width: min(350px, 20vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-xl);
+    }
+    
+    .container {
+        max-width: 1400px;
+        padding: 0 var(--spacing-xl);
+    }
+}
+
+/* Extra Large Desktop (1920px+) */
+@media (min-width: 1920px) {
+    :root {
+        --sidebar-width: min(380px, 18vw);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-width);
+        width: calc(100vw - var(--sidebar-width));
+        padding: var(--spacing-2xl);
+    }
+    
+    .container {
+        max-width: 1600px;
+        padding: 0 var(--spacing-2xl);
+    }
+}
+
+/* ===== NAVBAR RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 767px) {
+    .navbar {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .nav-container {
+        padding: 0;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links {
+        order: 3;
+        width: 100%;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+/* ===== HERO SECTION RESPONSIVE ===== */
+.hero-section {
+    padding: var(--spacing-2xl) 0;
+    min-height: clamp(50vh, 80vh, 100vh);
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        padding: var(--spacing-lg) 0;
+        min-height: 60vh;
+    }
+}
+
+/* ===== CARDS AND COMPONENTS RESPONSIVE ===== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+@media (max-width: 479px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* ===== BUTTON RESPONSIVE SYSTEM ===== */
+.btn-responsive {
+    padding: var(--btn-padding-md);
+    font-size: var(--font-base);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.btn-responsive-sm {
+    padding: var(--btn-padding-sm);
+    font-size: var(--font-sm);
+    border-radius: var(--radius-sm);
+}
+
+.btn-responsive-lg {
+    padding: var(--btn-padding-lg);
+    font-size: var(--font-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* ===== VISIBILITY UTILITIES ===== */
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .hide-mobile {
+        display: none !important;
+    }
+    
+    .show-mobile {
+        display: block !important;
+    }
+}
+
+.hide-tablet {
+    display: block;
+}
+
+.show-tablet {
+    display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hide-tablet {
+        display: none !important;
+    }
+    
+    .show-tablet {
+        display: block !important;
+    }
+}
+
+.hide-desktop {
+    display: block;
+}
+
+.show-desktop {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .hide-desktop {
+        display: none !important;
+    }
+    
+    .show-desktop {
+        display: block !important;
+    }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+/* Reduce animations on mobile for better performance */
+@media (max-width: 767px) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    /* Keep essential transitions */
+    .sidebar-transition,
+    .modal-transition,
+    .dropdown-transition {
+        transition-duration: 0.3s !important;
+    }
+}
+
+/* ===== ACCESSIBILITY RESPONSIVE FEATURES ===== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+    :root {
+        --border-glow: rgba(255, 255, 255, 0.8);
+        --sidebar-border: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .left-sidebar,
+    .navbar,
+    .floating-elements {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    * {
+        background: white !important;
+        color: black !important;
+    }
+}

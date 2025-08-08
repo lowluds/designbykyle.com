@@ -1,0 +1,215 @@
+/* Hero Carousel Positioning Styles */
+/* Positions the carousel within the hero section grid layout */
+
+/* Hero container grid layout */
+.hero-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3rem !important;
+    align-items: center !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+}
+
+/* Hero carousel container - right side of grid */
+.hero-carousel {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+    z-index: 5 !important;
+    min-height: 500px !important;
+}
+
+/* Featured games section within hero */
+.hero-carousel .featured-games-section {
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+/* Header styling for hero carousel */
+.hero-carousel .featured-games-header {
+    margin-bottom: 2rem !important;
+}
+
+.hero-carousel .featured-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.hero-carousel .featured-subtitle {
+    font-size: 0.95rem !important;
+    opacity: 0.8 !important;
+}
+
+/* Carousel container within hero */
+.hero-carousel .featured-games {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hero-carousel .game-grid {
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+}
+
+/* Hero carousel specific styling */
+.hero-carousel .single-card-carousel {
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.15) 0%, 
+        rgba(255, 68, 68, 0.08) 50%, 
+        rgba(139, 0, 0, 0.15) 100%) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.25) !important;
+    box-shadow: 
+        0 15px 35px rgba(139, 0, 0, 0.25),
+        0 5px 20px rgba(255, 68, 68, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Hero carousel cards */
+.hero-carousel .single-card-carousel .enhanced-card {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+    border-radius: 16px !important;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 30, 0.95) 0%,
+        rgba(30, 30, 40, 0.9) 100%) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.25) !important;
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.4),
+        0 8px 20px rgba(139, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Navigation buttons for hero carousel */
+.hero-carousel .carousel-nav {
+    width: 48px !important;
+    height: 48px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.9) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(139, 0, 0, 0.4) !important;
+    border-radius: 12px !important;
+    box-shadow: 
+        0 8px 20px rgba(139, 0, 0, 0.3),
+        0 3px 10px rgba(255, 68, 68, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero-carousel .carousel-nav:hover {
+    transform: translateY(-50%) scale(1.05) !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.9) 100%) !important;
+    box-shadow: 
+        0 12px 25px rgba(139, 0, 0, 0.4),
+        0 5px 15px rgba(255, 68, 68, 0.3) !important;
+}
+
+/* Pagination for hero carousel */
+.hero-carousel .carousel-pagination {
+    bottom: -2.5rem !important;
+    gap: 0.75rem !important;
+}
+
+.hero-carousel .carousel-pagination .pagination-dot {
+    width: 10px !important;
+    height: 10px !important;
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 0.5) 0%,
+        rgba(255, 68, 68, 0.3) 100%) !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero-carousel .carousel-pagination .pagination-dot.active {
+    background: linear-gradient(135deg, 
+        rgba(139, 0, 0, 1) 0%,
+        rgba(255, 68, 68, 0.8) 100%) !important;
+    box-shadow: 
+        0 3px 8px rgba(139, 0, 0, 0.4),
+        0 0 15px rgba(255, 68, 68, 0.3) !important;
+    transform: scale(1.2) !important;
+}
+
+/* Auto-advance progress for hero carousel */
+.hero-carousel .auto-advance-progress {
+    bottom: -3.5rem !important;
+    height: 2px !important;
+    background: rgba(139, 0, 0, 0.2) !important;
+    border-radius: 1px !important;
+    overflow: hidden !important;
+}
+
+/* Responsive design for hero carousel */
+@media (max-width: 1024px) {
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        text-align: center !important;
+    }
+    
+    .hero-carousel {
+        order: 2 !important;
+        margin-top: 2rem !important;
+    }
+    
+    .hero-content {
+        order: 1 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-carousel .single-card-carousel {
+        max-width: 380px !important;
+        padding: 1.25rem !important;
+    }
+    
+    .hero-carousel .enhanced-card {
+        max-width: 320px !important;
+    }
+    
+    .hero-carousel .carousel-nav {
+        width: 44px !important;
+        height: 44px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-carousel .single-card-carousel {
+        max-width: 300px !important;
+        padding: 1rem !important;
+    }
+    
+    .hero-carousel .enhanced-card {
+        max-width: 260px !important;
+    }
+    
+    .hero-carousel .featured-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .hero-carousel .featured-subtitle {
+        font-size: 0.85rem !important;
+    }
+}

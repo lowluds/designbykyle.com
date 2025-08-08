@@ -1,0 +1,450 @@
+/* Modern Featured Games Carousel - Polished & Enhanced */
+
+/* Main Carousel Container */
+.featured-games-section {
+    margin: 4rem 0 6rem 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Header Styling */
+.featured-games-header {
+    text-align: center !important;
+    margin-bottom: 3rem !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.featured-title {
+    font-size: clamp(2rem, 5vw, 3rem) !important;
+    font-weight: 700 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #8b0000 30%, #ff4444 60%, #ffffff 100%) !important;
+    background-size: 200% 200% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    margin-bottom: 0.5rem !important;
+    animation: gradientShift 4s ease-in-out infinite !important;
+    position: relative !important;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.featured-subtitle {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Modern Carousel Container */
+.featured-games-section .featured-games .game-grid {
+    position: relative !important;
+    max-width: 650px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    border-radius: 24px !important;
+    background: rgba(15, 15, 15, 0.95) !important;
+    backdrop-filter: blur(20px) saturate(1.5) !important;
+    padding: 2rem !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(139, 0, 0, 0.2) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.featured-games-section .featured-games .game-grid:hover {
+    box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(139, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(139, 0, 0, 0.4) !important;
+    transform: translateY(-5px) !important;
+}
+
+/* Carousel Viewport */
+.featured-games-section .featured-games .game-grid .single-card-carousel {
+    position: relative !important;
+    width: 100% !important;
+    height: 580px !important;
+    overflow: hidden !important;
+    border-radius: 20px !important;
+    background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%) !important;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 100 !important;
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(20, 20, 20, 0.9) !important;
+    border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 1.2rem !important;
+}
+
+.carousel-controls:hover {
+    background: rgba(139, 0, 0, 0.8) !important;
+    border-color: rgba(139, 0, 0, 0.6) !important;
+    color: white !important;
+    transform: translateY(-50%) scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4) !important;
+}
+
+.carousel-prev {
+    left: -25px !important;
+}
+
+.carousel-next {
+    right: -25px !important;
+}
+
+/* Enhanced Card Styling */
+.featured-games-section .game-card {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 540px !important;
+    background: linear-gradient(145deg, #1f1f1f 0%, #2a2a2a 100%) !important;
+    border-radius: 16px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.featured-games-section .game-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(
+        circle at 85% 15%,
+        rgba(139, 0, 0, 0.3) 0%,
+        rgba(139, 0, 0, 0.15) 25%,
+        rgba(139, 0, 0, 0.05) 50%,
+        transparent 70%
+    ) !important;
+    border-radius: 16px !important;
+    z-index: 1 !important;
+    opacity: 0.8 !important;
+    transition: all 0.4s ease !important;
+}
+
+.featured-games-section .game-card:hover::before {
+    opacity: 1 !important;
+    background: radial-gradient(
+        circle at 85% 15%,
+        rgba(139, 0, 0, 0.4) 0%,
+        rgba(139, 0, 0, 0.2) 25%,
+        rgba(139, 0, 0, 0.08) 50%,
+        transparent 65%
+    ) !important;
+}
+
+/* Card Content */
+.featured-games-section .card-content {
+    position: relative !important;
+    z-index: 2 !important;
+    padding: 1.5rem !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Enhanced Image Container */
+.featured-games-section .card-image {
+    position: relative !important;
+    height: 200px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    margin-bottom: 1.5rem !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.featured-games-section .game-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: all 0.4s ease !important;
+    filter: brightness(0.9) contrast(1.1) !important;
+}
+
+.featured-games-section .game-card:hover .game-image {
+    transform: scale(1.05) !important;
+    filter: brightness(1) contrast(1.2) !important;
+}
+
+/* Enhanced Badges */
+.featured-games-section .card-badges {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    z-index: 10 !important;
+    display: flex !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+}
+
+.featured-games-section .badge {
+    background: rgba(0, 0, 0, 0.9) !important;
+    color: white !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.featured-games-section .badge.hot {
+    background: linear-gradient(135deg, #ff4444, #cc0000) !important;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3) !important;
+}
+
+.featured-games-section .badge.trending {
+    background: linear-gradient(135deg, #00ff88, #00cc66) !important;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3) !important;
+}
+
+.featured-games-section .badge.exclusive {
+    background: linear-gradient(135deg, #8800ff, #6600cc) !important;
+    box-shadow: 0 4px 15px rgba(136, 0, 255, 0.3) !important;
+}
+
+.featured-games-section .badge.popular {
+    background: linear-gradient(135deg, #ffaa00, #cc8800) !important;
+    box-shadow: 0 4px 15px rgba(255, 170, 0, 0.3) !important;
+}
+
+.featured-games-section .badge.discount {
+    background: linear-gradient(135deg, #ff0088, #cc0066) !important;
+    box-shadow: 0 4px 15px rgba(255, 0, 136, 0.3) !important;
+    font-weight: 700 !important;
+}
+
+/* Typography Enhancements */
+.featured-games-section .game-title {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.3px !important;
+}
+
+.featured-games-section .game-description {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    flex-grow: 1 !important;
+}
+
+/* Enhanced Meta Information */
+.featured-games-section .game-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.featured-games-section .game-rating {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.featured-games-section .stars {
+    color: #ffd700 !important;
+    display: flex !important;
+    gap: 2px !important;
+}
+
+.featured-games-section .rating-text {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+}
+
+.featured-games-section .game-platform {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.85rem !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+}
+
+/* Enhanced Footer */
+.featured-games-section .card-footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: auto !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.featured-games-section .price-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+.featured-games-section .price-old {
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration: line-through !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.featured-games-section .game-price {
+    color: #ff4444 !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 10px rgba(255, 68, 68, 0.3) !important;
+}
+
+/* Enhanced Add to Cart Button */
+.featured-games-section .add-to-cart-btn {
+    background: linear-gradient(135deg, #8b0000, #a50000) !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.featured-games-section .add-to-cart-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent) !important;
+    transition: left 0.5s ease !important;
+}
+
+.featured-games-section .add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #ff4444, #cc0000) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4) !important;
+}
+
+.featured-games-section .add-to-cart-btn:hover::before {
+    left: 100% !important;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute !important;
+    bottom: -40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    gap: 8px !important;
+    z-index: 10 !important;
+}
+
+.carousel-indicator {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.carousel-indicator.active {
+    background: #8b0000 !important;
+    transform: scale(1.2) !important;
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5) !important;
+}
+
+.carousel-indicator:hover {
+    background: rgba(139, 0, 0, 0.7) !important;
+    transform: scale(1.1) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .featured-games-section .featured-games .game-grid {
+        max-width: 90% !important;
+        padding: 1.5rem !important;
+        margin: 0 auto !important;
+    }
+    
+    .carousel-prev {
+        left: -15px !important;
+    }
+    
+    .carousel-next {
+        right: -15px !important;
+    }
+    
+    .featured-games-section .single-card-carousel {
+        height: 520px !important;
+    }
+    
+    .featured-title {
+        font-size: 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-games-section .featured-games .game-grid {
+        max-width: 95% !important;
+        padding: 1rem !important;
+    }
+    
+    .carousel-controls {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+    }
+    
+    .featured-games-section .single-card-carousel {
+        height: 480px !important;
+    }
+}

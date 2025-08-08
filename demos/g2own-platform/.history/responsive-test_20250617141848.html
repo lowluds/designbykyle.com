@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Responsive Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: #fff;
+        }
+        
+        .test-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(139, 0, 0, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 9999;
+        }
+        
+        .responsive-demo {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .demo-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #8b0000;
+        }
+        
+        .circular-button {
+            width: clamp(32px, 8vw, 48px);
+            height: clamp(32px, 8vw, 48px);
+            border-radius: 50%;
+            background: rgba(139, 0, 0, 0.8);
+            border: 2px solid #ff0000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            font-size: clamp(0.9rem, 2.5vw, 1.3rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .circular-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+        }
+        
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .demo-box {
+                padding: 15px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-demo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-demo {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info" id="test-info">
+        <div>Viewport: <span id="viewport-size"></span></div>
+        <div>Breakpoint: <span id="current-breakpoint"></span></div>
+        <div>Button Size: <span id="button-size"></span></div>
+    </div>
+    
+    <h1>G2Own Responsive System Test</h1>
+    <p>Resize your browser window to see the responsive behavior in action!</p>
+    
+    <div class="responsive-demo">
+        <div class="demo-box">
+            <h3>Circular Buttons Test</h3>
+            <p>These buttons should scale with window size:</p>
+            <div class="button-row">
+                <button class="circular-button">⚙️</button>
+                <button class="circular-button">🔔</button>
+                <button class="circular-button">🌙</button>
+                <button class="circular-button">👤</button>
+            </div>
+        </div>
+        
+        <div class="demo-box">
+            <h3>Container Test</h3>
+            <p>This container should adapt to different screen sizes and maintain readable text.</p>
+        </div>
+        
+        <div class="demo-box">
+            <h3>Grid Test</h3>
+            <p>The grid layout should change from 1 column on mobile to 2 on tablet to 3 on desktop.</p>
+        </div>
+    </div>
+    
+    <script>
+        function updateTestInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            let breakpoint = '';
+            if (width < 480) breakpoint = 'mobile-xs';
+            else if (width < 600) breakpoint = 'mobile';
+            else if (width < 768) breakpoint = 'tablet-sm';
+            else if (width < 1024) breakpoint = 'tablet';
+            else if (width < 1200) breakpoint = 'laptop';
+            else if (width < 1440) breakpoint = 'desktop';
+            else breakpoint = 'desktop-lg';
+            
+            const buttonSize = Math.max(32, Math.min(48, width * 0.08));
+            
+            document.getElementById('viewport-size').textContent = `${width} x ${height}`;
+            document.getElementById('current-breakpoint').textContent = breakpoint;
+            document.getElementById('button-size').textContent = `${buttonSize.toFixed(0)}px`;
+        }
+        
+        updateTestInfo();
+        window.addEventListener('resize', updateTestInfo);
+        
+        console.log('Responsive test page loaded');
+    </script>
+</body>
+</html>

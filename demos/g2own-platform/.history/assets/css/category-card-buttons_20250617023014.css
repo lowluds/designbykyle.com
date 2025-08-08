@@ -1,0 +1,882 @@
+/* Enhanced Category Card Buttons - G2Own Theme Integration */
+
+/* Category card overlay styling */
+.category-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        transparent 100%
+    );
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-card:hover .category-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Enhanced category card buttons */
+.category-overlay .btn {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a91e22 25%,
+        var(--dark-red) 50%,
+        #a91e22 75%,
+        var(--primary-red) 100%
+    );
+    background-size: 200% 200%;
+    color: var(--primary-white);
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    overflow: hidden;    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 32px rgba(139, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: gradientShift 6s ease-in-out infinite;
+}
+
+/* Animated background gradient */
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Button hover effects */
+.category-overlay .btn:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+        0 12px 40px rgba(139, 0, 0, 0.4),
+        0 6px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 69, 0, 0.5);
+}
+
+/* Glowing particle effect - now shimmer effect like View All Categories */
+.category-overlay .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: -1;
+}
+
+.category-overlay .btn:hover::before {
+    transform: translateX(100%);
+}
+
+/* Active state */
+.category-overlay .btn:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 
+        0 4px 15px rgba(139, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus state for accessibility */
+.category-overlay .btn:focus {
+    outline: 2px solid var(--primary-white);
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-overlay {
+        padding: 1rem;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.98) 0%,
+            rgba(0, 0, 0, 0.9) 60%,
+            transparent 100%
+        );
+    }
+    
+    .category-overlay .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .category-overlay .btn {
+        background: var(--primary-red);
+        border: 2px solid var(--primary-white);
+        animation: none;
+    }
+    
+    .category-overlay .btn:hover {
+        background: var(--primary-white);
+        color: var(--primary-black);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .category-overlay {
+        transition: opacity 0.2s ease;
+        transform: translateY(0);
+        opacity: 0;
+    }
+    
+    .category-card:hover .category-overlay {
+        opacity: 1;
+    }
+    
+    .category-overlay .btn {
+        animation: none;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    
+    .category-overlay .btn:hover {
+        transform: none;
+    }
+}
+
+/* View All Categories button enhancement - Modernized */
+.view-all-btn.magnetic-btn {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        var(--dark-red) 25%, 
+        var(--primary-black) 50%,
+        var(--dark-red) 75%,
+        var(--primary-red) 100%
+    );
+    background-size: 300% 300%;
+    border: 1px solid rgba(139, 0, 0, 0.6);
+    animation: megaGradientShift 6s ease-in-out infinite;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2), 
+        0 0 0 1px rgba(139, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    will-change: opacity, transform;
+    border-radius: 12px;
+    padding: 0.9rem 1.8rem;
+    letter-spacing: 0.7px;
+}
+
+/* When the element becomes visible */
+.view-all-btn.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* When the element goes out of view */
+.view-all-btn.animate-out {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.4s ease-out;
+    pointer-events: none;
+}
+
+/* Enhanced modernized icon styling */
+.view-all-btn .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn.animate-in .btn-icon {
+    animation: iconPulse 3s infinite alternate ease-in-out;
+}
+
+.view-all-btn:hover .btn-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Modern styling for the button text */
+.view-all-btn .btn-text {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover .btn-text {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.08em;
+}
+
+/* Grid icon specific animations */
+.animated-grid-icon .grid-square {
+    transform-origin: center;
+    transition: all 0.5s ease;
+}
+
+.animated-grid-icon .grid-1 {
+    animation: gridPulse 3s infinite alternate ease-in-out;
+    animation-delay: 0s;
+}
+
+.animated-grid-icon .grid-2 {
+    animation: gridPulse 3s infinite alternate-reverse ease-in-out;
+    animation-delay: 0.5s;
+}
+
+.animated-grid-icon .grid-3 {
+    animation: gridPulse 3s infinite alternate ease-in-out;
+    animation-delay: 1s;
+}
+
+.animated-grid-icon .grid-4 {
+    animation: gridPulse 3s infinite alternate-reverse ease-in-out;
+    animation-delay: 1.5s;
+}
+
+.animated-grid-icon .sparkle {
+    animation: sparkleEffect 4s infinite alternate;
+    transform-origin: center;
+    opacity: 0;
+}
+
+.animated-grid-icon .sparkle-1 {
+    animation-delay: 0s;
+}
+
+.animated-grid-icon .sparkle-2 {
+    animation-delay: 1s;
+}
+
+.animated-grid-icon .sparkle-3 {
+    animation-delay: 2s;
+}
+
+.animated-grid-icon .expand-horizontal,
+.animated-grid-icon .expand-vertical {
+    animation: expandPulse 2s infinite alternate ease-in-out;
+    transform-origin: center;
+    stroke-width: 2;
+}
+
+.animated-grid-icon .expand-vertical {
+    animation-delay: 0.5s;
+}
+
+@keyframes gridPulse {
+    0% {
+        transform: scale(1);
+        stroke-width: 2;
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.1);
+        stroke-width: 2.5;
+        opacity: 1;
+    }
+}
+
+@keyframes sparkleEffect {
+    0%, 10% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50%, 90% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes expandPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.1) rotate(-5deg);
+        filter: brightness(1.2) drop-shadow(0 0 3px rgba(255, 0, 0, 0.4));
+    }
+    100% {
+        transform: scale(1.15) rotate(5deg);
+        filter: brightness(1.4) drop-shadow(0 0 5px rgba(255, 0, 0, 0.6));
+    }
+}
+
+@keyframes megaGradientShift {
+    0% {
+        background-position: 0% 50%;
+        background-size: 300% 300%;
+    }
+    33% {
+        background-position: 100% 0%;
+        background-size: 250% 250%;
+    }
+    66% {
+        background-position: 0% 100%;
+        background-size: 350% 350%;
+    }
+    100% {
+        background-position: 50% 50%;
+        background-size: 300% 300%;
+    }
+}
+
+.view-all-btn.magnetic-btn:hover {
+    animation-duration: 2s;
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 
+        0 15px 30px rgba(139, 0, 0, 0.5),
+        0 5px 20px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+.view-all-btn.magnetic-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 
+        0 5px 15px rgba(139, 0, 0, 0.3),
+        0 2px 10px rgba(0, 0, 0, 0.2),
+        inset 0 1px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+/* Advanced particle effect for view all button */
+.view-all-btn .btn-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.view-all-btn:hover .btn-particles::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 69, 0, 0.15) 20%,
+        rgba(139, 0, 0, 0.1) 40%,
+        transparent 70%
+    );
+    animation: particleRotate 2.5s linear infinite;
+}
+
+.view-all-btn:hover .btn-particles::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 25%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 100%
+    );
+    animation: shimmerEffect 2s infinite;
+    transform: translateX(-100%);
+}
+
+@keyframes particleRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes shimmerEffect {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Enhanced Support Section Buttons - G2Own Theme Integration */
+/* Always visible with dynamic animations */
+
+.support-card-btn {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        var(--dark-red) 50%,
+        var(--primary-red) 100%
+    );
+    background-size: 200% 200%;
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: var(--primary-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(139, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: supportGradientShift 6s ease-in-out infinite;
+    width: 100%;
+    margin-top: 1rem;
+    display: block;
+    /* Always visible - consistent with user requirement */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Animated background gradient for support buttons */
+@keyframes supportGradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Centered shimmer effect - matching category cards behavior */
+.support-card-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 65%
+    );
+    transition: left 0.6s ease;
+    z-index: 2;
+}
+
+/* Support button hover effects */
+.support-card-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(139, 0, 0, 0.4),
+        0 4px 15px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: var(--primary-white);
+    animation-duration: 1.5s;
+}
+
+/* Trigger centered shimmer on hover */
+.support-card-btn:hover::before {
+    left: 0%;
+}
+
+/* Remove the old ::after shimmer effect */
+.support-card-btn::after {
+    display: none;
+}
+
+/* Active state for support buttons */
+.support-card-btn:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 
+        0 4px 15px rgba(139, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus state for accessibility */
+.support-card-btn:focus {
+    outline: 2px solid var(--primary-white);
+    outline-offset: 2px;
+}
+
+/* Enhanced support card hover effects */
+.support-card:hover .support-card-btn {
+    animation-duration: 1s;
+    box-shadow: 
+        0 6px 20px rgba(139, 0, 0, 0.3),
+        0 2px 10px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Individual button variants for different support types */
+.support-card:nth-child(1) .support-card-btn {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        #a50000 25%,
+        var(--dark-red) 50%,
+        #a50000 75%,
+        var(--primary-red) 100%
+    );
+    background-size: 200% 200%;
+    animation-delay: 0s;
+}
+
+.support-card:nth-child(2) .support-card-btn {
+    background: linear-gradient(
+        135deg,
+        var(--dark-red) 0%,
+        var(--primary-red) 25%,
+        var(--primary-black) 50%,
+        var(--primary-red) 75%,
+        var(--dark-red) 100%
+    );
+    background-size: 200% 200%;
+    animation-delay: 0.5s;
+}
+
+.support-card:nth-child(3) .support-card-btn {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        var(--primary-black) 25%,
+        var(--dark-red) 50%,
+        var(--primary-black) 75%,
+        var(--primary-red) 100%
+    );
+    background-size: 200% 200%;
+    animation-delay: 1s;
+}
+
+/* Responsive adjustments for support buttons */
+@media (max-width: 768px) {
+    .support-card-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
+    }
+    
+    .support-card-btn:hover {
+        transform: translateY(-2px) scale(1.01);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .support-card-btn {
+        background: var(--primary-red);
+        border: 2px solid var(--primary-white);
+        animation: none;
+    }
+    
+    .support-card-btn:hover {
+        background: var(--primary-white);
+        color: var(--primary-black);
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .support-card-btn {
+        animation: none;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    
+    .support-card-btn:hover {
+        transform: translateY(-1px);
+        animation: none;
+    }
+    
+    .support-card-btn::after {
+        display: none;
+    }
+}
+
+/* Additional enhancement for support section */
+.support-card:hover {
+    transform: translateY(-5px);
+}
+
+.support-card:hover .support-card-btn {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Enhanced Hero Buttons with Flip Effect */
+.hero-buttons .btn {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Flip effect for hero buttons */
+.hero-buttons .btn:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 15px 35px rgba(139, 0, 0, 0.4),
+        0 5px 20px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced primary button with flip */
+.hero-buttons .btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        var(--primary-red) 0%,
+        var(--dark-red) 25%,
+        var(--neon-red) 50%,
+        var(--dark-red) 75%,
+        var(--primary-red) 100%
+    );
+    border-color: var(--neon-red);
+}
+
+/* Enhanced outline button with flip */
+.hero-buttons .btn-outline:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(139, 0, 0, 0.9) 0%,
+        rgba(255, 0, 0, 0.1) 50%,
+        rgba(139, 0, 0, 0.9) 100%
+    );
+    border-color: var(--neon-red);
+    color: var(--primary-white);
+}
+
+/* Button text flip effect */
+.hero-buttons .btn .btn-text {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.hero-buttons .btn:hover .btn-text {
+    transform: rotateY(5deg) translateZ(10px);
+}
+
+/* Button icon enhancement */
+.hero-buttons .btn .btn-icon {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.hero-buttons .btn:hover .btn-icon {
+    transform: rotateY(-10deg) scale(1.2) translateZ(5px);
+}
+
+/* Enhanced Trust Indicators - Modern Professional Design */
+.trust-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(139, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    border-radius: 16px;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.trust-item {
+    text-align: center;
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: linear-gradient(
+        145deg,
+        rgba(139, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(139, 0, 0, 0.1) 100%
+    );
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.trust-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 12px 24px rgba(139, 0, 0, 0.3),
+        0 0 20px rgba(255, 0, 0, 0.2);
+    border-color: var(--neon-red);
+}
+
+.trust-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(
+        135deg,
+        var(--primary-white) 0%,
+        var(--neon-red) 50%,
+        var(--primary-white) 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: trustNumberGlow 6s ease-in-out infinite;
+    margin-bottom: 0.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -1px;
+}
+
+.trust-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.trust-item:hover .trust-label {
+    color: var(--primary-white);
+}
+
+/* Trust number glow animation */
+@keyframes trustNumberGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Individual trust item enhancements */
+.trust-item:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.trust-item:nth-child(1) .trust-number {
+    animation-delay: 0.2s;
+}
+
+.trust-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.trust-item:nth-child(2) .trust-number {
+    animation-delay: 0.4s;
+}
+
+.trust-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.trust-item:nth-child(3) .trust-number {
+    animation-delay: 0.6s;
+}
+
+/* Icon enhancement for trust indicators */
+.trust-item::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(
+        circle,
+        var(--neon-red) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.trust-item:hover::before {
+    opacity: 1;
+}
+
+/* Responsive design for trust indicators */
+@media (max-width: 768px) {
+    .trust-indicators {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .trust-item {
+        padding: 1rem;
+        min-width: auto;
+    }
+    
+    .trust-number {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons .btn:hover {
+        transform: rotateY(5deg) translateY(-3px) scale(1.03);
+    }
+}

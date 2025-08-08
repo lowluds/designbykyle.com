@@ -1,0 +1,256 @@
+/* Site-wide Boston Red Color Scheme Override */
+/* This file enforces the Boston Red palette across all elements */
+/* Must be loaded LAST in HTML to override all other styles including Tailwind */
+
+:root {
+  --boston-red-50: #fef2f2;
+  --boston-red-100: #fee2e2;
+  --boston-red-200: #fecaca;
+  --boston-red-300: #fca5a5;
+  --boston-red-400: #f87171;
+  --boston-red-500: #ef4444;
+  --boston-red-600: #dc2626;
+  --boston-red-700: #b91c1c;
+  --boston-red-800: #991b1b;
+  --boston-red-900: #7f1d1d;
+  --boston-red-950: #450a0a;
+  --boston-red-dark: #6b1e1e;
+  --boston-red-darker: #5a1818;
+}
+
+/* High specificity selectors to override Tailwind and other CSS */
+
+/* Text Colors - Override all red text utilities */
+html body .text-red-500,
+html body .text-red-600,
+html body .text-red-700,
+html body .text-red-800,
+html body .text-red-900,
+html body .text-red-400,
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .heading,
+html body .title,
+html body [class*="text-red"],
+html body .red-text {
+  color: var(--boston-red-dark) !important;
+}
+
+/* Background Colors - Override all red background utilities */
+html body .bg-red-500,
+html body .bg-red-600,
+html body .bg-red-700,
+html body .bg-red-800,
+html body .bg-red-900,
+html body .bg-red-400,
+html body [class*="bg-red"],
+html body .red-bg {
+  background-color: var(--boston-red-dark) !important;
+}
+
+/* Border Colors - Override all red border utilities */
+html body .border-red-500,
+html body .border-red-600,
+html body .border-red-700,
+html body .border-red-800,
+html body .border-red-900,
+html body .border-red-400,
+html body [class*="border-red"],
+html body .red-border {
+  border-color: var(--boston-red-dark) !important;
+}
+
+/* Button Overrides */
+html body button,
+html body .btn,
+html body .button,
+html body input[type="button"],
+html body input[type="submit"],
+html body .carousel-btn,
+html body .nav-btn {
+  background-color: var(--boston-red-dark) !important;
+  border-color: var(--boston-red-dark) !important;
+}
+
+html body button:hover,
+html body .btn:hover,
+html body .button:hover,
+html body .carousel-btn:hover {
+  background-color: var(--boston-red-darker) !important;
+  border-color: var(--boston-red-darker) !important;
+}
+
+/* Link Colors */
+html body a,
+html body .link,
+html body .nav-link {
+  color: var(--boston-red-dark) !important;
+}
+
+html body a:hover,
+html body .link:hover,
+html body .nav-link:hover {
+  color: var(--boston-red-darker) !important;
+}
+
+/* Card and Component Overrides */
+html body .card,
+html body .component,
+html body .box,
+html body .panel {
+  border-color: var(--boston-red-dark) !important;
+}
+
+/* Carousel Specific Overrides */
+html body .carousel-container,
+html body .featured-carousel,
+html body .carousel {
+  --carousel-primary: var(--boston-red-dark) !important;
+  --carousel-secondary: var(--boston-red-darker) !important;
+}
+
+html body .carousel-title,
+html body .carousel h1,
+html body .carousel h2,
+html body .carousel h3 {
+  color: var(--boston-red-dark) !important;
+}
+
+html body .carousel-btn,
+html body .carousel-nav,
+html body .carousel-control {
+  background-color: var(--boston-red-dark) !important;
+  border-color: var(--boston-red-dark) !important;
+}
+
+html body .carousel-dot,
+html body .carousel-indicator {
+  background-color: var(--boston-red-dark) !important;
+}
+
+html body .carousel-progress,
+html body .progress-bar {
+  background-color: var(--boston-red-dark) !important;
+}
+
+/* Navbar Overrides */
+html body .navbar,
+html body .nav,
+html body .navigation {
+  border-color: var(--boston-red-dark) !important;
+}
+
+html body .navbar-brand,
+html body .nav-brand,
+html body .logo {
+  color: var(--boston-red-dark) !important;
+}
+
+/* Sidebar Overrides */
+html body .sidebar,
+html body .left-sidebar,
+html body .navigation-sidebar {
+  border-color: var(--boston-red-dark) !important;
+}
+
+html body .sidebar-item,
+html body .nav-item {
+  color: var(--boston-red-dark) !important;
+}
+
+html body .sidebar-item:hover,
+html body .nav-item:hover {
+  background-color: var(--boston-red-50) !important;
+  color: var(--boston-red-darker) !important;
+}
+
+/* Form Elements */
+html body input,
+html body textarea,
+html body select {
+  border-color: var(--boston-red-dark) !important;
+}
+
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+  border-color: var(--boston-red-darker) !important;
+  box-shadow: 0 0 0 3px rgba(107, 30, 30, 0.1) !important;
+}
+
+/* Icon Colors */
+html body .icon,
+html body i,
+html body svg {
+  color: var(--boston-red-dark) !important;
+  fill: var(--boston-red-dark) !important;
+}
+
+/* Tailwind Utility Overrides - Most specific */
+html body .hover\:bg-red-600:hover,
+html body .hover\:bg-red-700:hover,
+html body .hover\:bg-red-800:hover,
+html body .hover\:text-red-600:hover,
+html body .hover\:text-red-700:hover,
+html body .hover\:text-red-800:hover {
+  background-color: var(--boston-red-darker) !important;
+  color: var(--boston-red-darker) !important;
+}
+
+/* Focus states */
+html body .focus\:ring-red-500:focus,
+html body .focus\:ring-red-600:focus,
+html body .focus\:ring-red-700:focus {
+  --tw-ring-color: var(--boston-red-dark) !important;
+}
+
+/* Responsive overrides */
+@media (min-width: 640px) {
+  html body .sm\:text-red-600,
+  html body .sm\:bg-red-600 {
+    color: var(--boston-red-dark) !important;
+    background-color: var(--boston-red-dark) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  html body .md\:text-red-600,
+  html body .md\:bg-red-600 {
+    color: var(--boston-red-dark) !important;
+    background-color: var(--boston-red-dark) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  html body .lg\:text-red-600,
+  html body .lg\:bg-red-600 {
+    color: var(--boston-red-dark) !important;
+    background-color: var(--boston-red-dark) !important;
+  }
+}
+
+/* Any remaining red elements */
+html body *[style*="color: red"],
+html body *[style*="background-color: red"],
+html body *[style*="border-color: red"] {
+  color: var(--boston-red-dark) !important;
+  background-color: var(--boston-red-dark) !important;
+  border-color: var(--boston-red-dark) !important;
+}
+
+/* Ensure text remains readable */
+html body .text-white,
+html body .text-gray-100,
+html body .text-gray-200 {
+  color: white !important;
+}
+
+html body .bg-white,
+html body .bg-gray-100,
+html body .bg-gray-200 {
+  background-color: white !important;
+}

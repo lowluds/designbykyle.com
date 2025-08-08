@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Safe Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 8px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+        .test-button {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .error { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .info { background: rgba(139, 0, 0, 0.2); color: #8b0000; }
+    </style>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <h1>🛡️ G2Own Safe Integration Test</h1>
+    
+    <div class="test-section">
+        <h2>Integration Status</h2>
+        <div id="status" class="status info">Testing...</div>
+        <button class="test-button" onclick="testIntegration()">Test Integration</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Store Functions</h2>
+        <button class="test-button" onclick="openStore()">Open Store</button>
+        <button class="test-button" onclick="openCart()">Open Cart</button>
+        <button class="test-button" onclick="openCategory()">Open Game Accounts</button>
+        <div id="functions-status" class="status info">Click buttons to test...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Page Elements Check</h2>
+        <div id="elements-status" class="status info">Checking...</div>
+        <button class="test-button" onclick="checkElements()">Check Elements</button>
+    </div>
+
+    <script src="assets/js/invision-commerce-integration.js"></script>
+    
+    <script>
+        function updateStatus(id, message, type) {
+            const el = document.getElementById(id);
+            el.textContent = message;
+            el.className = 'status ' + type;
+        }
+        
+        function testIntegration() {
+            try {
+                if (window.G2OwnStoreIntegration) {
+                    updateStatus('status', '✅ Integration loaded successfully', 'success');
+                } else {
+                    updateStatus('status', '❌ Integration not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('status', '❌ Error: ' + error.message, 'error');
+            }
+        }
+        
+        function openStore() {
+            try {
+                if (window.G2OwnStoreIntegration) {
+                    window.G2OwnStoreIntegration.openStore();
+                    updateStatus('functions-status', '✅ Store opened', 'success');
+                } else {
+                    updateStatus('functions-status', '❌ Integration not available', 'error');
+                }
+            } catch (error) {
+                updateStatus('functions-status', '❌ Error: ' + error.message, 'error');
+            }
+        }
+        
+        function openCart() {
+            try {
+                if (window.G2OwnStoreIntegration) {
+                    window.G2OwnStoreIntegration.openCart();
+                    updateStatus('functions-status', '✅ Cart opened', 'success');
+                } else {
+                    updateStatus('functions-status', '❌ Integration not available', 'error');
+                }
+            } catch (error) {
+                updateStatus('functions-status', '❌ Error: ' + error.message, 'error');
+            }
+        }
+        
+        function openCategory() {
+            try {
+                if (window.G2OwnStoreIntegration) {
+                    window.G2OwnStoreIntegration.openCategory('1-game-accounts');
+                    updateStatus('functions-status', '✅ Category opened', 'success');
+                } else {
+                    updateStatus('functions-status', '❌ Integration not available', 'error');
+                }
+            } catch (error) {
+                updateStatus('functions-status', '❌ Error: ' + error.message, 'error');
+            }
+        }
+        
+        function checkElements() {
+            const checks = [
+                'Cart link added: ' + (document.querySelector('.community-cart-link') ? '✅' : '❌'),
+                'FAB button added: ' + (document.querySelector('.community-store-fab') ? '✅' : '❌'),
+                'Phosphor icons loaded: ' + (window.ph ? '✅' : '❌')
+            ];
+            
+            updateStatus('elements-status', checks.join('\\n'), 'info');
+        }
+        
+        // Auto-test on load
+        setTimeout(() => {
+            testIntegration();
+            checkElements();
+        }, 1000);
+    </script>
+</body>
+</html>

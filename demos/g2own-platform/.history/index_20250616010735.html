@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Premium Digital Marketplace</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts with display swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="G2Own - Premium digital marketplace for games, software, and digital goods. Best prices, instant delivery, secure transactions.">
+    <meta name="keywords" content="digital games, game keys, software, digital marketplace, gaming">
+    <meta name="author" content="G2Own">
+    
+    <!-- Open Graph -->    <meta property="og:title" content="G2Own - Premium Digital Marketplace">
+    <meta property="og:description" content="Buy, sell, and trade digital games and goods">
+    <meta property="og:type" content="website">      <!-- CSS with optimized loading -->
+    <!-- Unified Variables - Load First -->
+    <link rel="stylesheet" href="assets/css/variables-unified.css">
+    <!-- Unified Button System - Load Early -->
+    <link rel="stylesheet" href="assets/css/buttons-unified.css">
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <!-- Navbar Flicker Fix - Load Early -->
+    <link rel="stylesheet" href="assets/css/navbar-flicker-fix.css">
+    <!-- Simple Preloader Styles - Load Early for Enhanced Experience -->
+    <link rel="stylesheet" href="assets/css/simple-preloader.css">
+    <link rel="stylesheet" href="assets/css/navbar-optimized.css">
+    <link rel="stylesheet" href="assets/css/navbar-performance.css">
+    <link rel="stylesheet" href="assets/css/left-sidebar.css">
+    <link rel="stylesheet" href="assets/css/top-nav-auth.css">
+    <link rel="stylesheet" href="assets/css/auth-modal.css">
+    <link rel="preload" href="assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.css"></noscript>    <link rel="stylesheet" href="assets/css/enhanced.css">
+    
+    <!-- Carousel Override CSS - Load Last for Maximum Priority -->
+    <link rel="stylesheet" href="assets/css/carousel-override.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- Glass Buttons CSS - Load After Base Styles -->
+    <link rel="stylesheet" href="assets/css/glass-buttons.css">
+    
+    <!-- Enhanced Carousel Card Effects -->
+    <link rel="stylesheet" href="assets/css/carousel-card-effects.css">    <!-- Modern Featured Products -->
+    <link rel="stylesheet" href="assets/css/featured-products-modern.css">    <!-- Footer Enhancements -->
+    <link rel="stylesheet" href="assets/css/footer-enhancements.css">
+      <!-- Support Section Styles -->
+    <link rel="stylesheet" href="assets/css/support-section.css">
+    
+    <!-- Phosphor Icons Library -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+      <!-- Gaming Animations CSS -->
+    <link rel="stylesheet" href="assets/css/gaming-animations.css">
+    
+    <!-- Search Button Fix -->
+    <link rel="stylesheet" href="assets/css/search-fix.css">
+      <!-- Why Choose Us Section Styles -->
+    <link rel="stylesheet" href="assets/css/why-choose-us.css">
+    
+    <!-- Backend Integration Styles -->
+    <link rel="stylesheet" href="assets/css/backend-integration.css">
+    
+    <!-- Digital Marketplace Animation Styles -->
+    <link rel="stylesheet" href="assets/css/digital-marketplace-animation.css">
+    
+    <!-- Hero Intro Animation Styles -->
+    <link rel="stylesheet" href="assets/css/hero-intro-animation.css">
+      <!-- Enhanced Category Card Buttons -->
+    <link rel="stylesheet" href="assets/css/category-card-buttons.css">
+    
+    <!-- Modern Hero Buttons with Custom Icons -->
+    <link rel="stylesheet" href="assets/css/modern-hero-buttons.css">
+    
+    <!-- HERO BACKGROUND UNIFIED SYSTEM - HIGH PRIORITY -->
+    <link rel="stylesheet" href="assets/css/hero-background-unified.css">
+    
+    <!-- EMERGENCY BACKGROUND FIX - ABSOLUTE LAST -->
+    <link rel="stylesheet" href="assets/css/featured-background-fix.css">
+      <!-- Theme color -->    <meta name="theme-color" content="#8b0000">
+      <!-- Force Dark Red Scrollbar -->
+    <style>
+        /* IMMEDIATE NAVBAR FLICKER FIX */
+        .navbar, #navbar {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+        }
+        
+        /* Prevent auth elements from causing flickering */
+        .navbar .user-menu-toggle,
+        .navbar .user-dropdown,
+        .navbar #authButtonContainer,
+        .navbar #profileContainer {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+        }
+        
+        /* Maximum specificity scrollbar override */
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            width: 8px !important;
+        }
+        
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track,
+        *::-webkit-scrollbar-track {
+            background: #0a0a0a !important;
+        }
+        
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb,
+        *::-webkit-scrollbar-thumb {
+            background: #8b0000 !important;
+            border-radius: 4px !important;
+        }
+        
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover,
+        *::-webkit-scrollbar-thumb:hover {
+            background: #660000 !important;
+        }
+    </style>
+</head>
+<body class="loading">
+    
+    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">G2Own</div>
+            <div class="loading-progress-container">
+                <div id="loading-progress" class="loading-progress-bar"></div>
+            </div>
+            <div id="loading-text" class="loading-status">0%</div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js" class="particles-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Enhanced Background System -->
+    <div class="bg-system">
+        <!-- Animated gradient orbs -->
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+          <!-- Grid overlay with animation -->
+        <div class="grid-overlay">
+            <div class="grid-lines horizontal"></div>
+            <div class="grid-lines vertical"></div>
+        </div>
+    </div>
+
+    <!-- Optimized Navigation -->
+    <nav class="navbar navbar-loading" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Logo moved to top-left -->
+            <div class="nav-brand">
+                <div class="nav-logo" aria-label="G2Own homepage">
+                    <div class="logo-icon">
+                        <span>G2</span>
+                        <div class="logo-glow"></div>
+                    </div>
+                    <div class="logo-text-container">
+                        <span class="logo-text">G2Own</span>
+                        <span class="logo-tagline">Digital Marketplace</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Navigation Links -->
+            <div class="nav-center">
+                <div class="nav-menu" id="nav-menu">
+                    <div class="nav-links">                        <a href="#marketplace" class="nav-link" data-section="marketplace">
+                            <i class="ph ph-storefront nav-gaming-icon"></i>
+                            <span>Marketplace</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#games" class="nav-link" data-section="games">
+                            <i class="ph ph-game-controller nav-gaming-icon"></i>
+                            <span>Games</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#digital-goods" class="nav-link" data-section="digital-goods">
+                            <i class="ph ph-cube nav-gaming-icon"></i>
+                            <span>Digital Goods</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                        <a href="#support" class="nav-link" data-section="support">
+                            <i class="ph ph-shield-check nav-gaming-icon"></i>
+                            <span>Support</span>
+                            <div class="nav-link-indicator"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side Actions (No Auth Buttons) -->
+            <div class="nav-actions">
+                <div class="action-group">
+                    <!-- Search -->
+                    <div class="search-container">                        <button class="search-toggle" id="search-toggle" aria-label="Search">
+                            <i class="ph ph-magnifying-glass nav-gaming-icon"></i>
+                        </button>
+                        <div class="search-dropdown" id="search-dropdown">
+                            <div class="search-input-container">
+                                <input type="search" id="search-input" class="search-input" placeholder="Search games, software..." aria-label="Search">
+                                <button class="search-clear" aria-label="Clear search">×</button>
+                            </div>
+                            <div class="search-results" id="search-results">
+                                <!-- Search results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Shopping Cart -->                    <button class="cart-toggle" id="cart-toggle" aria-label="Shopping cart">
+                        <i class="ph ph-shopping-cart nav-gaming-icon"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
+                      <!-- Dynamic Auth Button - Shows Login/Signup or Profile based on login status -->
+                    <div class="nav-auth">
+                        <!-- Login/Signup Button (shown when not logged in) -->
+                        <div class="auth-button-container" id="authButtonContainer">                            <button class="login-signup-btn" id="loginSignupBtn">
+                                <i class="ph ph-user-circle nav-gaming-icon auth-icon"></i>
+                                <span class="auth-text">Login / Sign Up</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Profile Dropdown (shown when logged in) -->
+                        <div class="profile-container" id="profileContainer" style="display: none;">
+                            <button class="profile-btn" id="profileBtn">
+                                <img src="assets/images/default-avatar.svg" alt="Profile" class="profile-avatar">
+                                <span class="profile-name" id="profileName">User Name</span>
+                                <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </button>
+                            
+                            <!-- Profile Dropdown Menu -->
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <div class="dropdown-header">
+                                    <img src="assets/images/default-avatar.svg" alt="Profile" class="dropdown-avatar">
+                                    <div class="dropdown-user-info">
+                                        <span class="dropdown-name" id="dropdownName">User Name</span>
+                                        <span class="dropdown-email" id="dropdownEmail">user@example.com</span>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item" data-action="profile-settings">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    Profile Settings
+                                </a>
+                                <a href="#" class="dropdown-item" data-action="account-security">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M8 11v6h8v-6H8z"/>
+                                    </svg>
+                                    Account Security
+                                </a>
+                                <a href="#" class="dropdown-item" data-action="achievements">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                    </svg>
+                                    Achievements
+                                </a>
+                                <a href="#" class="dropdown-item" data-action="purchase-history">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                    </svg>
+                                    Purchase History
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item logout-item" data-action="logout">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                    </svg>
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+        
+        <!-- Navigation progress indicator -->
+        <div class="nav-progress" id="nav-progress"></div>
+    </nav>
+
+    <!-- Left Sidebar Navigation -->
+    <aside class="left-sidebar" id="left-sidebar">
+        <div class="sidebar-container">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">G2</div>
+                    <span class="sidebar-logo-text">Menu</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+                    <span class="toggle-icon">‹</span>
+                </button>
+            </div>
+
+            <!-- Authentication Section -->
+            <div class="sidebar-auth" id="sidebar-auth">
+                <div class="auth-container">
+                    <div class="auth-welcome">
+                        <h3 class="auth-title">Welcome to G2Own</h3>
+                        <p class="auth-subtitle">Join our community of digital traders</p>
+                    </div>
+                      <div class="auth-buttons">
+                        <!-- Single Combined Auth Button -->                        <button class="btn btn-primary btn-auth auth-combined" id="btn-auth-combined">
+                            <i class="ph ph-user-circle nav-gaming-icon btn-icon"></i>
+                            <span class="btn-text">Login / Sign Up</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </div>
+                    
+                    <div class="auth-divider">
+                        <span class="divider-text">or continue with</span>
+                    </div>
+                    
+                    <div class="social-auth">                        <button class="social-btn google-btn" data-provider="google">
+                            <i class="ph ph-google-logo social-gaming-icon"></i>
+                            <span>Google</span>
+                        </button><button class="social-btn discord-btn" data-provider="discord">
+                            <i class="ph ph-discord-logo social-gaming-icon"></i>
+                            <span>Discord</span>
+                        </button>
+                        <button class="social-btn steam-btn" data-provider="steam">
+                            <i class="ph ph-steam-logo social-gaming-icon"></i>
+                            <span>Steam</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile Section (shown when logged in) -->
+            <div class="sidebar-profile hidden" id="sidebar-profile">
+                <div class="profile-container">
+                    <div class="profile-avatar">
+                        <img src="assets/images/default-avatar.svg" alt="User Avatar" class="avatar-image">
+                        <div class="avatar-status online"></div>
+                    </div>
+                    <div class="profile-info">
+                        <h4 class="profile-name">John Doe</h4>
+                        <p class="profile-level">Level 5 Trader</p>                        <div class="profile-stats">
+                            <span class="stat">
+                                <i class="ph ph-star gaming-icon"></i> 4.8
+                            </span>
+                            <span class="stat">
+                                <i class="ph ph-shopping-cart gaming-icon"></i> 25 Sales
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Navigation -->
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4 class="nav-section-title">Quick Access</h4>
+                    <ul class="nav-list">                        <li class="nav-item">
+                            <a href="https://g2own.com/community/discover/wishlist/" class="nav-link" target="_blank" rel="noopener">
+                                <i class="ph ph-heart nav-gaming-icon"></i>
+                                <span class="nav-text">Wishlist</span>
+                                <span class="nav-badge" id="wishlist-count" style="display: none;"></span>
+                            </a>
+                        </li>                        <li class="nav-item">
+                            <a href="https://g2own.com/community/discover/library/" class="nav-link" target="_blank" rel="noopener">
+                                <i class="ph ph-books nav-gaming-icon"></i>
+                                <span class="nav-text">My Library</span>
+                            </a>
+                        </li><li class="nav-item">
+                            <a href="https://g2own.com/community/discover/orders/" class="nav-link" target="_blank" rel="noopener">
+                                <i class="ph ph-package nav-gaming-icon"></i>
+                                <span class="nav-text">Orders</span>
+                                <span class="nav-badge" id="orders-count" style="display: none;"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#selling" class="nav-link">
+                                <i class="ph ph-currency-dollar nav-gaming-icon"></i>
+                                <span class="nav-text">Selling</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h4 class="nav-section-title">Categories</h4>
+                    <ul class="nav-list">                        <li class="nav-item">
+                            <a href="#pc-games" class="nav-link">
+                                <i class="ph ph-desktop nav-gaming-icon"></i>
+                                <span class="nav-text">PC Games</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#console-games" class="nav-link">
+                                <i class="ph ph-game-controller nav-gaming-icon"></i>
+                                <span class="nav-text">Console Games</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#software" class="nav-link">
+                                <i class="ph ph-gear nav-gaming-icon"></i>
+                                <span class="nav-text">Software</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#gift-cards" class="nav-link">
+                                <i class="ph ph-gift nav-gaming-icon"></i>
+                                <span class="nav-text">Gift Cards</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h4 class="nav-section-title">Support</h4>
+                    <ul class="nav-list">                        <li class="nav-item">
+                            <a href="#help" class="nav-link">
+                                <i class="ph ph-question nav-gaming-icon"></i>
+                                <span class="nav-text">Help Center</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link">
+                                <i class="ph ph-chat-circle nav-gaming-icon"></i>
+                                <span class="nav-text">Contact Us</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#feedback" class="nav-link">
+                                <i class="ph ph-note-pencil nav-gaming-icon"></i>
+                                <span class="nav-text">Feedback</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Sidebar Footer -->
+            <div class="sidebar-footer">
+                <div class="footer-links">                    <a href="#settings" class="footer-link" title="Settings">
+                        <i class="ph ph-gear nav-gaming-icon"></i>
+                    </a>
+                    <a href="#notifications" class="footer-link" title="Notifications">
+                        <i class="ph ph-bell nav-gaming-icon"></i>
+                        <span class="notification-dot"></span>
+                    </a>
+                    <a href="#theme" class="footer-link" title="Theme" id="theme-toggle">
+                        <i class="ph ph-moon nav-gaming-icon"></i>
+                    </a>
+                </div>
+                  <div class="footer-social">
+                    <a href="#" class="social-link" title="Discord">
+                        <i class="ph ph-discord-logo social-gaming-icon"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <i class="ph ph-twitter-logo social-gaming-icon"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Reddit">
+                        <i class="ph ph-reddit-logo social-gaming-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Backdrop -->
+        <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    </aside>
+
+    <!-- Sidebar Toggle Button (always visible) -->
+    <button class="sidebar-floating-toggle" id="sidebar-floating-toggle" aria-label="Open sidebar">
+        <span class="floating-toggle-icon">☰</span>
+        <div class="floating-toggle-glow"></div>
+    </button>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-header">
+                <div class="mobile-logo">
+                    <div class="logo-icon">
+                        <span>G2</span>
+                    </div>
+                    <span class="logo-text">G2Own</span>
+                </div>
+                <button class="mobile-nav-close" id="mobile-nav-close">×</button>
+            </div>
+            
+            <div class="mobile-nav-links">                <a href="#marketplace" class="mobile-nav-link">
+                    <i class="ph ph-storefront nav-gaming-icon"></i>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#games" class="mobile-nav-link">
+                    <i class="ph ph-game-controller nav-gaming-icon"></i>
+                    <span>Games</span>
+                </a>
+                <a href="#digital-goods" class="mobile-nav-link">
+                    <i class="ph ph-cube nav-gaming-icon"></i>
+                    <span>Digital Goods</span>
+                </a>
+                <a href="#support" class="mobile-nav-link">
+                    <i class="ph ph-shield-check nav-gaming-icon"></i>
+                    <span>Support</span>
+                </a>
+            </div>
+            
+            <div class="mobile-nav-footer">
+                <div class="mobile-nav-actions">
+                    <button class="btn btn-outline btn-full">Sign In</button>
+                    <button class="btn btn-primary btn-full">Join Now</button>
+                </div>
+            </div>
+        </div>    </div>
+
+    <!-- Hover Edge Indicator for Left Sidebar -->
+    <div class="sidebar-edge-indicator" id="sidebar-edge-indicator">
+        <div class="edge-indicator-line"></div>
+        <div class="edge-indicator-preview">
+            <div class="preview-icon">☰</div>
+            <div class="preview-text">Menu</div>
+        </div>
+        <div class="edge-indicator-hint" id="edge-indicator-hint">
+            <div class="hint-content">
+                <div class="hint-icon">👆</div>
+                <div class="hint-text">Hover here to open menu</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Shopping Cart</h3>
+            <button id="cart-close" class="cart-close" aria-label="Close cart">×</button>
+        </div>
+        <div class="cart-content">
+            <div id="cart-items" class="cart-items">
+                <div class="cart-empty">Your cart is empty</div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total: </span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="cart-checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div><!-- Main Content -->
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-container">
+                <!-- Hero Content with better structure -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span>Premium Digital Marketplace</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="title-line-1">Next-Gen</span>
+                        <span class="title-line-2 gradient-text">Digital Marketplace</span>
+                        <span class="title-line-3">Experience</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                        Instant delivery, secure transactions, unbeatable prices.
+                    </p>
+                      <!-- Enhanced CTA Section -->
+                    <div class="hero-cta">
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-large magnetic-btn" data-action="explore">
+                                <span class="btn-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- Shopping cart base -->
+                                        <circle cx="9" cy="21" r="1"/>
+                                        <circle cx="20" cy="21" r="1"/>
+                                        <path d="m1 1 4 4 2.5 12.5H21"/>
+                                        
+                                        <!-- Digital elements - circuit pattern -->
+                                        <path d="M7 8h10v8H7z" stroke-width="1.5" opacity="0.7"/>
+                                        <circle cx="9" cy="10" r="0.5" fill="currentColor"/>
+                                        <circle cx="12" cy="10" r="0.5" fill="currentColor"/>
+                                        <circle cx="15" cy="10" r="0.5" fill="currentColor"/>
+                                        <path d="M9 12h6" stroke-width="1"/>
+                                        <path d="M9 14h4" stroke-width="1"/>
+                                        
+                                        <!-- Sparkle effects -->
+                                        <path d="M19 3l-1 2-2-1 2-1 1 2z" fill="currentColor" opacity="0.8"/>
+                                        <path d="M22 8l-0.5 1-1-0.5 1-0.5 0.5 1z" fill="currentColor" opacity="0.6"/>
+                                    </svg>
+                                </span>
+                                <span class="btn-text">Explore Marketplace</span>
+                                <div class="btn-particles"></div>
+                            </button>                            <button class="btn btn-primary btn-large magnetic-btn" data-action="learn">
+                                <span class="btn-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <!-- Shopping cart base -->
+                                        <circle cx="9" cy="21" r="1"/>
+                                        <circle cx="20" cy="21" r="1"/>
+                                        <path d="m1 1 4 4 2.5 12.5H21"/>
+                                        
+                                        <!-- Digital elements - circuit pattern -->
+                                        <path d="M7 8h10v8H7z" stroke-width="1.5" opacity="0.7"/>
+                                        <circle cx="9" cy="10" r="0.5" fill="currentColor"/>
+                                        <circle cx="12" cy="10" r="0.5" fill="currentColor"/>
+                                        <circle cx="15" cy="10" r="0.5" fill="currentColor"/>
+                                        <path d="M9 12h6" stroke-width="1"/>
+                                        <path d="M9 14h4" stroke-width="1"/>
+                                        
+                                        <!-- Sparkle effects -->
+                                        <path d="M19 3l-1 2-2-1 2-1 1 2z" fill="currentColor" opacity="0.8"/>
+                                        <path d="M22 8l-0.5 1-1-0.5 1-0.5 0.5 1z" fill="currentColor" opacity="0.6"/>
+                                    </svg>
+                                </span>
+                                <span class="btn-text">Learn More</span>
+                                <div class="btn-particles"></div>
+                            </button>
+                        </div>
+                        
+                        <!-- Trust indicators -->
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <span class="trust-number">50K+</span>
+                                <span class="trust-label">Happy Customers</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">99.9%</span>
+                                <span class="trust-label">Uptime</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">24/7</span>
+                                <span class="trust-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>                  <!-- Enhanced Featured Games Carousel -->
+                <div class="featured-games-section">
+                    <div class="featured-games-header">
+                        <h3 class="featured-title">
+                            <span class="gradient-text">Featured Games</span>
+                        </h3>
+                        <p class="featured-subtitle">Discover our top picks with exclusive deals</p>
+                    </div>
+                    
+                    <div class="featured-games">
+                        <div class="game-grid">
+                            <!-- Pre-populated sample game cards for carousel -->
+                            <div class="game-card">
+                                <div class="card-image">
+                                    <img src="assets/images/cyberpunk-2077.jpg" alt="Cyberpunk 2077" class="game-image" 
+                                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Image</text></svg>'">
+                                    <div class="card-overlay">                                        <div class="card-badges">
+                                            <span class="badge hot">
+                                                <i class="ph ph-fire gaming-icon"></i> Hot
+                                            </span>
+                                            <span class="badge discount">-50%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="game-title">Cyberpunk 2077: Ultimate Edition</h3>
+                                    <p class="game-description">Experience Night City like never before with enhanced graphics and new content.</p>                                    <div class="game-meta">
+                                        <div class="game-rating">
+                                            <span class="stars">
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                            </span>
+                                            <span class="rating-text">(4.8/5)</span>
+                                        </div>
+                                        <div class="game-platform">
+                                            <i class="ph ph-desktop gaming-icon"></i> PC
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="price-container">
+                                            <span class="price-old">$59.99</span>
+                                            <span class="game-price">$29.99</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card">
+                                <div class="card-image">
+                                    <img src="assets/images/minecraft.jpg" alt="Minecraft" class="game-image"
+                                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Image</text></svg>'">
+                                    <div class="card-overlay">                                        <div class="card-badges">
+                                            <span class="badge trending">
+                                                <i class="ph ph-trending-up gaming-icon"></i> Trending
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="game-title">Minecraft Java Edition</h3>
+                                    <p class="game-description">Build, explore, and survive in the ultimate sandbox adventure.</p>                                    <div class="game-meta">
+                                        <div class="game-rating">
+                                            <span class="stars">
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                            </span>
+                                            <span class="rating-text">(4.9/5)</span>
+                                        </div>
+                                        <div class="game-platform">Multi-platform</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="price-container">
+                                            <span class="game-price">$26.95</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card">
+                                <div class="card-image">
+                                    <img src="assets/images/valorant.jpg" alt="Valorant Points" class="game-image"
+                                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Game Currency</text></svg>'">
+                                    <div class="card-overlay">                                        <div class="card-badges">
+                                            <span class="badge exclusive">
+                                                <i class="ph ph-gem gaming-icon"></i> Exclusive
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="game-title">Valorant Points - 1000VP</h3>
+                                    <p class="game-description">Premium currency for Valorant skins, battle passes, and more.</p>                                    <div class="game-meta">
+                                        <div class="game-rating">
+                                            <span class="stars">
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                            </span>
+                                            <span class="rating-text">(4.8/5)</span>
+                                        </div>
+                                        <div class="game-platform">
+                                            <i class="ph ph-target gaming-icon"></i> Valorant
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="price-container">
+                                            <span class="game-price">$9.99</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="game-card">
+                                <div class="card-image">
+                                    <img src="assets/images/steam-wallet.jpg" alt="Steam Wallet" class="game-image"
+                                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22><rect width=%22100%%22 height=%22100%%22 fill=%22%23222%22/><text x=%2250%%22 y=%2250%%22 fill=%22%23666%22 text-anchor=%22middle%22 dy=%22.3em%22>Gift Card</text></svg>'">
+                                    <div class="card-overlay">                                        <div class="card-badges">
+                                            <span class="badge popular">
+                                                <i class="ph ph-trophy gaming-icon"></i> Popular
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="game-title">Steam Wallet Code $50</h3>
+                                    <p class="game-description">Instant delivery of Steam Wallet funds for game purchases.</p>                                    <div class="game-meta">
+                                        <div class="game-rating">
+                                            <span class="stars">
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                                <i class="ph ph-star gaming-icon"></i>
+                                            </span>
+                                            <span class="rating-text">(5.0/5)</span>
+                                        </div>
+                                        <div class="game-platform">
+                                            <i class="ph ph-credit-card gaming-icon"></i> Digital
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="price-container">
+                                            <span class="game-price">$50.00</span>
+                                        </div>
+                                        <button class="add-to-cart-btn">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Floating elements for visual appeal -->
+                <div class="floating-elements">
+                    <!-- Floating cards removed -->
+                </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll to explore</div>
+            </div>
+        </section>        <!-- Modern Why Choose Us Section -->
+        <section class="why-choose-us-section" id="benefits">
+            <div class="container">
+                <div class="section-header">                    <div class="section-badge">
+                        <i class="ph ph-check-circle"></i>
+                        <span>Why Choose G2Own</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Your Trusted Digital Marketplace</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Experience premium digital shopping with unmatched quality, security, and service
+                    </p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card animate-on-scroll" data-delay="100">
+                        <div class="benefit-icon">
+                            <i class="ph ph-lightning benefit-gaming-icon"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Instant Delivery</h3>
+                            <p class="benefit-description">Get your digital products immediately after purchase with automated delivery</p>
+                            <div class="benefit-feature">
+                                <i class="ph ph-clock gaming-icon"></i>
+                                <span>0-5 minutes delivery</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card animate-on-scroll" data-delay="200">
+                        <div class="benefit-icon">
+                            <i class="ph ph-shield-check benefit-gaming-icon"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Buyer Protection</h3>
+                            <p class="benefit-description">Money-back guarantee and secure transactions for complete peace of mind</p>
+                            <div class="benefit-feature">
+                                <i class="ph ph-currency-dollar gaming-icon"></i>
+                                <span>100% Protected</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card animate-on-scroll" data-delay="300">
+                        <div class="benefit-icon">
+                            <i class="ph ph-tag benefit-gaming-icon"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Best Prices</h3>
+                            <p class="benefit-description">Competitive pricing from verified sellers with exclusive deals and discounts</p>
+                            <div class="benefit-feature">
+                                <i class="ph ph-percent gaming-icon"></i>
+                                <span>Up to 70% off</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card animate-on-scroll" data-delay="400">
+                        <div class="benefit-icon">
+                            <i class="ph ph-headset benefit-gaming-icon"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">24/7 Support</h3>
+                            <p class="benefit-description">Expert customer service available around the clock to help with any issues</p>
+                            <div class="benefit-feature">
+                                <i class="ph ph-chat-circle gaming-icon"></i>
+                                <span>Live chat support</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-card animate-on-scroll" data-delay="500">
+                        <div class="benefit-icon">
+                            <i class="ph ph-certificate benefit-gaming-icon"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3 class="benefit-title">Verified Sellers</h3>
+                            <p class="benefit-description">All sellers are thoroughly vetted and verified for authenticity and reliability</p>
+                            <div class="benefit-feature">
+                                <i class="ph ph-seal-check gaming-icon"></i>
+                                <span>Trusted Partners</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <i class="ph ph-users gaming-icon"></i>
+                        <span>Trusted by gamers worldwide</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="ph ph-star gaming-icon"></i>
+                        <span>4.8/5 customer rating</span>
+                    </div>                    <div class="trust-item">
+                        <i class="ph ph-lock gaming-icon"></i>
+                        <span>SSL encrypted transactions</span>
+                    </div>
+                </div>
+            </div>
+        </section><!-- Enhanced Categories Section -->
+        <section class="categories-section" id="categories">
+            <div class="container">
+                <div class="section-header">                    <div class="section-badge">
+                        <i class="ph ph-trophy gaming-icon"></i>
+                        <span>Popular Categories</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Discover Digital Goods</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Explore our vast collection of digital products across multiple categories
+                    </p>
+                </div>
+                
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Enhanced Category Cards -->                    <div class="category-card animate-on-scroll magnetic" data-delay="100">
+                        <div class="category-icon">
+                            <i class="ph ph-desktop category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">PC Games</h3>
+                        <p class="category-description">Latest AAA titles and indie games for PC gaming enthusiasts</p>
+                        <div class="category-stats">
+                            <span class="category-count">1,200+ Games</span>
+                            <span class="category-trending">
+                                <i class="ph ph-trending-up gaming-icon"></i> Trending
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Games</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="200">
+                        <div class="category-icon">
+                            <i class="ph ph-game-controller category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">Console Games</h3>
+                        <p class="category-description">PlayStation, Xbox, and Nintendo Switch digital games</p>
+                        <div class="category-stats">
+                            <span class="category-count">800+ Games</span>
+                            <span class="category-trending">
+                                <i class="ph ph-fire gaming-icon"></i> Hot
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Games</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="300">
+                        <div class="category-icon">
+                            <i class="ph ph-gear category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">Software</h3>
+                        <p class="category-description">Professional software, antivirus, and productivity tools</p>
+                        <div class="category-stats">
+                            <span class="category-count">500+ Programs</span>
+                            <span class="category-trending">
+                                <i class="ph ph-briefcase gaming-icon"></i> Professional
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Software</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="400">
+                        <div class="category-icon">
+                            <i class="ph ph-gift category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">Gift Cards</h3>
+                        <p class="category-description">Steam, PlayStation, Xbox, and other platform gift cards</p>
+                        <div class="category-stats">
+                            <span class="category-count">50+ Cards</span>
+                            <span class="category-trending">
+                                <i class="ph ph-gem gaming-icon"></i> Popular
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Cards</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="500">
+                        <div class="category-icon">
+                            <i class="ph ph-film-strip category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">Media & Entertainment</h3>
+                        <p class="category-description">Music, movies, streaming subscriptions, and digital content</p>
+                        <div class="category-stats">
+                            <span class="category-count">300+ Items</span>
+                            <span class="category-trending">
+                                <i class="ph ph-star gaming-icon"></i> New
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Media</button>
+                        </div>
+                    </div>
+
+                    <div class="category-card animate-on-scroll magnetic" data-delay="600">
+                        <div class="category-icon">
+                            <i class="ph ph-trophy category-gaming-icon"></i>
+                        </div>
+                        <h3 class="category-title">Gaming Accounts</h3>
+                        <p class="category-description">Verified gaming accounts with rare items and achievements</p>
+                        <div class="category-stats">
+                            <span class="category-count">100+ Accounts</span>
+                            <span class="category-trending">
+                                <i class="ph ph-shield-check gaming-icon"></i> Secure
+                            </span>
+                        </div>
+                        <div class="category-overlay">
+                            <button class="btn btn-primary">Browse Accounts</button>
+                        </div>
+                    </div>
+                </div>                  <!-- View all button -->                <div class="section-footer">
+                    <button class="btn btn-primary btn-large magnetic-btn" data-action="explore">
+                        <span class="btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Shopping cart base -->
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="m1 1 4 4 2.5 12.5H21"/>
+                                
+                                <!-- Digital elements - circuit pattern -->
+                                <path d="M7 8h10v8H7z" stroke-width="1.5" opacity="0.7"/>
+                                <circle cx="9" cy="10" r="0.5" fill="currentColor"/>
+                                <circle cx="12" cy="10" r="0.5" fill="currentColor"/>
+                                <circle cx="15" cy="10" r="0.5" fill="currentColor"/>
+                                <path d="M9 12h6" stroke-width="1"/>
+                                <path d="M9 14h4" stroke-width="1"/>
+                                
+                                <!-- Sparkle effects -->
+                                <path d="M19 3l-1 2-2-1 2-1 1 2z" fill="currentColor" opacity="0.8"/>
+                                <path d="M22 8l-0.5 1-1-0.5 1-0.5 0.5 1z" fill="currentColor" opacity="0.6"/>
+                            </svg>
+                        </span>
+                        <span class="btn-text">View All Categories</span>
+                        <div class="btn-particles"></div>
+                    </button>
+                </div>
+            </div>        </section>        <!-- Support Section -->
+        <section class="support-section">
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header">                    <div class="section-badge">
+                        <i class="ph ph-wrench gaming-icon"></i>
+                        <span>Get Help & Support</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">We're Here To Help</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Get expert assistance with all your gaming needs - anytime, anywhere
+                    </p>
+                </div>
+                
+                <!-- Support Cards Grid -->
+                <div class="support-grid">
+                    <!-- Support Card -->                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <i class="ph ph-shield-check support-gaming-icon"></i>
+                        </div>
+                        <div class="support-card-content">
+                            <h3 class="support-card-title">Technical Support</h3>
+                            <p class="support-card-description">Get help with downloads, installations, and technical issues</p>
+                            <div class="support-card-features">
+                                <span class="support-feature">
+                                    <i class="ph ph-clock gaming-icon"></i> 24/7 Live Chat
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-user-gear gaming-icon"></i> Expert Technicians
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-monitor-play gaming-icon"></i> Remote Assistance
+                                </span>
+                            </div>
+                            <button class="support-card-btn">Get Support</button>
+                        </div>
+                        <div class="support-card-glow"></div>
+                    </div>
+
+                    <!-- Contact Card -->
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <i class="ph ph-envelope support-gaming-icon"></i>
+                        </div>
+                        <div class="support-card-content">
+                            <h3 class="support-card-title">Contact Us</h3>
+                            <p class="support-card-description">Reach out to our team for personalized assistance</p>
+                            <div class="support-card-features">
+                                <span class="support-feature">
+                                    <i class="ph ph-paper-plane-tilt gaming-icon"></i> Email Support
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-rocket-launch gaming-icon"></i> Priority Response
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-user-focus gaming-icon"></i> Account Management
+                                </span>
+                            </div>
+                            <button class="support-card-btn">Contact Team</button>
+                        </div>
+                        <div class="support-card-glow"></div>
+                    </div>
+
+                    <!-- FAQ Card -->
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <i class="ph ph-question support-gaming-icon"></i>
+                        </div>
+                        <div class="support-card-content">
+                            <h3 class="support-card-title">FAQ</h3>
+                            <p class="support-card-description">Find answers to the most commonly asked questions</p>
+                            <div class="support-card-features">
+                                <span class="support-feature">
+                                    <i class="ph ph-lightning gaming-icon"></i> Instant Answers
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-list-checks gaming-icon"></i> Common Issues
+                                </span>
+                                <span class="support-feature">
+                                    <i class="ph ph-book-open gaming-icon"></i> Setup Guides
+                                </span>
+                            </div>
+                            <button class="support-card-btn">Browse FAQ</button>
+                        </div>
+                        <div class="support-card-glow"></div>
+                    </div>                </div>
+            </div></section>
+    </main>    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Main Footer Content -->
+            <div class="footer-main">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <div class="footer-logo">G2Own</div>
+                    <p class="footer-tagline">The ultimate digital gaming marketplace. Discover, purchase, and play the latest games.</p>                    <div class="footer-social">
+                        <a href="#" aria-label="Discord">
+                            <i class="ph ph-discord-logo social-gaming-icon"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <i class="ph ph-twitter-logo social-gaming-icon"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube">
+                            <i class="ph ph-youtube-logo social-gaming-icon"></i>
+                        </a>
+                        <a href="#" aria-label="Reddit">
+                            <i class="ph ph-reddit-logo social-gaming-icon"></i>
+                        </a>
+                        <a href="#" aria-label="Steam">
+                            <i class="ph ph-steam-logo social-gaming-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="footer-nav">                    <div class="footer-nav-section">
+                        <h4 class="footer-nav-title">Games</h4>
+                        <ul class="footer-nav-list">
+                            <li><a href="#featured"><i class="ph ph-star gaming-icon"></i> Featured</a></li>
+                            <li><a href="#new"><i class="ph ph-sparkle gaming-icon"></i> New Releases</a></li>
+                            <li><a href="#bestsellers"><i class="ph ph-trophy gaming-icon"></i> Best Sellers</a></li>
+                            <li><a href="#free"><i class="ph ph-gift gaming-icon"></i> Free Games</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-section">
+                        <h4 class="footer-nav-title">Support</h4>
+                        <ul class="footer-nav-list">
+                            <li><a href="#help"><i class="ph ph-question gaming-icon"></i> Help Center</a></li>
+                            <li><a href="#contact"><i class="ph ph-envelope gaming-icon"></i> Contact</a></li>
+                            <li><a href="#downloads"><i class="ph ph-download gaming-icon"></i> Downloads</a></li>
+                            <li><a href="#community"><i class="ph ph-users gaming-icon"></i> Community</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-section">
+                        <h4 class="footer-nav-title">Company</h4>
+                        <ul class="footer-nav-list">
+                            <li><a href="#about"><i class="ph ph-info gaming-icon"></i> About</a></li>
+                            <li><a href="#careers"><i class="ph ph-briefcase gaming-icon"></i> Careers</a></li>
+                            <li><a href="#press"><i class="ph ph-newspaper gaming-icon"></i> Press</a></li>
+                            <li><a href="#blog"><i class="ph ph-article gaming-icon"></i> Blog</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Newsletter -->
+                <div class="footer-newsletter">
+                    <h4 class="footer-newsletter-title">Stay Updated</h4>
+                    <p class="footer-newsletter-subtitle">Get the latest releases and exclusive offers.</p>
+                    <form class="footer-newsletter-form">
+                        <input type="email" class="footer-newsletter-input" placeholder="Enter email" required>
+                        <button type="submit" class="footer-newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 G2Own. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#privacy">Privacy</a>
+                    <a href="#terms">Terms</a>
+                    <a href="#cookies">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cart-close">×</button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <span class="cart-empty-icon">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-primary btn-full">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>    <!-- Scripts with optimized loading -->
+    <script>
+        // Critical inline script for loading optimization
+        document.body.classList.add('js-enabled');
+          // Loading screen management
+        let loadProgress = 0;
+        const progressBar = document.querySelector('#loading-progress');
+        const statusText = document.querySelector('#loading-text');
+        
+        const updateProgress = (progress, status) => {
+            loadProgress = progress;
+            if (progressBar) progressBar.style.width = progress + '%';
+            if (statusText) statusText.textContent = status;
+        };
+        
+        updateProgress(20, 'Loading assets...');
+    </script>      <!-- External libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="updateProgress(30, 'Loading animations...')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onload="updateProgress(35, 'Loading scroll effects...')"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" onload="updateProgress(40, 'Loading particles...')"></script>      
+      <!-- Backend Integration -->
+    <script src="assets/js/api-config.js" onload="updateProgress(50, 'Loading API...')"></script>
+    <script src="assets/js/session-bridge.js" onload="updateProgress(55, 'Loading session bridge...')"></script>
+    <script src="assets/js/navigation-helper.js" onload="updateProgress(60, 'Loading navigation...')"></script>      <!-- Application scripts -->
+    <script src="assets/js/hero-intro-controller.js" onload="updateProgress(65, 'Loading intro animation...')"></script>
+    
+    <!-- Modern Hero Buttons Controller -->
+    <script src="assets/js/modern-hero-buttons.js" onload="updateProgress(68, 'Loading button interactions...')"></script>
+    <script src="assets/js/navbar-controller.js" onload="updateProgress(75, 'Loading navigation controller...')"></script>
+    <script src="assets/js/top-nav-auth.js" onload="updateProgress(80, 'Loading auth system...')"></script>
+    <script src="assets/js/sidebar-data-controller.js" onload="updateProgress(82, 'Loading sidebar data...')"></script>
+    <script src="assets/js/enhanced-hover-sidebar.js" onload="updateProgress(85, 'Loading enhanced hover...')"></script>
+    <script src="assets/js/enhanced-main.js" onload="updateProgress(90, 'Finalizing...')"></script><script src="assets/js/animations.js"></script>
+    <script src="assets/js/particles-config.js"></script>
+    <script src="assets/js/hero-particles.js"></script>
+    <script src="assets/js/carousel-clean.js"></script><script>
+        // Enhanced loading completion - let the enhanced JavaScript handle it
+        window.addEventListener('load', () => {
+            // The enhanced JavaScript will handle the loading screen removal
+            console.log('Page fully loaded - enhanced system taking over');
+            
+            // Final completion with enhanced animation
+            setTimeout(() => {
+                updateProgress(100, 'Welcome to G2Own!');
+                setTimeout(() => {
+                    const loadingScreen = document.getElementById('loading-screen');
+                    const navbar = document.getElementById('navbar');
+                    const body = document.body;
+                    
+                    if (loadingScreen) {
+                        loadingScreen.classList.add('loaded');
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 800);
+                    }
+                      if (navbar) {
+                        navbar.classList.remove('navbar-loading');
+                        navbar.classList.add('navbar-loaded');
+                    }
+                    
+                    if (body) {
+                        body.classList.remove('loading');
+                        body.classList.add('page-loaded');
+                    }
+                }, 500);
+            }, 1000);
+        });
+    </script>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="auth-modal" role="dialog" aria-labelledby="auth-modal-title" aria-hidden="true">
+        <div class="auth-modal-backdrop" data-close-modal></div>
+        <div class="auth-modal-container">
+            <div class="auth-modal-content">
+                <!-- Modal Header -->
+                <div class="auth-modal-header">
+                    <h2 id="auth-modal-title" class="auth-modal-title">Welcome to G2Own</h2>
+                    <button class="auth-modal-close" data-close-modal aria-label="Close modal">
+                        <span class="close-icon">×</span>
+                    </button>
+                </div>
+
+                <!-- Tab Navigation -->                <div class="auth-tab-nav">
+                    <button class="auth-tab active" data-tab="signin">Sign In</button>
+                    <button class="auth-tab" data-tab="register">Sign Up</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <div id="signin-form" class="auth-form active">
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="signin-email" class="form-label">Email Address</label>
+                            <input type="email" id="signin-email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signin-password" class="form-label">Password</label>
+                            <div class="password-container">
+                                <input type="password" id="signin-password" class="form-input" placeholder="Enter your password" required>
+                                <button type="button" class="password-toggle" data-target="signin-password">
+                                    <span class="toggle-icon">👁️</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="remember-me">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <span class="btn-text">Sign In</span>
+                            <div class="btn-loading">
+                                <div class="loading-spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="auth-form">
+                    <form class="form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="register-firstname" class="form-label">First Name</label>
+                                <input type="text" id="register-firstname" class="form-input" placeholder="First name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-lastname" class="form-label">Last Name</label>
+                                <input type="text" id="register-lastname" class="form-input" placeholder="Last name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-email" class="form-label">Email Address</label>
+                            <input type="email" id="register-email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-password" class="form-label">Password</label>
+                            <div class="password-container">
+                                <input type="password" id="register-password" class="form-input" placeholder="Create a password" required>
+                                <button type="button" class="password-toggle" data-target="register-password">
+                                    <span class="toggle-icon">👁️</span>
+                                </button>
+                            </div>
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-progress"></div>
+                                </div>
+                                <span class="strength-text">Password strength</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="register-confirm" class="form-label">Confirm Password</label>
+                            <div class="password-container">
+                                <input type="password" id="register-confirm" class="form-input" placeholder="Confirm your password" required>
+                                <button type="button" class="password-toggle" data-target="register-confirm">
+                                    <span class="toggle-icon">👁️</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="terms-agreement" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="privacy-link">Privacy Policy</a></span>
+                            </label>
+                        </div>                        <button type="submit" class="auth-submit-btn">
+                            <span class="btn-text">Sign Up</span>
+                            <div class="btn-loading">
+                                <div class="loading-spinner"></div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Social Authentication -->
+                <div class="auth-divider">
+                    <span class="divider-text">or continue with</span>
+                </div>
+
+                <div class="social-auth-grid">
+                    <button class="social-auth-btn google" data-provider="google">
+                        <span class="social-icon">🔴</span>
+                        <span class="social-text">Google</span>
+                    </button>
+                    <button class="social-auth-btn discord" data-provider="discord">
+                        <span class="social-icon">💜</span>
+                        <span class="social-text">Discord</span>
+                    </button>
+                    <button class="social-auth-btn steam" data-provider="steam">
+                        <span class="social-icon">🎮</span>
+                        <span class="social-text">Steam</span>
+                    </button>
+                    <button class="social-auth-btn github" data-provider="github">
+                        <span class="social-icon">⚫</span>
+                        <span class="social-text">GitHub</span>
+                    </button>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="auth-modal-footer">
+                    <p class="footer-text">
+                        <span class="switch-text signin-switch">Don't have an account? 
+                            <button class="switch-link" data-switch="register">Create one</button>
+                        </span>
+                        <span class="switch-text register-switch">Already have an account? 
+                            <button class="switch-link" data-switch="signin">Sign in</button>
+                        </span>
+                    </p>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+</body>
+</html>

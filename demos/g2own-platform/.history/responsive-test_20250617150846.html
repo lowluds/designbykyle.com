@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Responsive Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            line-height: 1.6;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #333;
+            border-radius: 8px;
+            border-left: 4px solid #ff0000;
+        }
+        .iframe-container {
+            margin: 20px 0;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            background: white;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        .resize-controls {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .resize-btn {
+            padding: 10px 15px;
+            background: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .resize-btn:hover {
+            background: #cc0000;
+        }
+        .current-size {
+            background: #444;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.info { background: #2d4a5a; color: #87ceeb; }
+        .status.success { background: #2d5a2d; color: #90ee90; }
+        .status.warning { background: #5a5a2d; color: #ffff90; }
+        
+        @media (max-width: 768px) {
+            .resize-controls {
+                flex-direction: column;
+            }
+            .resize-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 G2Own Simple Responsive Test</h1>
+        <p><strong>Date:</strong> <span id="currentDate"></span></p>
+        <p>Test the responsive behavior of the G2Own website using the controls below.</p>
+        
+        <div class="test-section">
+            <h2>📱 Device Simulation</h2>
+            <p>Click the buttons below to simulate different device sizes:</p>
+            
+            <div class="resize-controls">
+                <button class="resize-btn" onclick="resizeFrame(320, 568)">📱 Small Mobile</button>
+                <button class="resize-btn" onclick="resizeFrame(375, 667)">📱 iPhone</button>
+                <button class="resize-btn" onclick="resizeFrame(768, 1024)">📱 Tablet</button>
+                <button class="resize-btn" onclick="resizeFrame(1024, 768)">💻 Laptop</button>
+                <button class="resize-btn" onclick="resizeFrame(1920, 1080)">🖥️ Desktop</button>
+                <button class="resize-btn" onclick="resizeFrame('100%', 600)">↔️ Full Width</button>
+            </div>
+            
+            <div class="current-size" id="currentSize">Current Size: 100% x 600px</div>
+        </div>
+        
+        <div class="iframe-container">
+            <iframe id="testFrame" src="index.html"></iframe>
+        </div>
+        
+        <div class="test-section">
+            <h2>✅ What to Test</h2>
+            
+            <div class="status info">
+                <strong>📱 Mobile (≤767px):</strong>
+                <ul>
+                    <li>Sidebar should be hidden by default</li>
+                    <li>Red hamburger menu (☰) should appear in top-left</li>
+                    <li>Clicking hamburger should show sidebar with dark overlay</li>
+                    <li>Hero text should be readable and properly sized</li>
+                    <li>No horizontal scrolling</li>
+                    <li>Buttons should stack vertically</li>
+                </ul>
+            </div>
+            
+            <div class="status info">
+                <strong>📱 Tablet (768-1023px):</strong>
+                <ul>
+                    <li>Sidebar should be visible (240px wide)</li>
+                    <li>Main content should be offset by sidebar width</li>
+                    <li>No hamburger menu visible</li>
+                    <li>Layout should be stable and balanced</li>
+                </ul>
+            </div>
+            
+            <div class="status info">
+                <strong>💻 Desktop (≥1024px):</strong>
+                <ul>
+                    <li>Full sidebar should be visible (280px wide)</li>
+                    <li>Main content properly positioned</li>
+                    <li>Hero section should look great</li>
+                    <li>All elements properly spaced</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔍 Current Browser Info</h2>
+            <div id="browserInfo" class="status info"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>💡 Quick Tips</h2>
+            <div class="status warning">
+                <ul>
+                    <li>Resize the iframe using the buttons above to test different screen sizes</li>
+                    <li>On mobile sizes, try clicking the red hamburger menu (☰)</li>
+                    <li>Check that text is readable at all sizes</li>
+                    <li>Verify there's no horizontal scrolling</li>
+                    <li>Test the responsive behavior on real devices for best results</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleString();
+        
+        // Show browser info
+        const browserInfo = document.getElementById('browserInfo');
+        browserInfo.innerHTML = `
+            <strong>Screen:</strong> ${screen.width}x${screen.height}<br>
+            <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
+            <strong>User Agent:</strong> ${navigator.userAgent.substring(0, 80)}...
+        `;
+        
+        // Resize iframe function
+        function resizeFrame(width, height) {
+            const frame = document.getElementById('testFrame');
+            const currentSize = document.getElementById('currentSize');
+            
+            if (width === '100%') {
+                frame.style.width = '100%';
+                frame.style.height = height + 'px';
+                currentSize.textContent = `Current Size: Full Width x ${height}px`;
+            } else {
+                frame.style.width = width + 'px';
+                frame.style.height = height + 'px';
+                currentSize.textContent = `Current Size: ${width}px x ${height}px`;
+            }
+            
+            // Update status based on width
+            setTimeout(() => {
+                let breakpoint = '';
+                const frameWidth = width === '100%' ? frame.offsetWidth : width;
+                
+                if (frameWidth <= 767) {
+                    breakpoint = '📱 Mobile';
+                } else if (frameWidth <= 1023) {
+                    breakpoint = '📱 Tablet'; 
+                } else {
+                    breakpoint = '💻 Desktop';
+                }
+                
+                currentSize.innerHTML = `
+                    Current Size: ${width === '100%' ? 'Full Width' : width + 'px'} x ${height}px<br>
+                    <strong>Breakpoint:</strong> ${breakpoint}
+                `;
+            }, 100);
+        }
+        
+        // Update browser info on resize
+        window.addEventListener('resize', function() {
+            browserInfo.innerHTML = `
+                <strong>Screen:</strong> ${screen.width}x${screen.height}<br>
+                <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
+                <strong>User Agent:</strong> ${navigator.userAgent.substring(0, 80)}...
+            `;
+        });
+    </script>
+</body>
+</html>

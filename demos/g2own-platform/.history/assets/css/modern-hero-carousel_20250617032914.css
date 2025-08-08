@@ -1,0 +1,558 @@
+/* Modern Card Carousel for G2Own Hero Section 
+   Implements a clean, modern card carousel with animations 
+   Styled to match the G2Own website theme
+*/
+
+/* Featured Games Section container */
+.featured-games-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px 0;
+  padding: 0 20px;
+}
+
+.hero-modern-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 40px;
+}
+
+.modern-carousel-container {
+  position: relative;
+  height: 280px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card styles - Enhanced with more depth */
+.modern-card {
+  display: flex;
+  flex-direction: column;
+  height: 320px; /* Further increased height */
+  width: 230px; /* Further increased width */
+  background-color: var(--bg-tertiary);
+  border-radius: 18px; /* Increased border radius for smoother look */
+  box-shadow: 
+    -1rem 0 3rem rgba(0, 0, 0, 0.85),
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(139, 0, 0, 0.2),
+    0 0 5px rgba(255, 0, 0, 0.1); /* Enhanced layered shadows for depth with subtle red glow */
+  transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+  position: relative;
+  left: 0px;
+  border: 1px solid rgba(139, 0, 0, 0.4); /* More prominent border with site brand color */
+  overflow: hidden;
+  backdrop-filter: blur(5px); /* Glass effect */
+  -webkit-backdrop-filter: blur(5px);
+  transform-style: preserve-3d; /* For 3D effect */
+  perspective: 1000px;
+}
+
+.modern-card:not(:first-child) {
+  margin-left: -50px;
+}
+
+.modern-card:hover {
+  transform: translateY(-35px) scale(1.08) rotateY(5deg); /* Added slight rotation for 3D effect */
+  transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 
+    -1.5rem 0 4rem rgba(0, 0, 0, 0.9),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(139, 0, 0, 0.3),
+    0 0 20px rgba(255, 0, 0, 0.15); /* Enhanced red glow on hover */
+  z-index: 10; /* Ensure hovered card is on top */
+}
+
+.modern-card:hover ~ .modern-card {
+  position: relative;
+  left: 70px; /* Pushed further away */
+  transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.8; /* Slightly fade others to focus on hovered card */
+}
+
+.title {
+  color: var(--text-primary);
+  font-weight: 800; /* Even bolder font */
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 1.3rem; /* Larger font size */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6), 0 0 3px rgba(255, 0, 0, 0.3); /* Enhanced text shadow with subtle red glow */
+  letter-spacing: 0.6px; /* Better letter spacing */
+  font-family: 'Space Grotesk', sans-serif; /* Match site font */
+  background: linear-gradient(135deg, #ffffff 0%, #cccccc 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translateZ(5px); /* 3D effect */
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover .title {
+  transform: translateZ(10px) scale(1.05);
+  background: linear-gradient(135deg, #ffffff 0%, var(--neon-red) 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: var(--bg-tertiary);
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--primary-red) 0%, 
+    var(--neon-red) 65%, 
+    var(--primary-red) 100%);
+  transition: 0.6s ease-out;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Enhanced glow effect */
+  animation: pulseBrightness 3s infinite alternate;
+  border-radius: 3px; /* Rounded edges */
+}
+
+@keyframes pulseBrightness {
+  from { filter: brightness(1); opacity: 0.85; }
+  to { filter: brightness(1.7); opacity: 1; }
+}
+
+.modern-card:hover .filledbar {
+  width: 120px;
+  transition: 0.4s ease-out;
+}
+
+.circle {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 60px);
+  width: 120px;
+  height: 120px;
+}
+
+.circle svg {
+  width: 100%;
+  height: 100%;
+  shape-rendering: geometricPrecision;
+}
+
+.circle-interior {
+  fill: #2d2d2d; /* Charcoal gray to match the reference eclipse interior */
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+}
+
+.stroke {
+  fill: none;
+  stroke: var(--primary-red);
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  stroke-width: 2.5px;
+  transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 1)) 
+          drop-shadow(0 0 8px rgba(255, 0, 0, 0.9))
+          drop-shadow(0 0 16px rgba(255, 0, 0, 0.7))
+          drop-shadow(0 0 24px rgba(255, 0, 0, 0.5))
+          drop-shadow(0 0 32px rgba(255, 0, 0, 0.3));
+}
+
+.modern-card svg {
+  fill: var(--bg-tertiary);
+  stroke-width: 2px;
+  transform-origin: center;
+  animation: slowRotate 15s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.4));
+}
+
+.modern-card:hover .stroke {
+  stroke-dashoffset: 80;
+  transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  stroke: var(--neon-red);
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 1)) 
+          drop-shadow(0 0 12px rgba(255, 0, 0, 1))
+          drop-shadow(0 0 20px rgba(255, 0, 0, 0.8))
+          drop-shadow(0 0 30px rgba(255, 0, 0, 0.6))
+          drop-shadow(0 0 40px rgba(255, 0, 0, 0.4))
+          drop-shadow(0 0 50px rgba(255, 0, 0, 0.2));
+}
+
+.modern-card:hover svg {
+  animation: pulseRotate 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(255, 0, 0, 0.6));
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  75% { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Card content additions to match G2Own style - Enhanced */
+.card-meta {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: var(--text-primary);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  transform: translateY(10px);
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 12px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), inset 0 0 3px rgba(255, 0, 0, 0.2);
+  transform-style: preserve-3d;
+}
+
+.modern-card:hover .card-meta {
+  opacity: 1;
+  transform: translateY(0) translateZ(5px); /* 3D effect */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+.card-meta .meta-item {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+.card-meta .meta-item:last-child {
+  margin-bottom: 0;
+}
+
+.modern-card:hover .meta-item {
+  transform: translateX(3px);
+  transition-delay: calc(0.1s * var(--i, 0));
+}
+
+.card-meta .meta-item i {
+  margin-right: 10px;
+  color: var(--neon-red);
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.7));
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover .meta-item i {
+  transform: scale(1.2);
+}
+
+/* Game card background image - Enhanced */
+.card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  filter: contrast(1.2) saturate(1.3) brightness(0.9); /* Enhanced colors */
+}
+
+.modern-card:hover .card-bg {
+  opacity: 0.7;
+  transform: scale(1.15); /* Enhanced zoom effect */
+  filter: contrast(1.3) saturate(1.6) brightness(1.1); /* More vibrant on hover */
+}
+
+/* Add gradient overlay for better text contrast */
+.card-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    rgba(139, 0, 0, 0.3) 70%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.modern-card:hover .card-bg::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 30%,
+    rgba(255, 0, 0, 0.2) 70%, 
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/* Shimmer effect on cards */
+.modern-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shimmer 7s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modern-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
+
+/* Enhanced Featured Games Header */
+.featured-modern-header {
+  margin-bottom: 50px; /* Increased space */
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1.2s ease-out;
+  width: 100%;
+  max-width: 800px; /* Match carousel container width */
+}
+
+.featured-modern-header::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px; /* Wider line */
+  height: 4px; /* Thicker line */
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--primary-red), 
+    var(--neon-red),
+    var(--neon-red), 
+    var(--primary-red), 
+    transparent);
+  animation: pulseLine 3s infinite alternate;
+  border-radius: 4px; /* Rounded ends */
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); /* Subtle glow */
+}
+
+@keyframes pulseLine {
+  from { width: 120px; opacity: 0.85; }
+  to { width: 160px; opacity: 1; }
+}
+
+.modern-title-text {
+  font-size: 3.5rem; /* Larger size */
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: none; /* Changed from uppercase to normal capitalization */
+  background: linear-gradient(135deg, 
+    #ffffff 0%,
+    var(--neon-red) 50%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.3)); /* Red glow */
+  position: relative;
+  display: inline-block;
+  transform: perspective(500px) translateZ(0);
+  transition: all 0.4s ease;
+}
+
+.modern-title-text:hover {
+  transform: perspective(500px) translateZ(10px);
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+}
+
+.modern-subtitle {
+  font-size: 1.4rem; /* Larger size */
+  margin-top: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6), 0 0 3px rgba(255, 0, 0, 0.2);
+  animation: fadeInSubtitle 1.5s ease-out;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.featured-modern-header:hover .modern-subtitle {
+  transform: translateY(-3px);
+  color: rgba(255, 255, 255, 1);
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInSubtitle {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modern Buy Now button that appears on hover */
+.modern-buy-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: linear-gradient(135deg, 
+    rgba(139, 0, 0, 0.8) 0%, 
+    rgba(255, 0, 0, 0.8) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 15;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.modern-buy-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: all 0.6s ease;
+}
+
+.modern-card:hover .modern-buy-button {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modern-buy-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 0, 0, 0.9) 0%, 
+    rgba(139, 0, 0, 0.9) 100%);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 0, 0, 0.5);
+  /* Removed transform scale to prevent movement */
+}
+
+.modern-buy-button:hover::before {
+  animation: shineEffect 1s forwards;
+}
+
+@keyframes shineEffect {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* When buy button is visible, adjust card meta position */
+.modern-card:hover .card-meta {
+  transform: translateY(-10px) translateZ(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .modern-carousel-container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 700px) {
+  .modern-carousel-container {
+    width: 400px;
+  }
+  
+  .modern-card {
+    width: 160px;
+    height: 250px;
+  }
+  
+  .modern-card:not(:first-child) {
+    margin-left: -40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-carousel-container {
+    width: 300px;
+  }
+  
+  .modern-card {
+    width: 140px;
+    height: 220px;
+  }
+  
+  .modern-card:not(:first-child) {
+    margin-left: -30px;
+  }
+  
+  .title {
+    font-size: 0.9rem;
+  }
+  
+  .bar {
+    width: 100px;
+  }
+}

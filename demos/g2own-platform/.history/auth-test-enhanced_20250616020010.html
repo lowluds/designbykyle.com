@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own Authentication Test Suite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .test-section h2 {
+            color: #495057;
+            margin-top: 0;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+
+        .status {
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px 10px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .test-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-box {
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .diagnostics-panel {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .diagnostics-panel h3 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 G2Own Authentication Test Suite</h1>
+        
+        <!-- System Status -->
+        <div class="test-section">
+            <h2>🖥️ System Status</h2>
+            <div id="system-status">
+                <div class="status info">Initializing system checks...</div>
+            </div>
+        </div>
+
+        <!-- Manual Backend Test -->
+        <div class="test-section">
+            <h2>🔧 Manual Backend Test</h2>
+            <div class="input-group">
+                <label for="backend-url">Backend URL:</label>
+                <input type="text" id="backend-url" value="/community/session-check.php" placeholder="Enter backend session check URL">
+            </div>
+            <div class="input-group">
+                <label for="test-method">Test Method:</label>
+                <select id="test-method">
+                    <option value="cors">CORS Request</option>
+                    <option value="jsonp">JSONP Request</option>
+                    <option value="iframe">Iframe Method</option>
+                    <option value="all">All Methods</option>
+                </select>
+            </div>
+            <button class="test-button" onclick="runManualBackendTest()">🚀 Test Backend</button>
+            <button class="test-button" onclick="clearResults()">🗑️ Clear Results</button>
+            <div id="manual-test-results" class="result-box" style="display:none;"></div>
+        </div>
+
+        <!-- Authentication Bridge Test -->
+        <div class="test-section">
+            <h2>🌉 Authentication Bridge Test</h2>
+            <div id="auth-bridge-status">
+                <div class="status info">Authentication Bridge not loaded</div>
+            </div>
+            <button class="test-button" onclick="testAuthBridge()" id="auth-bridge-btn" disabled>🔍 Test Auth Bridge</button>
+            <div id="auth-bridge-results" class="result-box" style="display:none;"></div>
+        </div>
+
+        <!-- Navbar Controller Test -->
+        <div class="test-section">
+            <h2>📱 Navbar Controller Test</h2>
+            <div id="navbar-status">
+                <div class="status info">Navbar Controller not loaded</div>
+            </div>
+            <button class="test-button" onclick="testNavbarController()" id="navbar-btn" disabled>🧪 Test Navbar</button>
+            <div id="navbar-results" class="result-box" style="display:none;"></div>
+        </div>
+
+        <!-- Comprehensive Test Suite -->
+        <div class="test-section">
+            <h2>🧪 Comprehensive Test Suite</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="test-progress"></div>
+            </div>
+            <button class="test-button" onclick="runComprehensiveTests()" id="comprehensive-btn">🚀 Run All Tests</button>
+            <div id="comprehensive-results" class="result-box" style="display:none;"></div>
+        </div>
+
+        <!-- Performance Diagnostics -->
+        <div class="diagnostics-panel">
+            <h3>📊 Performance Diagnostics</h3>
+            <div id="performance-metrics">
+                <div class="metric">
+                    <span>Page Load Time:</span>
+                    <span class="metric-value" id="page-load-time">Calculating...</span>
+                </div>
+                <div class="metric">
+                    <span>DOM Ready Time:</span>
+                    <span class="metric-value" id="dom-ready-time">Calculating...</span>
+                </div>
+                <div class="metric">
+                    <span>Scripts Loaded:</span>
+                    <span class="metric-value" id="scripts-loaded">0</span>
+                </div>
+                <div class="metric">
+                    <span>Auth Bridge Status:</span>
+                    <span class="metric-value" id="auth-bridge-metric">Not Loaded</span>
+                </div>
+                <div class="metric">
+                    <span>Last Test Time:</span>
+                    <span class="metric-value" id="last-test-time">Never</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the authentication bridge and navbar controller -->
+    <script src="assets/js/auth-bridge.js"></script>
+    <script src="assets/js/navbar-controller.js"></script>
+
+    <script>
+        // Global test state
+        let testResults = {
+            systemCheck: false,
+            authBridge: false,
+            navbarController: false,
+            backendCORS: false,
+            backendJSONP: false,
+            backendIframe: false
+        };
+
+        // Performance tracking
+        const performanceStart = performance.now();
+        let domReadyTime = null;
+        let scriptsLoaded = 0;
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            domReadyTime = performance.now();
+            updatePerformanceMetrics();
+            initializeTestSuite();
+        });
+
+        function initializeTestSuite() {
+            log('Initializing G2Own Authentication Test Suite...');
+            
+            // Check system status
+            checkSystemStatus();
+            
+            // Check for auth bridge
+            setTimeout(checkAuthBridge, 100);
+            
+            // Check for navbar controller
+            setTimeout(checkNavbarController, 200);
+            
+            // Update UI based on loaded components
+            setTimeout(updateTestButtons, 500);
+        }
+
+        function checkSystemStatus() {
+            const status = document.getElementById('system-status');
+            const checks = [];
+
+            // Check if we're on HTTPS
+            checks.push({
+                name: 'HTTPS Protocol',
+                status: location.protocol === 'https:',
+                message: location.protocol === 'https:' ? 'Secure connection detected' : 'Warning: Not using HTTPS'
+            });
+
+            // Check if jQuery is available
+            checks.push({
+                name: 'jQuery',
+                status: typeof $ !== 'undefined',
+                message: typeof $ !== 'undefined' ? 'jQuery loaded' : 'jQuery not available'
+            });
+
+            // Check local storage
+            checks.push({
+                name: 'Local Storage',
+                status: typeof localStorage !== 'undefined',
+                message: typeof localStorage !== 'undefined' ? 'Local Storage available' : 'Local Storage not available'
+            });
+
+            // Check session storage
+            checks.push({
+                name: 'Session Storage',
+                status: typeof sessionStorage !== 'undefined',
+                message: typeof sessionStorage !== 'undefined' ? 'Session Storage available' : 'Session Storage not available'
+            });
+
+            let html = '';
+            let allPassed = true;
+
+            checks.forEach(check => {
+                const statusClass = check.status ? 'success' : 'warning';
+                if (!check.status) allPassed = false;
+                html += `<div class="status ${statusClass}">${check.name}: ${check.message}</div>`;
+            });
+
+            status.innerHTML = html;
+            testResults.systemCheck = allPassed;
+        }
+
+        function checkAuthBridge() {
+            const status = document.getElementById('auth-bridge-status');
+            const btn = document.getElementById('auth-bridge-btn');
+            
+            if (typeof AuthenticationBridge !== 'undefined') {
+                status.innerHTML = '<div class="status success">✅ Authentication Bridge loaded successfully</div>';
+                btn.disabled = false;
+                testResults.authBridge = true;
+                document.getElementById('auth-bridge-metric').textContent = 'Loaded';
+                scriptsLoaded++;
+            } else {
+                status.innerHTML = '<div class="status error">❌ Authentication Bridge not found</div>';
+                document.getElementById('auth-bridge-metric').textContent = 'Failed';
+            }
+        }
+
+        function checkNavbarController() {
+            const status = document.getElementById('navbar-status');
+            const btn = document.getElementById('navbar-btn');
+            
+            if (typeof NavbarController !== 'undefined') {
+                status.innerHTML = '<div class="status success">✅ Navbar Controller loaded successfully</div>';
+                btn.disabled = false;
+                testResults.navbarController = true;
+                scriptsLoaded++;
+            } else {
+                status.innerHTML = '<div class="status error">❌ Navbar Controller not found</div>';
+            }
+        }
+
+        function updateTestButtons() {
+            const comprehensiveBtn = document.getElementById('comprehensive-btn');
+            const hasRequiredComponents = testResults.authBridge || testResults.navbarController;
+            
+            if (hasRequiredComponents) {
+                comprehensiveBtn.disabled = false;
+            }
+            
+            updatePerformanceMetrics();
+        }
+
+        function updatePerformanceMetrics() {
+            const pageLoadTime = performance.now() - performanceStart;
+            document.getElementById('page-load-time').textContent = `${pageLoadTime.toFixed(2)}ms`;
+            
+            if (domReadyTime) {
+                document.getElementById('dom-ready-time').textContent = `${domReadyTime.toFixed(2)}ms`;
+            }
+            
+            document.getElementById('scripts-loaded').textContent = scriptsLoaded;
+        }
+
+        async function runManualBackendTest() {
+            const url = document.getElementById('backend-url').value;
+            const method = document.getElementById('test-method').value;
+            const resultsDiv = document.getElementById('manual-test-results');
+            
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Running backend tests...\n';
+            
+            if (method === 'all') {
+                await testBackendMethod(url, 'cors', resultsDiv);
+                await testBackendMethod(url, 'jsonp', resultsDiv);
+                await testBackendMethod(url, 'iframe', resultsDiv);
+            } else {
+                await testBackendMethod(url, method, resultsDiv);
+            }
+            
+            document.getElementById('last-test-time').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function testBackendMethod(url, method, resultsDiv) {
+            const startTime = performance.now();
+            
+            try {
+                resultsDiv.textContent += `\n--- Testing ${method.toUpperCase()} Method ---\n`;
+                resultsDiv.textContent += `URL: ${url}\n`;
+                resultsDiv.textContent += `Started: ${new Date().toISOString()}\n`;
+                
+                let result;
+                
+                switch (method) {
+                    case 'cors':
+                        result = await testCORSMethod(url);
+                        testResults.backendCORS = result.success;
+                        break;
+                    case 'jsonp':
+                        result = await testJSONPMethod(url);
+                        testResults.backendJSONP = result.success;
+                        break;
+                    case 'iframe':
+                        result = await testIframeMethod(url);
+                        testResults.backendIframe = result.success;
+                        break;
+                }
+                
+                const duration = performance.now() - startTime;
+                resultsDiv.textContent += `Duration: ${duration.toFixed(2)}ms\n`;
+                resultsDiv.textContent += `Result: ${JSON.stringify(result, null, 2)}\n`;
+                
+            } catch (error) {
+                const duration = performance.now() - startTime;
+                resultsDiv.textContent += `Error after ${duration.toFixed(2)}ms: ${error.message}\n`;
+                resultsDiv.textContent += `Stack: ${error.stack}\n`;
+            }
+            
+            resultsDiv.scrollTop = resultsDiv.scrollHeight;
+        }
+
+        function testCORSMethod(url) {
+            return new Promise((resolve) => {
+                const xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+                xhr.timeout = 10000;
+                
+                xhr.onload = function() {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        resolve({ success: true, method: 'CORS', data, status: xhr.status });
+                    } catch (e) {
+                        resolve({ success: false, method: 'CORS', error: 'Invalid JSON response', response: xhr.responseText });
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    resolve({ success: false, method: 'CORS', error: 'Network error', status: xhr.status });
+                };
+                
+                xhr.ontimeout = function() {
+                    resolve({ success: false, method: 'CORS', error: 'Request timeout' });
+                };
+                
+                xhr.open('GET', url, true);
+                xhr.send();
+            });
+        }
+
+        function testJSONPMethod(url) {
+            return new Promise((resolve) => {
+                const callbackName = 'jsonp_callback_' + Date.now();
+                const script = document.createElement('script');
+                let completed = false;
+                
+                // Set up global callback
+                window[callbackName] = function(data) {
+                    if (!completed) {
+                        completed = true;
+                        cleanup();
+                        resolve({ success: true, method: 'JSONP', data });
+                    }
+                };
+                
+                // Cleanup function
+                function cleanup() {
+                    delete window[callbackName];
+                    if (script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                }
+                
+                // Set up error handling
+                script.onerror = function() {
+                    if (!completed) {
+                        completed = true;
+                        cleanup();
+                        resolve({ success: false, method: 'JSONP', error: 'Script load error' });
+                    }
+                };
+                
+                // Set timeout
+                setTimeout(function() {
+                    if (!completed) {
+                        completed = true;
+                        cleanup();
+                        resolve({ success: false, method: 'JSONP', error: 'Request timeout' });
+                    }
+                }, 10000);
+                
+                // Build URL with callback
+                const separator = url.includes('?') ? '&' : '?';
+                script.src = `${url}${separator}callback=${callbackName}`;
+                document.head.appendChild(script);
+            });
+        }
+
+        function testIframeMethod(url) {
+            return new Promise((resolve) => {
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                let completed = false;
+                
+                iframe.onload = function() {
+                    if (!completed) {
+                        completed = true;
+                        try {
+                            // Try to access iframe content (will fail for cross-origin)
+                            const content = iframe.contentDocument || iframe.contentWindow.document;
+                            resolve({ success: true, method: 'iframe', message: 'Iframe loaded successfully' });
+                        } catch (e) {
+                            resolve({ success: false, method: 'iframe', error: 'Cross-origin access denied: ' + e.message });
+                        }
+                        document.body.removeChild(iframe);
+                    }
+                };
+                
+                iframe.onerror = function() {
+                    if (!completed) {
+                        completed = true;
+                        resolve({ success: false, method: 'iframe', error: 'Iframe load error' });
+                        document.body.removeChild(iframe);
+                    }
+                };
+                
+                // Set timeout
+                setTimeout(function() {
+                    if (!completed) {
+                        completed = true;
+                        resolve({ success: false, method: 'iframe', error: 'Iframe timeout' });
+                        document.body.removeChild(iframe);
+                    }
+                }, 10000);
+                
+                iframe.src = url;
+                document.body.appendChild(iframe);
+            });
+        }
+
+        async function testAuthBridge() {
+            const resultsDiv = document.getElementById('auth-bridge-results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Testing Authentication Bridge...\n';
+            
+            try {
+                // Test AuthenticationBridge initialization
+                if (typeof AuthenticationBridge !== 'undefined') {
+                    resultsDiv.textContent += '✅ AuthenticationBridge class available\n';
+                    
+                    // Try to create an instance
+                    const authBridge = new AuthenticationBridge();
+                    resultsDiv.textContent += '✅ AuthenticationBridge instance created\n';
+                    
+                    // Test session check
+                    resultsDiv.textContent += 'Testing session check...\n';
+                    const sessionResult = await authBridge.checkSession();
+                    resultsDiv.textContent += `Session check result: ${JSON.stringify(sessionResult, null, 2)}\n`;
+                    
+                } else {
+                    resultsDiv.textContent += '❌ AuthenticationBridge not available\n';
+                }
+            } catch (error) {
+                resultsDiv.textContent += `❌ Error: ${error.message}\n`;
+                resultsDiv.textContent += `Stack: ${error.stack}\n`;
+            }
+            
+            document.getElementById('last-test-time').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function testNavbarController() {
+            const resultsDiv = document.getElementById('navbar-results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Testing Navbar Controller...\n';
+            
+            try {
+                if (typeof NavbarController !== 'undefined') {
+                    resultsDiv.textContent += '✅ NavbarController available\n';
+                    
+                    // Test if it's initialized
+                    if (window.navbarController) {
+                        resultsDiv.textContent += '✅ NavbarController instance found\n';
+                        resultsDiv.textContent += `Instance type: ${typeof window.navbarController}\n`;
+                        
+                        // Test methods
+                        if (typeof window.navbarController.updateAuthStatus === 'function') {
+                            resultsDiv.textContent += '✅ updateAuthStatus method available\n';
+                        }
+                        
+                    } else {
+                        resultsDiv.textContent += '⚠️ NavbarController not initialized globally\n';
+                    }
+                    
+                } else {
+                    resultsDiv.textContent += '❌ NavbarController not available\n';
+                }
+            } catch (error) {
+                resultsDiv.textContent += `❌ Error: ${error.message}\n`;
+            }
+            
+            document.getElementById('last-test-time').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function runComprehensiveTests() {
+            const resultsDiv = document.getElementById('comprehensive-results');
+            const progressBar = document.getElementById('test-progress');
+            
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Starting comprehensive test suite...\n\n';
+            
+            const tests = [
+                { name: 'System Status', func: () => Promise.resolve(testResults.systemCheck) },
+                { name: 'Auth Bridge', func: testAuthBridgeQuick },
+                { name: 'Navbar Controller', func: testNavbarControllerQuick },
+                { name: 'Backend CORS', func: () => testCORSMethod(document.getElementById('backend-url').value) },
+                { name: 'Backend JSONP', func: () => testJSONPMethod(document.getElementById('backend-url').value) }
+            ];
+            
+            let passed = 0;
+            
+            for (let i = 0; i < tests.length; i++) {
+                const test = tests[i];
+                resultsDiv.textContent += `Running ${test.name}...\n`;
+                
+                try {
+                    const result = await test.func();
+                    const success = result === true || (result && result.success);
+                    
+                    if (success) {
+                        resultsDiv.textContent += `✅ ${test.name}: PASSED\n`;
+                        passed++;
+                    } else {
+                        resultsDiv.textContent += `❌ ${test.name}: FAILED\n`;
+                        if (result && result.error) {
+                            resultsDiv.textContent += `   Error: ${result.error}\n`;
+                        }
+                    }
+                } catch (error) {
+                    resultsDiv.textContent += `❌ ${test.name}: ERROR - ${error.message}\n`;
+                }
+                
+                // Update progress
+                const progress = ((i + 1) / tests.length) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                resultsDiv.scrollTop = resultsDiv.scrollHeight;
+                
+                // Small delay between tests
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            resultsDiv.textContent += `\n--- Test Summary ---\n`;
+            resultsDiv.textContent += `Passed: ${passed}/${tests.length}\n`;
+            resultsDiv.textContent += `Success Rate: ${((passed / tests.length) * 100).toFixed(1)}%\n`;
+            
+            document.getElementById('last-test-time').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function testAuthBridgeQuick() {
+            try {
+                if (typeof AuthenticationBridge === 'undefined') {
+                    return { success: false, error: 'AuthenticationBridge not available' };
+                }
+                
+                const authBridge = new AuthenticationBridge();
+                return { success: true };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        async function testNavbarControllerQuick() {
+            try {
+                if (typeof NavbarController === 'undefined') {
+                    return { success: false, error: 'NavbarController not available' };
+                }
+                
+                return { success: true };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function clearResults() {
+            const resultBoxes = document.querySelectorAll('.result-box');
+            resultBoxes.forEach(box => {
+                box.style.display = 'none';
+                box.textContent = '';
+            });
+            
+            document.getElementById('test-progress').style.width = '0%';
+        }
+
+        function log(message) {
+            console.log(`[G2Own Test Suite] ${message}`);
+        }
+    </script>
+</body>
+</html>

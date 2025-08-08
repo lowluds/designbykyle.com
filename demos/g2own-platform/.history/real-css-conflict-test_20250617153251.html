@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real CSS Conflict Test</title>
+    
+    <!-- Load the EXACT same CSS as the main site to test for conflicts -->
+    <link rel="stylesheet" href="assets/css/variables-unified.css">
+    <link rel="stylesheet" href="assets/css/buttons-unified.css">
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <link rel="stylesheet" href="assets/css/navbar-flicker-fix.css">
+    <link rel="stylesheet" href="assets/css/simple-preloader.css">
+    <link rel="stylesheet" href="assets/css/navbar-optimized.css">
+    <link rel="stylesheet" href="assets/css/navbar-performance.css">
+    <link rel="stylesheet" href="assets/css/left-sidebar.css">
+    <link rel="stylesheet" href="assets/css/responsive-sidebar.css">
+    <link rel="stylesheet" href="assets/css/left-sidebar-enhanced.css">
+    <link rel="stylesheet" href="assets/css/left-sidebar-enhanced-clean.css">
+    <link rel="stylesheet" href="assets/css/top-nav-auth.css">
+    <link rel="stylesheet" href="assets/css/auth-modal.css">
+    <link rel="stylesheet" href="assets/css/auth-ui.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/enhanced.css">
+    <link rel="stylesheet" href="assets/css/carousel-override.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/glass-buttons.css">
+    <link rel="stylesheet" href="assets/css/carousel-card-effects.css">
+    <link rel="stylesheet" href="assets/css/modern-hero-carousel.css">
+    
+    <!-- OUR RESPONSIVE CSS - SHOULD LOAD LAST -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        .test-title {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+        .style-inspector {
+            font-family: monospace;
+            font-size: 12px;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #ff6b6b;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Exact same structure as the main site -->
+    <div class="sidebar-hover-zone" id="sidebar-hover-zone"></div>
+
+    <aside class="left-sidebar" id="left-sidebar">
+        <div class="sidebar-container">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="sidebar-logo-icon">G2</div>
+                    <span class="sidebar-logo-text">Menu</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3 class="nav-section-title">Main</h3>
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-text">Home</span>
+                    </a>
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🎮</span>
+                        <span class="nav-text">Games</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </aside>
+
+    <div class="test-container">
+        <h1>🔍 Real CSS Conflict Test</h1>
+        <p>This page loads all the same CSS files as the main site to identify conflicts.</p>
+        
+        <div class="test-section">
+            <div class="test-title">Manual Controls</div>
+            <div class="controls">
+                <button onclick="showSidebar()">Show Sidebar</button>
+                <button onclick="hideSidebar()">Hide Sidebar</button>
+                <button onclick="inspectStyles()">Inspect Styles</button>
+                <button onclick="testHoverZone()">Test Hover Zone</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Current State</div>
+            <div id="current-state"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Style Inspector</div>
+            <div id="style-inspector" class="style-inspector"></div>
+        </div>
+
+        <div class="test-section">
+            <div class="test-title">Event Log</div>
+            <div id="event-log" class="style-inspector" style="height: 200px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const hoverZone = document.getElementById('sidebar-hover-zone');
+        const sidebar = document.getElementById('left-sidebar');
+        const currentState = document.getElementById('current-state');
+        const styleInspector = document.getElementById('style-inspector');
+        const eventLog = document.getElementById('event-log');
+
+        function log(message) {
+            const time = new Date().toLocaleTimeString();
+            eventLog.innerHTML += `<div>[${time}] ${message}</div>`;
+            eventLog.scrollTop = eventLog.scrollHeight;
+            console.log(message);
+        }
+
+        function showSidebar() {
+            if (sidebar) {
+                sidebar.classList.add('show-on-hover');
+                sidebar.classList.add('sidebar-hovered');
+                log('✅ Manual show - classes added');
+                updateState();
+            }
+        }
+
+        function hideSidebar() {
+            if (sidebar) {
+                sidebar.classList.remove('show-on-hover');
+                sidebar.classList.remove('sidebar-hovered');
+                log('❌ Manual hide - classes removed');
+                updateState();
+            }
+        }
+
+        function updateState() {
+            if (!sidebar) return;
+            
+            currentState.innerHTML = `
+                <strong>Sidebar Classes:</strong> ${sidebar.className}<br>
+                <strong>Hover Zone Classes:</strong> ${hoverZone ? hoverZone.className : 'N/A'}<br>
+                <strong>Screen Width:</strong> ${window.innerWidth}px
+            `;
+        }
+
+        function inspectStyles() {
+            if (!sidebar) return;
+            
+            const computedStyles = getComputedStyle(sidebar);
+            styleInspector.innerHTML = `
+                <strong>Sidebar Computed Styles:</strong><br>
+                position: ${computedStyles.position}<br>
+                transform: ${computedStyles.transform}<br>
+                left: ${computedStyles.left}<br>
+                top: ${computedStyles.top}<br>
+                width: ${computedStyles.width}<br>
+                height: ${computedStyles.height}<br>
+                z-index: ${computedStyles.zIndex}<br>
+                transition: ${computedStyles.transition}<br>
+                visibility: ${computedStyles.visibility}<br>
+                display: ${computedStyles.display}<br>
+                background: ${computedStyles.background}<br>
+                <br>
+                <strong>Hover Zone Computed Styles:</strong><br>
+                ${hoverZone ? `
+                position: ${getComputedStyle(hoverZone).position}<br>
+                left: ${getComputedStyle(hoverZone).left}<br>
+                top: ${getComputedStyle(hoverZone).top}<br>
+                width: ${getComputedStyle(hoverZone).width}<br>
+                height: ${getComputedStyle(hoverZone).height}<br>
+                z-index: ${getComputedStyle(hoverZone).zIndex}<br>
+                background: ${getComputedStyle(hoverZone).background}<br>
+                display: ${getComputedStyle(hoverZone).display}
+                ` : 'Hover zone not found'}
+            `;
+        }
+
+        function testHoverZone() {
+            if (!hoverZone) {
+                log('❌ Hover zone not found!');
+                return;
+            }
+            
+            log('🧪 Testing hover zone events...');
+            
+            // Simulate mouseenter
+            const enterEvent = new MouseEvent('mouseenter', { bubbles: true });
+            hoverZone.dispatchEvent(enterEvent);
+            log('📨 Dispatched mouseenter event');
+            
+            setTimeout(() => {
+                // Simulate mouseleave
+                const leaveEvent = new MouseEvent('mouseleave', { bubbles: true });
+                hoverZone.dispatchEvent(leaveEvent);
+                log('📨 Dispatched mouseleave event');
+            }, 1000);
+        }
+
+        // Set up hover events (same as responsive.js)
+        if (hoverZone && sidebar) {
+            hoverZone.addEventListener('mouseenter', () => {
+                log('🖱️ Real mouseenter on hover zone');
+                showSidebar();
+            });
+
+            hoverZone.addEventListener('mouseleave', () => {
+                log('🖱️ Real mouseleave on hover zone');
+                setTimeout(hideSidebar, 300);
+            });
+
+            sidebar.addEventListener('mouseenter', () => {
+                log('🖱️ Real mouseenter on sidebar');
+            });
+
+            sidebar.addEventListener('mouseleave', () => {
+                log('🖱️ Real mouseleave on sidebar');
+                setTimeout(hideSidebar, 300);
+            });
+
+            log('✅ Event listeners attached');
+        } else {
+            log('❌ Missing elements - cannot attach events');
+        }
+
+        // Initial setup
+        updateState();
+        inspectStyles();
+        log('🚀 Real CSS conflict test initialized');
+    </script>
+</body>
+</html>

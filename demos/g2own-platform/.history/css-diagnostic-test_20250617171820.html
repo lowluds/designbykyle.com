@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Diagnostic Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+        }
+        .diagnostic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .diagnostic-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
+        .diagnostic-title {
+            color: #ff6b6b;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .style-info {
+            font-family: monospace;
+            font-size: 12px;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #ff6b6b;
+        }
+        .hover-test-zone {
+            width: 30px;
+            height: 200px;
+            background: rgba(255, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            border: 2px solid red;
+        }
+        .test-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            border-right: 2px solid #ff6b6b;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .test-sidebar.show-on-hover {
+            transform: translateX(0);
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="hover-test-zone" id="hover-test-zone"></div>
+    
+    <aside class="test-sidebar" id="test-sidebar">
+        <h2>Test Sidebar</h2>
+        <p>This is a test sidebar to verify CSS functionality.</p>
+    </aside>
+
+    <div class="diagnostic-container">
+        <h1>🔍 CSS Diagnostic Tool</h1>
+        
+        <div class="diagnostic-section">
+            <div class="diagnostic-title">Hover Test</div>
+            <div class="controls">
+                <button onclick="showSidebar()">Show Sidebar</button>
+                <button onclick="hideSidebar()">Hide Sidebar</button>
+                <button onclick="toggleSidebar()">Toggle Sidebar</button>
+            </div>
+            <p>Red zone on left should trigger sidebar. Use buttons to manually test.</p>
+        </div>
+
+        <div class="diagnostic-section">
+            <div class="diagnostic-title">Element Information</div>
+            <div id="element-info"></div>
+        </div>
+
+        <div class="diagnostic-section">
+            <div class="diagnostic-title">Computed Styles</div>
+            <div id="computed-styles"></div>
+        </div>
+
+        <div class="diagnostic-section">
+            <div class="diagnostic-title">Event Test Log</div>
+            <div id="event-log" style="background: #1a1a1a; padding: 10px; border-radius: 4px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const hoverZone = document.getElementById('hover-test-zone');
+        const sidebar = document.getElementById('test-sidebar');
+        const elementInfo = document.getElementById('element-info');
+        const computedStyles = document.getElementById('computed-styles');
+        const eventLog = document.getElementById('event-log');
+
+        function log(message) {
+            const time = new Date().toLocaleTimeString();
+            eventLog.innerHTML += `<div>[${time}] ${message}</div>`;
+            eventLog.scrollTop = eventLog.scrollHeight;
+            console.log(message);
+        }
+
+        function showSidebar() {
+            sidebar.classList.add('show-on-hover');
+            log('✅ Manual show - class added');
+            updateDiagnostics();
+        }
+
+        function hideSidebar() {
+            sidebar.classList.remove('show-on-hover');
+            log('❌ Manual hide - class removed');
+            updateDiagnostics();
+        }
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('show-on-hover');
+            log('🔄 Manual toggle - class toggled');
+            updateDiagnostics();
+        }
+
+        function updateDiagnostics() {
+            // Element information
+            elementInfo.innerHTML = `
+                <div class="style-info">
+                    Hover Zone ID: ${hoverZone.id}<br>
+                    Hover Zone Classes: ${hoverZone.className}<br>
+                    Sidebar ID: ${sidebar.id}<br>
+                    Sidebar Classes: ${sidebar.className}
+                </div>
+            `;
+
+            // Computed styles
+            const sidebarStyles = getComputedStyle(sidebar);
+            computedStyles.innerHTML = `
+                <div class="style-info">
+                    <strong>Sidebar Computed Styles:</strong><br>
+                    position: ${sidebarStyles.position}<br>
+                    transform: ${sidebarStyles.transform}<br>
+                    left: ${sidebarStyles.left}<br>
+                    width: ${sidebarStyles.width}<br>
+                    z-index: ${sidebarStyles.zIndex}<br>
+                    transition: ${sidebarStyles.transition}<br>
+                    visibility: ${sidebarStyles.visibility}<br>
+                    display: ${sidebarStyles.display}
+                </div>
+            `;
+        }
+
+        // Set up hover events
+        hoverZone.addEventListener('mouseenter', () => {
+            log('🖱️ Mouse entered hover zone');
+            showSidebar();
+        });
+
+        hoverZone.addEventListener('mouseleave', () => {
+            log('🖱️ Mouse left hover zone');
+            setTimeout(hideSidebar, 300);
+        });
+
+        sidebar.addEventListener('mouseenter', () => {
+            log('🖱️ Mouse entered sidebar');
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+            log('🖱️ Mouse left sidebar');
+            setTimeout(hideSidebar, 300);
+        });
+
+        // Initial diagnostics
+        updateDiagnostics();
+        log('🚀 Diagnostic tool initialized');
+    </script>
+</body>
+</html>

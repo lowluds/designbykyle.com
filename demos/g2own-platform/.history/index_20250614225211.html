@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2Own - Premium Digital Marketplace</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts with display swap for performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="G2Own - Premium digital marketplace for games, software, and digital goods. Best prices, instant delivery, secure transactions.">
+    <meta name="keywords" content="digital games, game keys, software, digital marketplace, gaming">
+    <meta name="author" content="G2Own">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="G2Own - Premium Digital Marketplace">
+    <meta property="og:description" content="Buy, sell, and trade digital games and goods">
+    <meta property="og:type" content="website">
+      <!-- CSS with optimized loading -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    <link rel="preload" href="assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/main.css"></noscript>
+    <link rel="stylesheet" href="assets/css/enhanced.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#ef4444">
+</head>
+<body class="loading">    <!-- Loading screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">G2Own</div>
+            <div class="loading-progress-container">
+                <div id="loading-progress" class="loading-progress-bar"></div>
+            </div>
+            <div id="loading-text" class="loading-status">0%</div>
+        </div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js" class="particles-bg"></div>
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Enhanced Background System -->
+    <div class="bg-system">
+        <!-- Animated gradient orbs -->
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        
+        <!-- Grid overlay with animation -->
+        <div class="grid-overlay">
+            <div class="grid-lines horizontal"></div>
+            <div class="grid-lines vertical"></div>
+        </div>
+        
+        <!-- Scan lines effect -->
+        <div class="scan-lines"></div>
+    </div>    <!-- Enhanced Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Enhanced Logo -->
+            <div class="nav-logo" aria-label="G2Own homepage">
+                <div class="logo-icon">
+                    <span>G2</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <div class="logo-text-container">
+                    <span class="logo-text">G2Own</span>
+                    <span class="logo-tagline">Digital Marketplace</span>
+                </div>
+            </div>
+            
+            <!-- Enhanced Navigation Menu -->
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-links">
+                    <a href="#marketplace" class="nav-link" data-section="marketplace">
+                        <span class="nav-icon">🛒</span>
+                        <span>Marketplace</span>
+                        <div class="nav-link-bg"></div>
+                    </a>
+                    <a href="#games" class="nav-link" data-section="games">
+                        <span class="nav-icon">🎮</span>
+                        <span>Games</span>
+                        <div class="nav-link-bg"></div>
+                    </a>
+                    <a href="#digital-goods" class="nav-link" data-section="digital-goods">
+                        <span class="nav-icon">💎</span>
+                        <span>Digital Goods</span>
+                        <div class="nav-link-bg"></div>
+                    </a>
+                    <a href="#support" class="nav-link" data-section="support">
+                        <span class="nav-icon">🛠️</span>
+                        <span>Support</span>
+                        <div class="nav-link-bg"></div>
+                    </a>
+                </div>
+                  <!-- Enhanced User Actions -->
+                <div class="nav-actions">
+                    <div class="search-container">
+                        <input type="search" id="search-input" class="search-input" placeholder="Search games..." aria-label="Search">
+                        <button id="search-btn" class="search-btn" aria-label="Search">
+                            <span>🔍</span>
+                        </button>
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <button id="cart-btn" class="cart-btn" aria-label="Shopping cart">
+                            <span class="cart-icon">🛒</span>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </button>
+                        
+                        <div class="auth-buttons">
+                            <button class="btn btn-outline btn-sm">Sign In</button>
+                            <button class="btn btn-primary btn-sm">Join Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Mobile Toggle -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <div class="toggle-bg"></div>
+            </button>
+        </div>
+          <!-- Navigation progress bar -->
+        <div class="nav-progress" id="nav-progress"></div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-logo">G2Own</div>
+            <button id="mobile-close" class="mobile-close" aria-label="Close menu">×</button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="#home" class="mobile-nav-link">🏠 Home</a>
+            <a href="#marketplace" class="mobile-nav-link">🛒 Marketplace</a>
+            <a href="#categories" class="mobile-nav-link">📦 Categories</a>
+            <a href="#about" class="mobile-nav-link">ℹ️ About</a>
+            <a href="#support" class="mobile-nav-link">🛠️ Support</a>
+            <div class="mobile-menu-actions">
+                <button class="btn btn-outline btn-sm mobile-btn">Sign In</button>
+                <button class="btn btn-primary btn-sm mobile-btn">Join Now</button>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Shopping Cart</h3>
+            <button id="cart-close" class="cart-close" aria-label="Close cart">×</button>
+        </div>
+        <div class="cart-content">
+            <div id="cart-items" class="cart-items">
+                <div class="cart-empty">Your cart is empty</div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-container">
+                <span>Total: </span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="cart-checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div><!-- Main Content -->
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-container">
+                <!-- Hero Content with better structure -->
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span>Premium Digital Marketplace</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        <span class="title-line-1">Next-Gen</span>
+                        <span class="title-line-2 gradient-text">Digital Marketplace</span>
+                        <span class="title-line-3">Experience</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Buy, sell, and trade digital games and goods in the most advanced marketplace. 
+                        Instant delivery, secure transactions, unbeatable prices.
+                    </p>
+                    
+                    <!-- Enhanced CTA Section -->
+                    <div class="hero-cta">
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary btn-large magnetic-btn" data-action="explore">
+                                <span class="btn-text">Explore Marketplace</span>
+                                <span class="btn-icon">🚀</span>
+                                <div class="btn-particles"></div>
+                            </button>
+                            <button class="btn btn-outline btn-large" data-action="learn">
+                                <span class="btn-text">Learn More</span>
+                                <span class="btn-icon">📖</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Trust indicators -->
+                        <div class="trust-indicators">
+                            <div class="trust-item">
+                                <span class="trust-number">50K+</span>
+                                <span class="trust-label">Happy Customers</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">99.9%</span>
+                                <span class="trust-label">Uptime</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-number">24/7</span>
+                                <span class="trust-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Game Carousel -->
+                <div class="hero-showcase">
+                    <div class="showcase-header">
+                        <h3 class="showcase-title">Featured Games</h3>
+                        <div class="showcase-controls">
+                            <button class="showcase-btn prev-btn" id="carousel-prev" aria-label="Previous game">‹</button>
+                            <button class="showcase-btn next-btn" id="carousel-next" aria-label="Next game">›</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-carousel" id="game-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-track" id="carousel-track">
+                                <!-- Game cards will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Enhanced carousel indicators -->
+                        <div class="carousel-indicators" id="carousel-indicators">
+                            <!-- Dots will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Floating elements for visual appeal -->
+                    <div class="floating-elements">
+                        <div class="floating-card card-1">
+                            <div class="card-glow"></div>
+                            <span>💎</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-glow"></div>
+                            <span>🎮</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-glow"></div>
+                            <span>🔥</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll to explore</div>
+            </div>
+        </section>
+
+        <!-- Enhanced Stats Section -->
+        <section class="stats-section" id="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item" data-count="1000000">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item" data-count="500000">
+                        <div class="stat-icon">🎮</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Games Sold</div>
+                    </div>
+                    <div class="stat-item" data-count="50000">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">5-Star Reviews</div>
+                    </div>
+                    <div class="stat-item" data-count="247">
+                        <div class="stat-icon">🛠️</div>
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- Enhanced Categories Section -->
+        <section class="categories-section" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span>🏆</span>
+                        <span>Popular Categories</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Discover Digital Goods</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Explore our vast collection of digital products across multiple categories
+                    </p>
+                </div>
+                
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Category cards will be populated here -->
+                </div>
+                
+                <!-- View all button -->
+                <div class="section-footer">
+                    <button class="btn btn-outline btn-large">
+                        <span>View All Categories</span>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Marketplace Section -->
+        <section class="marketplace-section" id="marketplace">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <span>🔥</span>
+                        <span>Hot Deals</span>
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Featured Products</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Hand-picked items with exclusive discounts and instant delivery
+                    </p>
+                </div>
+                
+                <!-- Enhanced filter system -->
+                <div class="marketplace-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">All</button>
+                        <button class="filter-tab" data-filter="games">Games</button>
+                        <button class="filter-tab" data-filter="software">Software</button>
+                        <button class="filter-tab" data-filter="gift-cards">Gift Cards</button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <select class="filter-select" aria-label="Sort by">
+                            <option value="popular">Most Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                        
+                        <div class="view-toggle">
+                            <button class="view-btn grid-view active" aria-label="Grid view">⊞</button>
+                            <button class="view-btn list-view" aria-label="List view">☰</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="marketplace-grid" id="marketplace-grid">
+                    <!-- Product cards will be populated here -->
+                </div>
+                
+                <!-- Load more section -->
+                <div class="load-more-section">
+                    <button class="btn btn-primary btn-large load-more-btn">
+                        <span>Load More Products</span>
+                        <div class="loading-spinner hidden"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-container">
+                    <div class="newsletter-content">
+                        <h3 class="newsletter-title">Stay Updated</h3>
+                        <p class="newsletter-subtitle">Get exclusive deals and new arrivals delivered to your inbox</p>
+                    </div>
+                    
+                    <div class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="newsletter-input" placeholder="Enter your email" aria-label="Email address">
+                            <button class="btn btn-primary newsletter-btn">
+                                <span>Subscribe</span>
+                                <span>📧</span>
+                            </button>
+                        </div>
+                        <p class="newsletter-privacy">We respect your privacy. No spam, ever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    <!-- Enhanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>G2</span>
+                        </div>
+                        <span class="logo-text">G2Own</span>
+                    </div>
+                    <p class="footer-description">
+                        The most trusted digital marketplace for games, software, and digital goods.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Discord">🎮</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Marketplace</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">PC Games</a></li>
+                        <li><a href="#">Console Games</a></li>
+                        <li><a href="#">Software</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© 2025 G2Own. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification System -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cart-close">×</button>
+        </div>
+        <div class="cart-content" id="cart-content">
+            <div class="cart-empty">
+                <span class="cart-empty-icon">🛒</span>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-primary btn-full">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay"></div>    <!-- Scripts with optimized loading -->
+    <script>
+        // Critical inline script for loading optimization
+        document.body.classList.add('js-enabled');
+        
+        // Loading screen management
+        let loadProgress = 0;
+        const progressBar = document.querySelector('.loading-progress');
+        const statusText = document.querySelector('.loading-status');
+        
+        const updateProgress = (progress, status) => {
+            loadProgress = progress;
+            if (progressBar) progressBar.style.width = progress + '%';
+            if (statusText) statusText.textContent = status;
+        };
+        
+        updateProgress(20, 'Loading assets...');
+    </script>
+      <!-- External libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" onload="updateProgress(40, 'Loading animations...')"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" onload="updateProgress(50, 'Loading scroll effects...')"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" onload="updateProgress(60, 'Loading particles...')"></script>
+    
+    <!-- Application scripts -->
+    <script src="assets/js/enhanced-main.js" onload="updateProgress(90, 'Finalizing...')"></script>
+    <script src="assets/js/carousel.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/particles-config.js"></script>
+    
+    <script>
+        // Enhanced loading completion - let the enhanced JavaScript handle it
+        window.addEventListener('load', () => {
+            // The enhanced JavaScript will handle the loading screen removal
+            console.log('Page fully loaded - enhanced system taking over');
+        });
+    </script>
+</body>
+</html>

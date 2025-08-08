@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .debug-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+        }
+        .status {
+            padding: 15px;
+            background: #333;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff0000;
+        }
+        .success { background: #2d5a2d; color: #90ee90; }
+        .warning { background: #5a5a2d; color: #ffff90; }
+        .info { background: #2d4a5a; color: #87ceeb; }
+        .iframe-container {
+            margin: 20px 0;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            background: white;
+            height: 700px;
+            overflow: hidden;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .debug-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .test-instructions {
+            background: #4a4a4a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-container">
+        <h1>🐛 Hover Debug Test</h1>
+        <p><strong>Debug Date:</strong> <span id="currentDate"></span></p>
+        
+        <div class="status warning">
+            <h3>🔧 Debug Mode Active</h3>
+            <p>The hover zone is now slightly visible (red tint) for debugging purposes. This will be removed once confirmed working.</p>
+        </div>
+        
+        <div class="test-instructions">
+            <h3>📋 Debug Instructions:</h3>
+            <ol>
+                <li><strong>Look for the red tinted area</strong> on the far left edge of the iframe</li>
+                <li><strong>Move your mouse</strong> over this red area</li>
+                <li><strong>Watch the browser console</strong> (F12) for debug messages</li>
+                <li><strong>Sidebar should slide in</strong> when hovering over the red area</li>
+                <li><strong>Move mouse away</strong> and sidebar should slide out after 300ms</li>
+            </ol>
+        </div>
+        
+        <div class="status info">
+            <h3>🔍 What to Check:</h3>
+            <ul>
+                <li>Red tinted hover zone visible on left edge (30px wide)</li>
+                <li>Console messages when hovering in/out</li>
+                <li>Sidebar slides in smoothly on hover</li>
+                <li>Sidebar stays visible while hovering over it</li>
+                <li>Sidebar hides after moving mouse away</li>
+            </ul>
+        </div>
+        
+        <div class="iframe-container">
+            <div class="debug-overlay">
+                HOVER ZONE DEBUG: Look for red tint on left edge →
+            </div>
+            <iframe src="index.html"></iframe>
+        </div>
+        
+        <div class="status success">
+            <h3>✅ Expected Debug Behavior:</h3>
+            <ul>
+                <li><strong>Visible hover zone:</strong> 30px red-tinted area on left</li>
+                <li><strong>Console logging:</strong> Messages for hover in/out events</li>
+                <li><strong>Smooth animation:</strong> Sidebar slides in/out</li>
+                <li><strong>Responsive:</strong> Only on desktop/tablet (≥768px)</li>
+            </ul>
+        </div>
+        
+        <div class="status info">
+            <h3>🔍 Current Browser Info:</h3>
+            <div id="browserInfo"></div>
+        </div>
+        
+        <div class="status warning">
+            <h3>🛠️ Troubleshooting:</h3>
+            <ul>
+                <li>If no red zone: Hover zone element not created</li>
+                <li>If no console messages: JavaScript events not binding</li>
+                <li>If sidebar doesn't show: CSS classes not being applied</li>
+                <li>If flickering: Adjust hover timeout delay</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleString();
+        
+        function updateBrowserInfo() {
+            const browserInfo = document.getElementById('browserInfo');
+            const width = window.innerWidth;
+            let behavior = '';
+            
+            if (width <= 767) {
+                behavior = '📱 Mobile - Hover zone disabled, toggle button should show';
+            } else if (width <= 1023) {
+                behavior = '📱 Tablet - Hover zone active (240px sidebar)';
+            } else {
+                behavior = '💻 Desktop - Hover zone active (280px sidebar)';
+            }
+            
+            browserInfo.innerHTML = `
+                <strong>Viewport:</strong> ${width}x${window.innerHeight}<br>
+                <strong>Expected Behavior:</strong> ${behavior}<br>
+                <strong>Instructions:</strong> ${width <= 767 ? 'Click toggle button in top-left' : 'Hover over red zone on left edge'}
+            `;
+        }
+        
+        updateBrowserInfo();
+        window.addEventListener('resize', updateBrowserInfo);
+    </script>
+</body>
+</html>

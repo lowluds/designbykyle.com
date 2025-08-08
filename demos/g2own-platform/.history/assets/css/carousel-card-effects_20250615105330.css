@@ -1,0 +1,251 @@
+/* Enhanced Card Effects for Carousel - Boston Red Theme */
+
+.enhanced-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(75, 0, 0, 0.2));
+    border-radius: 16px;
+    padding: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.enhanced-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        #8b0000 0%,
+        #a50000 25%,
+        #8b0000 50%,
+        #750000 75%,
+        #8b0000 100%
+    );
+    border-radius: 16px;
+    z-index: -2;
+    opacity: 0.8;
+}
+
+.enhanced-card::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(139, 0, 0, 0.3) 0%,
+        rgba(75, 0, 0, 0.6) 50%,
+        rgba(50, 0, 0, 0.9) 100%
+    );
+    border-radius: 14px;
+    z-index: -1;
+}
+
+/* Top-right corner backdrop blur effect */
+.enhanced-card .corner-blur {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(
+        135deg,
+        rgba(139, 0, 0, 0.4) 0%,
+        rgba(165, 0, 0, 0.2) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 0 14px 0 80px;
+    z-index: 0;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.enhanced-card-content {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        rgba(20, 20, 20, 0.95) 0%,
+        rgba(30, 10, 10, 0.95) 50%,
+        rgba(20, 20, 20, 0.95) 100%
+    );
+    border-radius: 14px;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.enhanced-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.3),
+        0 0 0 1px rgba(139, 0, 0, 0.4);
+}
+
+.enhanced-card:hover::before {
+    opacity: 1;
+    background: linear-gradient(
+        135deg,
+        #a50000 0%,
+        #c70000 25%,
+        #a50000 50%,
+        #8b0000 75%,
+        #a50000 100%
+    );
+}
+
+.enhanced-card:hover::after {
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(165, 0, 0, 0.4) 0%,
+        rgba(139, 0, 0, 0.7) 50%,
+        rgba(75, 0, 0, 0.9) 100%
+    );
+}
+
+.enhanced-card:hover .corner-blur {
+    opacity: 1;
+    background: linear-gradient(
+        135deg,
+        rgba(165, 0, 0, 0.6) 0%,
+        rgba(199, 0, 0, 0.3) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Card content styles */
+.enhanced-card-content .game-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.enhanced-card:hover .game-image {
+    border-color: rgba(139, 0, 0, 0.6);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+}
+
+.enhanced-card-content .game-title {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+.enhanced-card-content .game-price {
+    color: #8b0000;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.enhanced-card-content .game-description {
+    color: #e5e5e5;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.enhanced-card-content .game-button {
+    background: linear-gradient(135deg, #8b0000, #a50000);
+    color: white;
+    border: 1px solid #8b0000;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.enhanced-card-content .game-button:hover {
+    background: linear-gradient(135deg, #a50000, #c70000);
+    border-color: #a50000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .enhanced-card {
+        padding: 1px;
+    }
+    
+    .enhanced-card::after {
+        top: 1px;
+        left: 1px;
+        right: 1px;
+        bottom: 1px;
+        border-radius: 15px;
+    }
+    
+    .enhanced-card .corner-blur {
+        width: 80px;
+        height: 80px;
+        border-radius: 0 15px 0 60px;
+    }
+    
+    .enhanced-card-content {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .enhanced-card-content .game-image {
+        height: 160px;
+    }
+    
+    .enhanced-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+}
+
+/* Animation for card entrance */
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.enhanced-card.slide-in {
+    animation: cardSlideIn 0.6s ease-out forwards;
+}
+
+/* Subtle glow effect for active card */
+.carousel-card.active .enhanced-card {
+    box-shadow: 
+        0 0 0 2px rgba(139, 0, 0, 0.6),
+        0 20px 40px rgba(139, 0, 0, 0.2);
+}
+
+.carousel-card.active .enhanced-card::before {
+    opacity: 1;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benefit Cards Animation Test</title>
+    <style>
+        body { 
+            font-family: monospace; 
+            margin: 20px; 
+            background: #1a1a1a; 
+            color: #fff; 
+            line-height: 1.6;
+        }
+        .test-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+        .test-result { 
+            margin: 10px 0; 
+            padding: 8px; 
+            border-radius: 3px; 
+        }
+        .success { background: #2d5a2d; color: #90ee90; }
+        .error { background: #5a2d2d; color: #ff9090; }
+        .warning { background: #5a5a2d; color: #ffff90; }
+        .info { background: #2d2d5a; color: #9090ff; }
+        button { 
+            background: #007acc; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            margin: 5px; 
+            border-radius: 3px; 
+            cursor: pointer; 
+        }
+        button:hover { background: #005a99; }
+        .log { 
+            background: #222; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 3px; 
+            max-height: 300px; 
+            overflow-y: auto; 
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Benefit Cards Animation Test</h1>
+        <p>Testing the "Your Trusted Digital Marketplace" cards animation fix</p>
+        
+        <div class="test-section">
+            <h2>🔍 Animation System Test</h2>
+            <button onclick="testBenefitCards()">Test Benefit Cards Animation</button>
+            <div id="test-results"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 Test Results</h2>
+            <div id="console-log" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        // Console monitoring
+        const originalConsole = console.log;
+        
+        function logToMonitor(message) {
+            const log = document.getElementById('console-log');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            log.scrollTop = log.scrollHeight;
+            originalConsole(message);
+        }
+
+        console.log = logToMonitor;
+
+        function testBenefitCards() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<div class="test-result info">Testing benefit cards animation system...</div>';
+            
+            let testScore = 0;
+            const maxScore = 100;
+            
+            // Test 1: Check if main website frame can be accessed
+            try {
+                // Open main website in iframe for testing
+                const iframe = document.createElement('iframe');
+                iframe.src = 'index.html';
+                iframe.style.width = '100%';
+                iframe.style.height = '200px';
+                iframe.style.border = '1px solid #333';
+                iframe.style.borderRadius = '5px';
+                iframe.style.marginTop = '10px';
+                
+                iframe.onload = () => {
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        
+                        // Test 2: Check for benefit cards
+                        const benefitCards = iframeDoc.querySelectorAll('.benefit-card');
+                        if (benefitCards.length > 0) {
+                            results.innerHTML += `<div class="test-result success">✅ Found ${benefitCards.length} benefit cards</div>`;
+                            testScore += 25;
+                        } else {
+                            results.innerHTML += '<div class="test-result error">❌ No benefit cards found</div>';
+                        }
+                        
+                        // Test 3: Check for animate-on-scroll class
+                        const animateCards = iframeDoc.querySelectorAll('.benefit-card.animate-on-scroll');
+                        if (animateCards.length > 0) {
+                            results.innerHTML += `<div class="test-result success">✅ Found ${animateCards.length} cards with animate-on-scroll class</div>`;
+                            testScore += 25;
+                        } else {
+                            results.innerHTML += '<div class="test-result error">❌ No cards with animate-on-scroll class</div>';
+                        }
+                        
+                        // Test 4: Check for animation script
+                        const animationScript = iframeDoc.querySelector('script[src*="benefit-cards-animation"]');
+                        if (animationScript) {
+                            results.innerHTML += '<div class="test-result success">✅ Benefit cards animation script loaded</div>';
+                            testScore += 25;
+                        } else {
+                            results.innerHTML += '<div class="test-result error">❌ Animation script not found</div>';
+                        }
+                        
+                        // Test 5: Check CSS animation styles
+                        const styleSheets = iframeDoc.styleSheets;
+                        let hasAnimationCSS = false;
+                        try {
+                            Array.from(styleSheets).forEach(sheet => {
+                                Array.from(sheet.cssRules || []).forEach(rule => {
+                                    if (rule.selectorText && rule.selectorText.includes('.benefit-card.animate-in')) {
+                                        hasAnimationCSS = true;
+                                    }
+                                });
+                            });
+                        } catch (e) {
+                            // CORS restrictions on external stylesheets
+                        }
+                        
+                        if (hasAnimationCSS) {
+                            results.innerHTML += '<div class="test-result success">✅ Animation CSS styles found</div>';
+                            testScore += 25;
+                        } else {
+                            results.innerHTML += '<div class="test-result warning">⚠️ Animation CSS could not be verified (may be external)</div>';
+                            testScore += 15;
+                        }
+                        
+                        // Test summary
+                        const percentage = Math.round((testScore / maxScore) * 100);
+                        let status = '';
+                        let statusClass = '';
+                        
+                        if (percentage >= 90) {
+                            status = '🎉 Excellent - Animation should work perfectly!';
+                            statusClass = 'success';
+                        } else if (percentage >= 75) {
+                            status = '✅ Good - Animation should work well';
+                            statusClass = 'success';
+                        } else if (percentage >= 50) {
+                            status = '⚠️ Fair - Animation may have issues';
+                            statusClass = 'warning';
+                        } else {
+                            status = '❌ Poor - Animation likely broken';
+                            statusClass = 'error';
+                        }
+                        
+                        results.innerHTML += `<div class="test-result ${statusClass}"><strong>Score: ${percentage}% - ${status}</strong></div>`;
+                        
+                    } catch (error) {
+                        results.innerHTML += `<div class="test-result error">❌ Error accessing iframe content: ${error.message}</div>`;
+                    }
+                };
+                
+                iframe.onerror = () => {
+                    results.innerHTML += '<div class="test-result error">❌ Failed to load main website in iframe</div>';
+                };
+                
+                document.body.appendChild(iframe);
+                
+            } catch (error) {
+                results.innerHTML += `<div class="test-result error">❌ Test failed: ${error.message}</div>`;
+            }
+        }
+
+        // Initialize
+        console.log('🧪 Benefit Cards Animation Test initialized');
+        console.log('Click "Test Benefit Cards Animation" to run diagnostics');
+    </script>
+</body>
+</html>

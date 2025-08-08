@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover-to-Reveal Sidebar Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ff0000;
+        }
+        .status {
+            padding: 15px;
+            background: #333;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ff0000;
+        }
+        .success { background: #2d5a2d; color: #90ee90; }
+        .info { background: #2d4a5a; color: #87ceeb; }
+        .warning { background: #5a5a2d; color: #ffff90; }
+        .iframe-container {
+            margin: 20px 0;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            background: white;
+            height: 700px;
+            overflow: hidden;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .hover-hint {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            background: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10;
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #444;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🖱️ Hover-to-Reveal Sidebar Test</h1>
+        <p><strong>Test Date:</strong> <span id="currentDate"></span></p>
+        
+        <div class="status success">
+            <h3>✅ Hover-to-Reveal Implemented!</h3>
+            <p>The sidebar is now hidden by default and appears only when you hover over the left edge.</p>
+        </div>
+        
+        <div class="status info">
+            <h3>📋 How to Test:</h3>
+            <ul>
+                <li><strong>Desktop/Tablet:</strong> Move your mouse to the far left edge of the screen</li>
+                <li><strong>Look for:</strong> A subtle red line indicator when hovering</li>
+                <li><strong>Sidebar should:</strong> Slide in smoothly from the left</li>
+                <li><strong>Stay visible:</strong> While hovering over the sidebar itself</li>
+                <li><strong>Hide automatically:</strong> When you move the mouse away</li>
+            </ul>
+        </div>
+        
+        <div class="status warning">
+            <h3>📱 Mobile Behavior:</h3>
+            <ul>
+                <li>On mobile devices (≤767px), hover is replaced with a toggle button</li>
+                <li>Red hamburger menu (☰) appears in top-left corner</li>
+                <li>Click to show/hide the sidebar</li>
+                <li>Dark overlay appears when sidebar is open</li>
+            </ul>
+        </div>
+        
+        <div class="iframe-container">
+            <div class="hover-hint">← Hover here to reveal sidebar</div>
+            <iframe src="index.html"></iframe>
+        </div>
+        
+        <div class="test-section">
+            <h3>🎯 Expected Behavior by Screen Size:</h3>
+            <div class="status info">
+                <strong>📱 Mobile (≤767px):</strong>
+                <ul>
+                    <li>Sidebar hidden by default</li>
+                    <li>Red toggle button (☰) visible in top-left</li>
+                    <li>Click toggle to show/hide sidebar</li>
+                    <li>No hover zone (touch devices don't have hover)</li>
+                </ul>
+            </div>
+            <div class="status info">
+                <strong>📱 Tablet (768-1023px):</strong>
+                <ul>
+                    <li>Sidebar hidden by default</li>
+                    <li>Hover over left edge (20px zone) to reveal</li>
+                    <li>Sidebar width: 240px</li>
+                    <li>No toggle button</li>
+                </ul>
+            </div>
+            <div class="status info">
+                <strong>💻 Desktop (≥1024px):</strong>
+                <ul>
+                    <li>Sidebar hidden by default</li>
+                    <li>Hover over left edge (20px zone) to reveal</li>
+                    <li>Sidebar width: 280px</li>
+                    <li>No toggle button</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🔍 Current Browser Info:</h3>
+            <div id="browserInfo" class="status info"></div>
+        </div>
+        
+        <div class="status warning">
+            <h3>💡 Pro Tips:</h3>
+            <ul>
+                <li>The hover zone is 20px wide on the left edge</li>
+                <li>A subtle red line appears when hovering over the zone</li>
+                <li>The sidebar stays visible while hovering over it</li>
+                <li>There's a 300ms delay before hiding to prevent flickering</li>
+                <li>Press Escape key to quickly hide the sidebar</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleString();
+        
+        function updateBrowserInfo() {
+            const browserInfo = document.getElementById('browserInfo');
+            const width = window.innerWidth;
+            let behavior = '';
+            
+            if (width <= 767) {
+                behavior = '📱 Mobile - Toggle button behavior';
+            } else if (width <= 1023) {
+                behavior = '📱 Tablet - Hover-to-reveal (240px sidebar)';
+            } else {
+                behavior = '💻 Desktop - Hover-to-reveal (280px sidebar)';
+            }
+            
+            browserInfo.innerHTML = `
+                <strong>Viewport:</strong> ${width}x${window.innerHeight}<br>
+                <strong>Behavior:</strong> ${behavior}
+            `;
+        }
+        
+        updateBrowserInfo();
+        window.addEventListener('resize', updateBrowserInfo);
+    </script>
+</body>
+</html>

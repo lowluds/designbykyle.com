@@ -1,0 +1,162 @@
+/* HERO BACKGROUND UNIFIED ENFORCEMENT - Ensure all sections use hero background */
+
+.featured-products-section,
+.categories-section,
+.categories,
+.stats-section {    /* MUCH DARKER GRADIENT - Same as unified system */
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%,           /* Very dark black start */
+        #050505 25%,          /* Near black transition */
+        #111111 50%,          /* Dark gray middle */
+        #030303 75%,          /* Very dark transition */
+        #080808 100%          /* Dark black end */
+    ) !important;
+      /* Red grid pattern only - no white gradients */
+    background-image: 
+        /* Enhanced red grid pattern */
+        linear-gradient(rgba(139, 0, 0, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.15) 1px, transparent 1px) !important;
+      background-size: 
+        80px 80px,            /* Grid size */
+        80px 80px !important;
+      background-position:
+        0 0,
+        0 0 !important;
+}
+
+/* Animated background layers for depth - matching unified system */
+.featured-products-section::before,
+.categories-section::before,
+.categories::before,
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        /* Red accent gradients */
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.02) 0%, transparent 70%),
+        radial-gradient(circle at 25% 75%, rgba(139, 0, 0, 0.015) 0%, transparent 60%) !important;
+    animation: heroLightFloat 25s ease-in-out infinite alternate !important;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.featured-products-section::after,
+.categories-section::after,
+.categories::after,
+.stats-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    background: 
+        /* Extremely subtle white light accents - barely visible */
+        radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.002) 0%, transparent 40%),
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.001) 0%, transparent 35%) !important;
+    animation: heroLightFloat 30s ease-in-out infinite alternate-reverse !important;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+}
+
+@keyframes heroLightFloat {
+    0% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translate(-8px, -5px) scale(1.02);
+        opacity: 0.5;
+    }
+    100% { 
+        transform: translate(-15px, -10px) scale(1.04);
+        opacity: 0.7;
+    }
+}
+
+/* Ensure all child elements have proper z-index */
+.featured-products-container,
+.featured-products-header,
+.featured-products-grid,
+.featured-view-all,
+.categories-section .container,
+.categories .container,
+.stats-section .container {
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* ULTRA-SPECIFIC OVERRIDE for Discover Digital Goods section */
+section.categories-section,
+.categories-section#categories,
+#categories.categories-section {
+    /* FORCE SAME DARK BACKGROUND AS HERO - HIGHEST PRIORITY */
+    background: linear-gradient(135deg, 
+        #0a0a0a 0%,           /* Very dark black start */
+        #050505 25%,          /* Near black transition */
+        #111111 50%,          /* Dark gray middle */
+        #030303 75%,          /* Very dark transition */
+        #080808 100%          /* Dark black end */
+    ) !important;
+    
+    /* Red grid pattern only */
+    background-image: 
+        linear-gradient(rgba(139, 0, 0, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 0, 0, 0.15) 1px, transparent 1px) !important;
+    
+    background-size: 
+        80px 80px,
+        80px 80px !important;
+    
+    background-position:
+        0 0,
+        0 0 !important;
+        
+    background-attachment: scroll !important;
+    background-color: #050505 !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Force pseudo-elements for categories section */
+section.categories-section::before,
+.categories-section#categories::before,
+#categories.categories-section::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.02) 0%, transparent 70%),
+        radial-gradient(circle at 25% 75%, rgba(139, 0, 0, 0.015) 0%, transparent 60%) !important;
+    animation: heroLightFloat 25s ease-in-out infinite alternate !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    opacity: 0.6 !important;
+}
+
+section.categories-section::after,
+.categories-section#categories::after,
+#categories.categories-section::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: 
+        radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.002) 0%, transparent 40%),
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.001) 0%, transparent 35%) !important;
+    animation: heroLightFloat 30s ease-in-out infinite alternate-reverse !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    opacity: 0.05 !important;
+}

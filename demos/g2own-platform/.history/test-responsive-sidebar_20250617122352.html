@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar Test - G2Own</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #111;
+            color: white;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #222;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .viewport-info {
+            background: #8b0000;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .test-iframe {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #8b0000;
+            border-radius: 8px;
+        }
+        .breakpoint-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .breakpoint-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .breakpoint-btn:hover {
+            background: #a00000;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-loading { background: orange; }
+        .status-success { background: green; }
+        .status-error { background: red; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎮 G2Own Responsive Sidebar Test</h1>
+        
+        <div class="viewport-info" id="viewport-info">
+            <span class="status-indicator status-loading"></span>
+            Loading viewport information...
+        </div>
+        
+        <div class="test-section">
+            <h2>📱 Responsive Breakpoint Testing</h2>
+            <p>Click the buttons below to test different screen sizes:</p>
+            
+            <div class="breakpoint-buttons">
+                <button class="breakpoint-btn" onclick="setViewport(320, 568)">📱 Mobile (320px)</button>
+                <button class="breakpoint-btn" onclick="setViewport(480, 640)">📱 Small Mobile (480px)</button>
+                <button class="breakpoint-btn" onclick="setViewport(768, 1024)">📱 Tablet (768px)</button>
+                <button class="breakpoint-btn" onclick="setViewport(1024, 768)">💻 Desktop (1024px)</button>
+                <button class="breakpoint-btn" onclick="setViewport(1440, 900)">🖥️ Large Desktop (1440px)</button>
+                <button class="breakpoint-btn" onclick="setViewport('100%', 600)">🖥️ Full Width</button>
+            </div>
+            
+            <iframe id="test-iframe" class="test-iframe" src="index.html"></iframe>
+        </div>
+        
+        <div class="test-section">
+            <h2>✅ Responsive Features Checklist</h2>
+            <div id="features-checklist">
+                <div>📊 Loading feature tests...</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔍 CSS Status</h2>
+            <div id="css-status">
+                <div>🔄 Checking CSS files...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update viewport information
+        function updateViewportInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const ratio = (width / height).toFixed(2);
+            
+            let breakpoint = '';
+            if (width <= 480) breakpoint = 'Small Mobile';
+            else if (width <= 768) breakpoint = 'Mobile/Tablet';
+            else if (width <= 1024) breakpoint = 'Desktop';
+            else if (width <= 1440) breakpoint = 'Large Desktop';
+            else breakpoint = 'Ultra-wide';
+            
+            document.getElementById('viewport-info').innerHTML = `
+                <span class="status-indicator status-success"></span>
+                Viewport: ${width}x${height} | Ratio: ${ratio} | Breakpoint: ${breakpoint}
+            `;
+        }
+        
+        // Set iframe viewport for testing
+        function setViewport(width, height) {
+            const iframe = document.getElementById('test-iframe');
+            if (width === '100%') {
+                iframe.style.width = '100%';
+            } else {
+                iframe.style.width = width + 'px';
+            }
+            iframe.style.height = height + 'px';
+            
+            // Update button states
+            document.querySelectorAll('.breakpoint-btn').forEach(btn => {
+                btn.style.background = '#8b0000';
+            });
+            event.target.style.background = '#a00000';
+        }
+        
+        // Check CSS loading status
+        function checkCSSStatus() {
+            const cssChecks = [
+                'responsive-sidebar.css',
+                'left-sidebar.css',
+                'left-sidebar-enhanced.css',
+                'left-sidebar-enhanced-clean.css'
+            ];
+            
+            let status = '<h3>CSS Files Status:</h3>';
+            
+            cssChecks.forEach(file => {
+                // Check if CSS file is referenced in the iframe
+                const iframe = document.getElementById('test-iframe');
+                if (iframe.contentDocument) {
+                    const links = iframe.contentDocument.querySelectorAll('link[href*="' + file + '"]');
+                    const isLoaded = links.length > 0;
+                    status += `<div><span class="status-indicator ${isLoaded ? 'status-success' : 'status-error'}"></span>${file} - ${isLoaded ? 'Loaded' : 'Missing'}</div>`;
+                }
+            });
+            
+            document.getElementById('css-status').innerHTML = status;
+        }
+        
+        // Check responsive features
+        function checkResponsiveFeatures() {
+            const iframe = document.getElementById('test-iframe');
+            setTimeout(() => {
+                if (iframe.contentDocument) {
+                    const features = [
+                        {
+                            name: 'Navigation Icons',
+                            check: () => iframe.contentDocument.querySelectorAll('.nav-icon').length > 0
+                        },
+                        {
+                            name: 'Navigation Links',
+                            check: () => iframe.contentDocument.querySelectorAll('.nav-link').length > 0
+                        },
+                        {
+                            name: 'Preview Icon',
+                            check: () => iframe.contentDocument.querySelectorAll('.preview-icon').length > 0
+                        },
+                        {
+                            name: 'Left Sidebar',
+                            check: () => iframe.contentDocument.querySelectorAll('.left-sidebar').length > 0
+                        }
+                    ];
+                    
+                    let featureHTML = '<h3>Responsive Elements Found:</h3>';
+                    features.forEach(feature => {
+                        const exists = feature.check();
+                        featureHTML += `<div><span class="status-indicator ${exists ? 'status-success' : 'status-error'}"></span>${feature.name} - ${exists ? 'Found' : 'Missing'}</div>`;
+                    });
+                    
+                    document.getElementById('features-checklist').innerHTML = featureHTML;
+                }
+            }, 2000);
+        }
+        
+        // Initialize
+        window.addEventListener('resize', updateViewportInfo);
+        updateViewportInfo();
+        
+        // Check iframe content when loaded
+        document.getElementById('test-iframe').addEventListener('load', () => {
+            setTimeout(() => {
+                checkCSSStatus();
+                checkResponsiveFeatures();
+            }, 1000);
+        });
+        
+        // Initial check after page load
+        setTimeout(() => {
+            checkCSSStatus();
+            checkResponsiveFeatures();
+        }, 3000);
+    </script>
+</body>
+</html>

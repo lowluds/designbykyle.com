@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - G2Own</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Analytics for Error Tracking -->
+    <script>
+        // Basic analytics for error pages
+        if (window.parent === window && typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '500 - Server Error',
+                page_location: window.location.href,
+                error_type: '500'
+            });
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background system matching main site */
+        .bg-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.08) 0%, transparent 70%);
+            filter: blur(50px);
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        .orb-3 {
+            width: 180px;
+            height: 180px;
+            bottom: 20%;
+            left: 50%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(90deg); }
+            50% { transform: translateY(15px) rotate(180deg); }
+            75% { transform: translateY(-10px) rotate(270deg); }
+        }
+        
+        /* Glitch grid overlay for server error */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(239, 68, 68, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: grid-glitch 6s ease-in-out infinite;
+        }
+        
+        @keyframes grid-glitch {
+            0%, 90%, 100% { opacity: 0.2; transform: translateX(0); }
+            95% { opacity: 0.5; transform: translateX(2px); }
+            97% { opacity: 0.1; transform: translateX(-2px); }
+        }
+        
+        /* Main error container */
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 0 2rem;
+            z-index: 10;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Error number with glitch effect */
+        .error-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(8rem, 15vw, 12rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(239, 68, 68, 0.6));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+            animation: glitch-pulse 3s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .error-number::before,
+        .error-number::after {
+            content: '500';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(239, 68, 68, 0.6));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .error-number::before {
+            animation: glitch-1 3s infinite;
+        }
+        
+        .error-number::after {
+            animation: glitch-2 3s infinite;
+        }
+        
+        @keyframes glitch-pulse {
+            0%, 96%, 100% { text-shadow: 0 0 30px rgba(239, 68, 68, 0.3); }
+            97% { text-shadow: 0 0 50px rgba(239, 68, 68, 0.8), 2px 0 0 rgba(239, 68, 68, 0.5); }
+            98% { text-shadow: 0 0 30px rgba(239, 68, 68, 0.3), -2px 0 0 rgba(239, 68, 68, 0.5); }
+        }
+        
+        @keyframes glitch-1 {
+            0%, 97%, 100% { transform: translateX(0); opacity: 1; }
+            98% { transform: translateX(-2px); opacity: 0.8; }
+        }
+        
+        @keyframes glitch-2 {
+            0%, 97%, 100% { transform: translateX(0); opacity: 1; }
+            98% { transform: translateX(2px); opacity: 0.8; }
+        }
+        
+        /* Error title */
+        .error-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Error message */
+        .error-message {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Action buttons */
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border-color: rgba(239, 68, 68, 0.9);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.2);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(239, 68, 68, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(239, 68, 68, 0.3);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Error details */
+        .error-details {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .error-details h3 {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .error-code {
+            color: rgba(239, 68, 68, 0.8);
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        /* Logo */
+        .error-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 0 1rem;
+            }
+            
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background System -->
+    <div class="bg-system">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+    
+    <!-- Error Content -->
+    <div class="error-container">
+        <div class="error-logo">G2Own</div>
+        
+        <div class="error-number">500</div>
+        
+        <h1 class="error-title">Server Error</h1>
+        
+        <p class="error-message">
+            Our servers are experiencing some technical difficulties. Our team has been notified and is working to resolve this issue as quickly as possible.
+        </p>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+                <i class="ph ph-house"></i>
+                Back to Home
+            </a>
+            <a href="https://g2own.com/community/support/" class="btn btn-secondary" target="_blank">
+                <i class="ph ph-lifebuoy"></i>
+                Contact Support
+            </a>
+        </div>
+        
+        <div class="error-details">
+            <h3>Error Information</h3>
+            <div class="error-code">HTTP 500 - Internal Server Error</div>
+        </div>
+    </div>
+</body>
+</html>

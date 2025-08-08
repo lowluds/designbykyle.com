@@ -1,0 +1,254 @@
+/* Top Navigation Dynamic Authentication System */
+
+.nav-auth {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* LOGIN/SIGNUP BUTTON STYLES */
+.auth-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.login-signup-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(139, 0, 0, 0.2));
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-signup-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.login-signup-btn:hover::before {
+    left: 100%;
+}
+
+.login-signup-btn:hover {
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.2), rgba(139, 0, 0, 0.3));
+    border-color: rgba(139, 0, 0, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+}
+
+.auth-icon {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+.auth-text {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* PROFILE CONTAINER STYLES */
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.profile-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(139, 0, 0, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+.profile-name {
+    font-weight: 600;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.profile-container.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* PROFILE DROPDOWN STYLES */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 280px;
+    background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+}
+
+.profile-container.active .profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+}
+
+.dropdown-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+.dropdown-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dropdown-name {
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-email {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(139, 0, 0, 0.1);
+    margin: 0.5rem 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+}
+
+.dropdown-item:hover {
+    background: rgba(139, 0, 0, 0.1);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.dropdown-item svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+.logout-item {
+    border-top: 1px solid rgba(139, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    color: rgba(255, 100, 100, 0.9);
+}
+
+.logout-item:hover {
+    background: rgba(255, 100, 100, 0.1);
+    color: #ff6464;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .login-signup-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .auth-text {
+        display: none;
+    }
+    
+    .profile-name {
+        display: none;
+    }
+    
+    .profile-dropdown {
+        width: 260px;
+        right: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-dropdown {
+        width: 240px;
+        right: -40px;
+    }
+}
