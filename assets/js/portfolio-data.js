@@ -31,7 +31,7 @@ const portfolioData = [
     },
     {
         id: 3,
-        title: "Python Port Scanner",
+        title: "Flask Auth App",
         description: "Flask-based authentication system with user management, secure login, and admin features.",
         image: "assets/images/project3.jpg",
         category: "fullstack",
