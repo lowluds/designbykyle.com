@@ -6,3 +6,4 @@ Sitemap: https://designbykyle.com/sitemap.xml
 
 # Disallow contact form to prevent spam
 Disallow: /contact.php
+

@@ -265,3 +265,4 @@ if ($mail_sent && !empty($email)) {
     mail($email, $auto_subject, $auto_message, implode("\r\n", $auto_headers));
 }
 ?>
+

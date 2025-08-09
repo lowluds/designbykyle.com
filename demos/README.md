@@ -49,3 +49,4 @@ To update these demos:
 2. Ensure all relative paths work correctly
 3. Test that all assets load properly
 4. The portfolio will automatically link to the updated versions
+
