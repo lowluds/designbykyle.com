@@ -48,8 +48,8 @@ const portfolioData = [
         image: "assets/images/project4.jpg",
         category: "web",
         tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-        projectUrl: "https://pineinktattoo-dbvsgij46-lowludzz-gmailcoms-projects.vercel.app",
-        codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/demos/pineinktattoo",
+        projectUrl: "https://pineinktattoo.vercel.app",
+        codeUrl: "https://github.com/lowluds/pineinktattoo",
         featured: true,
         year: "2024"
     }
