@@ -30,5 +30,23 @@
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
     </url>
+    <url>
+        <loc>https://designbykyle.com/work/asp-printing/</loc>
+        <lastmod>2024-12-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://designbykyle.com/work/g2own-platform/</loc>
+        <lastmod>2024-12-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://designbykyle.com/work/hye-pilates/</loc>
+        <lastmod>2024-12-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
 

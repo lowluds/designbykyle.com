@@ -12,7 +12,8 @@ const portfolioData = [
         image: "assets/images/project/project1.jpg",
         category: "branding",
         tags: ["Branding", "Logo Design", "Illustrator", "Web Design"],
-        projectUrl: "demos/asp-printing/index.html",
+        projectUrl: "work/asp-printing/",
+        demoUrl: "demo/asp-printing/",
         codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/work1/ASP",
         featured: true,
         year: "2024"
@@ -24,7 +25,8 @@ const portfolioData = [
         image: "assets/images/project/project2.jpg",
         category: "web",
         tags: ["React", "CSS3", "Animation", "UI/UX"],
-        projectUrl: "demos/g2own-platform/index.html",
+        projectUrl: "work/g2own-platform/",
+        demoUrl: "demo/g2own-platform/",
         codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/work2/g2own_home",
         featured: true,
         year: "2024"
@@ -60,7 +62,8 @@ const portfolioData = [
         image: "assets/images/project/project5.jpg",
         category: "web",
         tags: ["HTML5", "Tailwind CSS", "JavaScript", "Responsive Design"],
-        projectUrl: "demos/hye/project/src/index.html",
+        projectUrl: "work/hye-pilates/",
+        demoUrl: "demo/hye-pilates/",
         codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/demos/hye",
         featured: true,
         year: "2024"

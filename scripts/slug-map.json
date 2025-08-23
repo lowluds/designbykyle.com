@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "source_path": "demos/asp-printing/index.html",
+      "slug": "asp-printing",
+      "title": "ASP All Solutions Printing",
+      "year": "2024",
+      "status": "active"
+    },
+    {
+      "source_path": "demos/g2own-platform/index.html", 
+      "slug": "g2own-platform",
+      "title": "G2Own Platform",
+      "year": "2024",
+      "status": "active"
+    },
+    {
+      "source_path": "demos/hye/project/src/index.html",
+      "slug": "hye-pilates", 
+      "title": "HYE — The Pilates",
+      "year": "2024",
+      "status": "active"
+    }
+  ],
+  "slug_rules": {
+    "format": "lowercase, hyphen-separated, ascii-only",
+    "examples": ["asp-printing", "g2own-platform", "hye-pilates"]
+  }
+}

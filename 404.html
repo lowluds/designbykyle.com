@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Kyle L.</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Kyle L.'s portfolio homepage.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .error-content {
+            max-width: 600px;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: var(--accent-primary);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            .error-title {
+                font-size: 1.5rem;
+            }
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-description">
+                The page you're looking for doesn't exist or has been moved. 
+                Let's get you back to exploring my work.
+            </p>
+            <div class="error-actions">
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    <span>Go Home</span>
+                </a>
+                <a href="/#portfolio" class="btn btn-secondary">
+                    <i class="fas fa-briefcase"></i>
+                    <span>View Work</span>
+                </a>
+                <a href="/#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact Me</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+    
+    <!-- Demo redirect helper -->
+    <script>
+        // Helper for unknown /demos/<something> paths
+        (function() {
+            const path = window.location.pathname;
+            const demosMatch = path.match(/^\/demos\/([^\/]+)/);
+            
+            if (demosMatch) {
+                const slug = demosMatch[1];
+                
+                // Handle known exceptions
+                const slugMap = {
+                    'hye': 'hye-pilates'
+                };
+                
+                const targetSlug = slugMap[slug] || slug;
+                const newUrl = `/demo/${targetSlug}/`;
+                
+                // Add redirect message
+                const errorContent = document.querySelector('.error-content');
+                if (errorContent) {
+                    const redirectMsg = document.createElement('p');
+                    redirectMsg.style.cssText = 'margin-top: 1rem; padding: 1rem; background: var(--accent-primary); color: white; border-radius: 0.5rem;';
+                    redirectMsg.innerHTML = `<strong>Demo Moved:</strong> Redirecting to <a href="${newUrl}" style="color: white; text-decoration: underline;">${newUrl}</a>`;
+                    errorContent.appendChild(redirectMsg);
+                    
+                    // Auto-redirect after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = newUrl;
+                    }, 3000);
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

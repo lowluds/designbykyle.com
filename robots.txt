@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+# Block demo pages from indexing
+Disallow: /demo/
+
 # Sitemap
 Sitemap: https://designbykyle.com/sitemap.xml
 
