@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en" class="min-h-full bg-white dark:bg-gray-950">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HYE — The Pilates</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../dist/output.css">
+</head>
+<body class="min-h-screen text-gray-900 dark:text-gray-100 font-sans">
+	<!-- SVG filters for gooey/blur blending on gradient orbs -->
+	<svg class="hidden">
+		<defs>
+			<filter id="orbGoo" x="-30%" y="-30%" width="160%" height="160%">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+				<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+	</svg>
+	<!-- Announcement Bar -->
+	<div class="w-full bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-300 text-sm">
+		<div class="mx-auto max-w-7xl px-4 py-2 text-center">By appointment only · 10 Craighurst Ave, Toronto</div>
+	</div>
+
+	<!-- Header / Nav -->
+	<header id="siteHeader" class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-950/70 border-b border-transparent transition-colors">
+		<nav class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+			<a href="#" class="font-serif text-2xl tracking-wide">HYE</a>
+			<div class="hidden md:flex items-center gap-8 text-sm">
+				<a href="#studio" class="hover:opacity-70">Studio</a>
+				<a href="#sessions" class="hover:opacity-70">Sessions</a>
+				<a href="#pricing" class="hover:opacity-70">Pricing</a>
+				<a href="#contact" class="hover:opacity-70">Contact</a>
+			</div>
+			<div class="flex items-center gap-2">
+				<button id="menuButton" class="md:hidden p-2 rounded border border-gray-300 dark:border-gray-700" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+			</div>
+		</nav>
+		<!-- Mobile Nav -->
+		<div id="mobileNav" class="md:hidden hidden border-t border-gray-200 dark:border-gray-800">
+			<div class="px-4 py-3 space-y-2">
+				<a href="#studio" class="block py-2">Studio</a>
+				<a href="#sessions" class="block py-2">Sessions</a>
+				<a href="#pricing" class="block py-2">Pricing</a>
+				<a href="#contact" class="block py-2">Contact</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- Hero -->
+	<section class="relative overflow-hidden">
+		<div class="mx-auto max-w-7xl px-4 py-20 sm:py-28">
+			<div class="relative p-6 sm:p-8 md:p-10">
+				<div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+					<div>
+						<p class="uppercase tracking-widest text-xs text-gray-500 dark:text-gray-400 mb-3">Toronto, ON</p>
+						<h1 class="font-serif text-4xl sm:text-6xl leading-tight">Personalized Pilates. Takes it one step <p class=text-red-500>further.</p></h1>
+						<p class="mt-6 text-gray-600 dark:text-gray-300 max-w-prose">A calm, detail-focused practice designed to refine movement and build strength. Welcome by appointment only.</p>
+						<div class="mt-8 flex gap-3">
+							<a href="#contact" class="px-5 py-3 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-sm">Book an Intro</a>
+							<a href="#sessions" class="px-5 py-3 rounded-lg border border-gray-300 dark:border-gray-700 text-sm">Explore Sessions</a>
+						</div>
+					</div>
+					<!-- Phone-shaped image with 3D glow -->
+					<div class="relative inline-block mx-auto md:mx-0">
+						<!-- Earthy gradient orbs, wider spread favoring right side -->
+						<div class="grad-orbs-wide">
+							<div class="orb orb-1"></div>
+							<div class="orb orb-2"></div>
+							<div class="orb orb-3"></div>
+							<div class="orb orb-4"></div>
+							<div class="orb orb-5"></div>
+							<div class="orb orb-6"></div>
+							<div class="orb orb-7"></div>
+							<div class="orb orb-8"></div>
+							<div class="orb orb-9"></div>
+						</div>
+						<div class="relative inline-block w-fit bg-black rounded-[2rem] p-3 shadow-2xl ring-1 ring-black/10">
+
+<!-- Instagram-like screen -->
+<div id="phone" class="aspect-[11/19] w-full max-w-[340px] sm:max-w-[360px] md:max-w-[380px] mx-auto rounded-[1.6rem] overflow-hidden relative bg-neutral-900 text-neutral-200 flex flex-col">
+	<!-- iOS-like status bar -->
+	<div id="statusBar" class="flex items-center justify-between px-3 pt-2 text-[10px] text-neutral-400">
+	  <div>8:05</div>
+	  <div class="flex items-center gap-1">
+		<div class="h-1.5 w-1.5 rounded-full bg-neutral-500"></div>
+		<div class="h-1.5 w-1.5 rounded-full bg-neutral-500"></div>
+		<div class="h-1.5 w-1.5 rounded-full bg-neutral-500"></div>
+		<span class="ml-1">85%</span>
+	  </div>
+	</div>
+  
+	<!-- app header -->
+	<div id="appHeader" class="flex items-center justify-between px-3 py-2">
+	  <div class="flex items-center gap-2">
+		<svg class="h-4 w-4 text-neutral-400" viewBox="0 0 24 24" fill="currentColor"><path d="M15 6 9 12l6 6"/></svg>
+		<div class="font-semibold text-sm">hyethepilates</div>
+	  </div>
+	  <svg class="h-4 w-4 text-neutral-400" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+	</div>
+  
+	<!-- profile header -->
+	<div id="profileBlock" class="px-3 shrink-0">
+	  <div class="flex items-center gap-4">
+		<div class="h-16 w-16 rounded-full ring-2 ring-neutral-600 bg-neutral-700 flex items-center justify-center text-xs">HYE</div>
+		<div class="flex-1 grid grid-cols-3 text-center text-[11px]">
+		  <div><div class="font-semibold">3</div><div class="text-neutral-400">posts</div></div>
+		  <div><div class="font-semibold">53</div><div class="text-neutral-400">followers</div></div>
+		  <div><div class="font-semibold">31</div><div class="text-neutral-400">following</div></div>
+		</div>
+	  </div>
+	  <div class="mt-2 text-[12px] font-semibold">HYE</div>
+	  <div class="text-[11px] text-sky-400">10 Craighurst Ave, Toronto, Ontario</div>
+	  <div class="mt-2 grid grid-cols-[1fr_1fr_1fr_auto] gap-1 text-[13px]">
+		<a id="igFollow" href="https://www.instagram.com/hyethepilates/" target="_blank" rel="noopener" class="w-full h-8 inline-flex items-center justify-center px-3 rounded-md bg-sky-600 text-white hover:bg-sky-500">Follow</a>
+		<a id="igMessage" href="https://www.instagram.com/direct/new/" target="_blank" rel="noopener" class="w-full h-8 inline-flex items-center justify-center px-3 rounded-md bg-neutral-800 hover:bg-neutral-700">Message</a>
+		<a id="igEmail" href="https://www.instagram.com/hyethepilates/" target="_blank" rel="noopener" class="w-full h-8 inline-flex items-center justify-center px-3 rounded-md bg-neutral-800 hover:bg-neutral-700">Email</a>
+		<a id="igAdd" href="https://www.instagram.com/hyethepilates/" target="_blank" rel="noopener" class="h-8 w-8 p-0 rounded-md bg-neutral-800 inline-flex items-center justify-center hover:bg-neutral-700" aria-label="Add friend">
+		  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+			<path d="M15 14c2.761 0 5 2.239 5 5v1h-8v-1c0-2.761 2.239-5 5-5Zm-6.5-9A3.5 3.5 0 1 1 5 8.5 3.5 3.5 0 0 1 8.5 5Z"/>
+			<path d="M19 8h-2V6h-2v2h-2v2h2v2h2v-2h2V8z"/>
+		  </svg>
+		</a>
+	  </div>
+	  <!-- highlights -->
+	  <div class="mt-3 flex items-center gap-3">
+		<div class="flex flex-col items-center gap-1">
+		  <div class="h-12 w-12 rounded-full ring-2 ring-neutral-600 bg-neutral-200 overflow-hidden flex items-center justify-center">
+			<span class="text-[11px] font-serif tracking-wide text-black">HYE</span>
+		  </div>
+		  <div class="text-[10px] text-neutral-400">NOTE</div>
+		</div>
+	  </div>
+	</div>
+  
+	<!-- video block, MP4, CSS-only sizing to stay within screen -->
+	<div id="postWrap" class="mt-3 mx-2 rounded-[1rem] overflow-hidden ring-1 ring-black/20 bg-neutral-950 grow min-h-0">
+	  <div class="p-1 flex items-center justify-center h-full">
+		<div id="postSquare" class="w-full h-full rounded-[0.8rem] overflow-hidden bg-black flex items-center justify-center">
+		  <video autoplay muted loop playsinline preload="metadata" class="h-full w-full object-contain">
+			<source src="../assets/video/studio-space-mobile.mp4" type="video/mp4" media="(max-width: 640px)">
+			<source src="../assets/video/studio-space.mp4" type="video/mp4">
+		  </video>
+		</div>
+	  </div>
+	</div>
+  
+	<!-- bottom nav -->
+	<div id="bottomNav" class="mt-2 h-12 flex items-center justify-between px-6 text-neutral-300">
+	  <button aria-label="Home" class="p-1 text-neutral-300 hover:text-white">
+		<svg class="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M3 10.5L12 4l9 6.5"/>
+			<path d="M5 12v9h5v-6h4v6h5v-9"/>
+		</svg>
+	  </button>
+	  <button aria-label="Search" class="p-1 text-neutral-300 hover:text-white">
+		<svg class="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+			<circle cx="11" cy="11" r="7"/>
+			<path d="M20 20l-3-3"/>
+		</svg>
+	  </button>
+	  <button aria-label="Create" class="p-1 text-neutral-300 hover:text-white">
+		<svg class="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+			<rect x="3.5" y="3.5" width="17" height="17" rx="4"/>
+			<path d="M12 8v8M8 12h8"/>
+		</svg>
+	  </button>
+	  <button aria-label="Reels" class="p-1 text-neutral-300 hover:text-white">
+		<svg class="h-6 w-6 stroke-current" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+			<rect x="3.5" y="3.5" width="17" height="17" rx="4"/>
+			<path d="M8 3.5l3 4M13 3.5l3 4"/>
+			<path d="M10.5 10.5l5 3-5 3z"/>
+		</svg>
+	  </button>
+	  <div class="relative">
+		<div class="h-6 w-6 rounded-full bg-center bg-cover ring-1 ring-neutral-600" style="background-image:url('../assets/img/hye-instagram.png')"></div>
+		<div class="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-rose-500"></div>
+	  </div>
+	</div>
+  </div>
+  
+  <script>
+  // Size the square to the available space between headers and bottom nav, never overlapping.
+  (function() {
+	const phone = document.getElementById('phone');
+	const statusBar = document.getElementById('statusBar');
+	const appHeader = document.getElementById('appHeader');
+	const profileBlock = document.getElementById('profileBlock');
+	const postWrap = document.getElementById('postWrap');
+	const bottomNav = document.getElementById('bottomNav');
+  
+	function setPostSize() {
+	  const phoneRect = phone.getBoundingClientRect();
+  
+	  // Horizontal limit, inside the card padding
+	  const cardStyles = getComputedStyle(postWrap);
+	  const mx = 0; // we already centered the square inside with flex
+	  const px = 8; // p-1 on inner wrapper, ~8px total around
+	  const horizontalLimit = phoneRect.width - mx*2 - 16; // conservative, and square will be centered
+  
+	  // Vertical limit, phone height minus measured blocks, minus bottom nav, minus card padding
+	  const above = statusBar.offsetHeight + appHeader.offsetHeight + profileBlock.offsetHeight + 12; // includes mt-3 spacing
+	  const below = bottomNav.offsetHeight + 12; // small buffer so it never kisses the nav
+	  const verticalLimit = phoneRect.height - above - below;
+  
+	  const side = Math.max(0, Math.min(horizontalLimit, verticalLimit));
+	  phone.style.setProperty('--postSize', side + 'px');
+	}
+  
+	const ro = new ResizeObserver(setPostSize);
+	ro.observe(phone);
+	ro.observe(profileBlock);
+  
+	window.addEventListener('load', setPostSize);
+	window.addEventListener('resize', setPostSize);
+  })();
+  </script>
+  
+  
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Studio Section -->
+	<section id="studio" class="mx-auto max-w-7xl px-4 py-16 border-t border-gray-200 dark:border-gray-800">
+		<div class="grid md:grid-cols-2 gap-12 items-start">
+			<div class="relative w-[85%] md:w-[80%]">
+				<span class="pointer-events-none absolute -left-5 top-6 w-full h-full rounded-[22px] bg-black border border-black"></span>
+				<a class="group block relative z-10 overflow-hidden rounded-[20px]" href="#" target="_blank" rel="noreferrer noopener">
+					<img class="w-full h-auto ease-in-out duration-500 scale-[100%] group-hover:scale-[110%]" src="../assets/img/studio3.jpg" alt="HYE Studio" />
+					<div class="absolute inset-0 rounded-[20px] bg-black/20 ease-in-out duration-300 opacity-0 group-hover:opacity-100">
+						<div class="absolute bottom-4 left-4">
+							<h1 class="text-white text-lg sm:text-xl font-medium">HYE Studio</h1>
+							<h2 class="text-white/80 text-sm">Quiet, minimal space</h2>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div>
+				<h2 class="font-serif text-3xl sm:text-4xl mb-4">The space designed only for you</h2>
+				<p class="text-gray-600 dark:text-gray-300">Quiet, equipment-forward studio offering private and duet sessions focusing on precision, control, and breath. Located near Yonge & Eglinton.</p>
+			</div>
+		</div>
+
+		<!-- Separator between Studio intro and Testimonials -->
+		<div class="my-10 border-t border-gray-200 dark:border-gray-800"></div>
+
+		<!-- Animated Testimonials Marquee (minimal, white) -->
+		<div class="mt-12">
+			<div class="w-full min-h-[1px] flex items-center bg-white text-gray-900">
+				<div class="max-w-7xl w-full py-5 mx-auto overflow-hidden">
+					<div class="w-full flex items-center flex-col gap-1 justify-center mb-8 px-4">
+						<h3 class="text-2xl sm:text-3xl text-center font-serif">See why clients keep coming back</h3>
+					</div>
+					<div class="flex flex-col gap-3">
+						<!-- Top row (reverse scroll) -->
+						<div style="mask-image:linear-gradient(to left, transparent 0%, black 18%, black 82%, transparent 100%)" class="relative flex justify-around gap-5 overflow-hidden shrink-0">
+							<div class="max-w-full mx-auto">
+								<div class="px-4 md:px-6 mx-auto w-full">
+									<div class="animate-scrollReverse js-marquee-track flex flex-nowrap w-max min-w-full hover:[animation-play-state:paused] overflow-hidden relative gap-5 justify-around shrink-0">
+										<!-- Card 1 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“I’ve been practicing Pilates with Edi for a long time. Professionalism and patience improved my core strength and posture.”</p>
+											<div class="flex h-[34%] gap-1 w-full border-t border-gray-100">
+												<div class="flex items-center w-3/4 gap-3 px-4 py-3">
+													<div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">CS</div>
+													<div class="flex flex-col flex-1">
+														<h5 class="text-sm font-medium">Chen Sherry</h5>
+														<p class="text-xs text-gray-500 -mt-0.5">Google Review</p>
+													</div>
+												</div>
+												<div class="w-px bg-gray-100"></div>
+												<div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div>
+											</div>
+										</div>
+										<!-- Card 2 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“Edi is an outstanding instructor. Each session was tailored to my mobility and strength with visible progress.”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100">
+												<div class="flex items-center w-3/4 gap-3 px-4 py-3">
+													<div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">BP</div>
+													<div class="flex flex-col flex-1"><h5 class="text-sm font-medium">Benedict Park</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div>
+												</div>
+												<div class="w-px bg-gray-100"></div>
+												<div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div>
+											</div>
+										</div>
+										<!-- Card 3 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“As a complete beginner, the studio’s positive, comfortable atmosphere helped me focus and feel at ease.”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100">
+												<div class="flex items-center w-3/4 gap-3 px-4 py-3"><div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">YK</div><div class="flex flex-col flex-1"><h5 class="text-sm font-medium">Yilin Kong</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div></div>
+												<div class="w-px bg-gray-100"></div>
+												<div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div>
+											</div>
+										</div>
+										<!-- Card 4 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“Deep core activation changed everything—lower back pain gone and posture improved.”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100">
+												<div class="flex items-center w-3/4 gap-3 px-4 py-3"><div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">AK</div><div class="flex flex-col flex-1"><h5 class="text-sm font-medium">Andrew Kim</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div></div>
+												<div class="w-px bg-gray-100"></div>
+												<div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Bottom row (forward scroll) -->
+						<div style="mask-image:linear-gradient(to left, transparent 0%, black 18%, black 82%, transparent 100%)" class="relative flex justify-around gap-5 overflow-hidden shrink-0">
+							<div class="max-w-full mx-auto">
+								<div class="px-4 md:px-6 mx-auto w-full">
+									<div class="animate-scroll js-marquee-track flex flex-nowrap w-max min-w-full hover:[animation-play-state:paused] overflow-hidden relative gap-5 justify-around shrink-0">
+										<!-- Card 5 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“Training restored balance and control. Real progress I could feel.”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100"><div class="flex items-center w-3/4 gap-3 px-4 py-3"><div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">CW</div><div class="flex flex-col flex-1"><h5 class="text-sm font-medium">Zi Claudia Wang</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div></div><div class="w-px bg-gray-100"></div><div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div></div>
+										</div>
+										<!-- Card 6 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“Sessions helped me feel stronger and better across sports and recovery.”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100"><div class="flex items-center w-3/4 gap-3 px-4 py-3"><div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">JB</div><div class="flex flex-col flex-1"><h5 class="text-sm font-medium">James Byun</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div></div><div class="w-px bg-gray-100"></div><div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div></div>
+										</div>
+										<!-- Card 7 -->
+										<div class="flex flex-col justify-between h-[200px] rounded-md border border-gray-200 shrink-0 grow-0 md:w-[420px] sm:w-[320px] w-[280px] bg-white">
+											<p class="px-5 py-5 tracking-tight text-sm md:text-base text-gray-700">“Amazing studio in the neighbourhood. Looking forward to more sessions!”</p>
+										<div class="flex h-[34%] gap-1 w-full border-t border-gray-100"><div class="flex items-center w-3/4 gap-3 px-4 py-3"><div class="w-10 h-10 rounded bg-gray-100 flex items-center justify-center text-xs text-gray-700">FR</div><div class="flex flex-col flex-1"><h5 class="text-sm font-medium">Francesca</h5><p class="text-xs text-gray-500 -mt-0.5">Google Review</p></div></div><div class="w-px bg-gray-100"></div><div class="flex items-center justify-center px-4 text-gray-400">★★★★★</div></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Sessions -->
+	<section id="sessions" class="mx-auto max-w-7xl px-4 py-16 border-t border-gray-200 dark:border-gray-800">
+		<h3 class="font-serif text-2xl mb-8">Sessions</h3>
+		<div class="grid md:grid-cols-3 gap-6">
+			<div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+				<h4 class="font-medium">Private</h4>
+				<p class="text-sm text-gray-600 dark:text-gray-300 mt-2">1:1 tailored instruction. Ideal for focused goals or injuries.</p>
+			</div>
+			<div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+				<h4 class="font-medium">Duet</h4>
+				<p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Train together. Two clients, one instructor, synchronized programming.</p>
+			</div>
+			<div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+				<h4 class="font-medium">Prenatal</h4>
+				<p class="text-sm text-gray-600 dark:text-gray-300 mt-2">Supportive movement through pregnancy with a breath-first approach.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Pricing CTA -->
+	<section id="pricing" class="mx-auto max-w-7xl px-4 py-16 border-t border-gray-200 dark:border-gray-800">
+		<div class="rounded-2xl bg-gray-100 dark:bg-gray-900 p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+			<div>
+				<h3 class="font-serif text-2xl mb-2">Inquire about pricing</h3>
+				<p class="text-gray-600 dark:text-gray-300">Packages available for private and duet sessions.</p>
+			</div>
+			<a href="#contact" class="px-5 py-3 rounded-lg bg-gray-900 text-white dark:bg-white dark:text-gray-900 text-sm">Contact</a>
+		</div>
+	</section>
+
+	<!-- Location / Find us -->
+	<section id="location" class="mx-auto max-w-7xl px-4 py-16 border-t border-gray-200 dark:border-gray-800">
+		<h3 class="font-serif text-2xl mb-6">Find us</h3>
+		<p class="text-sm text-gray-600 mb-4">10 Craighurst Ave, Toronto, Ontario M4R 1J8</p>
+		<div class="rounded-xl overflow-hidden border border-gray-200">
+			<div class="relative w-full h-[22rem] md:h-[28rem]">
+				<iframe
+					class="absolute inset-0 w-full h-full"
+					style="border:0"
+					loading="lazy"
+					allowfullscreen
+					referrerpolicy="no-referrer-when-downgrade"
+					src="https://www.google.com/maps?q=10%20Craighurst%20Ave%2C%20Toronto%2C%20Ontario%20M4R%201J8&output=embed"></iframe>
+			</div>
+		</div>
+		<div class="mt-3">
+			<a class="text-sm text-gray-600 underline hover:text-gray-800" href="https://www.google.com/maps/place/10+Craighurst+Ave,+Toronto,+ON+M4R+1J8" target="_blank" rel="noopener">Open in Google Maps</a>
+		</div>
+	</section>
+
+	<!-- Contact / Footer -->
+	<footer id="contact" class="mx-auto max-w-7xl px-4 py-16 border-t border-gray-200 dark:border-gray-800">
+		<div class="grid md:grid-cols-2 gap-10">
+			<div>
+				<h4 class="font-serif text-2xl">Hours</h4>
+				<ul class="mt-2 text-sm text-gray-600 dark:text-gray-300 space-y-1">
+					<li class="flex justify-between"><span>Monday</span><span>7 a.m.–7 p.m.</span></li>
+					<li class="flex justify-between"><span>Tuesday</span><span>7 a.m.–7 p.m.</span></li>
+					<li class="flex justify-between"><span>Wednesday</span><span>7 a.m.–7 p.m.</span></li>
+					<li class="flex justify-between"><span>Thursday</span><span>7 a.m.–7 p.m.</span></li>
+					<li class="flex justify-between"><span>Friday</span><span>7 a.m.–7 p.m.</span></li>
+					<li class="flex justify-between"><span>Saturday</span><span>Closed</span></li>
+					<li class="flex justify-between"><span>Sunday</span><span>Closed</span></li>
+				</ul>
+			</div>
+			<div>
+				<h4 class="font-serif text-2xl text-right md:text-right">Get in touch</h4>
+				<p class="mt-2 text-gray-600 dark:text-gray-300 text-right flex items-center justify-end gap-2">
+					<svg class="h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+						<path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm11 1.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 .001 6.001A3 3 0 0 0 12 9Z"/>
+					</svg>
+					<span>DM on Instagram</span>
+					<a href="https://www.instagram.com/hyethepilates/" target="_blank" rel="noopener" class="underline hover:text-gray-800">@hyethepilates</a>
+				</p>
+			</div>
+		</div>
+		<p class="mt-10 text-xs text-gray-500">© <span id="year"></span> HYE. All rights reserved.</p>
+	</footer>
+
+	<script src="./script.js"></script>
+</body>
+</html>
+
+

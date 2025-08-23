@@ -1,0 +1,21 @@
+{
+	"name": "hye",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Hye - Tailwind CSS + JavaScript starter",
+	"scripts": {
+		"build:css": "tailwindcss -i ./src/style.css -o ./dist/output.css --minify",
+		"watch:css": "tailwindcss -i ./src/style.css -o ./dist/output.css --watch",
+		"dev": "npm-run-all --parallel watch:css serve",
+		"serve": "ws --directory . --spa src/index.html --port 5173"
+	},
+	"devDependencies": {
+		"local-web-server": "^5.4.0",
+		"npm-run-all": "^4.1.5",
+		"tailwindcss": "^3.4.17"
+	},
+	"main": "tailwind.config.js",
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}

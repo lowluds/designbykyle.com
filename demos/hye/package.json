@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@tabler/icons-react": "^3.34.1",
+    "clsx": "^2.1.1",
+    "motion": "^12.23.12",
+    "tailwind-merge": "^3.3.1"
+  }
+}

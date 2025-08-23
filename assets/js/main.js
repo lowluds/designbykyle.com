@@ -258,14 +258,16 @@ function initContactForm() {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
             
-            // Submit form via AJAX
+            // Submit form via AJAX to Formspree
             fetch(this.action, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => {
+                if (response.ok) {
                     // Reset form
                     this.reset();
                     
@@ -274,14 +276,12 @@ function initContactForm() {
                     submitButton.style.background = 'var(--accent-success)';
                     
                     // Show success notification
-                    showNotification(data.message || 'Message sent successfully!', 'success');
+                    showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
                 } else {
-                    // Show error message
-                    submitButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
-                    submitButton.style.background = 'var(--accent-error)';
-                    
-                    // Show error notification
-                    showNotification(data.message || 'Failed to send message. Please try again.', 'error');
+                    // Handle Formspree errors
+                    return response.json().then(data => {
+                        throw new Error(data.error || 'Failed to send message');
+                    });
                 }
                 
                 // Reset button after 3 seconds
