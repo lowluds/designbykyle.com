@@ -41,8 +41,7 @@ class PortfolioLoader {
         card.innerHTML = `
             <div class="card-body portfolio-card">
                 <div class="portfolio-image card-item card-item-image" data-translate-z="100">
-                    <a href="${project.projectUrl}" class="portfolio-image-link" aria-label="View ${project.title} case study">
-                        <img src="${project.image}" 
+                            <a href="${project.demoUrl}" class="portfolio-image-link" aria-label="View ${project.title} live demo" target="_blank" rel="noopener noreferrer">                        <img src="${project.image}" 
                              alt="${project.title}" 
                              loading="lazy"
                              decoding="async"
@@ -67,20 +66,20 @@ class PortfolioLoader {
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                     <div class="portfolio-actions card-item" data-translate-z="30">
-                        <a href="${project.projectUrl}" 
-                           class="btn btn-primary portfolio-btn"
-                           aria-label="View ${project.title} case study">
-                            <span>Case Study</span>
-                            <i class="fas fa-book-open"></i>
-                        </a>
-                        ${project.demoUrl ? `
                         <a href="${project.demoUrl}" 
+                           class="btn btn-primary portfolio-btn"
                            target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="btn btn-secondary portfolio-btn"
+                           rel="noopener noreferrer"
                            aria-label="View ${project.title} live demo">
                             <span>Live Demo</span>
                             <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        ${project.projectUrl ? `
+                        <a href="${project.projectUrl}" 
+                           class="btn btn-secondary portfolio-btn"
+                           aria-label="View ${project.title} case study">
+                            <span>Case Study</span>
+                            <i class="fas fa-book-open"></i>
                         </a>
                         ` : `
                         <a href="${project.codeUrl}" 
@@ -123,7 +122,7 @@ class PortfolioLoader {
         let mouseY = 0;
         let isHovered = false;
 
-        // Mouse move handler following Aceternity UI pattern
+        // Mouse move handler
         const handleMouseMove = (e) => {
             if (!isHovered) return;
 
