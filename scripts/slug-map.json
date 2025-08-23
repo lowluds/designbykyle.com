@@ -1,0 +1,51 @@
+{
+  "demos": [
+    {
+      "source_path": "demos/asp-printing/index.html",
+      "slug": "asp-printing",
+      "title": "ASP All Solutions Printing",
+      "client": "ASP All Solutions Printing",
+      "year": "2024",
+      "status": "active",
+      "category": "branding",
+      "tags": ["Branding", "Logo Design", "Illustrator", "Web Design"]
+    },
+    {
+      "source_path": "demos/g2own-platform/index.html",
+      "slug": "g2own-platform",
+      "title": "G2Own Platform",
+      "client": "G2Own Gaming",
+      "year": "2024",
+      "status": "active",
+      "category": "web",
+      "tags": ["React", "CSS3", "Animation", "UI/UX"]
+    },
+    {
+      "source_path": "demos/hye/project/src/index.html",
+      "slug": "hye-pilates",
+      "title": "HYE — The Pilates",
+      "client": "HYE Pilates Studio",
+      "year": "2024",
+      "status": "active",
+      "category": "web",
+      "tags": ["HTML5", "Tailwind CSS", "JavaScript", "Responsive Design"]
+    }
+  ],
+  "redirects": [
+    {
+      "old_path": "demos/asp-printing/index.html",
+      "new_path": "/demo/asp-printing/",
+      "method": "cloudflare_301"
+    },
+    {
+      "old_path": "demos/g2own-platform/index.html",
+      "new_path": "/demo/g2own-platform/",
+      "method": "cloudflare_301"
+    },
+    {
+      "old_path": "demos/hye/project/src/index.html",
+      "new_path": "/demo/hye-pilates/",
+      "method": "cloudflare_301"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - Case Study | Kyle L.</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <link rel="canonical" href="https://designbykyle.com/work/{{SLUG}}/" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{TITLE}} - Case Study | Kyle L." />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:image" content="https://designbykyle.com/assets/images/project/{{PROJECT_IMAGE}}" />
+    <meta property="og:url" content="https://designbykyle.com/work/{{SLUG}}/" />
+    <meta property="og:type" content="article" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{TITLE}} - Case Study" />
+    <meta name="twitter:description" content="{{DESCRIPTION}}" />
+    <meta name="twitter:image" content="https://designbykyle.com/assets/images/project/{{PROJECT_IMAGE}}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">Kyle L.</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/#about" class="nav-link">About</a>
+                <a href="/#services" class="nav-link">Services</a>
+                <a href="/#portfolio" class="nav-link">Work</a>
+                <a href="/#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="case-study-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">{{TITLE}}</h1>
+                <p class="hero-subtitle">{{DESCRIPTION}}</p>
+                <div class="hero-media">
+                    <img src="/assets/images/project/{{PROJECT_IMAGE}}" alt="{{TITLE}} Preview" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Snapshot -->
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Problem</h3>
+                    <p>{{PROBLEM_PLACEHOLDER}}</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Role</h3>
+                    <p>{{ROLE_PLACEHOLDER}}</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Timeline</h3>
+                    <p>{{TIMELINE_PLACEHOLDER}}</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Stack</h3>
+                    <div class="tech-tags">
+                        {{TECH_TAGS}}
+                    </div>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Results</h3>
+                    <p>{{RESULTS_PLACEHOLDER}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="project-gallery">
+        <div class="container">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/assets/images/project/{{PROJECT_IMAGE}}" alt="{{TITLE}} Screenshot 1">
+                </div>
+                <!-- Add more gallery items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Buttons -->
+    <section class="project-actions">
+        <div class="container">
+            <div class="action-buttons">
+                <a href="/demo/{{SLUG}}/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    <span>View Live Demo</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="{{CODE_URL}}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <span>View Code</span>
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Kyle L.</h3>
+                    <p>Frontend Developer & UI Designer</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kyle L. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

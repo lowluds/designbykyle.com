@@ -41,7 +41,7 @@ class PortfolioLoader {
         card.innerHTML = `
             <div class="card-body portfolio-card">
                 <div class="portfolio-image card-item card-item-image" data-translate-z="100">
-                    <a href="${project.projectUrl}" target="_blank" rel="noopener noreferrer" class="portfolio-image-link" aria-label="View ${project.title} project">
+                    <a href="${project.projectUrl}" class="portfolio-image-link" aria-label="View ${project.title} case study">
                         <img src="${project.image}" 
                              alt="${project.title}" 
                              loading="lazy"
@@ -65,6 +65,33 @@ class PortfolioLoader {
                     <p class="portfolio-description card-item card-item-description" data-translate-z="60">${project.description}</p>
                     <div class="portfolio-tags card-item card-item-tags" data-translate-z="20">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="portfolio-actions card-item" data-translate-z="30">
+                        <a href="${project.projectUrl}" 
+                           class="btn btn-primary portfolio-btn"
+                           aria-label="View ${project.title} case study">
+                            <span>Case Study</span>
+                            <i class="fas fa-book-open"></i>
+                        </a>
+                        ${project.demoUrl ? `
+                        <a href="${project.demoUrl}" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="btn btn-secondary portfolio-btn"
+                           aria-label="View ${project.title} live demo">
+                            <span>Live Demo</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        ` : `
+                        <a href="${project.codeUrl}" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="btn btn-secondary portfolio-btn"
+                           aria-label="View ${project.title} source code">
+                            <span>View Code</span>
+                            <i class="fab fa-github"></i>
+                        </a>
+                        `}
                     </div>
                 </div>
             </div>
