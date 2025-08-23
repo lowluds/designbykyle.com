@@ -38,10 +38,18 @@ class PortfolioLoader {
         card.setAttribute('data-category', project.category);
         card.style.animationDelay = `${index * 0.1}s`;
 
+        // Determine the primary action URL with fallback
+        const primaryUrl = project.demoUrl || project.projectUrl || project.codeUrl;
+        const primaryLabel = project.demoUrl ? 'Live Demo' : (project.projectUrl ? 'View Project' : 'View Code');
+        const primaryIcon = project.demoUrl ? 'fa-external-link-alt' : (project.projectUrl ? 'fa-book-open' : 'fa-github');
+        const primaryTarget = project.demoUrl ? '_blank' : '';
+        const primaryRel = project.demoUrl ? 'rel="noopener noreferrer"' : '';
+
         card.innerHTML = `
             <div class="card-body portfolio-card">
                 <div class="portfolio-image card-item card-item-image" data-translate-z="100">
-                            <a href="${project.demoUrl}" class="portfolio-image-link" aria-label="View ${project.title} live demo" target="_blank" rel="noopener noreferrer">                        <img src="${project.image}" 
+                    <a href="${primaryUrl}" class="portfolio-image-link" aria-label="View ${project.title}" ${primaryTarget ? `target="${primaryTarget}"` : ''} ${primaryRel}>
+                        <img src="${project.image}" 
                              alt="${project.title}" 
                              loading="lazy"
                              decoding="async"
@@ -66,22 +74,22 @@ class PortfolioLoader {
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                     <div class="portfolio-actions card-item" data-translate-z="30">
-                        <a href="${project.demoUrl}" 
+                        <a href="${primaryUrl}" 
                            class="btn btn-primary portfolio-btn"
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           aria-label="View ${project.title} live demo">
-                            <span>Live Demo</span>
-                            <i class="fas fa-external-link-alt"></i>
+                           ${primaryTarget ? `target="${primaryTarget}"` : ''} 
+                           ${primaryRel}
+                           aria-label="View ${project.title}">
+                            <span>${primaryLabel}</span>
+                            <i class="fas ${primaryIcon}"></i>
                         </a>
-                        ${project.projectUrl ? `
+                        ${project.demoUrl && project.projectUrl ? `
                         <a href="${project.projectUrl}" 
                            class="btn btn-secondary portfolio-btn"
                            aria-label="View ${project.title} case study">
                             <span>Case Study</span>
                             <i class="fas fa-book-open"></i>
                         </a>
-                        ` : `
+                        ` : project.codeUrl ? `
                         <a href="${project.codeUrl}" 
                            target="_blank" 
                            rel="noopener noreferrer" 
@@ -90,7 +98,7 @@ class PortfolioLoader {
                             <span>View Code</span>
                             <i class="fab fa-github"></i>
                         </a>
-                        `}
+                        ` : ''}
                     </div>
                 </div>
             </div>

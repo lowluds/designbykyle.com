@@ -39,6 +39,7 @@ const portfolioData = [
         category: "fullstack",
         tags: ["Python", "Flask", "Authentication", "Security"],
         projectUrl: "https://auth-flask-iblb.onrender.com/login",
+        demoUrl: "https://auth-flask-iblb.onrender.com/login",
         codeUrl: "https://github.com/lowluds/python-basic-port-scanner",
         featured: false,
         year: "2023"
@@ -51,6 +52,7 @@ const portfolioData = [
         category: "web",
         tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
         projectUrl: "https://pineinktattoo.vercel.app",
+        demoUrl: "https://pineinktattoo.vercel.app",
         codeUrl: "https://github.com/lowluds/pineinktattoo",
         featured: true,
         year: "2024"
