@@ -92,5 +92,40 @@
 
     <!-- JavaScript -->
     <script src="/assets/js/main.js"></script>
+    
+    <!-- Demo redirect helper -->
+    <script>
+        // Helper for unknown /demos/<something> paths
+        (function() {
+            const path = window.location.pathname;
+            const demosMatch = path.match(/^\/demos\/([^\/]+)/);
+            
+            if (demosMatch) {
+                const slug = demosMatch[1];
+                
+                // Handle known exceptions
+                const slugMap = {
+                    'hye': 'hye-pilates'
+                };
+                
+                const targetSlug = slugMap[slug] || slug;
+                const newUrl = `/demo/${targetSlug}/`;
+                
+                // Add redirect message
+                const errorContent = document.querySelector('.error-content');
+                if (errorContent) {
+                    const redirectMsg = document.createElement('p');
+                    redirectMsg.style.cssText = 'margin-top: 1rem; padding: 1rem; background: var(--accent-primary); color: white; border-radius: 0.5rem;';
+                    redirectMsg.innerHTML = `<strong>Demo Moved:</strong> Redirecting to <a href="${newUrl}" style="color: white; text-decoration: underline;">${newUrl}</a>`;
+                    errorContent.appendChild(redirectMsg);
+                    
+                    // Auto-redirect after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = newUrl;
+                    }, 3000);
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

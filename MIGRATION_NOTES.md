@@ -1,14 +1,14 @@
-# Migration Notes: Clean Demo URLs & Case Studies
+# Migration Notes: Clean Demo URLs Implementation
 
 ## Overview
-This migration cleans up demo URLs, adds case study pages, and hardens the site for GitHub Pages with Cloudflare.
+This migration implements clean, human-friendly URLs for demos and case studies on GitHub Pages, following the exact specifications provided.
 
-## New URL Structure
+## URL Structure
 
 ### Before Migration
 ```
 /demos/asp-printing/index.html
-/demos/g2own-platform/index.html
+/demos/g2own-platform/index.html  
 /demos/hye/project/src/index.html
 ```
 
@@ -23,167 +23,111 @@ This migration cleans up demo URLs, adds case study pages, and hardens the site 
 /work/hye-pilates/
 ```
 
-## Changes Made
+## Implementation Steps
 
-### 1. Demo Migration
-- **ASP Printing**: `demos/asp-printing/` → `demo/asp-printing/`
-- **G2Own Platform**: `demos/g2own-platform/` → `demo/g2own-platform/`
-- **HYE Pilates**: `demos/hye/project/src/` → `demo/hye-pilates/`
+### 1. Safety Restore Points
+- ✅ Backup branch: `backup-[today]`
+- ✅ Lightweight tag: `site-stable-[today]`
+- ✅ Branch protection on master
 
-### 2. Case Study Pages
-- Created `/work/<slug>/index.html` for each project
-- Added canonical tags pointing to clean URLs
-- Included Open Graph and Twitter Card meta tags
-- Added structured project information (Problem, Role, Timeline, Stack, Results)
+### 2. Clean Demo Folders
+- Copy production assets to `/demo/<slug>/`
+- Fix relative URLs in each index.html
+- Remove source map references
+- Add `noindex, nofollow` meta tags
 
-### 3. Portfolio Updates
-- Updated `portfolio-data.js` with new URL structure
-- Primary button now links to case studies (`/work/<slug>/`)
-- Secondary button links to live demos (`/demo/<slug>/`)
-- Updated portfolio loader to handle dual URLs
+### 3. Case Study Pages
+- Create `/work/<slug>/index.html` with template
+- Add canonical tags pointing to work URLs
+- Include Open Graph and Twitter meta placeholders
+- Structure: Hero, Snapshot, Visuals, Action buttons
 
-### 4. SEO & Security
-- Added `noindex, nofollow` meta tags to all demo pages
-- Updated `robots.txt` to disallow `/demo/` directory
-- Added case study pages to `sitemap.xml`
-- Created comprehensive 404.html page
+### 4. Portfolio Updates
+- Primary action → `/work/<slug>/`
+- Secondary action → `/demo/<slug>/`
+- Add `rel="noopener noreferrer"` to external links
 
-### 5. Redirects (Cloudflare Required)
-Set up these Cloudflare Page Rules for 301 redirects:
+### 5. File-Based Redirects
+HTML stubs at old locations with instant meta refresh:
+```html
+<!doctype html>
+<meta http-equiv="refresh" content="0, url=/demo/<slug>/">
+<link rel="canonical" href="/demo/<slug>/">
+<title>Redirecting</title>
+<a href="/demo/<slug>/">Click here if you are not redirected.</a>
 ```
-/demos/*/project/src/index.html → /demo/$1/
-/demos/:slug/index.html → /demo/:slug/
-/demos/:slug/ → /demo/:slug/
-```
+
+### 6. SEO Configuration
+- Update `robots.txt`: `Disallow: /demo/`
+- Add case studies to `sitemap.xml`
+- Block demo indexing, keep case studies indexable
 
 ## Adding Future Projects
 
 ### Step 1: Create Demo
-1. Create directory: `/demo/<slug>/`
-2. Copy project files to the new directory
-3. Fix relative paths in HTML files
-4. Add `<meta name="robots" content="noindex, nofollow" />` to `<head>`
+1. Create `/demo/<new-slug>/` directory
+2. Copy production build assets
+3. Fix relative paths in HTML
+4. Add `<meta name="robots" content="noindex, nofollow">`
 
 ### Step 2: Create Case Study
-1. Create directory: `/work/<slug>/`
-2. Copy template from `work/case-study-template.html`
-3. Replace placeholders:
-   - `{{TITLE}}` - Project title
-   - `{{DESCRIPTION}}` - Project description
-   - `{{SLUG}}` - URL slug
-   - `{{PROJECT_IMAGE}}` - Image filename
-   - `{{PROBLEM_PLACEHOLDER}}` - Problem statement
-   - `{{ROLE_PLACEHOLDER}}` - Your role
-   - `{{TIMELINE_PLACEHOLDER}}` - Project timeline
-   - `{{TECH_TAGS}}` - Technology tags HTML
-   - `{{RESULTS_PLACEHOLDER}}` - Project results
-   - `{{CODE_URL}}` - GitHub repository URL
+1. Create `/work/<new-slug>/index.html`
+2. Use case study template
+3. Add canonical tag: `<link rel="canonical" href="https://designbykyle.com/work/<new-slug>/" />`
+4. Fill in Open Graph meta tags
 
-### Step 3: Update Portfolio Data
-Add entry to `assets/js/portfolio-data.js`:
-```javascript
-{
-    id: 6,
-    title: "Project Name",
-    description: "Project description",
-    image: "assets/images/project/project6.jpg",
-    category: "web", // or "branding", "fullstack"
-    tags: ["HTML5", "CSS3", "JavaScript"],
-    projectUrl: "work/project-slug/",
-    demoUrl: "demo/project-slug/",
-    codeUrl: "https://github.com/...",
-    featured: true,
-    year: "2024"
-}
-```
+### Step 3: Update Portfolio
+1. Add project to portfolio data
+2. Set primary action to `/work/<new-slug>/`
+3. Set secondary action to `/demo/<new-slug>/`
 
-### Step 4: Update Sitemap
-Add case study URL to `sitemap.xml`:
-```xml
-<url>
-    <loc>https://designbykyle.com/work/project-slug/</loc>
-    <lastmod>2024-12-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-</url>
-```
+### Step 4: Create Redirect Stub
+1. Place HTML stub at old demo location
+2. Use meta refresh to new clean URL
+3. Include canonical tag
 
-### Step 5: Set Up Redirects (if needed)
-If migrating from old paths, add Cloudflare Page Rules:
-```
-/old/path/to/demo → /demo/project-slug/
-```
-
-## Cloudflare Configuration
-
-### Page Rules (301 Redirects)
-1. `/demos/*/project/src/index.html` → `/demo/$1/`
-2. `/demos/:slug/index.html` → `/demo/:slug/`
-3. `/demos/:slug/` → `/demo/:slug/`
-
-### Security Headers (Transform Rules)
-Add these response headers at the zone level:
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-X-Content-Type-Options: nosniff
-X-Frame-Options: SAMEORIGIN
-Referrer-Policy: strict-origin-when-cross-origin
-Permissions-Policy: geolocation=(), camera=(), microphone=(), usb=()
-Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self' data:
-```
-
-## File Structure
-```
-/
-├── demo/
-│   ├── asp-printing/
-│   │   ├── index.html
-│   │   └── [assets]
-│   ├── g2own-platform/
-│   │   ├── index.html
-│   │   └── [assets]
-│   └── hye-pilates/
-│       ├── index.html
-│       ├── output.css
-│       └── assets/
-├── work/
-│   ├── asp-printing/
-│   │   └── index.html
-│   ├── g2own-platform/
-│   │   └── index.html
-│   └── hye-pilates/
-│       └── index.html
-├── scripts/
-│   └── slug-map.json
-├── 404.html
-├── robots.txt
-├── sitemap.xml
-└── MIGRATION_NOTES.md
-```
+### Step 5: Update SEO
+1. Add case study URL to `sitemap.xml`
+2. Test that demo is blocked by `robots.txt`
 
 ## Rollback Plan
-If rollback is needed:
-1. `git checkout master`
-2. `git branch -D feature/clean-demo-urls`
-3. Remove any Cloudflare Page Rules created
-4. Files that would be removed:
-   - `/demo/` directory and all contents
-   - `/work/` directory and all contents
-   - `/scripts/slug-map.json`
-   - Updated `robots.txt`, `sitemap.xml`
-   - Updated `assets/js/portfolio-data.js`
-   - Updated `assets/js/portfolio-loader.js`
-   - `404.html`
-   - `MIGRATION_NOTES.md`
 
-## Testing Checklist
-- [ ] All demo URLs load with working assets
-- [ ] All case study pages load with canonical tags
-- [ ] Portfolio links point to correct URLs
-- [ ] Old demo URLs redirect to new locations (via Cloudflare)
-- [ ] Robots.txt blocks /demo/ from indexing
-- [ ] Demo pages contain noindex meta tags
-- [ ] Sitemap includes new case study pages
-- [ ] 404 page works correctly
+### Emergency Rollback
+```bash
+# Option 1: Revert PR in GitHub
+# Option 2: Switch Pages to backup branch temporarily
+```
+
+### Files to Remove in Rollback
+- `/demo/` directory and contents
+- `/work/` directory and contents
+- Updated `robots.txt` changes
+- Updated `sitemap.xml` entries
+- Portfolio link updates
+
+### Files to Restore
+- Original demo files (preserved as redirect stubs)
+- Original portfolio links
+- Original `robots.txt`
+- Original `sitemap.xml`
+
+## Verification Checklist
+- [ ] All demos load at `/demo/<slug>/` with assets
+- [ ] All case studies exist at `/work/<slug>/`
+- [ ] Portfolio links use new paths
+- [ ] Old URLs redirect instantly
+- [ ] Demos blocked from indexing
+- [ ] Case studies remain indexable
 - [ ] No console errors on any page
-- [ ] Mobile responsiveness maintained
+- [ ] Mobile responsive on iOS/Android
+
+## Slug Rules
+- **Format**: lowercase, hyphen-separated, ASCII-only
+- **Examples**: `asp-printing`, `g2own-platform`, `hye-pilates`
+- **Pattern**: `[a-z0-9-]+`
+
+## GitHub Pages Configuration
+- **Source**: master branch, root directory
+- **Custom Domain**: designbykyle.com
+- **HTTPS**: Enforced
+- **Jekyll**: Not in use (static HTML)
