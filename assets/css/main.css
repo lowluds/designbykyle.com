@@ -4031,11 +4031,6 @@ a:hover {
   --sqAlpha2: 0.14;
 }
 
-.hero-section {
-  padding-top: calc(var(--navbar-height, 80px) + var(--hero-top-gap));
-  padding-bottom: var(--hero-bottom-gap);
-}
-
 /* The shell that holds the grid canvas and the content */
 .hero-shell {
   position: relative;
