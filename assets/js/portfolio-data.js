@@ -20,16 +20,16 @@ const portfolioData = [
     },
     {
         id: 2,
-        title: "G2Own Platform",
-        description: "Sleek gaming platform interface with modern dark design, animated particles, and clean typography.",
-        image: "assets/images/project/project2.jpg",
+        title: "HYE — The Pilates",
+        description: "Elegant Pilates studio website featuring Instagram-style mobile mockup, animated testimonials, and modern responsive design with Tailwind CSS.",
+        image: "assets/images/project/project5.jpg",
         category: "web",
-        tags: ["React", "CSS3", "Animation", "UI/UX"],
-        projectUrl: "work/g2own-platform/",
-        demoUrl: "demo/g2own-platform/",
-        codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/work2/g2own_home",
+        tags: ["HTML5", "Tailwind CSS", "JavaScript", "Responsive Design"],
+        projectUrl: "work/hye-pilates/",
+        demoUrl: "demo/hye-pilates/",
+        codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/demos/hye",
         featured: true,
-        year: "2024"
+        year: "2025"
     },
     {
         id: 3,
@@ -55,21 +55,21 @@ const portfolioData = [
         demoUrl: "https://pineinktattoo.vercel.app",
         codeUrl: "https://github.com/lowluds/pineinktattoo",
         featured: true,
-        year: "2024"
+        year: "2025"
     },
     {
         id: 5,
-        title: "HYE — The Pilates",
-        description: "Elegant Pilates studio website featuring Instagram-style mobile mockup, animated testimonials, and modern responsive design with Tailwind CSS.",
-        image: "assets/images/project/project5.jpg",
+        title: "G2Own Platform",
+        description: "Sleek gaming platform interface with modern dark design, animated particles, and clean typography.",
+        image: "assets/images/project/project2.jpg",
         category: "web",
-        tags: ["HTML5", "Tailwind CSS", "JavaScript", "Responsive Design"],
-        projectUrl: "work/hye-pilates/",
-        demoUrl: "demo/hye-pilates/",
-        codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/demos/hye",
-        featured: true,
+        tags: ["React", "CSS3", "Animation", "UI/UX"],
+        projectUrl: "work/g2own-platform/",
+        demoUrl: "demo/g2own-platform/",
+        codeUrl: "https://github.com/lowluds/designbykyle.com/tree/master/work2/g2own_home",
+        featured: false,
         year: "2024"
-    }
+    },
 ];
 
 // Export for use in other files

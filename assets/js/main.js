@@ -3,6 +3,9 @@
  * Kyle L. - Frontend Developer & UI Designer
  */
 
+// Shared constants
+const NAVBAR_HEIGHT = 80; // Navbar height for offset calculations
+
 // DOM Ready
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
@@ -16,7 +19,23 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollIndicator();
     initAnimatedText();
     initHero3DText();
+    initBusinessCard();
+
 });
+
+/**
+ * Simple navigation highlighting function
+ */
+function setActiveNav(clickedLink) {
+    // Remove active class from all nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Add active class to clicked link
+    clickedLink.classList.add('active');
+}
 
 /**
  * Navigation Functions
@@ -26,6 +45,9 @@ function initNavigation() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Add null guards to prevent errors on pages without these elements
+    if (!navbar || !mobileMenuToggle || !navMenu) return;
 
     // Navbar scroll effect - only backdrop blur, always visible
     window.addEventListener('scroll', function() {
@@ -49,21 +71,24 @@ function initNavigation() {
     // Close mobile menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
+            // Close mobile menu
             mobileMenuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Update active navigation state immediately
+            setActiveNav(this);
         });
     });
 
-    // Active navigation link highlighting
-    window.addEventListener('scroll', updateActiveNavLink);
+    // Active navigation link highlighting - only initial call, scroll listener is handled separately
     updateActiveNavLink(); // Initial call
 }
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    const navbarHeight = 80; // Match CSS navbar height
+    const navbarHeight = NAVBAR_HEIGHT; // Use shared constant
     
     let currentSection = '';
     
@@ -91,6 +116,9 @@ function updateActiveNavLink() {
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Add null guard to prevent errors on pages without theme toggle
+    if (!themeToggle) return;
     
     // Get saved theme or default to system preference
     let currentTheme = localStorage.getItem('theme');
@@ -120,11 +148,22 @@ function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const themeToggle = document.getElementById('theme-toggle');
     const icon = themeToggle.querySelector('i');
-    
-    if (theme === 'dark') {
-        icon.className = 'fas fa-sun';
+
+    // update toggle icon
+    icon.className = (theme === 'dark') ? 'fas fa-sun' : 'fas fa-moon';
+
+    const containers = document.querySelectorAll('.bg-gray-900\\/30');
+
+    if (theme === 'light') {
+        // Remove mouse-fade effect & inline vars
+        containers.forEach(c => {
+            c.classList.remove('gradient-mouse-fade');
+            c.style.removeProperty('--mouse-x');
+            c.style.removeProperty('--mouse-y');
+        });
     } else {
-        icon.className = 'fas fa-moon';
+        // Ensure effect is active in dark mode
+        initMouseFadeEffect();
     }
 }
 
@@ -132,6 +171,8 @@ function applyTheme(theme) {
  * Scroll Animations
  */
 function initScrollAnimations() {
+    console.log('initScrollAnimations called'); // DEBUG
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -141,6 +182,7 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
+                console.log('Element animated:', entry.target); // DEBUG
             }
         });
     }, observerOptions);
@@ -155,14 +197,32 @@ function initScrollAnimations() {
         .contact-form-container
     `);
 
+    console.log('Found animate elements:', animateElements.length); // DEBUG
+
     animateElements.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
+        console.log('Observing element:', el); // DEBUG
     });
 
     // Add staggered animation delays
     document.querySelectorAll('.service-card').forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
+        console.log(`Service card ${index + 1} delay: ${index * 0.1}s`); // DEBUG
+        
+        // DEBUG: Check if content is visible
+        const icon = card.querySelector('.service-icon i');
+        const title = card.querySelector('.service-title');
+        const description = card.querySelector('.service-description');
+        
+        console.log(`Service card ${index + 1} content:`, {
+            icon: icon,
+            title: title,
+            description: description,
+            iconText: icon ? icon.className : 'No icon',
+            titleText: title ? title.textContent : 'No title',
+            descriptionText: description ? description.textContent : 'No description'
+        });
     });
 
     document.querySelectorAll('.portfolio-item').forEach((item, index) => {
@@ -227,8 +287,12 @@ function initSmoothScrolling() {
             const target = document.querySelector(this.getAttribute('href'));
             
             if (target) {
-                const navbarHeight = 80; // Match CSS navbar height
-                const offsetTop = target.offsetTop - navbarHeight;
+                const offsetTop = target.offsetTop - NAVBAR_HEIGHT;
+                
+                // Set active navigation state immediately for instant feedback
+                if (this.classList.contains('nav-link')) {
+                    setActiveNav(this);
+                }
                 
                 window.scrollTo({
                     top: offsetTop,
@@ -394,8 +458,7 @@ function initScrollIndicator() {
         scrollIndicator.addEventListener('click', function() {
             const aboutSection = document.querySelector('#about');
             if (aboutSection) {
-                const navbarHeight = 80;
-                const offsetTop = aboutSection.offsetTop - navbarHeight;
+                const offsetTop = aboutSection.offsetTop - NAVBAR_HEIGHT;
                 
                 window.scrollTo({
                     top: offsetTop,
@@ -558,7 +621,7 @@ document.addEventListener('keydown', function(e) {
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         
-        if (navMenu.classList.contains('active')) {
+        if (mobileMenuToggle && navMenu && navMenu.classList.contains('active')) {
             mobileMenuToggle.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.style.overflow = '';
@@ -840,5 +903,195 @@ function initHero3DText() {
 // Initialize profile placeholder on load
 document.addEventListener('DOMContentLoaded', generateProfilePlaceholder);
 
+/**
+ * Interactive Business Card with Full 3D Matrix Effects (CodePen Style)
+ * Implements the sophisticated mouse tracking and 3D transforms
+ */
+function initBusinessCard() {
+    // Get all the card elements
+    const $card = document.querySelector('.business-card');
+    const $circle = document.querySelector('.card__circle');
+    const $smallCircle = document.querySelector('.card__small-circle');
+    const $nameHero = document.querySelector('.card__name-hero');
+    const $titleHero = document.querySelector('.card__title-hero');
+    const $primaryShine = document.querySelector('.card__primary-shine');
+    const $contactInfo = document.querySelector('.card__contact-info');
+    const $cometOuter = document.querySelector('.card__comet-outer');
+    
+    if (!$card) return;
+    
+    // Helper function to apply translate transform
+    const generateTranslate = (el, e, value) => {
+        if (!el) return;
+        el.style.transform = `translate(${e.clientX * value}px, ${e.clientY * value}px)`;
+    };
+    
+    // Get cumulative offset of element (from CodePen)
+    const cumulativeOffset = (element) => {
+        let top = 0, left = 0;
+        do {
+            top += element.offsetTop || 0;
+            left += element.offsetLeft || 0;
+            element = element.offsetParent;
+        } while(element);
+        
+        return { top: top, left: left };
+    };
+    
+    // Main mouse move handler with full 3D matrix effects
+    const handleGlobalMouseMove = (event) => {
+        const e = event || window.event;
+        
+        // Calculate relative position to card center
+        const cardOffset = cumulativeOffset($card);
+        const cardCenterX = $card.offsetWidth / 2;
+        const cardCenterY = $card.offsetHeight / 2;
+        
+        const x = (e.pageX - cardOffset.left - cardCenterX) * -1 / 100;
+        const y = (e.pageY - cardOffset.top - cardCenterY) * -1 / 100;
+        
+        // Create 3D matrix transformation for the main card
+        const matrix = [
+            [1, 0, 0, -x * 0.00005],
+            [0, 1, 0, -y * 0.00005],
+            [0, 0, 1, 1],
+            [0, 0, 0, 1]
+        ];
+        
+        // Apply matrix3d transform to the main card
+        $card.style.transform = `matrix3d(${matrix.toString()})`;
+        
+        // Apply different movement intensities to different elements
+        generateTranslate($smallCircle, e, 0.03);
+        generateTranslate($contactInfo, e, 0.03);
+        generateTranslate($primaryShine, e, 0.09);
+        generateTranslate($circle, e, 0.05);
+        generateTranslate($nameHero, e, 0.02);      // Subtle movement for main name
+        generateTranslate($titleHero, e, 0.025);    // Slightly more movement for title
+        generateTranslate($cometOuter, e, 0.05);
+    };
+    
+    // Attach global mouse move listener
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+    
+    // Enhanced click functionality for contact items
+    const contactItems = document.querySelectorAll('.card__contact-item');
+    contactItems.forEach(item => {
+        const contactType = item.getAttribute('data-contact');
+        const span = item.querySelector('span');
+        if (!span) return;
+        
+        const text = span.textContent;
+        
+        item.addEventListener('click', () => {
+            switch(contactType) {
+                case 'email':
+                    copyToClipboard(text, 'Email address copied to clipboard!');
+                    break;
+                case 'website':
+                    window.open(`https://${text}`, '_blank', 'noopener,noreferrer');
+                    showNotification('Opening website...', 'info');
+                    break;
+                case 'location':
+                    const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(text)}`;
+                    window.open(mapsUrl, '_blank', 'noopener,noreferrer');
+                    showNotification('Opening location in Google Maps...', 'info');
+                    break;
+                default:
+                    copyToClipboard(text, 'Copied to clipboard!');
+            }
+        });
+        
+        // Enhanced hover effects
+        item.addEventListener('mouseenter', () => {
+            item.style.cursor = 'pointer';
+        });
+    });
+    
+    // Store cleanup function for potential removal later
+    $card._cleanupMouseMove = () => {
+        document.removeEventListener('mousemove', handleGlobalMouseMove);
+    };
+}
+
+/**
+ * Copy to clipboard utility for business card
+ */
+function copyToClipboard(text, successMessage) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            showNotification(successMessage, 'success');
+        }).catch(() => {
+            fallbackCopyTextToClipboard(text, successMessage);
+        });
+    } else {
+        fallbackCopyTextToClipboard(text, successMessage);
+    }
+}
+
+function fallbackCopyTextToClipboard(text, successMessage) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showNotification(successMessage, 'success');
+    } catch (err) {
+        showNotification('Failed to copy to clipboard', 'error');
+    }
+    
+    document.body.removeChild(textArea);
+}
+
 // Make copy function globally available
 window.copyEmail = copyEmail;
+
+/**
+ * Mouse Fade Effect for Gradient Containers
+ */
+function initMouseFadeEffect() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) return; // no effect in light mode
+
+    const gradientContainers = document.querySelectorAll('.bg-gray-900\\/30');
+    
+    gradientContainers.forEach(container => {
+        // Skip hero container - no gradient effects for hero
+        if (container.classList.contains('hero-container')) {
+            return;
+        }
+        
+        // Add the gradient-mouse-fade class to enable the effect
+        container.classList.add('gradient-mouse-fade');
+        
+        // Track mouse movement within the container
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            // Update CSS custom properties for mouse position
+            container.style.setProperty('--mouse-x', `${x}%`);
+            container.style.setProperty('--mouse-y', `${y}%`);
+        });
+        
+        // Reset position when mouse leaves
+        container.addEventListener('mouseleave', () => {
+            container.style.setProperty('--mouse-x', '50%');
+            container.style.setProperty('--mouse-y', '50%');
+        });
+    });
+}
+
+/**
+ * Hero Grid Interactive Cursor Effect
+ */
+
+
+

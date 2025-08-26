@@ -1,0 +1,53 @@
+/* hero shell becomes the positioning context */
+.hero-shell { 
+  position: relative; 
+}
+
+/* band wrapper never intercepts input */
+.hero-bands {
+  position: absolute;
+  inset: 0; /* confined to the hero shell box */
+  pointer-events: none;
+  z-index: 1; /* below .hero-content which should be > 2 already */
+}
+
+/* top and bottom canvases, sized with logical heights */
+.hero-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--hero-band-height, 180px);
+  display: block;
+  opacity: 0.65; /* overall subtlety */
+}
+
+.hero-band--top { 
+  top: 0; 
+}
+
+.hero-band--bottom { 
+  bottom: 0; 
+}
+
+/* make the grid lines barely visible */
+:root {
+  --grid-line: rgba(255,255,255,0.05);
+  --cell-purple: #7c3aed; /* Tailwind violet 600 */
+  --cell-blue: #6366f1;   /* Tailwind indigo 500 */
+  --cell-teal: #22d3ee;   /* optional accent, very low alpha */
+}
+
+/* respect motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .hero-band { 
+    opacity: 0.35; 
+  }
+}
+
+/* mobile adjustments */
+@media (max-width: 640px) {
+  .hero-band {
+    height: 140px;
+  }
+}
