@@ -4434,3 +4434,77 @@ a:hover {
     animation: none !important;
   }
 }
+
+
+/* === Portfolio nav eye-catcher (uses site color tokens) === */
+@property --border-angle-1 { syntax:"<angle>"; inherits:true; initial-value:0deg; }
+@property --border-angle-2 { syntax:"<angle>"; inherits:true; initial-value:90deg; }
+@property --border-angle-3 { syntax:"<angle>"; inherits:true; initial-value:180deg; }
+
+@keyframes rotateBackground  { to { --border-angle-1: 360deg; } }
+@keyframes rotateBackground2 { to { --border-angle-2: -270deg; } }
+@keyframes rotateBackground3 { to { --border-angle-3: 540deg; } }
+
+.nav-link--portfolio{
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  /* ring colors sourced from your theme */
+  --ring1: var(--accent-primary);
+  --ring2: var(--accent-secondary);
+  --ring3: color-mix(in srgb, var(--accent-primary) 50%, var(--accent-secondary) 50%);
+}
+
+/* slightly soften colors on light theme so they don’t shout */
+[data-theme="light"] .nav-link--portfolio{
+  --ring1: color-mix(in srgb, var(--accent-primary) 82%, white 18%);
+  --ring2: color-mix(in srgb, var(--accent-secondary) 82%, white 18%);
+  --ring3: color-mix(in srgb, var(--accent-primary) 45%, var(--accent-secondary) 55%);
+}
+
+/* animated gradient border ring */
+.nav-link--portfolio::before{
+  content:"";
+  position:absolute;
+  inset:-2px;                    /* ring thickness */
+  border-radius:inherit;
+  pointer-events:none;
+  opacity:.9;
+
+  --border-angle-1:0deg;
+  --border-angle-2:90deg;
+  --border-angle-3:180deg;
+
+  background:
+    conic-gradient(from var(--border-angle-1) at 10% 15%, transparent, var(--ring1) 10%, transparent 32%, transparent),
+    conic-gradient(from var(--border-angle-2) at 70% 60%, transparent, var(--ring2) 10%, transparent 60%, transparent),
+    conic-gradient(from var(--border-angle-3) at 50% 20%, transparent, var(--ring3) 10%, transparent 52%, transparent);
+
+  /* hollow center -> border effect */
+  padding:2px;
+  -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+
+  animation:
+    rotateBackground 3s linear infinite,
+    rotateBackground2 8s linear infinite,
+    rotateBackground3 13s linear infinite;
+}
+
+.nav-link--portfolio:hover::before,
+.nav-link--portfolio:focus-visible::before{ opacity:1; }
+
+/* Fallback if conic/@property unsupported */
+@supports not (background: conic-gradient(red, blue)){
+  .nav-link--portfolio::before{
+    background: radial-gradient(closest-side, var(--accent-primary), transparent 70%);
+    animation:none;
+  }
+}
+
+/* Optional: ensure the ring isn’t clipped by the menu container */
+.nav-menu { overflow: visible; }
+
