@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle Ludlow - Frontend Developer & UX/UI Designer</title>
+    <meta name="description" content="Frontend Developer & UX/UI Designer crafting beautiful, modern web experiences. Specializing in React, Python, Node.js, and modern web technologies.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Kyle Ludlow - Frontend Developer & UX/UI Designer">
+    <meta property="og:description" content="Crafting beautiful, modern web experiences that help businesses connect with their customers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://designbykyle.com">
+    
+    <!-- Favicon Package -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favico/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favico/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/images/favico/favicon_io/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favico/favicon_io/favicon-96x96.png">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favico/favicon_io/favicon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favico/favicon_io/favicon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favico/favicon_io/favicon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favico/favicon_io/favicon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favico/favicon_io/favicon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favico/favicon_io/favicon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favico/favicon_io/favicon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favico/favicon_io/favicon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favico/favicon_io/favicon-180x180.png">
+    
+    <!-- Android Chrome Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favico/favicon_io/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favico/favicon_io/favicon-512x512.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="assets/images/favico/favicon_io/manifest.json">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Tailwind CSS CDN for Professional Layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    maxWidth: {
+                        '8xl': '90rem'
+                    }
+                }
+            }
+        }
+    </script>
+
+
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-dark text-light">
+    <!-- Navigation -->
+    <nav class="navbar fixed-top" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="#home" class="brand-link">
+                        <span class="brand-text">Design By Kyle</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link active" onclick="setActiveNav(this)">Home</a>
+                    <a href="#about" class="nav-link" onclick="setActiveNav(this)">About</a>
+                    <a href="#services" class="nav-link" onclick="setActiveNav(this)">Services</a>
+                    <a href="#portfolio" class="nav-link nav-link--portfolio">Portfolio</a>
+                    <a href="#contact" class="nav-link" onclick="setActiveNav(this)">Contact</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section section-professional" aria-label="Intro">
+        <div class="container container-professional hero-shell">
+            <!-- bands, background only -->
+            <div class="hero-bands" aria-hidden="true">
+                <canvas class="hero-band hero-band--top" width="0" height="0"></canvas>
+                <canvas class="hero-band hero-band--bottom" width="0" height="0"></canvas>
+            </div>
+
+                        <!-- existing hero layout -->
+            <div class="hero-content">
+                <!-- Ambient grid inside hero content, behind text and avatar -->
+                <div class="hero-ambient" aria-hidden="true">
+                    <canvas class="grid-band" data-band="top"></canvas>
+                    <canvas class="grid-band" data-band="bottom"></canvas>
+                </div>
+                <div class="hero-text">
+                    <div class="hero-greeting">
+                        <span class="greeting-text">Hello Everyone <span class="wave-hand">👋</span></span>
+                        <!-- Professional Status Badge -->
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            Available for new projects
+                        </div>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        I'm <span class="highlight">Kyle Ludlow</span><br>
+                        <span class="hero-subtitle">
+                            <span class="animated-text" id="animated-role">Frontend Developer</span>
+                        </span>
+                    </h1>
+                    <p class="hero-description">
+                        Crafting beautiful, modern web experiences that help businesses connect with their customers and grow their digital presence.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary">
+                            <span>View Portfolio</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get Started</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <div class="hero-image">
+                            <img src="assets/images/profile-photo.jpg" alt="Kyle Ludlow - Frontend Developer" class="profile-photo">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="floating-elements orbit" aria-hidden="true">
+                            <div class="floating-icon floating-icon-1">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-2">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-3">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="floating-icon floating-icon-4">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24HR</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider-simple"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-gray-900/30 border border-white/10 rounded-lg p-8 lg:p-12">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Frontend Developer & UX/UI Designer with passion for creating amazing digital experiences</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I’m a Creative Developer who builds modern, interactive websites that are seamless, responsive, and tailored to each client’s brand. 
+                        I combine thoughtful design and clean code to deliver websites that not only look great but also engage users and drive results.
+                    </p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>kyle@designbykyle.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Toronto, Canada</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skill-items">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider-simple"></div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-gray-900/30 border border-white/10 rounded-lg p-8 lg:p-12">
+            <div class="section-header">
+                <h2 class="section-title">What I Do</h2>
+                <p class="section-subtitle">I help businesses craft impactful digital experiences through modern web development, clean design, and smart strategy.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Web Application Development</h3>
+                    <p class="service-description">From sleek interfaces to efficient backend logic, I build modern, scalable web apps using tools like React, Python, and Node.js.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Frontend Development</h3>
+                    <p class="service-description">Responsive designs that look sharp and perform fast on every device. Built with user experience and accessibility in mind.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">UI/UX Design</h3>
+                    <p class="service-description">Intuitive, user-focused design that blends clean visuals with seamless interaction to keep users engaged.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Strategy and Branding</h3>
+                    <p class="service-description">Technical guidance and smart digital strategy to help you make confident decisions and move your projects forward.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="service-title">Product Photography</h3>
+                    <p class="service-description">Professional product photography that showcases your products in the best light for digital marketing.</p>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Improve your website's visibility and ranking in search engines with modern SEO techniques and best practices.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider-simple"></div>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-gray-900/30 border border-white/10 rounded-lg p-8 lg:p-12">
+            <div class="section-header">
+                <h2 class="section-title">Recent Works</h2>
+                <p class="section-subtitle">A collection of recent projects showcasing modern web development and design solutions.</p>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Portfolio items will be dynamically loaded here -->
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider-simple"></div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="bg-gray-900/30 border border-white/10 rounded-lg p-8 lg:p-12">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Ready to bring your project to life? Let's discuss your goals and create something amazing together.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>kyle@designbykyle.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>LinkedIn</h3>
+                                <p>Connect with me</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>GitHub</h3>
+                                <p>View my code</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Response Time</h3>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/myzprbeg" method="POST">
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Kyle Ludlow</h3>
+                    <p>Frontend Developer & UX/UI Designer</p>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/kyle-ludlow-designs/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/lowluds" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kyle L. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/portfolio-data.js"></script>
+    <script src="assets/js/portfolio-loader.js"></script>
+    <!-- <script src="assets/js/background-beams.js"></script> -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/hero-grid-bands.js" defer></script>
+</body>
+</html>

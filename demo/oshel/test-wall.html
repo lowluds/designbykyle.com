@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Wall Image Test</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style>
+        /* Wall image filter transitions - buttery smooth grayscale to color */
+        .wall-image {
+            /* Start with grayscale filter */
+            filter: grayscale(100%);
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            /* Smooth transition for filter changes */
+            transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-transition: -webkit-filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            -moz-transition: -moz-filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            -o-transition: -o-filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Ensure images maintain their aspect ratio and cover behavior */
+            width: 300px;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            margin: 10px;
+            border: 2px solid #333;
+        }
+
+        /* Hover state - reveal full color with subtle enhancement */
+        .wall-image:hover,
+        .wall-image:focus {
+            /* Remove grayscale and add subtle enhancements for cinematic effect */
+            filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.02);
+            -webkit-filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.02);
+            -moz-filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.02);
+            -o-filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.02);
+            -ms-filter: grayscale(0%) contrast(1.05) saturate(1.1) brightness(1.02);
+        }
+
+        /* Accessibility: Support for prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .wall-image {
+                /* Reduce transition duration for users who prefer reduced motion */
+                transition: filter 0.15s ease;
+                -webkit-transition: -webkit-filter 0.15s ease;
+                -moz-transition: -moz-filter 0.15s ease;
+                -o-transition: -o-filter 0.15s ease;
+            }
+
+            /* For users who prefer reduced motion, make the change instant on hover */
+            .wall-image:hover,
+            .wall-image:focus {
+                transition: filter 0.05s ease;
+                -webkit-transition: -webkit-filter 0.05s ease;
+                -moz-transition: -moz-filter 0.05s ease;
+                -o-transition: -o-filter 0.05s ease;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .test-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Wall Image Transition Test</h1>
+    <p>Hover over the images below to see the smooth grayscale to color transition. Use Tab to test keyboard focus accessibility.</p>
+
+    <div class="test-container">
+        <img src="img/the-wall/1.jpg" alt="Wall Image 1" class="wall-image" tabindex="0">
+        <img src="img/the-wall/2.jpg" alt="Wall Image 2" class="wall-image" tabindex="0">
+        <img src="img/the-wall/3.jpg" alt="Wall Image 3" class="wall-image" tabindex="0">
+        <img src="img/the-wall/4.jpg" alt="Wall Image 4" class="wall-image" tabindex="0">
+        <img src="img/the-wall/5.jpg" alt="Wall Image 5" class="wall-image" tabindex="0">
+        <img src="img/the-wall/6.jpg" alt="Wall Image 6" class="wall-image" tabindex="0">
+    </div>
+
+    <script>
+        // Add keyboard focus test
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                // Focus will naturally work with our CSS :focus selector
+                console.log('Tab pressed - testing keyboard focus');
+            }
+        });
+    </script>
+</body>
+</html>
