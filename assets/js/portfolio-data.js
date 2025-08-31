@@ -63,7 +63,7 @@ const portfolioData = [
       featured: true,
       year: "2025",
     },
-    {
+  {
       id: 5,
       title: "G2Own Platform",
       description:
@@ -77,6 +77,21 @@ const portfolioData = [
         "https://github.com/lowluds/designbykyle.com/tree/master/work2/g2own_home",
       featured: false,
       year: "2024",
+    },
+    {
+      id: 6,
+      title: "OSHEL - House of Fashion",
+      description:
+        "Interactive photo wall and gallery demo with smooth animations, lightbox viewing, and a fully responsive layout.",
+      image: "demo/oshel/img/logo.png",
+      category: "web",
+      tags: ["Gallery", "Animation", "Responsive", "Demo"],
+      projectUrl: "work/oshel/",
+      demoUrl: "demo/oshel/",
+      codeUrl:
+        "https://github.com/lowluds/designbykyle.com/tree/master/demo/oshel",
+      featured: false,
+      year: "2025",
     },
   ];
   
