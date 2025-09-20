@@ -7,7 +7,7 @@
 const portfolioData = [
     {
       id: 1,
-      title: "ASP All Solutions Printing",
+      title: "ASP - All Solutions Printing",
       description:
         "Brand refresh for a commercial print shop. New logo, color system, and usage guidelines that signal reliability and eco‑friendly values across signage, packaging, and web.",
       image: "assets/images/project/project1.jpg",
@@ -22,7 +22,7 @@ const portfolioData = [
     },
     {
       id: 2,
-      title: "HYE — The Pilates",
+      title: "HYE - The Pilates",
       description:
         "Mobile‑first website for a Pilates studio with clear class offerings, social proof, and a simple inquiry flow designed to drive bookings and repeat visits.",
       image: "assets/images/project/project5.jpg",
@@ -51,7 +51,7 @@ const portfolioData = [
     },
     {
       id: 4,
-      title: "Pine Ink Tattoo Studio",
+      title: "Pine Ink - Tattoo Studio",
       description:
         "Portfolio and booking site for a tattoo studio. Artist profiles, searchable galleries, and a request‑to‑book form that converts visitors into consultations.",
       image: "assets/images/project/project4.jpg",
