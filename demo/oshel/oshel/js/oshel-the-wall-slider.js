@@ -307,7 +307,7 @@ window.addEvent("domready", function() {
         "img/the-wall/34.jpg",
         "img/the-wall/35.jpg",
         "img/the-wall/36.jpg",
-        "img/the-wall/plus-1.jpg" // extra image to compensate for the gap
+        "img/the-wall/1.jpg" // duplicate to compensate for the gap
     ];
     var maxLength = 36;
     var wallFluid = new Wall("wall", {

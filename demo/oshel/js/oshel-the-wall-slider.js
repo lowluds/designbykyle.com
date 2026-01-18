@@ -270,6 +270,8 @@ $(function() {
 
 // 16. the Wall - Simplified for CSS filter transitions
 window.addEvent("domready", function() {
+    var isMobileWall = window.matchMedia("(max-width: 1024px), (pointer: coarse)").matches;
+    var enableWallDrag = !isMobileWall;
     var imagewall = [
         "img/the-wall/1.jpg",
         "img/the-wall/2.jpg",
@@ -307,21 +309,21 @@ window.addEvent("domready", function() {
         "img/the-wall/34.jpg",
         "img/the-wall/35.jpg",
         "img/the-wall/36.jpg",
-        "img/the-wall/plus-1.jpg" // extra image to compensate for the gap
+        "img/the-wall/1.jpg" // duplicate to compensate for the gap
     ];
     var maxLength = 36;
     var wallFluid = new Wall("wall", {
-        "draggable": true,
+        "draggable": enableWallDrag,
         "slideshow": false, // options: true, false
         "speed": 1000,
         "showDuration": 4000,
         "transition": Fx.Transitions.Quad.easeOut,
-        "inertia": true,
+        "inertia": enableWallDrag,
         "autoposition": true,
         "width": 301,
         "height": 320,
-        "rangex": [-100, 100],
-        "rangey": [-100, 100],
+        "rangex": enableWallDrag ? [-100, 100] : [0, 0],
+        "rangey": enableWallDrag ? [-100, 100] : [0, 0],
         callOnUpdate: function(items) {
             var root = Math.ceil(Math.sqrt(maxLength));
             document.id("wall").setStyle("margin-left", 0);
