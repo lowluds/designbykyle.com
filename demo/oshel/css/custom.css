@@ -16,3 +16,10 @@
     touch-action: pan-y;
   }
 }
+
+.main-navigation-logo-img .oshel-logo-mark {
+  display: block;
+  width: 57px;
+  height: 34px;
+  object-fit: contain;
+}
