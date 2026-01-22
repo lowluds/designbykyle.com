@@ -271,6 +271,7 @@ $(function() {
 // 16. the Wall - Simplified for CSS filter transitions
 window.addEvent("domready", function() {
     var isMobileWall = window.matchMedia("(max-width: 1024px), (pointer: coarse)").matches;
+    var isIOSWall = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     var enableWallDrag = !isMobileWall;
     var imagewall = [
         "img/the-wall/1.jpg",
@@ -311,6 +312,29 @@ window.addEvent("domready", function() {
         "img/the-wall/36.jpg",
         "img/the-wall/1.jpg" // duplicate to compensate for the gap
     ];
+
+    function buildStaticWall() {
+        var wall = document.id("wall");
+        if (!wall) {
+            return;
+        }
+        wall.empty();
+        wall.addClass("wall-static");
+        var maxImages = Math.min(imagewall.length, 18);
+        for (var i = 0; i < maxImages; i++) {
+            new Element("img", {
+                src: imagewall[i],
+                class: "wall-image",
+                alt: ""
+            }).inject(wall);
+        }
+    }
+
+    if (isMobileWall && isIOSWall) {
+        buildStaticWall();
+        return;
+    }
+
     var maxLength = 36;
     var wallFluid = new Wall("wall", {
         "draggable": enableWallDrag,
@@ -354,5 +378,14 @@ window.addEvent("domready", function() {
     });
     window.setTimeout(function() {
         wallFluid.initWall();
+        if (isMobileWall) {
+            window.setTimeout(function() {
+                var wall = document.id("wall");
+                var tileCount = wall ? wall.getElements(".tile").length : 0;
+                if (tileCount <= 1) {
+                    buildStaticWall();
+                }
+            }, 400);
+        }
     }, 500);
 });
