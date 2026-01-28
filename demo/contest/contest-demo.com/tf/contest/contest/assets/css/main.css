@@ -4226,8 +4226,11 @@ span {
   font-size: 24px;
 }
 .status-active {
-  color: #2dd4bf;
+  color: #22c55e;
   font-weight: 600;
+}
+.status-active-icon {
+  color: #22c55e;
 }
 .status-expired {
   color: #f87171;
