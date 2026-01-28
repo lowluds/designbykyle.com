@@ -4881,9 +4881,15 @@ span {
   border-radius: 12px;
   position: relative;
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .lt-type__single:hover {
   border-color: var(--primary-color);
+}
+.lt-type__single .content {
+  flex-grow: 1;
 }
 .lt-type__single:hover h6 a {
   color: var(--secondary-color);
@@ -4916,6 +4922,10 @@ span {
   background: rgba(255, 186, 35, 0.05);
   padding: 12px 8px;
 }
+.lt-type__single .timer-active {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.12);
+}
 .lt-type__single .timer p {
   display: flex;
   font-size: 14px;
@@ -4924,6 +4934,11 @@ span {
   font-weight: 500;
   color: var(--secondary-color);
   justify-content: center;
+}
+.lt-type__single .timer-active p,
+.lt-type__single .timer-active p span,
+.lt-type__single .timer-active i {
+  color: #22c55e;
 }
 .lt-type__single .timer p span {
   font-size: 16px;
@@ -4937,6 +4952,9 @@ span {
   padding: 0px;
   border: 0px;
   color: var(--primary-color);
+}
+.lt-type__single .cta {
+  margin-top: auto;
 }
 .lt-type__single .btn--primary::before, .lt-type__single .btn--primary::after {
   content: none;

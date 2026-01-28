@@ -171,8 +171,6 @@ function applyTheme(theme) {
  * Scroll Animations
  */
 function initScrollAnimations() {
-    console.log('initScrollAnimations called'); // DEBUG
-    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -182,7 +180,6 @@ function initScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
-                console.log('Element animated:', entry.target); // DEBUG
             }
         });
     }, observerOptions);
@@ -197,32 +194,14 @@ function initScrollAnimations() {
         .contact-form-container
     `);
 
-    console.log('Found animate elements:', animateElements.length); // DEBUG
-
     animateElements.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
-        console.log('Observing element:', el); // DEBUG
     });
 
     // Add staggered animation delays
     document.querySelectorAll('.service-card').forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
-        console.log(`Service card ${index + 1} delay: ${index * 0.1}s`); // DEBUG
-        
-        // DEBUG: Check if content is visible
-        const icon = card.querySelector('.service-icon i');
-        const title = card.querySelector('.service-title');
-        const description = card.querySelector('.service-description');
-        
-        console.log(`Service card ${index + 1} content:`, {
-            icon: icon,
-            title: title,
-            description: description,
-            iconText: icon ? icon.className : 'No icon',
-            titleText: title ? title.textContent : 'No title',
-            descriptionText: description ? description.textContent : 'No description'
-        });
     });
 
     document.querySelectorAll('.portfolio-item').forEach((item, index) => {
@@ -236,7 +215,6 @@ function initScrollAnimations() {
 function initStatCounters() {
     // Stats are now static text (10+, 5+, 24HR) - no animation needed
     // This function is kept for compatibility but performs no actions
-    console.log('Static stats loaded: 10+ Projects, 5+ Years, 24HR Response');
 }
 
 /**
