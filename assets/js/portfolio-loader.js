@@ -36,7 +36,10 @@ class PortfolioLoader {
         const card = document.createElement('div');
         card.className = `portfolio-item card-container animate-on-scroll`;
         card.setAttribute('data-category', project.category);
-        card.style.animationDelay = `${index * 0.1}s`;
+        const staggerDelay = index * 100;
+        card.dataset.stagger = staggerDelay;
+        card.style.animationDelay = `${staggerDelay}ms`;
+        card.style.transitionDelay = `${staggerDelay}ms`;
 
         // Determine the primary action URL with fallback
         const primaryUrl = project.demoUrl || project.projectUrl || project.codeUrl;
@@ -285,29 +288,26 @@ class PortfolioLoader {
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    // Add a more natural staggered delay
-                    const delay = index * 150;
-                    
-                    setTimeout(() => {
+                    // Trigger animation on the next frame for smooth transitions
+                    requestAnimationFrame(() => {
                         entry.target.classList.add('animated');
-                        
-                        // Ensure smooth loading by preloading images
-                        const img = entry.target.querySelector('img');
-                        if (img && !img.complete) {
-                            img.addEventListener('load', () => {
-                                setTimeout(() => {
-                                    entry.target.classList.add('card-loaded');
-                                }, 50);
-                            });
-                        } else {
-                            // Image already loaded, apply effect immediately
-                            setTimeout(() => {
-                                entry.target.classList.add('card-loaded');
-                            }, 150);
-                        }
-                    }, delay);
+                    });
+                    
+                    // Apply card load animation after image is ready
+                    const img = entry.target.querySelector('img');
+                    const applyLoaded = () => {
+                        requestAnimationFrame(() => {
+                            entry.target.classList.add('card-loaded');
+                        });
+                    };
+                    
+                    if (img && !img.complete) {
+                        img.addEventListener('load', applyLoaded, { once: true });
+                    } else {
+                        applyLoaded();
+                    }
                     
                     // Stop observing once animated to improve performance
                     observer.unobserve(entry.target);
@@ -317,11 +317,9 @@ class PortfolioLoader {
 
         // Observe new portfolio items
         const portfolioItems = this.container.querySelectorAll('.portfolio-item');
-        portfolioItems.forEach((item, index) => {
-            // Add initial loading state
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            
+        portfolioItems.forEach((item) => {
+            item.classList.add('animate-on-scroll');
+            item.classList.remove('animated');
             observer.observe(item);
         });
     }
