@@ -4963,6 +4963,7 @@ span {
 }
 .lt-type__single .cta {
   margin-top: auto;
+  padding-top: 10px;
 }
 
 .lt-type .row.gutter-24 > [class*="col-"] {
