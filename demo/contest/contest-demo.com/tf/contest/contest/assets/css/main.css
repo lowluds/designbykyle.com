@@ -4924,6 +4924,7 @@ span {
   background: rgba(255, 186, 35, 0.05);
   padding: 12px 8px;
   margin-top: auto;
+  margin-bottom: 8px;
 }
 .lt-type__single .timer-active,
 .lt-type__single .timer:has(.status-active) {
