@@ -1,6 +1,6 @@
 /**
  * Modern Portfolio JavaScript
- * Kyle L. - Frontend Developer & UI Designer
+ * Kyle L. - Web Developer
  */
 
 // Shared constants
@@ -676,10 +676,10 @@ function initAnimatedText() {
 
     const roles = [
         'Web Developer',
-        'Responsive Frontend Developer',
-        'Modern UX/UI Designer',
-        'Clean Code, Beautiful Interfaces',
-        'Backend Tools: Python & PHP'
+        'Next.js & Node.js',
+        'Tailwind CSS',
+        'Performance-First Builds',
+        'Clean Code, Modern Interfaces'
     ];
 
     let currentRoleIndex = 0;

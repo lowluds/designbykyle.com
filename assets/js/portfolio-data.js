@@ -6,6 +6,19 @@
 
 const portfolioData = [
     {
+      id: 7,
+      title: "Vicode - Project‑First Platform",
+      description:
+        "Project‑first platform where builders publish projects, post needs, and match with collaborators who can prove their work.",
+      image: "assets/images/project/vicode-logo.png",
+      imageBg: "#000",
+      category: "web",
+      tags: ["Builders", "Collaborators", "Projects", "Kits & Collections"],
+      demoUrl: "https://vicode.io",
+      featured: true,
+      year: "2026",
+    },
+    {
       id: 1,
       title: "ASP - All Solutions Printing",
       description:

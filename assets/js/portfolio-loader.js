@@ -45,9 +45,11 @@ class PortfolioLoader {
         const primaryTarget = project.demoUrl ? '_blank' : '';
         const primaryRel = project.demoUrl ? 'rel="noopener noreferrer"' : '';
 
+        const imageStyle = project.imageBg ? `style="background: ${project.imageBg};"` : '';
+
         card.innerHTML = `
             <div class="card-body portfolio-card">
-                <div class="portfolio-image card-item card-item-image" data-translate-z="100">
+                <div class="portfolio-image card-item card-item-image" data-translate-z="100" ${imageStyle}>
                     <a href="${primaryUrl}" class="portfolio-image-link" aria-label="View ${project.title}" ${primaryTarget ? `target="${primaryTarget}"` : ''} ${primaryRel}>
                         <img src="${project.image}" 
                              alt="${project.title}" 

@@ -1421,6 +1421,7 @@ a:hover {
   position: relative;
   aspect-ratio: 16/10;
   overflow: hidden;
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
 }
 
 .portfolio-image-link {
@@ -3913,9 +3914,9 @@ a:hover {
   
   .hero-greeting {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
-    text-align: left;
+    text-align: center;
   }
   
   .status-badge {
