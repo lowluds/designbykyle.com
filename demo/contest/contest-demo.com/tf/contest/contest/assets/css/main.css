@@ -867,6 +867,9 @@ span {
   padding: 14px 32px;
   background-color: var(--secondary-color);
   color: var(--octonary-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   font-weight: 600;
   border: 1px solid var(--primary-color);
@@ -907,6 +910,9 @@ span {
   padding: 14px 32px;
   background-color: transparent;
   color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   font-weight: 600;
   border: 1px solid var(--primary-color);
@@ -2062,6 +2068,7 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
 }
 .header .navbar__item a {
   font-weight: 500;
