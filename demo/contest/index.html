@@ -1,24 +1,1366 @@
 <!DOCTYPE html>
 <html lang="en">
+   
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=index-three.html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contest-DEMO</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Chakra Petch", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-      background: #0f1013;
-      color: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-  </style>
-</head>
-<body>
-  <p>Loading Contest-DEMO…</p>
-</body>
+      <base href="contest-demo.com/tf/contest/contest/">
+      <!-- #required meta -->
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- #favicon -->
+      <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+      <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+      <!-- #title -->
+      <title>Contest-DEMO | Personalized Contest Discovery</title>
+      <!-- #keywords -->
+      <meta name="keywords" content="contests, contest discovery, creators, entrants, notifications, demo, platform">
+      <!-- #description -->
+      <meta name="description" content="demo-contest is a personalized contest discovery platform that matches users with relevant contests.">
+      <!-- google fonts -->
+      <!-- main css -->
+      <link rel="stylesheet" href="assets/css/main.css">
+      <!-- responsive css -->
+      <link rel="stylesheet" href="assets/css/responsive.css">
+      <!-- rtl version css -->
+      <link rel="stylesheet" href="assets/css/rtl-version.css">
+      <!-- template settings css -->
+      <link rel="stylesheet" href="assets/css/template-settings.css">
+   </head>
+   <body>
+      <!--[if lte IE 9]>
+      <p class="browserupgrade">
+         You are using an <strong>outdated</strong> browser. Please upgrade your browser to improve
+         your experience and security.
+      </p>
+      <![endif]-->
+      <div class="page-wrapper">
+         <!-- ==== preloader start ==== -->
+         <div class="preloader">
+            <i class="ti ti-device-gamepad-2"></i>
+            <p>demo-contest</p>
+         </div>
+         <!-- ==== / preloader end ==== -->
+         <!-- ==== header start ==== -->
+         <header class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="main-header__menu-box">
+                        <nav class="navbar p-0">
+                           <div class="navbar-logo">
+                              <span class="logo-text">Contest-DEMO</span>
+                           </div>
+                           <div class="navbar__menu d-none d-xl-block">
+                              <ul class="navbar__list">
+                                 <li class="navbar__item">
+                                    <a href="">Home</a>
+                                 </li>
+                                 <li class="navbar__item">
+                                    <a href="">About</a>
+                                 </li>
+                                 <li class="navbar__item">
+                                    <a href="">Contests</a>
+                                 </li>
+                                 <li class="navbar__item">
+                                    <a href="">Blog</a>
+                                 </li>
+                                 <li class="navbar__item">
+                                    <a href="">Contact</a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="navbar__options">
+                              <div class="navbar__mobile-options ">
+                                 <div class="navbar__mobile-icons">
+                                    <div class="search-box">
+                                       <button class="open-search" aria-label="search contests" title="open search box">
+                                       <i class="ti ti-search"></i>
+                                       </button>
+                                    </div>
+                                    <div class="language-box">
+                                       <button class="language-select" aria-label="select language"
+                                          title="select language">
+                                       <i class="ti ti-world"></i>
+                                       </button>
+                                       <ul>
+                                          <li>EN</li>
+                                          <li>FR</li>
+                                          <li>CN</li>
+                                          <li>PK</li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                                 <div class="navbar__cta d-none d-sm-flex">
+                                    <a href=""  aria-label="get notified" title="get notified" class="btn--secondary">Get
+                                    Notified <i class="ti ti-arrow-narrow-right"></i></a>
+                                    <a href=""  aria-label="sign up" title="sign up"
+                                       class="btn--primary">Sign Up <i class="ti ti-arrow-narrow-right"></i></a>
+                                 </div>
+                              </div>
+                              <button class="open-offcanvas-nav d-flex d-xl-none" aria-label="toggle mobile menu"
+                                 title="open offcanvas menu">
+                              <span class="icon-bar top-bar"></span>
+                              <span class="icon-bar middle-bar"></span>
+                              <span class="icon-bar bottom-bar"></span>
+                              </button>
+                           </div>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+         <!-- ==== / header end ==== -->
+         <!-- ==== mobile menu start ==== -->
+         <div class="mobile-menu d-block d-xl-none">
+            <nav class="mobile-menu__wrapper">
+               <div class="mobile-menu__header ">
+                  <div class="logo">
+                     <span class="logo-text">Contest-DEMO</span>
+                  </div>
+                  <button aria-label="close mobile menu" class="close-mobile-menu">
+                  <i class="ti ti-x"></i>
+                  </button>
+               </div>
+               <div class="mobile-menu__list"></div>
+               <div class="mobile-menu__cta  d-block d-md-none">
+                  <a href=""  aria-label="sign up" title="sign up" class="btn--primary">Sign Up <i
+                     class="ti ti-arrow-narrow-right"></i></a>
+               </div>
+               <div class="mobile-menu__social social ">
+                  <span aria-label="facebook">
+                  <i class="fa-brands fa-facebook-f"></i>
+                  </span>
+                  <span aria-label="instagram">
+                  <i class="fa-brands fa-instagram"></i>
+                  </span>
+                  <span aria-label="twitter">
+                  <i class="fa-brands fa-twitter"></i>
+                  </span>
+                  <span aria-label="linkedin">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                  </span>
+               </div>
+            </nav>
+         </div>
+         <div class="mobile-menu__backdrop"></div>
+         <!-- ==== / mobile menu end ==== -->
+         <!-- ==== search popup start ==== -->
+         <div class="search-popup">
+            <button class="close-search" aria-label="close search box" title="close search box">
+            <i class="fa-solid fa-xmark"></i>
+            </button>
+            <form action="#" method="post">
+               <div class="search-popup__group">
+                  <input type="text" name="search-field" id="searchField" placeholder="Search contests..." required>
+                  <button type="submit" aria-label="search contests" title="search contests">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+               </div>
+            </form>
+         </div>
+         <!-- ==== / search popup end ==== -->
+         <!-- ==== banner section start ==== -->
+         <section class="banner-two" data-background="assets/images/banner/banner-two-bg.png">
+            <div class="container">
+               <div class="row justify-content-center">
+                  <div class="col-12 col-xl-10">
+                     <div class="banner-three__content text-center mb-60">
+                        <span class="fw-6 secondary-text text-xl sub-title"><strong>Personalized,</strong> verified, and
+                        fast contest discovery.</span>
+                        <h1 class="title-animation fw-7 mt-20">Discover contests made for you <span
+                           class="primary-text">and enter</span> with confidence</h1>
+                     </div>
+                  </div>
+               </div>
+               <div class="row align-items-center gutter-24">
+                  <div class="col-12 col-lg-4 col-xl-3">
+                     <div class="banner-two__content text-center text-lg-end">
+                        <div class="testimonial__thumb-content">
+                           <i class="ti ti-rocket"></i>
+                           <h4 class="fw-7 mt-4 mb-8"><span class="odometer" data-odometer-final="15"></span>M<span
+                              class="prefix">+</span>
+                           </h4>
+                           <p class="text-sm fw-5 neutral-top">Active Members</p>
+                        </div>
+                        <p class="mt-25">Join 5M+ members discovering contests that match their interests.</p>
+                        <div class="join-users justify-content-center justify-content-lg-end mt-25">
+                           <div class="single-user">
+                              <img src="assets/images/avatar/seven.png" alt="Image">
+                           </div>
+                           <div class="single-user">
+                              <img src="assets/images/avatar/five.png" alt="Image">
+                           </div>
+                           <div class="single-user">
+                              <img src="assets/images/avatar/four.png" alt="Image">
+                           </div>
+                           <div class="single-user">
+                              <img src="assets/images/avatar/six.png" alt="Image">
+                           </div>
+                           <div class="single-user">
+                              <p class="fw-7 text-sm">25+</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-4 col-xl-3 offset-lg-4 offset-xl-6">
+                     <div class="banner-two__content text-center text-lg-start">
+                        <p>Welcome to demo-contest, a contest discovery platform where users only see relevant contests
+                           and organizers reach people who care.</p>
+                        <div class="mt-25">
+                           <a href=""  aria-label="get notified" title="get notified"
+                              class="btn--secondary">Get Notified <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                        <div class="banner-three__group flex-row justify-content-center justify-content-lg-start">
+                           <div class="left-content">
+                              <h4 class="fw-6 mt-4 mb-8 primary-text"><span class="odometer"
+                                 data-odometer-final="15"></span>M<span class="prefix secondary-text">+</span>
+                              </h4>
+                              <p class="fw-5">Contest Entries</p>
+                           </div>
+                           <span class="divide d-none d-sm-block"></span>
+                           <div class="left-content">
+                              <h4 class="fw-6 mt-4 mb-8 primary-text"><span class="odometer"
+                                 data-odometer-final="5.2"></span>K<span class="prefix secondary-text">+</span>
+                              </h4>
+                              <p class="fw-5">Contests Listed</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-xl-6">
+                     <div class="banner-two__thumb">
+                        <img src="assets/images/banner/banner-two-thumb.png" alt="Image">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb">
+               <img src="assets/images/banner/banner-two-left.png" alt="Image">
+            </div>
+            <div class="right-thumb">
+               <img src="assets/images/banner/banner-two-right.png" alt="Image">
+            </div>
+            <div class="rocket">
+               <img src="assets/images/rocket.png" alt="Image">
+            </div>
+         </section>
+         <!-- ==== / banner section end ==== -->
+         <!-- ==== sponsor section start ==== -->
+         <div class="sponsor pt-80 pb-80 tertiary-bg">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="sponsor__inner text-center">
+                        <h6 class="neutral-top fw-6"> Trusted by over <span class="secondary-text">12,500</span> organizers
+                           and communities
+                        </h6>
+                        <div class="sponsor__slider swiper mt-35">
+                           <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/one.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/two.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/three.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/four.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/five.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/six.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/seven.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/one.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/two.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/three.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/four.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/five.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/six.png" alt="Image">
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="sponsor__slider-single text-center">
+                                    <img src="assets/images/sponsor/seven.png" alt="Image">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- ==== / sponsor section end ==== -->
+         <!-- ==== lottery section start ==== -->
+         <section class="lt-type pt-120 pb-120" data-background="assets/images/lottery-details.png">
+            <div class="container">
+               <div class="row gutter-20 align-items-center mb-55 rtl-header" data-aos="fade-up" data-aos-duration="600">
+                  <div class="col-12 col-lg-7 col-xl-8 col-xxl-6">
+                     <div class="section__content">
+                        <span class="fw-6 secondary-text text-xl"><strong>Featured,</strong> Contest Picks</span>
+                        <h2 class="title-animation fw-6 mt-25">Trending contests with clear rules</h2>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-5 col-xl-4 col-xxl-4 offset-xxl-2">
+                     <div class="section__content-right">
+                        <p>Explore contests tailored to your skills, interests, and communities, all in one place.</p>
+                        <div class="mt-25">
+                           <a href=""  aria-label="explore all contests" title="explore all contests"
+                              class="btn--secondary">Explore All Contests <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row gutter-24">
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#1
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-1.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Fitness Challenge</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-active">ACTIVE</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="200">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#2
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-2.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Health & Wellness Retreat</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-expired">EXPIRED</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="400">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#3
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-3.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Music Fan Giveaway</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-active">ACTIVE</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="600">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#4
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-4.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Movies & Entertainment Pass</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-expired">EXPIRED</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="200">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#5
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-5.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Gaming Tournament</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-active">ACTIVE</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="400">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#6
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-6.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Sports Ticket Raffle</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-expired">EXPIRED</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="600">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#7
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-7.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Food & Drink Tasting Tour</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-active">ACTIVE</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="800">
+                     <div class="lt-type__single text-center tilt">
+                        <span class="serial">#8
+                        </span>
+                        <span class="price">$958</span>
+                        <div class="thumb">
+                           <img src="assets/images/lottery/trend-8.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6"><span >Travel Adventure Draw</span></h6>
+                           <div class="timer mt-20">
+                              <p><i class="ti ti-clock-hour-3"></i> Status: <span class="status-expired">EXPIRED</span></p>
+                           </div>
+                        </div>
+                        <div class="cta mt-25">
+                           <a href=""  aria-label="view details" title="view details"
+                              class="btn--primary">View Contest <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb-th">
+               <img src="assets/images/left-th.png" alt="Image">
+            </div>
+            <div class="chart">
+               <img src="assets/images/chart.png" alt="Image">
+            </div>
+         </section>
+         <!-- ==== / lottery section end ==== -->
+         <!-- ==== about section start ==== -->
+         <section class="about about-alternate pt-120 pb-120">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-12 col-lg-6 col-xl-6">
+                     <div class="about__content" data-aos="fade-right" data-aos-duration="600">
+                        <div class="section__content text-start">
+                           <span class="fw-6 secondary-text text-xl"><strong>Trusted,</strong> by Thousands of
+                           Creators</span>
+                           <h2 class="title-animation fw-6 mt-25">Join a contest network built for <span>relevance</span>
+                           </h2>
+                           <p class="mt-25">We go beyond listings. We match people to contests they care about and help
+                              organizers reach engaged participants.
+                           </p>
+                        </div>
+                        <hr class="divider mt-35 mb-40">
+                        <div class="about__content-group">
+                           <div class="about__content-single">
+                              <div class="thumb">
+                                 <i class="ti ti-device-gamepad-2"></i>
+                              </div>
+                              <div class="content">
+                                 <h6 class="fw-6">Verified Contest Rules</h6>
+                                 <p class="text-sm mt-8">We verify rules, deadlines, and eligibility so entries are clear.
+                                 </p>
+                              </div>
+                           </div>
+                           <span class="divideer d-none d-xxl-block"></span>
+                           <div class="about__content-single">
+                              <div class="thumb">
+                                 <i class="ti ti-wallet"></i>
+                              </div>
+                              <div class="content">
+                                 <h6 class="fw-6">Fast Organizer Outreach</h6>
+                                 <p class="text-sm mt-8">Organizers reach the right people quickly with precise targeting.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <ul class="list-group-row mt-40">
+                           <li><i class="ti ti-check"></i>Personalized recommendations</li>
+                           <li><i class="ti ti-check"></i>Instant deadline alerts</li>
+                           <li><i class="ti ti-check"></i>Entry tracking in one place</li>
+                           <li><i class="ti ti-check"></i>Organizer-to-user relevance matching</li>
+                        </ul>
+                        <div class="mt-40">
+                           <a href=""  aria-label="join waitlist" title="join waitlist" class="btn--primary">Join
+                           Waitlist <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+                     <div class="authentication__thumb text-center d-none d-lg-block"
+                        data-background="assets/images/authentication/thumb-sm.png">
+                        <div class="circle-img">
+                           <img src="assets/images/authentication/circle.png" alt="Image">
+                        </div>
+                        <div class="thumb">
+                           <img src="assets/images/authentication/thumb.png" alt="Image" data-aos="zoom-in"
+                              data-aos-duration="600" data-aos-delay="200">
+                        </div>
+                        <div class="number-img">
+                           <img src="assets/images/authentication/numbers.png" alt="Image">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb">
+               <img src="assets/images/spring.png" alt="Image">
+            </div>
+            <div class="rocket">
+               <img src="assets/images/rocket-sm.png" alt="Image">
+            </div>
+         </section>
+         <!-- ==== / about section end ==== -->
+         <!-- ==== select lottery number section start ==== -->
+         <section
+            class="lottery-details lottery-alternate lottery pt-120 pb-120"
+            data-background="assets/images/lottery-bg.png"
+            >
+            <div class="container">
+               <div
+                  class="row gutter-20 align-items-center mb-55 rtl-header"
+                  data-aos="fade-up"
+                  data-aos-duration="600"
+                  >
+                  <div class="col-12 col-lg-7 col-xl-8 col-xxl-6">
+                     <div class="section__content">
+                        <span class="fw-6 secondary-text text-xl"
+                           ><strong>Pick,</strong> Your Interests</span
+                           >
+                        <h2 class="title-animation fw-6 mt-25">
+                           Pick contests that fit you
+                        </h2>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-5 col-xl-4 col-xxl-4 offset-xxl-2">
+                     <div class="section__content-right">
+                        <p>
+                           Explore featured contests on demo-contest, where every entry is matched to your goals,
+                           interests, and deadlines.
+                        </p>
+                        <div class="mt-25">
+                           <a
+                              aria-label="explore all contests"
+                              title="explore all contests"
+                              class="btn--secondary"
+                              >Explore All Contests <i class="ti ti-arrow-narrow-right"></i
+                              ></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="lottery__type-wrapper mb-25">
+                        <div class="lottery__type-slider swiper">
+                           <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/two.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Technology & Education Innovation Challenge</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$657.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/one.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Fashion & Beauty Style Contest</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$957.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/three.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Home & Lifestyle Makeover</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$698.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/four.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Automotive & Finance Dream Car Draw</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$1257.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/two.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Business Launch Pitch Contest</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$657.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/one.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Photography & Art Showcase</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$957.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/three.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Local Events VIP Experience</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$698.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="lottery__type lt-type-two">
+                                    <div class="thumb">
+                                       <img
+                                          src="assets/images/lottery/four.png"
+                                          alt="Image"
+                                          >
+                                    </div>
+                                    <div class="content">
+                                       <h6 class="fw-6"><span >Gaming & Sports Showdown</span></h6>
+                                       <p class="mt-16 text-lg">
+                                          <i class="ti ti-wallet"></i>$1257.54
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slider-navigation">
+                           <button
+                              type="button"
+                              aria-label="prev slide"
+                              title="prev slide"
+                              class="prev-lottery slider-btn"
+                              >
+                           <i class="fa-solid fa-angle-left"></i>
+                           </button>
+                           <button
+                              type="button"
+                              aria-label="next slide"
+                              title="next slide"
+                              class="next-lottery slider-btn"
+                              >
+                           <i class="fa-solid fa-angle-right"></i>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb">
+               <img src="assets/images/right-wheel.png" alt="Image" >
+            </div>
+            <div class="right-thumb">
+               <img src="assets/images/left-wheel.png" alt="Image" >
+            </div>
+         </section>
+         <!-- ==== / select lottery number section end ==== -->
+         <!-- ==== testimonial section start ==== -->
+         <section class="testimonial pt-120 pb-120">
+            <div class="container">
+               <div class="row align-items-center">
+                  <div class="col-12 col-lg-5 col-xl-5">
+                     <div class="testimonial__thumb d-none d-lg-block">
+                        <div class="right-thumb text-end">
+                           <div class="right__thumb__inner">
+                              <img src="assets/images/testimonial/top.png" alt="Image" data-aos="zoom-in"
+                                 data-aos-duration="600">
+                              <div class="quote">
+                                 <i class="ti ti-quote"></i>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="left-thumb">
+                           <img src="assets/images/testimonial/right.png" alt="Image" data-aos="zoom-in"
+                              data-aos-duration="600" data-aos-delay="100">
+                        </div>
+                        <div class="bottom-thumb">
+                           <img src="assets/images/testimonial/bottom.png" alt="Image" data-aos="zoom-in"
+                              data-aos-duration="600" data-aos-delay="200">
+                        </div>
+                        <div class="bottom-left-thumb">
+                           <img src="assets/images/testimonial/card.png" alt="Image">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-7 col-xl-6 offset-xl-1">
+                     <div class="testimonial__content">
+                        <div class="section__content text-start mb-40">
+                           <span class="fw-6 secondary-text text-xl"><strong>What,</strong> Our Players Say</span>
+                           <h2 class="title-animation fw-6 mt-25">Success Stories from Our <span>Winning</span> Players
+                           </h2>
+                        </div>
+                        <div class="testimonial__slider swiper">
+                           <div class="swiper-wrapper">
+                              <div class="swiper-slide">
+                                 <div class="testimonial__slider-single">
+                                    <div class="review mb-20">
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <blockquote class="text-xxl"><q>demo-contest shows me only contests I care about, so I
+                                       never miss a deadline and I spend less time searching.</q>
+                                    </blockquote>
+                                    <div class="author__info mt-35">
+                                       <div class="thumb">
+                                          <img src="assets/images/avatar/one.png" alt="Image">
+                                       </div>
+                                       <div class="content">
+                                          <p class="text-xl fw-6">Kiss Laura</p>
+                                          <p>Product Designer</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="testimonial__slider-single">
+                                    <div class="review mb-20">
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <blockquote class="text-xxl"><q>The personalized alerts keep my entry pipeline focused,
+                                       relevant, and easy to manage.</q>
+                                    </blockquote>
+                                    <div class="author__info mt-35">
+                                       <div class="thumb">
+                                          <img src="assets/images/avatar/one.png" alt="Image">
+                                       </div>
+                                       <div class="content">
+                                          <p class="text-xl fw-6">Kiss Laura</p>
+                                          <p>Product Designer</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="swiper-slide">
+                                 <div class="testimonial__slider-single">
+                                    <div class="review mb-20">
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                       <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <blockquote class="text-xxl"><q>As an organizer, we reach engaged participants instead of
+                                       broadcasting to everyone.</q>
+                                    </blockquote>
+                                    <div class="author__info mt-35">
+                                       <div class="thumb">
+                                          <img src="assets/images/avatar/one.png" alt="Image">
+                                       </div>
+                                       <div class="content">
+                                          <p class="text-xl fw-6">Kiss Laura</p>
+                                          <p>Product Designer</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slider-navigation">
+                           <button type="button" aria-label="prev slide" title="prev slide"
+                              class="prev-testimonial slider-btn">
+                           <i class="fa-solid fa-angle-left"></i>
+                           </button>
+                           <button type="button" aria-label="next slide" title="next slide"
+                              class="next-testimonial slider-btn">
+                           <i class="fa-solid fa-angle-right"></i>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-bottom" data-aos="fade-right" data-aos-duration="600">
+               <img src="assets/images/art.png" alt="Image">
+            </div>
+            <div class="right-bottom" data-aos="fade-left" data-aos-duration="600" data-aos-delay="300">
+               <img src="assets/images/square.png" alt="Image">
+            </div>
+            <div class="right-thumb-th">
+               <img src="assets/images/right-th.png" alt="Image">
+            </div>
+            <div class="left-thumb-th">
+               <img src="assets/images/left-th.png" alt="Image">
+            </div>
+            <div class="chart-thumb">
+               <img src="assets/images/chart.png" alt="Image">
+            </div>
+         </section>
+         <!-- ==== / testimonial section end ==== -->
+         <!-- ==== champion section start ==== -->
+         <section class="champion pt-120 pb-120" data-background="assets/images/lottery-details.png">
+            <div class="container">
+               <div class="row gutter-20 align-items-center mb-55 rtl-header" data-aos="fade-up" data-aos-duration="600">
+                  <div class="col-12 col-lg-7 col-xl-8 col-xxl-6">
+                     <div class="section__content">
+                        <span class="fw-6 secondary-text text-xl"><strong>Recent,</strong> Contest Highlights</span>
+                        <h2 class="title-animation fw-6 mt-25">Meet Recent Participants</h2>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-5 col-xl-4 col-xxl-4 offset-xxl-2">
+                     <div class="section__content-right">
+                        <p>See recent entries, featured creators, and the kinds of contests our community engages with.</p>
+                        <div class="mt-25">
+                           <a href=""  aria-label="see all highlights" title="see all highlights"
+                              class="btn--secondary">See All Highlights
+                           <i class="ti ti-arrow-narrow-right"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row gutter-24">
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#1
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-one.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Jacob Jones</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="200">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#2
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-two.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Darrell Steward</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="400">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#3
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-three.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Albert Flores</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="600">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#4
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-four.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Robert Fox</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#5
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-five.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Jacob Jones</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="200">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#6
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-six.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Cody Fisher</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="400">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#7
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-seven.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Jerome Bell</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-4 col-xxl-3" data-aos="fade-up" data-aos-duration="600"
+                     data-aos-delay="600">
+                     <div class="lt-type__single champion__single text-center tilt">
+                        <span class="serial">#8
+                        </span>
+                        <div class="thumb">
+                           <img src="assets/images/avatar/a-eight.png" alt="Image">
+                        </div>
+                        <div class="content mt-20">
+                           <h6 class="fw-6">Eleanor Pena</h6>
+                           <p class="text-sm mt-4 primary-text">Entered 45 minutes ago</p>
+                        </div>
+                        <div class="timer mt-30">
+                           <p>Contest closed on : <span>27/11/24</span>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb">
+               <img src="assets/images/right-wheel.png" alt="Image">
+            </div>
+            <div class="left-thumb-th">
+               <img src="assets/images/left-th.png" alt="Image">
+            </div>
+         </section>
+         <!-- ==== / champion section end ==== -->
+         <!-- ==== blog section removed for single-page demo ==== -->
+         <!-- ==== footer start ==== -->
+         <footer class="footer-two" data-background="assets/images/footer/footer-bg.png">
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <div class="footer__newsletter footer__newsletter-two"
+                        data-background="assets/images/newsletter-bg-two.png" data-aos="fade-up" data-aos-duration="600">
+                        <div class="row justify-content-center">
+                           <div class="col-12 col-lg-10 col-xl-8">
+                              <div class="footer__newsletter-content w-full text-center">
+                                 <h2 class="title-animation fw-6 neutral-top mb-10">Get Contest Updates</h2>
+                                 <p>Subscribe to receive personalized contest alerts, deadlines, and entry reminders
+                                    straight to your inbox.
+                                 </p>
+                              </div>
+                              <div class="footer__newsletter-form mt-35">
+                                 <form action="#" method="post">
+                                    <input type="email" required name="subscribe-email" id="subscribeEmail"
+                                       placeholder="Enter Email">
+                                    <button type="submit" aria-label="subscribe to our newsletter"
+                                       title="subscribe to our newsletter"> <i class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row gutter-60 pt-120 pb-120">
+                  <div class="col-12 col-lg-6 col-xl-3">
+                     <div class="footer__widget" data-aos="fade-up" data-aos-duration="600">
+                        <div class="footer__widget-intro">
+                           <span class="logo-text">Contest-DEMO</span>
+                        </div>
+                        <div class="footer__widget-content mt-25">
+                           <p>demo-contest is a discovery platform that matches users with contests they care about.</p>
+                        </div>
+                        <div class="social mt-35">
+                           <span aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></span>
+                           <span aria-label="instagram"><i class="fa-brands fa-instagram"></i></span>
+                           <span aria-label="twitter"><i class="fa-brands fa-twitter"></i></span>
+                           <span aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-3 col-xl-2">
+                     <div class="footer__widget" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                        <div class="footer__widget-intro">
+                           <h6 class="fw-6 neutral-top">Quick Links</h6>
+                        </div>
+                        <div class="footer__widget-content mt-25">
+                           <ul>
+                              <li><a href="">Home</a></li>
+                              <li><a href="">About</a></li>
+                              <li><a href="">Contests</a></li>
+                              <li><a href="">Blog</a></li>
+                              <li><a href="">Sign Up</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-3 col-xl-2">
+                     <div class="footer__widget" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                        <div class="footer__widget-intro">
+                           <h6 class="fw-6 neutral-top">Contest Categories</h6>
+                        </div>
+                        <div class="footer__widget-content mt-25">
+                           <ul>
+                              <li><a href="">Design</a></li>
+                              <li><a href="">Writing</a></li>
+                              <li><a href="">Photography</a></li>
+                              <li><a href="">Video</a></li>
+                              <li><a href="">Tech</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-6 col-xl-2">
+                     <div class="footer__widget" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
+                        <div class="footer__widget-intro">
+                           <h6 class="fw-6 neutral-top">Quick Links</h6>
+                        </div>
+                        <div class="footer__widget-content mt-25">
+                           <ul>
+                              <li><a href="">How It Works</a></li>
+                              <li><a href="">Contact</a></li>
+                              <li><a href="">Create Account</a></li>
+                              <li><a href="">Sign In</a></li>
+                              <li><a href="">Help Center</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-6 col-xl-3">
+                     <div class="footer__widget" data-aos="fade-up" data-aos-duration="600" data-aos-delay="800">
+                        <div class="footer__widget-intro">
+                           <h6 class="fw-6 neutral-top">Get In Touch</h6>
+                        </div>
+                        <div class="footer__widget-content mt-25">
+                           <div class="footer__widget-group">
+                              <div class="icon">
+                                 <i class="ti ti-phone-call"></i>
+                              </div>
+                              <div class="content">
+                                 <p><span >(505) 555-0125</span></p>
+                                 <p class="mt-4"><span >(225) 555-0118</span></p>
+                              </div>
+                           </div>
+                           <div class="footer__widget-group mt-16">
+                              <div class="icon">
+                                 <i class="ti ti-mail-opened"></i>
+                              </div>
+                              <div class="content">
+                                 <p><span >hello@demo-contest.com</span></p>
+                                 <p class="mt-4"><span >support@demo-contest.com</span></p>
+                              </div>
+                           </div>
+                           <div class="footer__widget-group mt-16">
+                              <div class="icon">
+                                 <i class="ti ti-map-pin"></i>
+                              </div>
+                              <div class="content">
+                                 <p><span >1901 Thornridge Cir. Shiloh, Hawaii 81063</span></p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12">
+                     <div class="footer__copyright">
+                        <div class="row align-items-center gutter-20">
+                           <div class="col-12 col-lg-5">
+                              <div class="footer__copyright-content">
+                                 <p class="text-center text-lg-start">Copyright &copy; <span id="copyrightYear"></span> <span >demo-contest</span>.
+                                    All rights
+                                    reserved.
+                                 </p>
+                                 <p class="text-center text-lg-start mt-8 text-sm">3D icons by <a class="attribution-link" href="https://www.freepik.com">Freepik</a>.</p>
+                              </div>
+                           </div>
+                           <div class="col-12 col-lg-7">
+                              <div class="footer__copyright-list">
+                                 <ul class="justify-content-center justify-content-lg-end">
+                                    <li><a href="">Help & Support</a></li>
+                                    <li><span></span></li>
+                                    <li><a href="">Terms & Conditions</a></li>
+                                    <li><span></span></li>
+                                    <li><a href="">Privacy Policy</a></li>
+                                 </ul>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="left-thumb" data-aos="fade-right" data-aos-duration="600">
+               <img src="assets/images/footer/footer-two-left.png" alt="Image">
+            </div>
+            <div class="right-thumb" data-aos="fade-left" data-aos-duration="600" data-aos-delay="300">
+               <img src="assets/images/footer/footer-two-right.png" alt="Image">
+            </div>
+         </footer>
+         <!-- ==== / footer end ==== -->
+         <!-- ==== scroll to top start ==== -->
+         <button class="progress-wrap" aria-label="scroll indicator" title="back to top">
+            <span></span>
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+               <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            </svg>
+         </button>
+         <!-- ==== / scroll to top end ==== -->
+      </div>
+      <!-- ==== js dependencies start ==== -->
+      <!-- jquery -->
+      <script src="assets/js/jquery-3.7.1.min.js"></script>
+      <!-- bootstrap five js -->
+      <script src="assets/js/bootstrap.bundle.min.js"></script>
+      <!-- nice select js -->
+      <script src="assets/js/jquery.nice-select.min.js"></script>
+      <!-- magnific popup js -->
+      <script src="assets/js/jquery.magnific-popup.min.js"></script>
+      <!-- swiper slider js -->
+      <script src="assets/js/swiper-bundle.min.js"></script>
+      <!-- viewport js -->
+      <script src="assets/js/viewport.jquery.js"></script>
+      <!-- odometer js -->
+      <script src="assets/js/odometer.min.js"></script>
+      <!-- vanilla tilt js -->
+      <script src="assets/js/vanilla-tilt.min.js"></script>
+      <!-- aos js -->
+      <script src="assets/js/aos.js"></script>
+      <!-- isotope js -->
+      <script src="assets/js/isotope.pkgd.min.js"></script>
+      <!-- splittext js -->
+      <script src="assets/js/SplitText.min.js"></script>
+      <!-- scrollto js -->
+      <script src="assets/js/ScrollToPlugin.min.js"></script>
+      <!-- scrolltrigger js -->
+      <script src="assets/js/ScrollTrigger.min.js"></script>
+      <!-- gsap js -->
+      <script src="assets/js/gsap.min.js"></script>
+      <!-- ==== / js dependencies end ==== -->
+      <!-- main js -->
+      <script src="assets/js/custom.js"></script>
+   </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
