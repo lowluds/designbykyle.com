@@ -19,6 +19,29 @@ const portfolioData = [
       year: "2026",
     },
     {
+      id: 8,
+      title: "Contest Discovery Platform Demo",
+      description:
+        "Discovery platform demo where users see only relevant contests and companies reach people who actually care.",
+      image: "assets/images/project/contest.png",
+      category: "web",
+      tags: ["Contest Discovery", "Personalized Matches", "Targeted Reach", "User Relevance", "Company Outreach"],
+      demoUrl: "demo/contest/",
+      featured: false,
+    },
+    {
+      id: 9,
+      title: "Classifieds Marketplace Demo",
+      description:
+        "Classifieds marketplace demo where users choose a city and category to browse listings or post their own, with trust and safety features built in.",
+      image: "assets/images/project/classifieds-demo.png",
+      category: "web",
+      tags: ["Local Listings", "City & Category Browse", "Trusted Sellers", "Reporting Tools", "Privacy Controls"],
+      demoUrl: "https://classified-demo.vercel.app/",
+      featured: false,
+      year: "2026",
+    },
+    {
       id: 1,
       title: "ASP - All Solutions Printing",
       description:
