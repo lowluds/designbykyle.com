@@ -4924,7 +4924,7 @@ span {
   background: rgba(255, 186, 35, 0.05);
   padding: 12px 8px;
   margin-top: auto;
-  margin-bottom: 8px;
+  margin-bottom: clamp(10px, 1.5vw, 16px);
 }
 .lt-type__single .timer-active,
 .lt-type__single .timer:has(.status-active) {
@@ -4963,7 +4963,7 @@ span {
 }
 .lt-type__single .cta {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: clamp(10px, 1.5vw, 16px);
 }
 
 .lt-type .row.gutter-24 > [class*="col-"] {
