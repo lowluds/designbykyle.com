@@ -4890,6 +4890,8 @@ span {
 }
 .lt-type__single .content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 .lt-type__single:hover h6 a {
   color: var(--secondary-color);
@@ -4921,6 +4923,7 @@ span {
   border: 1px solid rgba(255, 186, 35, 0.2);
   background: rgba(255, 186, 35, 0.05);
   padding: 12px 8px;
+  margin-top: auto;
 }
 .lt-type__single .timer-active,
 .lt-type__single .timer:has(.status-active) {
