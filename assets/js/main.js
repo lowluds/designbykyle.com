@@ -292,7 +292,9 @@ function initContactForm() {
             e.preventDefault();
             
             // Get form data
-            const formData = new FormData(this);
+            const name = this.querySelector('#name')?.value.trim();
+            const email = this.querySelector('#email')?.value.trim();
+            const message = this.querySelector('#message')?.value.trim();
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.innerHTML;
             
@@ -300,32 +302,39 @@ function initContactForm() {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
             
-            // Submit form via AJAX to Formspree
+            // Submit form via AJAX to Cloudflare Worker
             fetch(this.action, {
                 method: 'POST',
-                body: formData,
                 headers: {
-                    'Accept': 'application/json'
-                }
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
             })
-            .then(response => {
-                if (response.ok) {
-                    // Reset form
-                    this.reset();
-                    
-                    // Show success message
-                    submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    submitButton.style.background = 'var(--accent-success)';
-                    
-                    // Show success notification
-                    showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
-                } else {
-                    // Handle Formspree errors
-                    return response.json().then(data => {
-                        throw new Error(data.error || 'Failed to send message');
-                    });
+            .then(async response => {
+                if (!response.ok) {
+                    let errorMessage = 'Failed to send message';
+                    try {
+                        const data = await response.json();
+                        if (data && data.error) {
+                            errorMessage = data.error;
+                        }
+                    } catch (parseError) {
+                        // Ignore JSON parse errors and use default message.
+                    }
+                    throw new Error(errorMessage);
                 }
+
+                // Reset form
+                this.reset();
                 
+                // Show success message
+                submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                submitButton.style.background = 'var(--accent-success)';
+                
+                // Show success notification
+                showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+
                 // Reset button after 3 seconds
                 setTimeout(() => {
                     submitButton.innerHTML = originalText;
