@@ -19,17 +19,6 @@ const portfolioData = [
       year: "2026",
     },
     {
-      id: 8,
-      title: "Contest Discovery Platform Demo",
-      description:
-        "Discovery platform demo where users see only relevant contests and companies reach people who actually care.",
-      image: "assets/images/project/contest.png",
-      category: "web",
-      tags: ["Contest Discovery", "Personalized Matches", "Targeted Reach", "User Relevance", "Company Outreach"],
-      demoUrl: "demo/contest/",
-      featured: false,
-    },
-    {
       id: 9,
       title: "Classifieds Marketplace Demo",
       description:
